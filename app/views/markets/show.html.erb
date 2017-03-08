@@ -1,0 +1,67 @@
+<style>
+.demo-card-square.mdl-card {
+  width: 320px;
+  height: 320px;
+}
+.demo-card-square > .mdl-card__title {
+  color: #fff;
+  background:
+    url('../assets/mdl_demo.jpg') bottom right 15% no-repeat #46B6AC;
+}
+</style>
+
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
+  <div class="mdl-card__supporting-text">
+    <h4>Features</h4>
+    <p id="notice"><%= notice %></p>
+    <p>
+      <strong>City:</strong>
+      <%= @market.city %>
+      <strong>State:</strong>
+      <%= @market.state %>
+      <strong>Zipcode:</strong>
+      <%= @market.zipcode %>
+      <strong>Rating:</strong>
+      <%= @market.rating %>
+    </p>
+    <p>
+      <strong>Description:</strong>
+      <%= @market.description %>
+      <strong>Open time:</strong>
+      <%= @market.open_time %>
+      <strong>Close time:</strong>
+      <%= @market.close_time %>
+    </p>
+  </div>
+  <div class="mdl-card__actions">
+      <%= link_to 'Edit', edit_market_path(@market) %> |
+      <%= link_to 'Back', markets_path %>
+  </div>
+</section>
+
+<h1>Stores</h1>
+<div class="mdl-grid">
+  <% @stores.each do |store| %>
+  <div class="mdl-cell mdl-cell--4-col">
+  <div class="demo-card-square mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title mdl-card--expand">
+      <h2 class="mdl-card__title-text">opentime-closetime
+        <%= store.open_time %><br>
+        <%= store.close_time %><br>
+      </h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <%= store.description %><br>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+        <%= link_to 'Show', store %>
+        <%= link_to 'Edit', edit_store_path(store) %>
+        <%= link_to 'Destroy', store, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </a>
+    </div>
+  </div>
+  </div>
+  <% end %>
+</div>
+<br>

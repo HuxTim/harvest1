@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyString
+  open_time: MyString
+  close_time: MyString
+
+two:
+  description: MyString
+  open_time: MyString
+  close_time: MyString
