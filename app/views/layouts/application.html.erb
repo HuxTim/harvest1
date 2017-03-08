@@ -20,7 +20,8 @@
           <a class="mdl-navigation__link" href="">Markets</a>
           <a class="mdl-navigation__link" href="">Stores</a>
           <a class="mdl-navigation__link" href="">Contact</a>
-          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">
+            <%= link_to "Sign up", user_signup_path, class: "mdl-button mdl-js-button mdl-button--raised" %></a>
         </nav>
       </div>
     </header>
@@ -45,6 +46,7 @@
           <li><a href="#">Help</a></li>
           <li><a href="#">Privacy & Terms</a></li>
         </ul>
+        <%= debug(params) if Rails.env.development? %>
       </div>
     </footer>
   </div>

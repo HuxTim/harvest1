@@ -42,6 +42,9 @@ GEM
     autoprefixer-rails (6.7.6)
       execjs
     bcrypt (3.1.11)
+    bootstrap-sass (3.3.6)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     builder (3.2.3)
     byebug (9.0.0)
     coffee-rails (4.2.1)
@@ -160,6 +163,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt (= 3.1.11)
+  bootstrap-sass (= 3.3.6)
   byebug (= 9.0.0)
   coffee-rails (= 4.2.1)
   jbuilder (= 2.4.1)
@@ -179,4 +183,4 @@ DEPENDENCIES
   web-console (= 3.1.1)
 
 BUNDLED WITH
-   1.13.7
+   1.14.3
