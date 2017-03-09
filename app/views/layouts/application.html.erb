@@ -12,14 +12,16 @@
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <!-- Title -->
-        <span class="mdl-layout-title">Harvest</span>
+        <span class="mdl-layout-title"><%= link_to "", root_path %>Harvest</span>
         <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
         <!-- Navigation. We hide it in small screens. -->
         <nav class="mdl-navigation mdl-layout--large-screen-only">
-          <a class="mdl-navigation__link" href="">Markets</a>
-          <a class="mdl-navigation__link" href="">Stores</a>
-          <a class="mdl-navigation__link" href="">Contact</a>
+          <a >
+            <%= link_to "Markets", markets_path, class: "mdl-button mdl-js-button" %></a>
+          <a>
+            <%= link_to "Stores", stores_path, class: "mdl-button mdl-js-button" %></a>
+          <a class="mdl-button mdl-js-button" href="">Products</a>
           <a class="mdl-navigation__link" href="">
             <%= link_to "Sign up", user_signup_path, class: "mdl-button mdl-js-button mdl-button--raised" %></a>
         </nav>
@@ -38,6 +40,112 @@
           <%= yield %>
       </div>
     </main>
+<br><br><br>
+    <style>
+.demo-card-wide.mdl-card {
+  width: 1200px;
+  color:black;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 1000px;
+  background: url('/market.gif') center / cover;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+</style>
+
+<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Welcome</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    Open Markets Near You
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+      View More Markets
+    </a>
+  </div>
+  <div class="mdl-card__menu">
+    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      <i class="material-icons">share</i>
+    </button>
+  </div>
+</div>
+
+<br><br><br>
+    <style>
+.demo-card-wide.mdl-card {
+  width: 1200px;
+}
+.demo-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 1000px;
+  background: url('/market.gif') center / cover;
+}
+.demo-card-wide > .mdl-card__menu {
+  color: #fff;
+}
+</style>
+
+<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Welcome</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    Top rated Markets
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+      View More Markets
+    </a>
+  </div>
+  <div class="mdl-card__menu">
+    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      <i class="material-icons">share</i>
+    </button>
+  </div>
+</div>
+
+<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Welcome</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    Top Rated Stores
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+      View More Stores
+    </a>
+  </div>
+  <div class="mdl-card__menu">
+    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      <i class="material-icons">share</i>
+    </button>
+  </div>
+</div>
+
+<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Welcome</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    Most Popular Products
+  </div>
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+      View More Products
+    </a>
+  </div>
+  <div class="mdl-card__menu">
+    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      <i class="material-icons">share</i>
+    </button>
+  </div>
+</div>
 
     <footer class="mdl-mini-footer">
       <div class="mdl-mini-footer__left-section">
