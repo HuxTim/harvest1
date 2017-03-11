@@ -8219,3 +8219,62 @@ puma (3.4.0) lib/puma/thread_pool.rb:114:in `block in spawn_thread'
   Rendering /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/main.js.erb within layouts/javascript
   Rendered /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
   Rendered /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/index.html.erb (166.5ms)
+Started GET "/" for ::1 at 2017-03-11 18:30:24 -0500
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 414ms (Views: 404.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/market.gif" for ::1 at 2017-03-11 18:30:24 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/market.gif"):
+  
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.1.1) lib/web_console/middleware.rb:131:in `call_app'
+web-console (3.1.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.1.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.1.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.4.0) lib/puma/configuration.rb:224:in `call'
+puma (3.4.0) lib/puma/server.rb:569:in `handle_request'
+puma (3.4.0) lib/puma/server.rb:406:in `process_client'
+puma (3.4.0) lib/puma/server.rb:271:in `block in run'
+puma (3.4.0) lib/puma/thread_pool.rb:114:in `block in spawn_thread'
+  Rendering /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered collection of /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb [59 times] (32.6ms)
+  Rendered /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (12.9ms)
+  Rendering /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.1ms)
+  Rendered /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (304.2ms)
+  Rendering /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/index.html.erb
+  Rendered /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendering /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/console.js.erb within layouts/javascript
+  Rendering /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string
+  Rendered /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendering /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string
+  Rendered /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendering /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/style.css.erb within layouts/inlined_string
+  Rendered /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/console.js.erb within layouts/javascript (72.2ms)
+  Rendering /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/main.js.erb within layouts/javascript
+  Rendered /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/Beraa/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/index.html.erb (149.9ms)
