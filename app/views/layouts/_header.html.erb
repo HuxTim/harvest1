@@ -1,0 +1,20 @@
+<header class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <a ><%= link_to "Harvest", root_path, class: "navbar-brand"%></a>
+    <nav>
+      <ul class="nav navbar-nav navbar-left">
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Stores", stores_path %></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to "Log in", user_signup_path %>
+        </li>
+        <li>
+          <%= link_to "Sign up", user_signup_path %>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

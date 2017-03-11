@@ -2,12 +2,14 @@
 <html>
   <head>
     <title>Harvest</title>
-    <%= csrf_meta_tags %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <%= csrf_meta_tags %>
+      <%= stylesheet_link_tag    'application', media: 'all',
+                                              'data-turbolinks-track': 'reload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <%= render 'layouts/shim' %>
   </head>
   <body>
+<<<<<<< HEAD
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
@@ -158,5 +160,11 @@
       </div>
     </footer>
   </div>
+=======
+    <%= render 'layouts/header' %>
+    <div class="container">
+      <%= yield %>
+    </div>
+>>>>>>> css
   </body>
 </html>
