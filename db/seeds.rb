@@ -32,10 +32,38 @@ User.create!([{
 #   city: "Boston"
 #   password_digest: "ilovecarrots"
 }])
-@first_vendor = User.first
 
-@first_vendor.vendors.create!(description: "This is a description of me")
+@first_market = Market.create!(name: "John's Market",
+                               city: "Waltham",
+                              state: "MA",
+                              zipcode: "02453",
+                              rating: "",
+                              description:"a nice market",
+                              open_time: "8:00am",
+                              close_time: "7:00pm")
+
+@first_user = User.first
+
+@first_vendor = @first_user.vendors.create!(description: "This is a description of me")
+
+# Store.create(vendor_id: @vendor.id)
+@first_store = Store.create!(name: "John's Bread",
+                                                    description: "delicious bread",
+                                                    open_time: "8:00am",
+                                                    close_time: "6:00pm",
+                                                    vendor_id: @first_vendor.id,
+                                                    market_id: @first_market.id)
+
+@first_product = Product.create!(name: "Bread",
+                                 quantity: "10",
+                                 price: "$4.00/lb",
+                                 description: "delicious bread",
+                                 tag: "gluten free, soy-free",
+                                 store_id: @first_store.id)
 
 
 p "Created #{User.count} users"
+p "Created #{Market.count} markets"
 p "Created #{Vendor.count} vendors"
+p "Created #{Store.count} stores"
+p "Created #{Product.count} products"
