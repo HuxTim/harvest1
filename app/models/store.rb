@@ -1,6 +1,8 @@
 class Store < ApplicationRecord
   belongs_to :market
   belongs_to :vendor
+  has_many :products
+  has_many :reviews
 
   validates :description,  presence: true, length: { maximum: 500 }
   validates :open_time, presence: true, length: { maximum: 8}

@@ -1,6 +1,14 @@
-<div class="mdl-layout-spacer">
-<h1 >Welcome to Harvest</h1>
+<!DOCTYPE html>
 
-<!-- <%= link_to "Sign up now!", user_signup_path, class: "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" %> -->
 
-</div>
+    <div class="col-md-12 jumbotron">
+      <div class="form-horizontal center"  id="search_area">
+        <%= form_for root_path, method: :get do  %>
+          <%= text_field_tag :term, params[:term], class: "form-control", placeholder: "Markets, Stores, Products..." %>
+
+        <% end %>
+      </div>
+
+    </div>
+
+<%= render 'layouts/market_cards' %>

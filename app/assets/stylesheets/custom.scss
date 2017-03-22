@@ -1,2 +1,92 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+
+.card-header{
+  font-size: 15px;
+}
+.our_cards{
+  outline-offset: 15px;
+  outline-style: groove;
+  outline-color: black;
+  margin-bottom: 15px;
+}
+
+// #search_area{
+//   color:blue;
+//   float:center;
+//   text-align: center;
+// }
+// #logo {
+//   float: left;
+//   margin-right: 10px;
+//   margin-top: 7px;
+//   font-size: 1.7em;
+//   color: grey;
+//   text-transform: uppercase;
+//   letter-spacing: -1px;
+//   padding-top: 9px;
+//   font-weight: bold;
+//   &:hover {
+//
+//     text-decoration: none;
+//   }
+// }
+
+.navbar-buttons {
+  float:left;
+}
+
+body { padding-top: 50px; }
+
+// $bgDefault      : #e74c3c;
+// $bgHighlight    : #c0392b;
+// $colDefault     : #ecf0f1;
+// $colHighlight       : #ffbbbc;
+// .navbar-default {
+//   background-color: $bgDefault;
+//   border-color: $bgHighlight;
+//   .navbar-brand {
+//     color: $colDefault;
+//     &:hover, &:focus {
+//       color: $colHighlight; }}
+//   .navbar-text {
+//     color: $colDefault; }
+//   .navbar-nav {
+//     > li {
+//       > a {
+//         color: $colDefault;
+//         &:hover,  &:focus {
+//           color: $colHighlight; }}}
+//     > .active {
+//       > a, > a:hover, > a:focus {
+//         color: $colHighlight;
+//         background-color: $bgHighlight; }}
+//     > .open {
+//       > a, > a:hover, > a:focus {
+//         color: $colHighlight;
+//         background-color: $bgHighlight; }}}
+//   .navbar-toggle {
+//     border-color: $bgHighlight;
+//     &:hover, &:focus {
+//       background-color: $bgHighlight; }
+//     .icon-bar {
+//       background-color: $colDefault; }}
+//   .navbar-collapse,
+//   .navbar-form {
+//     border-color: $colDefault; }
+//   .navbar-link {
+//     color: $colDefault;
+//     &:hover {
+//       color: $colHighlight; }}}
+// @media (max-width: 767px) {
+//   .navbar-default .navbar-nav .open .dropdown-menu {
+//     > li > a {
+//       color: $colDefault;
+//       &:hover, &:focus {
+//         color: $colHighlight; }}
+//     > .active {
+//       > a, > a:hover, > a:focus, {
+//         color: $colHighlight;
+//         background-color: $bgHighlight; }}}
+// }
