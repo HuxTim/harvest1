@@ -2,9 +2,21 @@
 @import "bootstrap";
 
 
-#search-form{
-  color:blue;
+.card-header{
+  font-size: 15px;
 }
+.our_cards{
+  outline-offset: 15px;
+  outline-style: groove;
+  outline-color: black;
+  margin-bottom: 15px;
+}
+
+// #search_area{
+//   color:blue;
+//   float:center;
+//   text-align: center;
+// }
 // #logo {
 //   float: left;
 //   margin-right: 10px;
