@@ -3,6 +3,7 @@ require "minitest/autorun"
 
 class StoreTest < ActiveSupport::TestCase
   def setup
+    puts "this modification is for test"
     @store = Store.new(description: "Example Description", open_time: "8:00am", close_time: "6:00pm")
   end
 
