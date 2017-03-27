@@ -21,13 +21,15 @@ describe Market do
     assert_not @market.valid?
   end
 
-  it "cannot have empty description" do
-     @market.description = "     "
-     @market.valid?.must_equal false
-     @market.description = nil
-     @market.valid?.must_equal false
-     @market.description = "a market"
-     @market.valid?.must_equal true
+  test "market addresses should be unique" do
+    duplicate_market = @market.dup
+    @market.save
+    assert_not duplicate_market.valid?
+  end
+
+  test "description should not be too long" do
+    @market.name = "a" * 501
+    assert_not @market.valid?
   end
 
   it "have legal zipcode" do
