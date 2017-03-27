@@ -1,9 +1,24 @@
 require 'test_helper'
-require 'minitest/spec'
 
 describe Market do
   before do
     @market = Market.create()
+  end
+
+  test "should be valid" do
+    assert @market.valid?
+  end
+
+  test "name should be present" do
+    @market.name = ""
+    assert_not @market.valid?
+    @market.name = "    "
+    assert_not @market.valid?
+  end
+
+  test "name should not be too long" do
+    @market.name = "a" * 51
+    assert_not @market.valid?
   end
 
   it "cannot have empty description" do
