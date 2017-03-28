@@ -5,7 +5,6 @@ class Store < ApplicationRecord
   has_many :reviews
 
   validates :name, presence: true, length: {maximum: 50 }
-  validates :store_id, presence: true
   validates :market_id, presence: true
   validates :vendor_id, presence: true
   validates :open_time, presence: true

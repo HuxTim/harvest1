@@ -8,6 +8,9 @@
 
 User.destroy_all
 Vendor.destroy_all
+Market.destroy_all
+Store.destroy_all
+Product.destroy_all
 
 User.create!([{
   name: "John Smith",
@@ -37,20 +40,20 @@ User.create!([{
                                city: "Waltham",
                               state: "MA",
                               zipcode: "02453",
-                              rating: "",
+                              rating: "1",
                               description:"a nice market",
-                              open_time: "8:00am",
-                              close_time: "7:00pm")
+                              open_time: 0,
+                              close_time: 3600)
 
 @first_user = User.first
 
 @first_vendor = @first_user.vendors.create!(description: "This is a description of me")
 
-# Store.create(vendor_id: @vendor.id)
+# Store.create(vendor_railid: @vendor.id)
 @first_store = Store.create!(name: "John's Bread",
                                                     description: "delicious bread",
-                                                    open_time: "8:00am",
-                                                    close_time: "6:00pm",
+                                                    open_time: 0,
+                                                    close_time: 3600,
                                                     vendor_id: @first_vendor.id,
                                                     market_id: @first_market.id)
 

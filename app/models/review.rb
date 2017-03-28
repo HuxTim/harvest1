@@ -7,5 +7,5 @@ class Review < ApplicationRecord
   validates :store_id, presence: true
   validates :market_id, presence: true
   validates :user_id, presence: true
-  validates :description,length: { maximum: 1000 }
+  validates :description,length: { maximum: 500 }
 end

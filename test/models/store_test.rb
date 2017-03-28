@@ -1,41 +1,50 @@
 require 'test_helper'
-require "minitest/autorun"
 
 class StoreTest < ActiveSupport::TestCase
-  def setup
-    puts "this modification is for test"
-    @store = Store.new(description: "Example Description", open_time: "8:00am", close_time: "6:00pm")
-  end
+  # def setup
+  #   @vendor =
+  #   @store = Store.new(description: "Example Description", open_time: 0, close_time: 1)
+  # end
+  #
+  # test "should be valid" do
+  #   assert @store.valid?
+  # end
+  #
+  # test "name should be present" do
+  #   @store.name = ""
+  #   assert_not @store.valid?
+  # end
+  #
+  # test "rating should be present" do
+  #
+  # end
+  #
+  # test "store id should be present" do
+  #   @store.st = ""
+  #   assert_not @store.valid?
+  # end
+  #
+  # test "market id should be present" do
+  #   @store.user_id = ""
+  #   assert_not @store.valid?
+  # end
+  #
+  # test "user id should be present" do
+  #   @store.user_id = ""
+  #   assert_not @store.valid?
+  # end
+  #
+  # test "description should not be to long" do
+  #   @store.description = "a" * 501
+  #   assert_not @store.valid?
+  # end
 
-  test "should be valid" do
-    assert @store.valid?
-  end
+  # test "rating should more than or equal to 0" do
+  #
+  # end
+  #
+  # test "rating should be less or equal to 10" do
+  #
+  # end
 
-  test "name should be present" do
-    @store.description = ""
-    assert_not @store.valid?
-  end
-
-  test "email should be present" do
-    @store.description = "     "
-    assert_not @store.valid?
-  end
-
-  describe Store do
-    before do
-      @store = Store.new(description: "Example Description", open_time: "8:00am", close_time: "6:00pm")
-    end
-
-    it "has non-empty description" do
-      @store.description.wont_equal ""
-    end
-
-    it "has non-empty open_time" do
-      @store.open_time.wont_equal ""
-    end
-
-    it "has non-empty close_time" do
-      @store.close_time.wont_equal ""
-    end
-  end
 end

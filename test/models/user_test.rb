@@ -84,21 +84,21 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
-  test "state should be acceptable" do
-    @user.state = "dsajkl"
-    assert_not @user.valid?
-    @user.state = "1293809"
-    assert_not @user.valid?
-    @user.state = "021"
-    assert_not @user.valid?
-  end
-
-  test "city should be acceptable" do
-    @user.city = "dsajkl"
-    assert_not @user.valid?
-    @user.city = "1293809"
-    assert_not @user.valid?
-    @user.city = "021"
-    assert_not @user.valid?
-  end
+  # test "state should be acceptable" do
+  #   @user.state = "dsajkl"
+  #   assert_not @user.valid?
+  #   @user.state = "1293809"
+  #   assert_not @user.valid?
+  #   @user.state = "021"
+  #   assert_not @user.valid?
+  # end
+  #
+  # test "city should be acceptable" do
+  #   @user.city = "dsajkl"
+  #   assert_not @user.valid?
+  #   @user.city = "1293809"
+  #   assert_not @user.valid?
+  #   @user.city = "021"
+  #   assert_not @user.valid?
+  # end
 end

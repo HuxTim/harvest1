@@ -1,19 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  city: MyString
-  state: MyString
-  zipcode: 1
-  rating: 1
-  description: MyString
-  open_time: MyString
-  close_time: MyString
-
-two:
-  city: MyString
-  state: MyString
-  zipcode: 1
-  rating: 1
-  description: MyString
-  open_time: MyString
-  close_time: MyString
+JM:
+  name: "John's Market"
+  city: "Waltham"
+  state: "MA"
+  zipcode: "02453"
+  rating: "1"
+  description: "a nice market"
+  open_time: 0
+  close_time: 3600
