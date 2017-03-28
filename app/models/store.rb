@@ -11,7 +11,7 @@ class Store < ApplicationRecord
   validates :close_time, presence: true
   validates :description,length: { maximum: 500 }
 
-  validates :open_time, numericality: { less_than_or_equal_to: 604800 }
-  validates :close_time, numericality: { less_than_or_equal_to: 604800 }
+  validates :open_time, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 604800 }
+  validates :close_time, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 604800 }
   validates :open_time, numericality: { less_than_or_equal_to: :close_time }
 end

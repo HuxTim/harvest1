@@ -8,7 +8,7 @@ class ReviewTest < ActiveSupport::TestCase
     @market = Market.all.first
     @store =  @market.stores.all.first
     @user = User.all.first
-    @review = Review.create(user_id: @user.id, market_id: @market.id, store_id: @store.id, rating: "5", description: "this is a example review")
+    @review = Review.new(user_id: @user.id, market_id: @market.id, store_id: @store.id, rating: "5", description: "this is a example review")
   end
 
   test "should be valid" do
