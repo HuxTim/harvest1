@@ -2,7 +2,7 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   def setup
-    @user = User.new(name: "Example User", email: "user@example.com", zipcode: "02453", state: "MA", city: "boston", password: "qazsedc")
+    @user = User.new(name: "Example User", email: "user@example.com", zipcode: "02453", state: "MA", city: "Boston", password: "qazsedc")
   end
 
   test "should be valid" do
@@ -57,22 +57,21 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
-  test "state should be present" do
-    @user.state = nil
-    assert_not @user.valid?
-    @user.state = ""
-    assert_not @user.valid?
-    @user.state = "   "
-    assert_not @user.valid?
+  test "have legal state input" do
+     @user.state = "         "
+     assert_not @user.valid?
+     @user.state = 123
+     assert_not @user.valid?
   end
 
-  test "city should be present" do
-    @user.city = nil
-    assert_not @user.valid?
-    @user.city = ""
-    assert_not @user.valid?
-    @user.city = "   "
-    assert_not @user.valid?
+  test "city name must to legel and belong to state" do
+     @user.city = "Dafuq"
+     assert_not @user.valid?
+     @user.city = 123
+     assert_not @user.valid?
+     @user.city = "Boston"
+     @user.state = "CA"
+     assert_not @user.valid?
   end
 
   test "zipcode should be acceptable" do
@@ -84,21 +83,4 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
-  # test "state should be acceptable" do
-  #   @user.state = "dsajkl"
-  #   assert_not @user.valid?
-  #   @user.state = "1293809"
-  #   assert_not @user.valid?
-  #   @user.state = "021"
-  #   assert_not @user.valid?
-  # end
-  #
-  # test "city should be acceptable" do
-  #   @user.city = "dsajkl"
-  #   assert_not @user.valid?
-  #   @user.city = "1293809"
-  #   assert_not @user.valid?
-  #   @user.city = "021"
-  #   assert_not @user.valid?
-  # end
 end

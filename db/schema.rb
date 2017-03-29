@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327125348) do
+ActiveRecord::Schema.define(version: 20170329010542) do
 
   create_table "markets", force: :cascade do |t|
     t.string   "name"
     t.string   "city"
     t.string   "state"
     t.string   "zipcode"
-    t.string   "rating"
+    t.integer  "rating"
     t.string   "description"
     t.integer  "open_time"
     t.integer  "close_time"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20170327125348) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.string   "rating"
+    t.integer  "rating"
     t.string   "description"
     t.integer  "user_id"
     t.integer  "market_id"

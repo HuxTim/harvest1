@@ -16,7 +16,7 @@ class VendorTest < ActiveSupport::TestCase
   end
 
   test "description should not be too long" do
-    @vender.description = "a"*201
+    @vender.description = "a" * 251
     assert_not @vender.valid?
   end
 end

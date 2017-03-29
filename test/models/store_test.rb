@@ -25,12 +25,12 @@ class StoreTest < ActiveSupport::TestCase
   end
 
   test "name should not be too long" do
-    @store.name = "a"*51
+    @store.name = "a" * 51
     assert_not @store.valid?
   end
 
   test "description should not be too long" do
-    @store.description = "a"*501
+    @store.description = "a" * 251
     assert_not @store.valid?
   end
 

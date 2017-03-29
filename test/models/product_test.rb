@@ -31,7 +31,7 @@ class ProductTest < ActiveSupport::TestCase
   end
 
   test "description shoud not be too long" do
-    @product.description = "a" * 501
+    @product.description = "a" * 251
     assert_not @product.valid?
   end
 

@@ -8,7 +8,7 @@ class ReviewTest < ActiveSupport::TestCase
     @market = Market.all.first
     @store =  @market.stores.all.first
     @user = User.all.first
-    @review = Review.new(user_id: @user.id, market_id: @market.id, store_id: @store.id, rating: "5", description: "this is a example review")
+    @review = Review.new(user_id: @user.id, market_id: @market.id, store_id: @store.id, rating: "5", description: "this is a example review", rating: 0)
   end
 
   test "should be valid" do
@@ -36,7 +36,17 @@ class ReviewTest < ActiveSupport::TestCase
   end
 
   test "description should not be to long" do
-    @review.description = "a" * 501
+    @review.description = "a" * 251
+    assert_not @review.valid?
+  end
+
+  test "rating should be postive" do
+    @review.rating = -1
+    assert_not @review.valid?
+  end
+
+  test "rating should be less than 5" do
+    @review.rating = 6
     assert_not @review.valid?
   end
 
