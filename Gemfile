@@ -11,6 +11,8 @@ gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.4.1'
 gem 'material_design_lite-sass'
 gem 'bcrypt',         '3.1.11'
+gem 'city-state'
+gem 'zip-codes'
 
 
 group :development, :test do

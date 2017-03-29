@@ -1,11 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  description: MyString
-  open_time: MyString
-  close_time: MyString
-
-two:
-  description: MyString
-  open_time: MyString
-  close_time: MyString
+JB:
+  name: "John's Bread"
+  description: "delicious bread"
+  open_time: 0
+  close_time: 3600
+  vendor: huiming
+  market: JM

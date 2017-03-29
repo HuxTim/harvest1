@@ -1,9 +1,8 @@
 require 'test_helper'
-require "minitest/autorun"
 
 class StoreTest < ActiveSupport::TestCase
   def setup
-    @store = Store.new(description: "Example Description", open_time: "8:00am", close_time: "6:00pm")
+    @store = Store.all.first
   end
 
   test "should be valid" do
@@ -11,30 +10,48 @@ class StoreTest < ActiveSupport::TestCase
   end
 
   test "name should be present" do
-    @store.description = ""
+    @store.name = ""
     assert_not @store.valid?
   end
 
-  test "email should be present" do
-    @store.description = "     "
+  test "vendor id should be present" do
+      @store.vendor_id = ""
+      assert_not @store.valid?
+  end
+
+  test "market id should be present" do
+    @store.market_id = ""
     assert_not @store.valid?
   end
 
-  describe Store do
-    before do
-      @store = Store.new(description: "Example Description", open_time: "8:00am", close_time: "6:00pm")
-    end
+  test "name should not be too long" do
+    @store.name = "a" * 51
+    assert_not @store.valid?
+  end
 
-    it "has non-empty description" do
-      @store.description.wont_equal ""
-    end
+  test "description should not be too long" do
+    @store.description = "a" * 251
+    assert_not @store.valid?
+  end
 
-    it "has non-empty open_time" do
-      @store.open_time.wont_equal ""
-    end
+  test "open time should more than 0" do
+    @store.open_time = -1
+    assert_not @store.valid?
+  end
 
-    it "has non-empty close_time" do
-      @store.close_time.wont_equal ""
-    end
+  test "close time should more than 0" do
+    @store.close_time = -1
+    assert_not @store.valid?
+  end
+
+  test "close time should less than 604800" do
+    @store.close_time = 604801
+    assert_not @store.valid?
+  end
+
+  test "open time must earlier than close time" do
+    @store.open_time = 1
+    @store.close_time = 0
+    assert_not @store.valid?
   end
 end
