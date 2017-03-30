@@ -1,52 +1,80 @@
 <%= form_for(market) do |f| %>
-  <% if market.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(market.errors.count, "error") %> prohibited this market from being saved:</h2>
+  <%= render 'shared/hint_messages', object: market %></br>
 
-      <ul>
-      <% market.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.label :state%>
+        <%= f.select :state, options_for_select(select_state_data, :selected => select_state_data[0]),{}, {class: "form-control"}%>
+      </div>
+      <div class="col-md-4">
+        <%= f.label :city%>
+        <%= f.select :city, options_for_select(select_city_data, :selected => select_city_data[0]),{}, {:class => "form-control"}%>
+      </div>
+      <div class="col-md-4">
+        <%= f.label :zipcode%>
+        <%= f.text_field :zipcode, class: "form-control" %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :city %>
-    <%= f.text_field :city %>
   </div>
 
-  <div class="field">
-    <%= f.label :state %>
-    <%= f.text_field :state %>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-3">
+        <%= f.label :'Open Day'%>
+        <%= f.select :state, options_for_select(select_state_data, :selected => select_state_data[0]),{}, {:class => "form-control"}%>
+      </div>
+      <div class="col-md-3">
+        <%= f.label :'Open Time'%>
+        <%= f.select :state, options_for_select(select_state_data, :selected => select_state_data[0]),{}, {:class => "form-control"}%>
+      </div>
+      <div class="col-md-3">
+        <%= f.label :'Close Day'%>
+        <%= f.select :state, options_for_select(select_state_data, :selected => select_state_data[0]),{}, {:class => "form-control"}%>
+      </div>
+      <div class="col-md-3">
+        <%= f.label :'Close Time'%>
+        <%= f.select :state, options_for_select(select_state_data, :selected => select_state_data[0]),{}, {:class => "form-control"}%>
+      </div>
+  </div>
   </div>
 
-  <div class="field">
-    <%= f.label :zipcode %>
-    <%= f.number_field :zipcode %>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.label :description %>
+        <%= f.text_area :description, {:class => "form-control", :rows => "5"}%>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :rating %>
-    <%= f.number_field :rating %>
-  </div>
+  <input id="input-24" name="input24[]" type="file" multiple class="file-loading">
+  <script>
+  $(document).on('ready', function() {
+      $("#input-24").fileinput({
+          initialPreview: [
+              'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg',
+              'http://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Earth_Eastern_Hemisphere.jpg/600px-Earth_Eastern_Hemisphere.jpg'
+          ],
+          initialPreviewAsData: true,
+          initialPreviewConfig: [
+              {caption: "Moon.jpg", size: 930321, width: "120px", key: 1},
+              {caption: "Earth.jpg", size: 1218822, width: "120px", key: 2}
+          ],
+          deleteUrl: "/site/file-delete",
+          overwriteInitial: false,
+          maxFileSize: 100,
+          initialCaption: "The Moon and the Earth"
+      });
+  });
+  </script>
 
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
-  </div>
-
-  <div class="field">
-    <%= f.label :open_time %>
-    <%= f.text_field :open_time %>
-  </div>
-
-  <div class="field">
-    <%= f.label :close_time %>
-    <%= f.text_field :close_time %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= link_to "Back", markets_path,  {style: "color:#FFFFFF", class: "btn btn-primary col-md-12"} %>
+    </div>
+    <div class="col-md-6 actions">
+      <%= f.submit "Submit", {:class => "btn btn-primary col-md-12"}%>
+    </div>
   </div>
 <% end %>

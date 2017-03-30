@@ -16,3 +16,23 @@
 //= require turbolinks
 //= require_tree .
 //= require material
+$(document).ready(function() {
+  $("#address_state").change(function() {
+    $.ajax({
+      url: "/cities",
+      dataType: "json",
+      type: "GET",
+      data: "state=" + $("#address_state").val(),
+      success: function(data, success) {
+        $('#address_city').empty();
+        $('#address_city').append('<option select = "selected" value=' + data["cities"][0] + '>' + data["cities"][0] + '</option>');
+        for (var i = 1; i < data['cities'].length; i++) {
+            $('#address_city').append('<option value=' + data["cities"][i] + '>' + data["cities"][i] + '</option>');
+        }
+      },
+      error: function(data, failure) {
+        alert(success);
+      }
+    });
+  });
+});

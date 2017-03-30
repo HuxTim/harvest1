@@ -1,8 +1,9 @@
 module ApplicationHelper
-  def state_list
-    CS.states(:in).keys.collect{|x| x.to_s }
+  def select_state_data
+    CS.states(:us).collect{|k, v| [k.to_s + "-" + v, k.to_s] }
   end
 
-  def city_list(state = " ")
-    CS.states(:state, :us)
+  def select_city_data(state = "AK")
+    CS.cities(state, :us)
+  end
 end
