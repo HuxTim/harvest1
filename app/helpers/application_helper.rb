@@ -5,4 +5,5 @@ module ApplicationHelper
 
   def city_list(state = " ")
     CS.states(:state, :us)
+  end
 end
