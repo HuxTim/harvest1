@@ -5,6 +5,7 @@ module ApplicationHelper
 
   def select_city_data(state = "AK")
     CS.cities(state, :us)
+  end
 
   def city_list(state = " ")
     CS.states(:state, :us)
