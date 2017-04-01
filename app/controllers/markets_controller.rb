@@ -1,4 +1,5 @@
 class MarketsController < ApplicationController
+  include ApplicationHelper
   before_action :set_market, only: [:show, :edit, :update, :destroy]
 
   # GET /markets
@@ -35,8 +36,14 @@ class MarketsController < ApplicationController
   # POST /markets
   # POST /markets.json
   def create
-    @market = Market.new(market_params)
-
+    @market = Market.new(name: params['market']['name'],
+    city: params['market']['city'],
+    state: params['market']['state'],
+    zipcode: params['market']['zipcode'],
+    rating: 0,
+    description: params['market']['description'],
+    open_time: timestampe_helper(params['open_day'], params['market']['open_time']),
+    close_time: timestampe_helper(params['open_day'], params['market']['close_time']))
     respond_to do |format|
       if @market.save
         format.html { redirect_to @market, notice: 'Market was successfully created.' }

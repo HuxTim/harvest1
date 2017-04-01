@@ -1,24 +1,18 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-datetimepicker";
 
-// #error_explanation {
-//   color: #f00;
-//   ul {
-//     list-style: none;
-//     margin: 0 0 18px 0;
-//   }
-// }
-//
-// .field_with_errors {
-//   all: initial;
-//   @extend .has-error;
-//   @extend .has-feedback;
-//  }
+.table-condensed td a{
+  &:hover {background: #ecf0f1;}
+}
 
 bottom-padding{
   padding-bottom: 30px;
 }
-
+#more .card{
+  height: 300px;
+  margin: 30px;
+}
 #search_area{
   padding: 100px;
   width: 100%;
@@ -31,7 +25,6 @@ bottom-padding{
   background-position: center;
 
 }
-
 
 .card-header{
   font-size: 15px;
@@ -116,4 +109,46 @@ $colHighlight       : #ffbbbc;
       > a, > a:hover, > a:focus, {
         color: $colHighlight;
         background-color: $bgHighlight; }}}
+}
+
+.carousel-control .fa-angle-left,
+.carousel-control .fa-angle-right {
+position: absolute;
+top: 50%;
+font-size:2em;
+z-index: 5;
+display: inline-block;
+}
+.carousel-control{
+  background-color:transparent;
+  background-image:none !important;
+}
+
+.carousel-control:hover,
+.carousel-control:focus {
+  text-decoration: none;
+  background-color:transparent !important;
+  background-image:#000 !important;
+  outline: 0;
+}
+
+#market_details .nav a small {
+    display:block;
+}
+#market_details .nav {
+    background:#eee;
+    margin: 0px;
+    margin-bottom: 20px;
+}
+#market_details .nav a {
+    border-radius:0px;
+}
+#information{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#information .panel{
+  margin-bottom: 0px;
+  padding: 0px;
 }
