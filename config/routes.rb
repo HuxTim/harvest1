@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   get  '/cities',  to: 'application#cities'
+  get '/markets/:id/reviews', to: 'markets#ajax_reviews'
+  get '/markets/:id/stores', to: 'markets#ajax_stores'
 
   resources :reviews
   resources :products

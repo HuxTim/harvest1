@@ -15,6 +15,8 @@ gem 'city-state'
 gem 'zip-codes'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 
 group :development, :test do

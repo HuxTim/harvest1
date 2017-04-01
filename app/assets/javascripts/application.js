@@ -43,6 +43,38 @@ $(document).ready(function() {
       }
     });
   });
+
+  $("#reviews_next").click(function() {
+    $.ajax({
+      url: "/markets/"+ $("#market_id").val() +"/reviews",
+      dataType: "html",
+      type: "GET",
+      data: "current_review_page=" + $("#current_review_page").val(),
+      success: function(data, success) {
+        $('#market_reviews').append(data);
+        $('#current_review_page').val(parseInt($("#current_review_page").val()) + 1);
+      },
+      error: function(data, failure) {
+        alert(success);
+      }
+    });
+  });
+
+  $("#stores_next").click(function() {
+    $.ajax({
+      url: "/markets/"+ $("#market_id").val() +"/stores",
+      dataType: "html",
+      type: "GET",
+      data: "current_store_page=" + $("#current_store_page").val(),
+      success: function(data, success) {
+        $('#market_stores').append(data);
+        $('#current_store_page').val(parseInt($("#current_store_page").val()) + 1);
+      },
+      error: function(data, failure) {
+        alert(success);
+      }
+    });
+  });
 });
 
 $(document).ready( function() {

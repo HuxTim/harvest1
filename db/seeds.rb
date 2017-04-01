@@ -59,10 +59,15 @@ User.create!([{
 
 (0..20).each do |i|
   Store.create!(name: "John's Bread",
-                description: "A potential customer has liked your icon enough to tap through, they've checked out your screenshots and are still interested, until they come to your drab App Store description when they hit the back button and go to download your competitor's app.",
+                description: i.to_s + "A they've checked out your screenshots and are still interested, until they come to your drab App Store description when they hit the back button and go to download your competitor's app.",
                 open_time: 0,
                 close_time: 3600,
                 vendor_id: @first_vendor.id,
+                market_id: @first_market.id)
+
+  Review.create!(rating: 3,
+                description: i.to_s + " is a review for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots and are still interested, until they come to your drab App Store description when ",
+                user_id: @first_user.id,
                 market_id: @first_market.id)
 end
 
