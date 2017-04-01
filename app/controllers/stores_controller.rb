@@ -10,12 +10,34 @@ class StoresController < ApplicationController
   # GET /stores/1
   # GET /stores/1.json
   def show
-    @store = Store.all
+    @store = Store.find(params[:id])
+    @products = @store.products.all.paginate(page:1,per_page:6)
+    @current_page = 1
+  end
+
+  def ajax_reviews
+    # @store = Store.find(params[:id])
+    # @reviews = @store.reviews.all.paginate(page:params['current_review_page'].to_i + 1,per_page:5)
+    #
+    # respond_to do |format|
+    #   format.html { render  partial: "reviews", locals: { reviews: @reviews }}
+    #   format.json { render @reviews}
+    # end
+  end
+
+  def ajax_products
+    @store = Store.find(params[:id])
+    @products = @store.products.all.paginate(page:params['current_product_page'].to_i + 1,per_page:6)
+    respond_to do |format|
+      format.html { render  partial: "products", locals: { products: @products }}
+      format.json { render @products}
+    end
   end
 
   # GET /stores/new
   def new
-    @store = Store.new
+    @store = Market.find(params['market_id']).stores.new()
+    puts @store.market_id
   end
 
   # GET /stores/1/edit
@@ -25,7 +47,8 @@ class StoresController < ApplicationController
   # POST /stores
   # POST /stores.json
   def create
-    @store = Store.new(store_params)
+    @store = Market.find(params['id']).store.new()
+
 
     respond_to do |format|
       if @store.save
@@ -55,9 +78,10 @@ class StoresController < ApplicationController
   # DELETE /stores/1
   # DELETE /stores/1.json
   def destroy
+    @market =   @store.market
     @store.destroy
     respond_to do |format|
-      format.html { redirect_to stores_url, notice: 'Store was successfully destroyed.' }
+      format.html { redirect_to @market , notice: 'Store was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

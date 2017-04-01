@@ -41,7 +41,7 @@ User.create!([{
                               state: "MA",
                               zipcode: "02453",
                               rating: "1",
-                              description:"a nice market",
+                              description:"a nice market A market is one of the many varieties of systems, institutions, procedures, social relations and infrastructures whereby parties engage in exchange. Wikipedia",
                               open_time: 0,
                               close_time: 3600)
 
@@ -56,6 +56,27 @@ User.create!([{
                                                     close_time: 3600,
                                                     vendor_id: @first_vendor.id,
                                                     market_id: @first_market.id)
+
+(0..20).each do |i|
+  Store.create!(name: "John's Bread",
+                description: i.to_s + "A they've checked out your screenshots and are still interested, until they come to your drab App Store description when they hit the back button and go to download your competitor's app.",
+                open_time: 0,
+                close_time: 3600,
+                vendor_id: @first_vendor.id,
+                market_id: @first_market.id)
+
+  Review.create!(rating: 3,
+                description: i.to_s + " is a review for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots and are still interested, until they come to your drab App Store description when ",
+                user_id: @first_user.id,
+                market_id: @first_market.id)
+
+  Product.create!(name: "Bread",
+                 quantity: "10",
+                 price: "$4.00/lb",
+                 description: i.to_s + "for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots delicious bread",
+                 tag: "gluten free, soy-free",
+                 store_id: @first_store.id)
+end
 
 @first_product = Product.create!(name: "Bread",
                                  quantity: "10",

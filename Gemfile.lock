@@ -45,6 +45,10 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    bootstrap-timepicker-rails-addon (0.5.2)
+      railties (>= 3.1, < 6.0)
+    bootstrap3-datetimepicker-rails (4.17.47)
+      momentjs-rails (>= 2.8.1)
     builder (3.2.3)
     byebug (9.0.0)
     city-state (0.0.13)
@@ -87,6 +91,8 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    momentjs-rails (2.17.1)
+      railties (>= 3.1)
     multi_json (1.12.1)
     nio4r (1.2.1)
     nokogiri (1.7.1)
@@ -160,6 +166,9 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    will_paginate (3.1.5)
+    will_paginate-bootstrap (1.0.1)
+      will_paginate (>= 3.0.3)
     zip-codes (0.2.1)
 
 PLATFORMS
@@ -168,6 +177,8 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (= 3.1.11)
   bootstrap-sass (= 3.3.6)
+  bootstrap-timepicker-rails-addon (~> 0.5.1)
+  bootstrap3-datetimepicker-rails (~> 4.17.47)
   byebug (= 9.0.0)
   city-state
   coffee-rails (= 4.2.1)
@@ -175,6 +186,7 @@ DEPENDENCIES
   jquery-rails (= 4.1.1)
   listen (= 3.0.8)
   material_design_lite-sass
+  momentjs-rails (>= 2.9.0)
   pg (= 0.18.4)
   puma (= 3.4.0)
   rails (= 5.0.1)
@@ -186,6 +198,8 @@ DEPENDENCIES
   tzinfo-data
   uglifier (= 3.0.0)
   web-console (= 3.1.1)
+  will_paginate
+  will_paginate-bootstrap
   zip-codes
 
 BUNDLED WITH

@@ -1,4 +1,5 @@
 class MarketsController < ApplicationController
+  include ApplicationHelper
   before_action :set_market, only: [:show, :edit, :update, :destroy]
 
   # GET /markets
@@ -11,16 +12,29 @@ class MarketsController < ApplicationController
   # GET /markets/1.json
   def show
     @market = Market.find(params[:id])
-    @stores = @market.stores
-    # @stores.each do |s|
-    #   puts s.description
-    # end
-    # puts "***********************"
-    # puts @params;
-    # puts "***********************"
-    # @market = Market.find(@params[:id])
-    # puts @market
-    # @stores = @market.stores
+    @stores = @market.stores.all.paginate(page:1,per_page:6)
+    @reviews = @market.reviews.all.paginate(page:1,per_page:5)
+    @current_page = 1
+    @review = Review.new(market_id: params[:id])
+  end
+
+  def ajax_reviews
+    @market = Market.find(params[:id])
+    @reviews = @market.reviews.all.paginate(page:params['current_review_page'].to_i + 1,per_page:5)
+
+    respond_to do |format|
+      format.html { render  partial: "reviews", locals: { reviews: @reviews }}
+      format.json { render @reviews}
+    end
+  end
+
+  def ajax_stores
+    @market = Market.find(params[:id])
+    @stores = @market.stores.all.paginate(page:params['current_store_page'].to_i + 1,per_page:6)
+    respond_to do |format|
+      format.html { render  partial: "stores", locals: { stores: @stores }}
+      format.json { render @stores}
+    end
   end
 
   # GET /markets/new
@@ -35,8 +49,14 @@ class MarketsController < ApplicationController
   # POST /markets
   # POST /markets.json
   def create
-    @market = Market.new(market_params)
-
+    @market = Market.new(name: params['market']['name'],
+    city: params['market']['city'],
+    state: params['market']['state'],
+    zipcode: params['market']['zipcode'],
+    rating: 0,
+    description: params['market']['description'],
+    open_time: timestampe_helper(params['open_day'], params['market']['open_time']),
+    close_time: timestampe_helper(params['open_day'], params['market']['close_time']))
     respond_to do |format|
       if @market.save
         format.html { redirect_to @market, notice: 'Market was successfully created.' }
@@ -51,8 +71,15 @@ class MarketsController < ApplicationController
   # PATCH/PUT /markets/1
   # PATCH/PUT /markets/1.json
   def update
+    @market.name = params['market']['name']
+    @market.city = params['market']['city']
+    @market.state = params['market']['state']
+    @market.zipcode = params['market']['zipcode']
+    @market.description = params['market']['description']
+    @market.open_time = timestampe_helper(params['open_day'], params['market']['open_time'])
+    @market.close_time = timestampe_helper(params['open_day'], params['market']['close_time'])
     respond_to do |format|
-      if @market.update(market_params)
+      if @market.save()
         format.html { redirect_to @market, notice: 'Market was successfully updated.' }
         format.json { render :show, status: :ok, location: @market }
       else
