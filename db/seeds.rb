@@ -69,6 +69,13 @@ User.create!([{
                 description: i.to_s + " is a review for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots and are still interested, until they come to your drab App Store description when ",
                 user_id: @first_user.id,
                 market_id: @first_market.id)
+
+  Product.create!(name: "Bread",
+                 quantity: "10",
+                 price: "$4.00/lb",
+                 description: i.to_s + "for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots delicious bread",
+                 tag: "gluten free, soy-free",
+                 store_id: @first_store.id)
 end
 
 @first_product = Product.create!(name: "Bread",

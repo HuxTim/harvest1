@@ -16,14 +16,7 @@
 //= require_tree .
 //= require material
 //= require moment
-//= require bootstrap-datetimepicker
-
-$(function () {
-               $('.timepicker').datetimepicker({
-                   format: 'LT'
-               });
-           });
-
+//= require bootstrap-timepicker
 $(document).ready(function() {
   $("#market_state").change(function() {
     $.ajax({
@@ -75,10 +68,8 @@ $(document).ready(function() {
       }
     });
   });
-});
 
-$(document).ready( function() {
-	var clickEvent = false;
+  var clickEvent = false;
 	$('#market_details').on('click', '.nav a', function() {
 			clickEvent = true;
 			$('.nav li').removeClass('active');

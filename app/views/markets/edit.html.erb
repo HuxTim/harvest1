@@ -1,5 +1,10 @@
-<h1>Editing Market</h1>
-
-<%= render 'form', market: @market %>
-<%= link_to 'Show', @market %> |
-<%= link_to 'Back', markets_path %>
+<div class="well center">
+  <h1 class="text-center">Editing Market</h1>
+  <%= render 'form', market: @market %>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <%= link_to "Back", @market,  {class: "btn btn-warning col-md-12"} %>
+    </div>
+  </div>
+</div>

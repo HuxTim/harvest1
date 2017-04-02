@@ -1,4 +1,20 @@
 module ApplicationHelper
+
+
+  def bootstrap_class_for flash_type
+    { success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info" }[flash_type.to_sym] || flash_type.to_s
+  end
+
+  def flash_messages(opts = {})
+    flash.each do |msg_type, message|
+      concat(content_tag(:div, message, class: "alert #{self.bootstrap_class_for(msg_type)} fade in") do
+              concat content_tag(:button, 'x', class: "close", data: { dismiss: 'alert' })
+              concat message
+            end)
+    end
+    nil
+  end
+
   def select_state_data
     CS.states(:us).collect{|k, v| [k.to_s + "-" + v, k.to_s] }
   end
@@ -56,11 +72,23 @@ module ApplicationHelper
 
   def get_time_from_timestamp(timestampe)
     time = (timestampe % 86400)
+    if (time / 3600).to_i > 9
+      hour = (time / 3600).to_i.to_s
+    else
+      hour = '0' + (time / 3600).to_i.to_s
+    end
+
+    if (time % 3600 / 60).to_i > 9
+      min = (time % 3600 / 60).to_i.to_s
+    else
+      min = '0' + (time % 3600 / 60).to_i.to_s
+    end
+
     if time > 43200
       time = time - 43200
-      return (time / 3600).to_i.to_s + ":" + (time % 3600 / 60).to_i.to_s + " PM"
+      return hour + ":" + min + " PM"
     else
-      return (time / 3600).to_i.to_s + ":" + (time % 3600 / 60).to_i.to_s + " AM"
+      return hour + ":" + min + " AM"
     end
   end
 end

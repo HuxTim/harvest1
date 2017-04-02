@@ -71,8 +71,15 @@ class MarketsController < ApplicationController
   # PATCH/PUT /markets/1
   # PATCH/PUT /markets/1.json
   def update
+    @market.name = params['market']['name']
+    @market.city = params['market']['city']
+    @market.state = params['market']['state']
+    @market.zipcode = params['market']['zipcode']
+    @market.description = params['market']['description']
+    @market.open_time = timestampe_helper(params['open_day'], params['market']['open_time'])
+    @market.close_time = timestampe_helper(params['open_day'], params['market']['close_time'])
     respond_to do |format|
-      if @market.update(market_params)
+      if @market.save()
         format.html { redirect_to @market, notice: 'Market was successfully updated.' }
         format.json { render :show, status: :ok, location: @market }
       else

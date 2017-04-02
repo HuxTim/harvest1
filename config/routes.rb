@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get  '/cities',  to: 'application#cities'
   get '/markets/:id/reviews', to: 'markets#ajax_reviews'
   get '/markets/:id/stores', to: 'markets#ajax_stores'
+  get '/stores/:id/reviews', to: 'stores#ajax_reviews'
+  get '/stores/:id/products', to: 'stores#ajax_products'
 
   resources :reviews
   resources :products

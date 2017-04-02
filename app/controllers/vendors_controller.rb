@@ -10,7 +10,6 @@ class VendorsController < ApplicationController
   # GET /vendors/1
   # GET /vendors/1.json
   def show
-    @user = User.find(params[:user_id])
     @vendor = Vendor.find(params[:id])
   end
 
