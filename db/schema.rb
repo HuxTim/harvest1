@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170329010542) do
+ActiveRecord::Schema.define(version: 20170329010554) do
+
+  create_table "market_reviews", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "market_id"
+    t.string   "comment"
+    t.integer  "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["market_id"], name: "index_market_reviews_on_market_id"
+    t.index ["user_id"], name: "index_market_reviews_on_user_id"
+  end
 
   create_table "markets", force: :cascade do |t|
     t.string   "name"
@@ -23,31 +34,48 @@ ActiveRecord::Schema.define(version: 20170329010542) do
     t.integer  "close_time"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "address"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "message"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
-    t.string   "quantity"
     t.string   "price"
     t.string   "description"
     t.string   "tag"
     t.integer  "store_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "popularity"
+    t.boolean  "is_special"
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
-  create_table "reviews", force: :cascade do |t|
-    t.integer  "rating"
-    t.string   "description"
+  create_table "shopping_lists", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "market_id"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_shopping_lists_on_product_id"
+    t.index ["user_id"], name: "index_shopping_lists_on_user_id"
+  end
+
+  create_table "store_reviews", force: :cascade do |t|
+    t.integer  "user_id"
     t.integer  "store_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["market_id"], name: "index_reviews_on_market_id"
-    t.index ["store_id"], name: "index_reviews_on_store_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.string   "comment"
+    t.integer  "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_store_reviews_on_store_id"
+    t.index ["user_id"], name: "index_store_reviews_on_user_id"
   end
 
   create_table "stores", force: :cascade do |t|
@@ -63,6 +91,15 @@ ActiveRecord::Schema.define(version: 20170329010542) do
     t.index ["vendor_id"], name: "index_stores_on_vendor_id"
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "vendor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+    t.index ["vendor_id"], name: "index_subscriptions_on_vendor_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -72,13 +109,13 @@ ActiveRecord::Schema.define(version: 20170329010542) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
+    t.string   "description"
   end
 
   create_table "vendors", force: :cascade do |t|
-    t.string   "description"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_vendors_on_user_id"
   end
 
