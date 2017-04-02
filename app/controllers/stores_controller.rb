@@ -48,7 +48,7 @@ class StoresController < ApplicationController
   # POST /stores.json
   def create
     @store = Market.find(params['id']).store.new()
-    
+
 
     respond_to do |format|
       if @store.save
@@ -78,9 +78,10 @@ class StoresController < ApplicationController
   # DELETE /stores/1
   # DELETE /stores/1.json
   def destroy
+    @market =   @store.market
     @store.destroy
     respond_to do |format|
-      format.html { redirect_to stores_url, notice: 'Store was successfully destroyed.' }
+      format.html { redirect_to @market , notice: 'Store was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

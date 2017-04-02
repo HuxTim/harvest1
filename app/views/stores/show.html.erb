@@ -37,24 +37,35 @@
 <section class="row information">
   <div class="col-sm-12 panel panel-default">
     <div class="col-sm-8">
-      <h2><%= @store.name %></h2>
+      <h2>
+        <div class="row">
+          <div class="col-sm-6">
+            <%= @store.name %>
+          </div>
+          <div class="col-sm-6">
+            <%= link_to 'Add Prod', new_store_product_path(@store), class: "btn btn-default btn-space col-sm-3" %>
+            <%= link_to 'Edit Information', edit_store_path, class: "btn btn-warning btn-space col-sm-4" %>
+            <%= link_to 'Delete', @store, method: :delete, class: "btn btn-danger btn-space col-sm-3", data: { confirm: t('messages.Are you sure delete this store'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%>
+          </div>
+        </div>
+      </h2>
       <input type="hidden" id="store_id" value="<%= @store.id %>">
       <table class="table">
         <tbody>
           <tr>
-            <td class = "col-sm-2"><span class="label label-primary">Market</span></td>
-            <td><%= @store.market.name %></td>
+            <td class = "col-sm-2 well"><strong>Market</strong></td>
+            <td><%= link_to @store.market.name, @store.market%></td>
           </tr>
           <tr>
-            <td class = "col-sm-2"><span class="label label-primary">Location</span></td>
+            <td class = "col-sm-2 well"><strong>Location</strong></td>
             <td><%= @store.market.city %>, <%= @store.market.state%>, <%= @store.market.zipcode %></td>
           </tr>
           <tr>
-            <td class = "col-sm-2"><span class="label label-primary">Open time</span></td>
-            <td><%= get_day_from_timestamp(@store.open_time) %>    <%= get_time_from_timestamp(@store.open_time) %> - <%= get_time_from_timestamp(@store.open_time) %></td>
+            <td class = "col-sm-2 well"><strong>Open time</strong></td>
+            <td><%= get_day_from_timestamp(@store.open_time) %>    <%= get_time_from_timestamp(@store.open_time) %> - <%= get_time_from_timestamp(@store.close_time) %></td>
           </tr>
           <tr>
-            <td class = "col-sm-2"><span class="label label-primary">Description</span></td>
+            <td class = "col-sm-2 well"><strong>Description</strong></td>
             <td><%= @store.description %></td>
           </tr>
         </tbody>
@@ -78,9 +89,8 @@
         <% end %>
       </div>
       <hr>
-      <%= link_to 'Market', @store.market, class: "btn btn-success text-right" %>
-      <span class="label label-primary">Owner</span>
-      <%= link_to @store.vendor.user.name, @store.vendor, class: "btn btn-success text-right" %>
+      <div class="alert alert-success">Owner : <%= link_to @store.vendor.user.name, @store.vendor, class: "text-success" %></div>
+
     </div>
   </div>
 </section>
@@ -122,9 +132,9 @@
 </section>
 <script>
 $('#store_details').on('click', '.nav a', function() {
-    clickEvent = true;
-    $('.nav li').removeClass('active');
-    $(this).parent().addClass('active');
+  clickEvent = true;
+  $('.nav li').removeClass('active');
+  $(this).parent().addClass('active');
 }).on('slid.bs.carousel', function(e) {
   if(!clickEvent) {
     var count = $('.nav').children().length -1;
