@@ -1,9 +1,21 @@
 class MarketsController < ApplicationController
-  include ApplicationHelper
   before_action :set_market, only: [:show, :edit, :update, :destroy]
 
   # GET /markets
   # GET /markets.json
+  def addstore
+    @store = Store.find(params['store_id'])
+    respond_to do |format|
+      if @store.update(market_id: @market.id)
+        format.html { redirect_to @market, notice: 'Store was successfully added.' }
+        format.json { render :show, status: :created, location: @market }
+      else
+        format.html { render :new }
+        format.json { render json: @market.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def index
     @markets = Market.all
   end
@@ -13,14 +25,14 @@ class MarketsController < ApplicationController
   def show
     @market = Market.find(params[:id])
     @stores = @market.stores.all.paginate(page:1,per_page:6)
-    @reviews = @market.reviews.all.paginate(page:1,per_page:5)
+    @reviews = @market.market_reviews.all.order("created_at DESC").paginate(page:1,per_page:5)
     @current_page = 1
-    @review = Review.new(market_id: params[:id])
+    @review = @market.market_reviews.new(market_id: params[:id])
   end
 
   def ajax_reviews
     @market = Market.find(params[:id])
-    @reviews = @market.reviews.all.paginate(page:params['current_review_page'].to_i + 1,per_page:5)
+    @reviews = @market.market_reviews.all.order("created_at DESC").paginate(page:params['current_review_page'].to_i + 1,per_page:5)
 
     respond_to do |format|
       format.html { render  partial: "reviews", locals: { reviews: @reviews }}
@@ -53,6 +65,7 @@ class MarketsController < ApplicationController
     city: params['market']['city'],
     state: params['market']['state'],
     zipcode: params['market']['zipcode'],
+    address: params['market']['address'],
     rating: 0,
     description: params['market']['description'],
     open_time: timestampe_helper(params['open_day'], params['market']['open_time']),
@@ -75,6 +88,7 @@ class MarketsController < ApplicationController
     @market.city = params['market']['city']
     @market.state = params['market']['state']
     @market.zipcode = params['market']['zipcode']
+    @market.address = params['market']['address']
     @market.description = params['market']['description']
     @market.open_time = timestampe_helper(params['open_day'], params['market']['open_time'])
     @market.close_time = timestampe_helper(params['open_day'], params['market']['close_time'])

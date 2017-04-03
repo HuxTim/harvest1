@@ -11,6 +11,8 @@ Vendor.destroy_all
 Market.destroy_all
 Store.destroy_all
 Product.destroy_all
+MarketReview.destroy_all
+StoreReview.destroy_all
 
 User.create!([{
   name: "John Smith",
@@ -47,7 +49,7 @@ User.create!([{
 
 @first_user = User.first
 
-@first_vendor = @first_user.vendors.create!(description: "This is a description of me")
+@first_vendor = @first_user.vendors.create!()
 
 # Store.create(vendor_railid: @vendor.id)
 @first_store = Store.create!(name: "John's Bread",
@@ -65,13 +67,17 @@ User.create!([{
                 vendor_id: @first_vendor.id,
                 market_id: @first_market.id)
 
-  Review.create!(rating: 3,
-                description: i.to_s + " is a review for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots and are still interested, until they come to your drab App Store description when ",
+  MarketReview.create!(rating: 3,
+                comment: i.to_s + " is a review for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots and are still interested, until they come to your drab App Store description when ",
                 user_id: @first_user.id,
                 market_id: @first_market.id)
 
+  StoreReview.create!(rating: 2,
+                comment: i.to_s + " is a review for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots and are still interested, until they come to your drab App Store description when ",
+                user_id: @first_user.id,
+                store_id: @first_store.id)
+
   Product.create!(name: "Bread",
-                 quantity: "10",
                  price: "$4.00/lb",
                  description: i.to_s + "for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots delicious bread",
                  tag: "gluten free, soy-free",
@@ -79,7 +85,6 @@ User.create!([{
 end
 
 @first_product = Product.create!(name: "Bread",
-                                 quantity: "10",
                                  price: "$4.00/lb",
                                  description: "delicious bread",
                                  tag: "gluten free, soy-free",

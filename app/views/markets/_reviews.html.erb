@@ -10,7 +10,7 @@
         <strong><%= review.user.name%></strong> <span class="text-muted"><%= review.created_at%></span>
       </div>
       <div class="panel-body">
-        <%= review.description%>
+        <%= review.comment%>
         <div class="text-right">
           <% (0..4).each do |i|%>
           <% if i >= review.rating %>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Started GET "/" for ::1 at 2017-03-29 14:14:16 -0400
   [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
   
@@ -32378,3 +32379,5 @@ Migrating to RemoveProductFromProducts (20170329010554)
             FROM sqlite_temp_master
             WHERE name='index_vendors_on_user_id' AND type='index'
 [0m
+=======
+>>>>>>> b1801d23abd210377ab11fd523eb161b18a46b8f
