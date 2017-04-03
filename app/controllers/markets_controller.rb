@@ -25,14 +25,14 @@ class MarketsController < ApplicationController
   def show
     @market = Market.find(params[:id])
     @stores = @market.stores.all.paginate(page:1,per_page:6)
-    @reviews = @market.market_reviews.all.paginate(page:1,per_page:5)
+    @reviews = @market.market_reviews.all.order("created_at DESC").paginate(page:1,per_page:5)
     @current_page = 1
-    @review = MarketReview.new(market_id: params[:id])
+    @review = @market.market_reviews.new(market_id: params[:id])
   end
 
   def ajax_reviews
     @market = Market.find(params[:id])
-    @reviews = @market.market_reviews.all.paginate(page:params['current_review_page'].to_i + 1,per_page:5)
+    @reviews = @market.market_reviews.all.order("created_at DESC").paginate(page:params['current_review_page'].to_i + 1,per_page:5)
 
     respond_to do |format|
       format.html { render  partial: "reviews", locals: { reviews: @reviews }}

@@ -1,0 +1,2 @@
+class MarketReviewController < ApplicationController
+end
