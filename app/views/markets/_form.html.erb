@@ -14,11 +14,19 @@
   <div class="row">
     <div class="col-md-4">
       <%= f.label :state%>
+      <% if market.state == nil%>
       <%= f.select :state, options_for_select(select_state_data, :selected => select_state_data[0]),{}, {class: "form-control"}%>
+      <% else %>
+      <%= f.select :state, options_for_select(select_state_data, :selected => market.state),{}, {class: "form-control"}%>
+      <% end %>
     </div>
     <div class="col-md-4">
       <%= f.label :city%>
+      <% if market.state == nil%>
       <%= f.select :city, options_for_select(select_city_data, :selected => select_city_data[0]),{}, {:class => "form-control"}%>
+      <% else %>
+      <%= f.select :city, options_for_select(select_city_data( market.state), :selected => market.city),{}, {class: "form-control"}%>
+      <% end %>
     </div>
     <div class="col-md-4">
       <%= f.label :zipcode%>
@@ -29,14 +37,33 @@
 
 <div class="form-group">
   <div class="row">
+    <div class="col-md-12">
+      <%= f.label :address%>
+      <%= f.text_field :address, class: "form-control" %>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="row">
     <div class="col-md-4">
       <%= f.label :'Open Day'%>
+      <% if market.open_time == nil%>
       <%= select_tag :open_day, options_for_select(day_list, :selected => day_list[0]),{:class => "form-control", :id => "market_openday"} %>
+      <% else %>
+      <%= select_tag :open_day, options_for_select(day_list, :selected => day_hash[get_day_from_timestamp(market.open_time)]),{:class => "form-control", :id => "market_openday"} %>
+      <% end %>
+
+
     </div>
     <div class="col-md-4">
       <%= f.label :'Open Time'%>
       <div class="input-group bootstrap-timepicker timepicker">
-        <%= f.text_field :open_time, class: "form-control",id: "market_openhour" %>
+        <% if market.open_time != nil %>
+        <%= f.text_field :open_time, class: "form-control",id: "market_opentime", value: get_time_from_timestamp(market.open_time)  %>
+        <% else %>
+        <%= f.text_field :open_time, class: "form-control",id: "market_opentime"%>
+        <% end %>
         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
       </div>
       <script type="text/javascript">
@@ -46,11 +73,15 @@
     <div class="col-md-4">
       <%= f.label :'Close Time'%>
       <div class="input-group bootstrap-timepicker timepicker">
-        <%= f.text_field :close_time, class: "form-control",id: "market_openmin" %>
+        <% if market.close_time != nil %>
+        <%= f.text_field :close_time, class: "form-control",id: "market_closetime", value: get_time_from_timestamp(market.close_time)  %>
+        <% else %>
+        <%= f.text_field :close_time, class: "form-control",id: "market_closetime"%>
+        <% end %>
         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
       </div>
       <script type="text/javascript">
-      $('#market_openmin').timepicker();
+      $('#market_closetime').timepicker();
       </script>
     </div>
   </div>
@@ -70,3 +101,27 @@
     </div>
   </div>
   <% end %>
+
+  <script>
+  $(document).ready(function() {
+    $("#market_state").change(function() {
+      $.ajax({
+        url: "/cities",
+        dataType: "json",
+        type: "GET",
+        data: "state=" + $("#market_state").val(),
+        success: function(data, success) {
+          $('#market_city').empty();
+          $('#market_city').append('<option select = "selected" value=' + data["cities"][0] + '>' + data["cities"][0] + '</option>');
+          for (var i = 1; i < data['cities'].length; i++) {
+              $('#market_city').append('<option value=' + data["cities"][i] + '>' + data["cities"][i] + '</option>');
+          }
+        },
+        error: function(data, failure) {
+          alert(success);
+        }
+      });
+    });
+  });
+
+  </script>

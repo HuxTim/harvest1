@@ -113,19 +113,28 @@
         <div id="products_next" class="btn btn-default col-sm-12">Show More Products</div>
         <input type="hidden" id="current_product_page" value="<%= @current_page %>">
       </div><!-- End Item -->
-
       <div class="item">
         <div class="row">
           <div class="col-md-12">
-            <img src="http://placehold.it/1200x400/20BFA9/ffffff&text=This is Third example">
+            <%= form_for(@review) do |f| %>
+            <div class="form-group">
+              <%= f.text_area :comment, {:class => "form-control", :rows => "5", :placeholder => "Enter your review here..."}%>
+            </div>
+            <div class="text-right">
+              <%= f.submit "Submit", {:class => "btn btn-primary col-sm-12"}%>
+            </div>
+            <% end %>
           </div>
         </div>
         <hr>
 
         <div id = "store_reviews" class="text-center">
-          <img src="http://placehold.it/1200x100/20BFA9/ffffff&text=This is Third example">
+          <%= render 'reviews', locals: { reviews: @reviews } %>
         </div>
+        <div id="reviews_next" class="btn btn-default col-sm-12">Show More Review</div>
+        <input type="hidden" id="current_review_page" value="<%= @current_page %>">
       </div><!-- End Item -->
+
 
     </div><!-- End Carousel Inner -->
   </div>
