@@ -1,9 +1,10 @@
 class Market < ApplicationRecord
   has_many :stores
-  has_many :reviews
+  has_many :market_reviews
 
   VALID_ZIPCODE_REGEX = /\A\d{5}-\d{4}|\A\d{5}\z/
   validates :name, presence: true, length: {maximum: 50 },allow_blank: false
+  validates :address, presence: true, length: {maximum: 100 },allow_blank: false
   validates :zipcode, presence: true, length: { is: 5 }
   validates :state, presence: true, inclusion: { in: CS.states(:us).keys.collect{|x| x.to_s } }
   validates :city, presence: true, inclusion: { in: lambda{ |market| CS.cities(market.state.to_sym, :us) }}

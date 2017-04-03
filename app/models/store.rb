@@ -2,10 +2,9 @@ class Store < ApplicationRecord
   belongs_to :market
   belongs_to :vendor
   has_many :products
-  has_many :reviews
+  has_many :store_reviews
 
   validates :name, presence: true, length: {maximum: 50 }
-  validates :market_id, presence: true
   validates :vendor_id, presence: true
   validates :open_time, presence: true
   validates :close_time, presence: true

@@ -2,14 +2,9 @@
 <%= render 'shared/hint_messages', object: store %></br>
 <div class="form-group">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <%= f.label :name%>
       <%= f.text_field :name, class: "form-control" %>
-    </div>
-
-    <div class="col-md-6">
-      <%= f.label :email%>
-      <%= email_field_tag 'email', nil, class: 'form-control'%>
     </div>
   </div>
 </div>
@@ -23,7 +18,11 @@
     <div class="col-md-4">
       <%= f.label :'Open Time'%>
       <div class="input-group bootstrap-timepicker timepicker">
-        <%= f.text_field :close_time, class: "form-control",id: "store_opentime" %>
+        <% if store.open_time != nil %>
+        <%= f.text_field :open_time, class: "form-control",id: "store_opentime", value: get_time_from_timestamp(store.open_time)  %>
+        <% else %>
+        <%= f.text_field :open_time, class: "form-control",id: "store_opentime"%>
+        <% end %>
         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
       </div>
       <script type="text/javascript">
@@ -33,11 +32,15 @@
     <div class="col-md-4">
       <%= f.label :'Close Time'%>
       <div class="input-group bootstrap-timepicker timepicker">
-        <%= f.text_field :close_time, class: "form-control",id: "store_openmin" %>
+        <% if store.close_time != nil %>
+        <%= f.text_field :close_time, class: "form-control",id: "store_closetime", value: get_time_from_timestamp(store.close_time)  %>
+        <% else %>
+        <%= f.text_field :close_time, class: "form-control",id: "store_closetime"%>
+        <% end %>
         <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
       </div>
       <script type="text/javascript">
-      $('#store_openmin').timepicker();
+      $('#store_closetime').timepicker();
       </script>
     </div>
   </div>
