@@ -1,0 +1,26 @@
+<div class="container">
+	<div class="row">
+        <div class="col-md-11">
+          <%= search_form_for @search do |f| %>
+            <div id="custom-search-input">
+                <div class="input-group col-md-12">
+                  <div class="ddl-select input-group-btn">
+                    <select  id='selectBox' class="selectpicker" type="button" data-width="fit" data-style="btn-primary">
+                      <option value=""> All </option>
+                      <option value="products">Products</option>
+                      <option value="vendors">Vendors</option>
+                      <option value="markets">Markets</option>
+                    </select>
+                    </div>
+                    <input type="text" class="form-control input-lg" placeholder="Search Products, Vendors, and Markets..." />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>

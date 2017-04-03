@@ -17,6 +17,10 @@
 //= require material
 //= require moment
 //= require bootstrap-timepicker
+//= require bootstrap-select
+//= require bootstrap/alert
+//= require bootstrap/dropdown
+
 $(document).ready(function() {
   $("#market_state").change(function() {
     $.ajax({
@@ -36,4 +40,13 @@ $(document).ready(function() {
       }
     });
   });
+
+});
+$(document).ready(function(){
+  $('.selectpicker').selectpicker({
+    width:'100px'
+  });
+
+$('#selectBox option').click(function(){
+.....
 });

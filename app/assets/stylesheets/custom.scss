@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap-timepicker";
+@import url("http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.5.4/bootstrap-select.min.css");
 
 .table-condensed td a{
   &:hover {background: #ecf0f1;}
@@ -174,4 +175,42 @@ display: inline-block;
   padding-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+/* Search Style */
+#custom-search-input{
+    padding: 2px;
+    border: solid 1px #E4E4E4;
+    border-radius: 3px;
+    background-color: #fff;
+}
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+}
+#custom-search-input button{
+
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 4px 12px 0px 10px;
+    border-left: solid 1px #ccc;
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+}
+#selectBox button {
+    margin: 2px 0 0 0;
+    background: #666666;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 8px 8px 0 10px;
+    border-right: solid 1px #ccc;
 }
