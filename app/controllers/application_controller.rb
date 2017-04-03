@@ -10,4 +10,9 @@ class ApplicationController < ActionController::Base
       format.html { render json: {cities: CS.cities(state)}}
     end
   end
+
+  def index
+      @search = Product.ransack(params[:q])
+      @products = @search.result
+  end
 end
