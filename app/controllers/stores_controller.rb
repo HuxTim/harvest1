@@ -13,14 +13,14 @@ class StoresController < ApplicationController
   def show
     @store = Store.find(params[:id])
     @products = @store.products.all.paginate(page:1,per_page:6)
-    @reviews = @store.store_reviews.all.paginate(page:1,per_page:5)
+    @reviews = @store.store_reviews.all.order("created_at DESC").paginate(page:1,per_page:5)
     @current_page = 1
     @review = StoreReview.new(store_id: params[:id])
   end
 
   def ajax_reviews
     @store = Store.find(params[:id])
-    @reviews = @store.store_reviews.all.paginate(page:params['current_review_page'].to_i + 1,per_page:5)
+    @reviews = @store.store_reviews.all.order("created_at DESC").paginate(page:params['current_review_page'].to_i + 1,per_page:5)
     respond_to do |format|
       format.html { render  partial: "reviews", locals: { reviews: @reviews }}
       format.json { render @reviews}

@@ -1,6 +1,17 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap-timepicker";
+#ratings { color: #ee8b2d;}
+#ratings-existing { color: #ee8b2d;}
+#ratings-notice{
+  font-size: 1.3em;
+  color: #777777;
+}
+
+.gi-2x{font-size: 2em;}
+.gi-3x{font-size: 3em;}
+.gi-4x{font-size: 4em;}
+.gi-5x{font-size: 5em;}
 
 .table-condensed td a{
   &:hover {background: #ecf0f1;}
