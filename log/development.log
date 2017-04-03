@@ -32381,3 +32381,381 @@ Migrating to RemoveProductFromProducts (20170329010554)
 [0m
 =======
 >>>>>>> b1801d23abd210377ab11fd523eb161b18a46b8f
+Started GET "/" for ::1 at 2017-04-03 13:49:21 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mMarket Load (17.2ms)[0m  [1m[34mSELECT  "markets".* FROM "markets" ORDER BY "markets"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_market_cards.html.erb (118.6ms)
+  Rendered welcome/index.html.erb within layouts/application (138.9ms)
+  Rendered layouts/_shim.html.erb (0.8ms)
+  [1m[36mUser Load (57.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (150.6ms)
+Completed 200 OK in 9931ms (Views: 9830.8ms | ActiveRecord: 76.1ms)
+
+
+Started GET "/" for ::1 at 2017-04-03 13:49:41 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mMarket Load (19.4ms)[0m  [1m[34mSELECT  "markets".* FROM "markets" ORDER BY "markets"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_market_cards.html.erb (21.9ms)
+  Rendered welcome/index.html.erb within layouts/application (116.8ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.7ms)
+Completed 200 OK in 251ms (Views: 229.5ms | ActiveRecord: 19.7ms)
+
+
+Started GET "/stores" for ::1 at 2017-04-03 13:49:43 -0400
+Processing by StoresController#index as HTML
+  Rendering stores/index.html.erb within layouts/application
+  [1m[36mStore Load (19.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  Rendered stores/index.html.erb within layouts/application (33.4ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.8ms)
+Completed 200 OK in 404ms (Views: 142.4ms | ActiveRecord: 20.2ms)
+
+
+Started GET "/stores/146" for ::1 at 2017-04-03 13:50:05 -0400
+Processing by StoresController#show as HTML
+  Parameters: {"id"=>"146"}
+  [1m[36mStore Load (0.6ms)[0m  [1m[34mSELECT  "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 146], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 146], ["LIMIT", 1]]
+  Rendering stores/show.html.erb within layouts/application
+  [1m[36mMarket Load (0.2ms)[0m  [1m[34mSELECT  "markets".* FROM "markets" WHERE "markets"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[36mVendor Load (0.4ms)[0m  [1m[34mSELECT  "vendors".* FROM "vendors" WHERE "vendors"."id" = ? LIMIT ?[0m  [["id", 203045155], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  [1m[36mProduct Load (0.6ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."store_id" = ? LIMIT ? OFFSET ?[0m  [["store_id", 146], ["LIMIT", 6], ["OFFSET", 0]]
+  Rendered stores/_products.html.erb (14.2ms)
+  [1m[36mStoreReview Load (1.1ms)[0m  [1m[34mSELECT  "store_reviews".* FROM "store_reviews" WHERE "store_reviews"."store_id" = ? ORDER BY created_at DESC LIMIT ? OFFSET ?[0m  [["store_id", 146], ["LIMIT", 5], ["OFFSET", 0]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  Rendered stores/_reviews.html.erb (9.1ms)
+  Rendered stores/show.html.erb within layouts/application (203.1ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.7ms)
+Completed 200 OK in 421ms (Views: 297.0ms | ActiveRecord: 5.2ms)
+
+
+Started GET "/stores/146/edit" for ::1 at 2017-04-03 13:50:42 -0400
+Processing by StoresController#edit as HTML
+  Parameters: {"id"=>"146"}
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT  "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 146], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Redirected to http://localhost:3000/login
+Filter chain halted as :require_login rendered or redirected
+Completed 302 Found in 3ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/login" for ::1 at 2017-04-03 13:50:42 -0400
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (50.1ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (3.4ms)
+Completed 200 OK in 172ms (Views: 155.3ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/stores/146/products/new" for ::1 at 2017-04-03 13:50:48 -0400
+Processing by ProductsController#new as HTML
+  Parameters: {"store_id"=>"146"}
+  Rendering products/new.html.erb within layouts/application
+  Rendered products/_form.html.erb (16.8ms)
+  Rendered products/new.html.erb within layouts/application (54.2ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.7ms)
+Completed 200 OK in 184ms (Views: 147.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/stores" for ::1 at 2017-04-03 13:50:54 -0400
+Processing by StoresController#index as HTML
+  Rendering stores/index.html.erb within layouts/application
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  Rendered stores/index.html.erb within layouts/application (3.5ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.4ms)
+Completed 200 OK in 108ms (Views: 89.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/markets/23" for ::1 at 2017-04-03 13:50:57 -0400
+Processing by MarketsController#show as HTML
+  Parameters: {"id"=>"23"}
+  [1m[36mMarket Load (0.1ms)[0m  [1m[34mSELECT  "markets".* FROM "markets" WHERE "markets"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "markets".* FROM "markets" WHERE "markets"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  Rendering markets/show.html.erb within layouts/application
+  [1m[36mStore Load (0.6ms)[0m  [1m[34mSELECT  "stores".* FROM "stores" WHERE "stores"."market_id" = ? LIMIT ? OFFSET ?[0m  [["market_id", 23], ["LIMIT", 6], ["OFFSET", 0]]
+  Rendered markets/_stores.html.erb (3.3ms)
+  [1m[36mMarketReview Load (1.1ms)[0m  [1m[34mSELECT  "market_reviews".* FROM "market_reviews" WHERE "market_reviews"."market_id" = ? ORDER BY created_at DESC LIMIT ? OFFSET ?[0m  [["market_id", 23], ["LIMIT", 5], ["OFFSET", 0]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  Rendered markets/_reviews.html.erb (8.3ms)
+  Rendered markets/show.html.erb within layouts/application (33.2ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.7ms)
+Completed 200 OK in 134ms (Views: 114.4ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/" for ::1 at 2017-04-03 13:51:11 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mMarket Load (0.2ms)[0m  [1m[34mSELECT  "markets".* FROM "markets" ORDER BY "markets"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_market_cards.html.erb (1.7ms)
+  Rendered welcome/index.html.erb within layouts/application (16.4ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.4ms)
+Completed 200 OK in 102ms (Views: 99.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/welcome/index?utf8=%E2%9C%93&term=John" for ::1 at 2017-04-03 13:53:46 -0400
+Processing by WelcomeController#index as HTML
+  Parameters: {"utf8"=>"✓", "term"=>"John"}
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mMarket Load (0.2ms)[0m  [1m[34mSELECT  "markets".* FROM "markets" ORDER BY "markets"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_market_cards.html.erb (1.1ms)
+  Rendered welcome/index.html.erb within layouts/application (3.4ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.7ms)
+Completed 200 OK in 95ms (Views: 92.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/welcome/index?utf8=%E2%9C%93&term=John" for ::1 at 2017-04-03 13:53:50 -0400
+Processing by WelcomeController#index as HTML
+  Parameters: {"utf8"=>"✓", "term"=>"John"}
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mMarket Load (0.2ms)[0m  [1m[34mSELECT  "markets".* FROM "markets" ORDER BY "markets"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_market_cards.html.erb (1.3ms)
+  Rendered welcome/index.html.erb within layouts/application (4.0ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.5ms)
+Completed 200 OK in 112ms (Views: 109.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2017-04-03 13:53:52 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mMarket Load (0.2ms)[0m  [1m[34mSELECT  "markets".* FROM "markets" ORDER BY "markets"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_market_cards.html.erb (1.2ms)
+  Rendered welcome/index.html.erb within layouts/application (3.7ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (3.1ms)
+Completed 200 OK in 96ms (Views: 92.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/welcome/index?utf8=%E2%9C%93&term=john" for ::1 at 2017-04-03 13:53:55 -0400
+Processing by WelcomeController#index as HTML
+  Parameters: {"utf8"=>"✓", "term"=>"john"}
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mMarket Load (0.2ms)[0m  [1m[34mSELECT  "markets".* FROM "markets" ORDER BY "markets"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_market_cards.html.erb (1.2ms)
+  Rendered welcome/index.html.erb within layouts/application (3.3ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.6ms)
+Completed 200 OK in 101ms (Views: 99.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2017-04-03 13:57:10 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mMarket Load (0.2ms)[0m  [1m[34mSELECT  "markets".* FROM "markets" ORDER BY "markets"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_market_cards.html.erb (1.7ms)
+  Rendered welcome/index.html.erb within layouts/application (18.5ms)
+  Rendered layouts/_shim.html.erb (0.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (1.7ms)
+Completed 200 OK in 1232ms (Views: 1229.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/stores" for ::1 at 2017-04-03 13:57:16 -0400
+Processing by StoresController#index as HTML
+  Rendering stores/index.html.erb within layouts/application
+  [1m[36mStore Load (35.9ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  Rendered stores/index.html.erb within layouts/application (41.0ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.6ms)
+Completed 200 OK in 212ms (Views: 136.6ms | ActiveRecord: 36.2ms)
+
+
+Started GET "/" for ::1 at 2017-04-03 13:57:20 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mMarket Load (0.2ms)[0m  [1m[34mSELECT  "markets".* FROM "markets" ORDER BY "markets"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_market_cards.html.erb (2.0ms)
+  Rendered welcome/index.html.erb within layouts/application (12.8ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.7ms)
+Completed 200 OK in 138ms (Views: 135.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/stores" for ::1 at 2017-04-03 13:58:00 -0400
+Processing by StoresController#index as HTML
+  Rendering stores/index.html.erb within layouts/application
+  [1m[36mStore Load (0.3ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  Rendered stores/index.html.erb within layouts/application (5.1ms)
+  Rendered layouts/_shim.html.erb (0.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.5ms)
+Completed 200 OK in 991ms (Views: 971.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/stores/146" for ::1 at 2017-04-03 13:58:03 -0400
+Processing by StoresController#show as HTML
+  Parameters: {"id"=>"146"}
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT  "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 146], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 146], ["LIMIT", 1]]
+  Rendering stores/show.html.erb within layouts/application
+  [1m[36mMarket Load (0.1ms)[0m  [1m[34mSELECT  "markets".* FROM "markets" WHERE "markets"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[36mVendor Load (0.1ms)[0m  [1m[34mSELECT  "vendors".* FROM "vendors" WHERE "vendors"."id" = ? LIMIT ?[0m  [["id", 203045155], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."store_id" = ? LIMIT ? OFFSET ?[0m  [["store_id", 146], ["LIMIT", 6], ["OFFSET", 0]]
+  Rendered stores/_products.html.erb (2.3ms)
+  [1m[36mStoreReview Load (0.3ms)[0m  [1m[34mSELECT  "store_reviews".* FROM "store_reviews" WHERE "store_reviews"."store_id" = ? ORDER BY created_at DESC LIMIT ? OFFSET ?[0m  [["store_id", 146], ["LIMIT", 5], ["OFFSET", 0]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  Rendered stores/_reviews.html.erb (5.4ms)
+  Rendered stores/show.html.erb within layouts/application (17.5ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.4ms)
+Completed 200 OK in 136ms (Views: 109.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/" for ::1 at 2017-04-03 13:58:37 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mMarket Load (0.2ms)[0m  [1m[34mSELECT  "markets".* FROM "markets" ORDER BY "markets"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_market_cards.html.erb (1.7ms)
+  Rendered welcome/index.html.erb within layouts/application (18.5ms)
+  Rendered layouts/_shim.html.erb (0.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.3ms)
+Completed 200 OK in 399ms (Views: 396.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/" for ::1 at 2017-04-03 14:00:55 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mMarket Load (0.2ms)[0m  [1m[34mSELECT  "markets".* FROM "markets" ORDER BY "markets"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_market_cards.html.erb (1.3ms)
+  Rendered welcome/index.html.erb within layouts/application (3.6ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.5ms)
+Completed 200 OK in 106ms (Views: 104.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2017-04-03 14:01:45 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mMarket Load (0.2ms)[0m  [1m[34mSELECT  "markets".* FROM "markets" ORDER BY "markets"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_market_cards.html.erb (1.1ms)
+  Rendered welcome/index.html.erb within layouts/application (3.5ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.7ms)
+Completed 200 OK in 112ms (Views: 109.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/login" for ::1 at 2017-04-03 14:02:12 -0400
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (1.5ms)
+  Rendered layouts/_shim.html.erb (0.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.4ms)
+Completed 200 OK in 133ms (Views: 118.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/user/signup" for ::1 at 2017-04-03 14:02:14 -0400
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (0.4ms)
+  Rendered users/_form.html.erb (6.6ms)
+  Rendered users/new.html.erb within layouts/application (23.8ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.6ms)
+Completed 200 OK in 184ms (Views: 146.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2017-04-03 14:08:56 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mMarket Load (0.2ms)[0m  [1m[34mSELECT  "markets".* FROM "markets" ORDER BY "markets"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_market_cards.html.erb (1.7ms)
+  Rendered welcome/index.html.erb within layouts/application (18.5ms)
+  Rendered layouts/_shim.html.erb (0.6ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.5ms)
+Completed 200 OK in 1488ms (Views: 1485.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/stores" for ::1 at 2017-04-03 14:09:00 -0400
+Processing by StoresController#index as HTML
+  Rendering stores/index.html.erb within layouts/application
+  [1m[36mStore Load (11.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  Rendered stores/index.html.erb within layouts/application (16.8ms)
+  Rendered layouts/_shim.html.erb (0.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.7ms)
+Completed 200 OK in 141ms (Views: 104.1ms | ActiveRecord: 11.4ms)
+
+
+Started GET "/stores/146" for ::1 at 2017-04-03 14:09:05 -0400
+Processing by StoresController#show as HTML
+  Parameters: {"id"=>"146"}
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT  "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 146], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "stores".* FROM "stores" WHERE "stores"."id" = ? LIMIT ?[0m  [["id", 146], ["LIMIT", 1]]
+  Rendering stores/show.html.erb within layouts/application
+  [1m[36mMarket Load (0.1ms)[0m  [1m[34mSELECT  "markets".* FROM "markets" WHERE "markets"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[36mVendor Load (0.1ms)[0m  [1m[34mSELECT  "vendors".* FROM "vendors" WHERE "vendors"."id" = ? LIMIT ?[0m  [["id", 203045155], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT  "products".* FROM "products" WHERE "products"."store_id" = ? LIMIT ? OFFSET ?[0m  [["store_id", 146], ["LIMIT", 6], ["OFFSET", 0]]
+  Rendered stores/_products.html.erb (2.8ms)
+  [1m[36mStoreReview Load (0.3ms)[0m  [1m[34mSELECT  "store_reviews".* FROM "store_reviews" WHERE "store_reviews"."store_id" = ? ORDER BY created_at DESC LIMIT ? OFFSET ?[0m  [["store_id", 146], ["LIMIT", 5], ["OFFSET", 0]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 203045158], ["LIMIT", 1]]
+  Rendered stores/_reviews.html.erb (5.6ms)
+  Rendered stores/show.html.erb within layouts/application (18.2ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.9ms)
+Completed 200 OK in 123ms (Views: 114.5ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/" for ::1 at 2017-04-03 14:09:23 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  [1m[36mMarket Load (0.2ms)[0m  [1m[34mSELECT  "markets".* FROM "markets" ORDER BY "markets"."id" ASC LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_market_cards.html.erb (1.4ms)
+  Rendered welcome/index.html.erb within layouts/application (20.3ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.6ms)
+Completed 200 OK in 112ms (Views: 109.6ms | ActiveRecord: 0.4ms)
+
+
