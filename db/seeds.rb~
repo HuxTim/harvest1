@@ -16,6 +16,7 @@ StoreReview.destroy_all
 
 firstnames = ["Abigail", "Bill", "Ike", "George", "Jake", "Christina", "Max", "Thomas", "Sarah", "Daisy", "Delila", "Rose"]
 lastnames = ["Smith", "Arrow", "House", "Levin", "Woolf", "Hunt", "Roth", "Zhang", "Amami", "Spinner-Reyes"]
+zipcodes = ["02453", "02110", "01702"]
 
 puts "creating sample users"
 puts "creating vendors"
@@ -48,46 +49,40 @@ puts "creating markets"
 		offset = rand(User.count)
 		@user = Users.first(:offset => offset)
 		if @user.id != @market.user_id
-		  	MarketReview.create!(rating: [1, 2, 3, 4, 5].sample,
-		        comment: i.to_s + "test review",
-		        user_id: @user.id,
-		        market_id: @market.id)
+	  	MarketReview.create!(rating: [1, 2, 3, 4, 5].sample,
+                comment: i.to_s + "test review",
+                user_id: @user.id,
+                market_id: @market.id)
 		end
 	end
 end
 
-vendorid = 0
-products = ["Bread", "Pastas", "Vegetable", "Meats", "Cheese", "Milk"]
-adjectives = ["Fresh", "Red", "Gluten-free", "Nike", "Moldy"]
+	vendorid = 0
 puts "creating stores"
 (Vendor.count).times do
 	vendorid += 1
 	marketid = rand() > .5 ? 1 : 2
-	offset = rand(User.count)
 	
-	name = @user.name + "'s " + product + " Shop"
+	offset = rand(User.count)
+	@user = Users.first(:offset => offset)
 
-	  @store = Store.create!(name: name,
-                description: "test store"
+	  Store.create!(name: "John's Bread",
+                description: i.to_s + "A they've checked out your screenshots and are still interested, until they come to your drab App Store description when they hit the back button and go to download your competitor's app.",
                 open_time: 0,
                 close_time: 3600,
                 vendor_id: vendorid,
-                market_id: 0)
-	  
-	Product.create!(name: "Bread",
-                 price: "$4.00/lb",
-                 description: i.to_s + "test product ",
-                 tag: "gluten free, soy-free",
-                 store_id: @store.id)
+                market_id: marketid)
 
-	@user = Users.first(:offset => offset)
-	product = products.sample
-  	StoreReview.create!(rating: [1, 2, 3, 4, 5].sample,
-                comment: i.to_s + "test store review",
+  StoreReview.create!(rating: [1, 2, 3, 4, 5].sample,
+                comment: i.to_s + " is a review for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots and are still interested, until they come to your drab App Store description when ",
                 user_id: @first_user.id,
-                store_id: @store.id)
+                store_id: @first_store.id)
 
-
+  Product.create!(name: "Bread",
+                 price: "$4.00/lb",
+                 description: i.to_s + "for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots delicious bread",
+                 tag: "gluten free, soy-free",
+                 store_id: @first_store.id)
 end
 
 @first_product = Product.create!(name: "Bread",
