@@ -14,6 +14,7 @@ Product.destroy_all
 MarketReview.destroy_all
 StoreReview.destroy_all
 
+<<<<<<< HEAD
 firstnames = ["Abigail", "Bill", "Ike", "George", "Jake", "Christina", "Max", "Thomas", "Sarah", "Daisy", "Delila", "Rose"]
 lastnames = ["Smith", "Arrow", "House", "Levin", "Woolf", "Hunt", "Roth", "Zhang", "Amami", "Spinner-Reyes"]
 
@@ -40,10 +41,11 @@ puts "creating markets"
                               state: "MA",
                               zipcode: "02453",
                               rating: "-1",
+			      address: "415 South St"
                               description: description,
-                              open_time: 0,
+				open_time: 0,
                               close_time: 3600)
-	
+
 	10.times do
 		offset = rand(User.count)
 		@user = Users.first(:offset => offset)
@@ -86,56 +88,7 @@ puts "creating stores"
                 comment: i.to_s + "test store review",
                 user_id: @first_user.id,
                 store_id: @store.id)
-
-
 end
-
-@first_product = Product.create!(name: "Bread",
-                                 price: "$4.00/lb",
-                                 description: "delicious bread",
-                                 tag: "gluten free, soy-free",
-                                 store_id: @first_store.id)
-end
-
-# Store.create(vendor_railid: @vendor.id)
-@first_store = Store.create!(name: "John's Bread",
-                                                    description: "delicious bread",
-                                                    open_time: 0,
-                                                    close_time: 3600,
-                                                    vendor_id: @first_vendor.id,
-                                                    market_id: @first_market.id)
-
-(0..20).each do |i|
-  Store.create!(name: "John's Bread",
-                description: i.to_s + "A they've checked out your screenshots and are still interested, until they come to your drab App Store description when they hit the back button and go to download your competitor's app.",
-                open_time: 0,
-                close_time: 3600,
-                vendor_id: @first_vendor.id,
-                market_id: @first_market.id)
-
-  MarketReview.create!(rating: 3,
-                comment: i.to_s + " is a review for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots and are still interested, until they come to your drab App Store description when ",
-                user_id: @first_user.id,
-                market_id: @first_market.id)
-
-  StoreReview.create!(rating: 2,
-                comment: i.to_s + " is a review for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots and are still interested, until they come to your drab App Store description when ",
-                user_id: @first_user.id,
-                store_id: @first_store.id)
-
-  Product.create!(name: "Bread",
-                 price: "$4.00/lb",
-                 description: i.to_s + "for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots delicious bread",
-                 tag: "gluten free, soy-free",
-                 store_id: @first_store.id)
-end
-
-@first_product = Product.create!(name: "Bread",
-                                 price: "$4.00/lb",
-                                 description: "delicious bread",
-                                 tag: "gluten free, soy-free",
-                                 store_id: @first_store.id)
-
 
 p "Created #{User.count} users"
 p "Created #{Market.count} markets"

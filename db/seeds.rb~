@@ -14,9 +14,9 @@ Product.destroy_all
 MarketReview.destroy_all
 StoreReview.destroy_all
 
+<<<<<<< HEAD
 firstnames = ["Abigail", "Bill", "Ike", "George", "Jake", "Christina", "Max", "Thomas", "Sarah", "Daisy", "Delila", "Rose"]
 lastnames = ["Smith", "Arrow", "House", "Levin", "Woolf", "Hunt", "Roth", "Zhang", "Amami", "Spinner-Reyes"]
-zipcodes = ["02453", "02110", "01702"]
 
 puts "creating sample users"
 puts "creating vendors"
@@ -42,6 +42,43 @@ puts "creating markets"
                               zipcode: "02453",
                               rating: "-1",
                               description: description,
+=======
+User.create!([{
+  name: "John Smith",
+  email: "John@example.com",
+  zipcode: "02453",
+  city: "Waltham",
+  state: "MA",
+  password: "123456",
+  password_confirmation: "123456"
+# },
+# {
+#   name: "Captain Ahab",
+#   email: "illgetthatwhale@trustme.com",
+#   zipcode: "34099",
+#   city: "San Francisco"
+#   password_digest: "ihatewhales"
+# },
+# {
+#   name: "Bugs Bunny",
+#   email: "whatsupdoc@bunny.com",
+#   zipcode: "91203",
+#   city: "Boston"
+#   password_digest: "ilovecarrots"
+}])
+
+
+
+@first_user = User.first
+
+@first_market = @first_user.markets.create!(name: "John's Market",
+                               city: "Waltham",
+                              state: "MA",
+                              zipcode: "02453",
+                              rating: "1",
+                              address: "21 weston",
+                              description: "a nice market A market is one of the many varieties of systems, institutions, procedures, social relations and infrastructures whereby parties engage in exchange. Wikipedia",
+>>>>>>> 042c8e5c9e991fbc5d065bd808075f83ffa75a91
                               open_time: 0,
                               close_time: 3600)
 	
@@ -49,40 +86,47 @@ puts "creating markets"
 		offset = rand(User.count)
 		@user = Users.first(:offset => offset)
 		if @user.id != @market.user_id
-	  	MarketReview.create!(rating: [1, 2, 3, 4, 5].sample,
-                comment: i.to_s + "test review",
-                user_id: @user.id,
-                market_id: @market.id)
+		  	MarketReview.create!(rating: [1, 2, 3, 4, 5].sample,
+		        comment: i.to_s + "test review",
+		        user_id: @user.id,
+		        market_id: @market.id)
 		end
 	end
 end
 
-	vendorid = 0
+vendorid = 0
+products = ["Bread", "Pastas", "Vegetable", "Meats", "Cheese", "Milk"]
+adjectives = ["Fresh", "Red", "Gluten-free", "Nike", "Moldy"]
 puts "creating stores"
 (Vendor.count).times do
 	vendorid += 1
 	marketid = rand() > .5 ? 1 : 2
-	
 	offset = rand(User.count)
-	@user = Users.first(:offset => offset)
+	
+	name = @user.name + "'s " + product + " Shop"
 
-	  Store.create!(name: "John's Bread",
-                description: i.to_s + "A they've checked out your screenshots and are still interested, until they come to your drab App Store description when they hit the back button and go to download your competitor's app.",
+	  @store = Store.create!(name: name,
+                description: "test store"
                 open_time: 0,
                 close_time: 3600,
                 vendor_id: vendorid,
-                market_id: marketid)
-
-  StoreReview.create!(rating: [1, 2, 3, 4, 5].sample,
-                comment: i.to_s + " is a review for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots and are still interested, until they come to your drab App Store description when ",
-                user_id: @first_user.id,
-                store_id: @first_store.id)
-
-  Product.create!(name: "Bread",
+                market_id: 0)
+	  
+	Product.create!(name: "Bread",
                  price: "$4.00/lb",
-                 description: i.to_s + "for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots delicious bread",
+                 description: i.to_s + "test product ",
                  tag: "gluten free, soy-free",
-                 store_id: @first_store.id)
+                 store_id: @store.id)
+
+	@user = Users.first(:offset => offset)
+	product = products.sample
+  	StoreReview.create!(rating: [1, 2, 3, 4, 5].sample,
+                comment: i.to_s + "test store review",
+                user_id: @first_user.id,
+                store_id: @store.id)
+
+<<<<<<< HEAD
+
 end
 
 @first_product = Product.create!(name: "Bread",
@@ -91,6 +135,9 @@ end
                                  tag: "gluten free, soy-free",
                                  store_id: @first_store.id)
 end
+=======
+@first_vendor = @first_user.vendors.create!()
+>>>>>>> 042c8e5c9e991fbc5d065bd808075f83ffa75a91
 
 # Store.create(vendor_railid: @vendor.id)
 @first_store = Store.create!(name: "John's Bread",
@@ -105,8 +152,7 @@ end
                 description: i.to_s + "A they've checked out your screenshots and are still interested, until they come to your drab App Store description when they hit the back button and go to download your competitor's app.",
                 open_time: 0,
                 close_time: 3600,
-                vendor_id: @first_vendor.id,
-                market_id: @first_market.id)
+                vendor_id: @first_vendor.id)
 
   MarketReview.create!(rating: 3,
                 comment: i.to_s + " is a review for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots and are still interested, until they come to your drab App Store description when ",
