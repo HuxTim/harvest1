@@ -1,4 +1,5 @@
 class Market < ApplicationRecord
+  belongs_to :user
   has_many :stores
   has_many :market_reviews
 
