@@ -1,5 +1,5 @@
 class Store < ApplicationRecord
-  has_many :market
+  belongs_to :market
   belongs_to :vendor
   has_many :products
   has_many :store_reviews
