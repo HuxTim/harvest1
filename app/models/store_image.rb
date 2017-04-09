@@ -1,0 +1,2 @@
+class StoreImage < ApplicationRecord
+end

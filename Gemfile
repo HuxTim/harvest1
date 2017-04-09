@@ -20,6 +20,10 @@ gem 'bootstrap-timepicker-rails-addon', '~> 0.5.1'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 
+gem "paperclip", "~> 5.0.0"
+gem "aws-sdk"
+gem 'dropzonejs-rails'
+
 
 group :development, :test do
   gem 'sqlite3', '1.3.12'

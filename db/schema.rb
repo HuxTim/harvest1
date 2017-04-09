@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405190419) do
+ActiveRecord::Schema.define(version: 20170409212810) do
+
+  create_table "market_images", force: :cascade do |t|
+    t.integer  "market_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
 
   create_table "market_reviews", force: :cascade do |t|
     t.integer  "user_id"
@@ -46,6 +56,16 @@ ActiveRecord::Schema.define(version: 20170405190419) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "product_images", force: :cascade do |t|
+    t.integer  "product_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
   create_table "products", force: :cascade do |t|
     t.string   "name"
     t.string   "price"
@@ -66,6 +86,16 @@ ActiveRecord::Schema.define(version: 20170405190419) do
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_shopping_lists_on_product_id"
     t.index ["user_id"], name: "index_shopping_lists_on_user_id"
+  end
+
+  create_table "store_images", force: :cascade do |t|
+    t.integer  "store_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "store_reviews", force: :cascade do |t|
