@@ -1,0 +1,2 @@
+class MarketImageController < ApplicationController
+end

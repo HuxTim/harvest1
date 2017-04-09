@@ -1,0 +1,2 @@
+class StoreImageController < ApplicationController
+end
