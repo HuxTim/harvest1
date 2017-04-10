@@ -1,0 +1,8 @@
+<%= form_for(market_image.new, html: { multipart: true, class: "dropzone"}) do |f|  %>
+<%= f.hidden_field :store_id, :value => market.id%>
+<div class="fallback">
+  <%= f.file_field :image %><br>
+  <%= f.submit "Upload" %>
+</div>
+<% end %>
+<li data-target="#market_new" data-slide-to="0" class="active"><a href="#">Back</a></li>

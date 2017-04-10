@@ -1,6 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap-timepicker";
+@import "dropzone/dropzone";
 
 #ratings { color: #ee8b2d;}
 #ratings-existing { color: #ee8b2d;}
@@ -164,6 +165,7 @@ display: inline-block;
 
 .carousel img{
   width: 100%;
+  height: 200px;
 }
 
 .carousel-control:hover,

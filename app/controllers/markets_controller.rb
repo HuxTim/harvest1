@@ -62,6 +62,7 @@ class MarketsController < ApplicationController
   # POST /markets.json
   def create
     @market = Market.new(name: params['market']['name'],
+    user_id: current_user.id,
     city: params['market']['city'],
     state: params['market']['state'],
     zipcode: params['market']['zipcode'],
@@ -73,7 +74,7 @@ class MarketsController < ApplicationController
     respond_to do |format|
       if @market.save
         format.html { redirect_to @market, notice: 'Market was successfully created.' }
-        format.json { render :show, status: :created, location: @market }
+        format.json { render json: {market_id: @market.id}}
       else
         format.html { render :new }
         format.json { render json: @market.errors, status: :unprocessable_entity }

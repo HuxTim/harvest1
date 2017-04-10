@@ -1,127 +1,216 @@
-<%= form_for(market) do |f| %>
-<%= render 'shared/hint_messages', object: market %></br>
+<section>
+  <div id="market_new" class="carousel slide details" >
+    <div class="carousel-inner">
+      <div class="item active">
+        <%= form_for market, remote: true do |f| %>
+        <%= render 'shared/hint_messages', object: market %></br>
 
-<div class="form-group">
-  <div class="row">
-    <div class="col-md-12">
-      <%= f.label :name%>
-      <%= f.text_field :name, class: "form-control" %>
-    </div>
-  </div>
-</div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-12">
+              <%= f.label :name%>
+              <%= f.text_field :name, class: "form-control" %>
+            </div>
+          </div>
+        </div>
 
-<div class="form-group">
-  <div class="row">
-    <div class="col-md-4">
-      <%= f.label :state%>
-      <% if market.state == nil%>
-      <%= f.select :state, options_for_select(select_state_data, :selected => select_state_data[0]),{}, {class: "form-control"}%>
-      <% else %>
-      <%= f.select :state, options_for_select(select_state_data, :selected => market.state),{}, {class: "form-control"}%>
-      <% end %>
-    </div>
-    <div class="col-md-4">
-      <%= f.label :city%>
-      <% if market.state == nil%>
-      <%= f.select :city, options_for_select(select_city_data, :selected => select_city_data[0]),{}, {:class => "form-control"}%>
-      <% else %>
-      <%= f.select :city, options_for_select(select_city_data( market.state), :selected => market.city),{}, {class: "form-control"}%>
-      <% end %>
-    </div>
-    <div class="col-md-4">
-      <%= f.label :zipcode%>
-      <%= f.text_field :zipcode, class: "form-control" %>
-    </div>
-  </div>
-</div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4">
+              <%= f.label :state%>
+              <% if market.state == nil%>
+              <%= f.select :state, options_for_select(select_state_data, :selected => select_state_data[0]),{}, {class: "form-control"}%>
+              <% else %>
+              <%= f.select :state, options_for_select(select_state_data, :selected => market.state),{}, {class: "form-control"}%>
+              <% end %>
+            </div>
+            <div class="col-md-4">
+              <%= f.label :city%>
+              <% if market.state == nil%>
+              <%= f.select :city, options_for_select(select_city_data, :selected => select_city_data[0]),{}, {:class => "form-control"}%>
+              <% else %>
+              <%= f.select :city, options_for_select(select_city_data( market.state), :selected => market.city),{}, {class: "form-control"}%>
+              <% end %>
+            </div>
+            <div class="col-md-4">
+              <%= f.label :zipcode%>
+              <%= f.text_field :zipcode, class: "form-control" %>
+            </div>
+          </div>
+        </div>
 
-<div class="form-group">
-  <div class="row">
-    <div class="col-md-12">
-      <%= f.label :address%>
-      <%= f.text_field :address, class: "form-control" %>
-    </div>
-  </div>
-</div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-12">
+              <%= f.label :address%>
+              <%= f.text_field :address, class: "form-control" %>
+            </div>
+          </div>
+        </div>
 
-<div class="form-group">
-  <div class="row">
-    <div class="col-md-4">
-      <%= f.label :'Open Day'%>
-      <% if market.open_time == nil%>
-      <%= select_tag :open_day, options_for_select(day_list, :selected => day_list[0]),{:class => "form-control", :id => "market_openday"} %>
-      <% else %>
-      <%= select_tag :open_day, options_for_select(day_list, :selected => day_hash[get_day_from_timestamp(market.open_time)]),{:class => "form-control", :id => "market_openday"} %>
-      <% end %>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4">
+              <%= f.label :'Open Day'%>
+              <% if market.open_time == nil%>
+              <%= select_tag :open_day, options_for_select(day_list, :selected => day_list[0]),{:class => "form-control", :id => "market_openday"} %>
+              <% else %>
+              <%= select_tag :open_day, options_for_select(day_list, :selected => day_hash[get_day_from_timestamp(market.open_time)]),{:class => "form-control", :id => "market_openday"} %>
+              <% end %>
+            </div>
+            <div class="col-md-4">
+              <%= f.label :'Open Time'%>
+              <div class="input-group bootstrap-timepicker timepicker">
+                <% if market.open_time != nil %>
+                <%= f.text_field :open_time, class: "form-control",id: "market_opentime", value: get_time_from_timestamp(market.open_time)  %>
+                <% else %>
+                <%= f.text_field :open_time, class: "form-control",id: "market_opentime"%>
+                <% end %>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+              </div>
+              <script type="text/javascript">
+              $('#market_opentime').timepicker();
+              </script>
+            </div>
+            <div class="col-md-4">
+              <%= f.label :'Close Time'%>
+              <div class="input-group bootstrap-timepicker timepicker">
+                <% if market.close_time != nil %>
+                <%= f.text_field :close_time, class: "form-control",id: "market_closetime", value: get_time_from_timestamp(market.close_time)  %>
+                <% else %>
+                <%= f.text_field :close_time, class: "form-control",id: "market_closetime"%>
+                <% end %>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+              </div>
+              <script type="text/javascript">
+              $('#market_closetime').timepicker();
+              </script>
+            </div>
+          </div>
+        </div>
 
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-12">
+              <%= f.label :description %>
+              <%= f.text_area :description, {:class => "form-control", :rows => "5"}%>
+            </div>
+          </div>
+        </div>
 
-    </div>
-    <div class="col-md-4">
-      <%= f.label :'Open Time'%>
-      <div class="input-group bootstrap-timepicker timepicker">
-        <% if market.open_time != nil %>
-        <%= f.text_field :open_time, class: "form-control",id: "market_opentime", value: get_time_from_timestamp(market.open_time)  %>
-        <% else %>
-        <%= f.text_field :open_time, class: "form-control",id: "market_opentime"%>
+        <div class="row">
+          <div class="col-md-6">
+            <%= link_to "Back", @market,  {class: "btn btn-warning col-md-12"} %>
+          </div>
+          <div class="col-md-6">
+            <li id="market_new_next_step" data-target="#market_new" data-slide-to="1" class="btn btn-primary col-md-12">Create</li>
+          </div>
+        </div>
+
         <% end %>
-        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-      </div>
-      <script type="text/javascript">
-      $('#market_openhour').timepicker();
-      </script>
-    </div>
-    <div class="col-md-4">
-      <%= f.label :'Close Time'%>
-      <div class="input-group bootstrap-timepicker timepicker">
-        <% if market.close_time != nil %>
-        <%= f.text_field :close_time, class: "form-control",id: "market_closetime", value: get_time_from_timestamp(market.close_time)  %>
-        <% else %>
-        <%= f.text_field :close_time, class: "form-control",id: "market_closetime"%>
-        <% end %>
-        <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-      </div>
-      <script type="text/javascript">
-      $('#market_closetime').timepicker();
-      </script>
-    </div>
-  </div>
+      </div><!-- End Item -->
+      <div id="add_market_picture" class="item">
+        <div class="row">
+          <div class="col-md-12">
+            <%= form_for(MarketImage.new, html: { multipart: true, class: "form dropzone", id: "market_image_upload"}) do |f|  %>
+            <%= f.hidden_field :market_id, :id => "market_id"%>
+            <div class="form-group">
+              <div class="fallback">
+                <%= f.file_field :image %><br>
+              </div>
+            </div>
+            <% end %></br>
 
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-12">
-        <%= f.label :description %>
-        <%= f.text_area :description, {:class => "form-control", :rows => "5"}%>
-      </div>
-    </div>
+            <div class="row">
+              <div class="col-md-12">
+              <li id="market_new_upload" class="btn btn-primary col-md-12">UpLoad Image</li>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- End Item -->
+    </div><!-- End Carousel Inner -->
   </div>
+</div>
+</section>
 
-  <div class="row">
-    <div class="col-md-12 actions">
-      <%= f.submit "Submit", {:class => "btn btn-primary col-md-12"}%>
-    </div>
-  </div>
-  <% end %>
+<script>
+var clickEvent = false;
+$('#market_new').on('click', '.nav a', function() {
+  clickEvent = true;
+  $('.nav li').removeClass('active');
+  $(this).parent().addClass('active');
+}).on('slid.bs.carousel', function(e) {
+  if(!clickEvent) {
+    var count = $('.nav').children().length -1;
+    var current = $('.nav li.active');
+    current.removeClass('active').next().addClass('active');
+    var id = parseInt(current.data('slide-to'));
+    if(count == id) {
+      $('.nav li').first().addClass('active');
+    }
+  }
+  clickEvent = false;
+});
 
-  <script>
-  $(document).ready(function() {
-    $("#market_state").change(function() {
-      $.ajax({
-        url: "/cities",
-        dataType: "json",
-        type: "GET",
-        data: "state=" + $("#market_state").val(),
-        success: function(data, success) {
-          $('#market_city').empty();
-          $('#market_city').append('<option select = "selected" value=' + data["cities"][0] + '>' + data["cities"][0] + '</option>');
-          for (var i = 1; i < data['cities'].length; i++) {
-              $('#market_city').append('<option value=' + data["cities"][i] + '>' + data["cities"][i] + '</option>');
-          }
-        },
-        error: function(data, failure) {
-          alert(success);
+$("#market_new_upload").onclick(function() {
+  $("#market_image_upload").submit()
+});
+</script>
+
+<script>
+$(document).ready(function() {
+  $("#market_state").change(function() {
+    $.ajax({
+      url: "/cities",
+      dataType: "json",
+      type: "GET",
+      data: "state=" + $("#market_state").val(),
+      success: function(data, success) {
+        $('#market_city').empty();
+        $('#market_city').append('<option select = "selected" value=' + data["cities"][0] + '>' + data["cities"][0] + '</option>');
+        for (var i = 1; i < data['cities'].length; i++) {
+          $('#market_city').append('<option value=' + data["cities"][i] + '>' + data["cities"][i] + '</option>');
         }
-      });
+      },
+      error: function(data, failure) {
+        alert(success);
+      }
     });
   });
+});
 
-  </script>
+$(document).ready(function() {
+  $("#market_new_next_step").click(function() {
+    var valuesToSubmit = $("#new_market").serialize();
+    $.ajax({
+      url: "/markets",
+      dataType: "json",
+      type: "POST",
+      data: valuesToSubmit,
+      success: function(data, success) {
+        document.getElementById("market_id").value = data['market_id']
+      },
+      error: function(data, failure) {
+        alert(data);
+      }
+    });
+  });
+});
+
+$(document).ready(function(){
+	// disable auto discover
+	Dropzone.autoDiscover = false;
+
+	// grap our upload form by its id
+	$("#market_image_upload").dropzone({
+		// restrict image size to a maximum 1MB
+		maxFilesize: 5,
+		// changed the passed param to one accepted by
+		// our rails app
+		paramName: "market_image[image]",
+		// show remove links on each image upload
+		addRemoveLinks: true
+	});
+});
+</script>

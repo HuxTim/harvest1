@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get '/markets/:id/stores', to: 'markets#ajax_stores'
   get '/stores/:id/reviews', to: 'stores#ajax_reviews'
   get '/stores/:id/products', to: 'stores#ajax_products'
+  post '/market_images', to: 'market_image#ajax_create'
+  post '/store_images', to: 'store_image#ajax_create'
+  post '/product_images', to: 'product_image#ajax_create'
 
   resources :reviews
   resources :products
@@ -29,6 +32,7 @@ Rails.application.routes.draw do
   resources :users
   resources :market_reviews
   resources :store_reviews
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 	root 'welcome#index'
 end
