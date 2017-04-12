@@ -9,7 +9,7 @@
 </head>
 
 <% if current_page?(root_url) %>
-  <body class="image">
+  <body class="image darken-overlay">
 <% else %>
   <body>
 <% end %>
@@ -22,7 +22,8 @@
     </div>
   </div>
     <%= yield %>
-
-
 </body>
+<!-- <% if current_page?(root_url) %>
+  <%= render 'layouts/market_cards' %>
+<% end %> -->
 </html>

@@ -1,6 +1,10 @@
 
   <div class="container">
-    <nav>
+    <% if current_page?(root_url) %>
+      <nav>
+    <% else %>
+      <nav class="other-nav">
+    <% end %>
       <ul class="nav navbar-nav navbar-left">
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Stores", stores_path %></li>
