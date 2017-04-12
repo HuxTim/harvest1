@@ -1,0 +1,2 @@
+module MarketImageHelper
+end

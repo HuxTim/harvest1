@@ -3,11 +3,21 @@
   <div class="col-sm-12">
     <% @stores.each do |store| %>
     <div class="col-md-4">
-      <%= link_to store, class: "thumbnail well" do %>
-      <img class="media-object" alt="Card image cap" src="http://placehold.it/350x150/20BFA9/ffffff&text=Eample">
-      <div class="caption">
-        <h4 class="card-title"><%= store.name%></h4>
-        <span class="card-text"><%= store.description%></span>
+      <%= link_to store do %>
+      <div class="thumbnail well">
+        <% if store.store_images.all.length == 0 %>
+        <div class="item active">
+          <img src="http://placehold.it/400x100/20BFA9/ffffff&text=This is  example">
+        </div>
+        <% else %>
+        <div class="item active">
+          <%= image_tag store.store_images.all.first.image.url(:large) %>
+        </div>
+        <% end %>
+        <div class="caption">
+          <h4 class="card-title"><%= store.name%></h4>
+          <span class="card-text"><%= store.description[0..30]%></span>
+        </div>
       </div>
       <% end %>
     </div>
