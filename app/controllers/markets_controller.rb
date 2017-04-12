@@ -1,5 +1,6 @@
 class MarketsController < ApplicationController
   before_action :set_market, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /markets
   # GET /markets.json
@@ -123,5 +124,11 @@ class MarketsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def market_params
       params.require(:market).permit(:city, :state, :zipcode, :rating, :description, :open_time, :close_time)
+    end
+
+    def require_login
+      unless current_user
+        redirect_to login_path, notice: 'Please log in first!'
+      end
     end
 end

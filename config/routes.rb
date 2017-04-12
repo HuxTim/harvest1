@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   post '/market_images', to: 'market_image#ajax_create'
   post '/store_images', to: 'store_image#ajax_create'
   post '/product_images', to: 'product_image#ajax_create'
+  delete '/market_images/:id', to: 'market_image#ajax_destory'
+  delete '/store_images/:id', to: 'store_image#ajax_destory'
+  delete '/product_images/:id', to: 'product_image#ajax_destory'
 
   resources :reviews
   resources :products

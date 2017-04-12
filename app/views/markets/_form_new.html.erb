@@ -123,7 +123,7 @@
 
             <div class="row">
               <div class="col-md-12">
-              <li id="market_new_upload" class="btn btn-primary col-md-12">UpLoad Image</li>
+                <%= link_to "Finish UpLoad", current_user,  {class: "btn btn-success col-md-12"} %>
               </div>
             </div>
           </div>
@@ -199,18 +199,18 @@ $(document).ready(function() {
 });
 
 $(document).ready(function(){
-	// disable auto discover
-	Dropzone.autoDiscover = false;
+  // disable auto discover
+  Dropzone.autoDiscover = false;
 
-	// grap our upload form by its id
-	$("#market_image_upload").dropzone({
-		// restrict image size to a maximum 1MB
-		maxFilesize: 5,
-		// changed the passed param to one accepted by
-		// our rails app
-		paramName: "market_image[image]",
-		// show remove links on each image upload
-		addRemoveLinks: true
-	});
+  // grap our upload form by its id
+  $("#market_image_upload").dropzone({
+    // restrict image size to a maximum 1MB
+    maxFilesize: 5,
+    // changed the passed param to one accepted by
+    // our rails app
+    paramName: "market_image[image]",
+    // show remove links on each image upload
+    addRemoveLinks: true
+  });
 });
 </script>

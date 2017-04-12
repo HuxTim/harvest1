@@ -205,6 +205,10 @@ display: inline-block;
   width: 100%;
 }
 
+.thumbnail li{
+  width: 100%;
+}
+
 .btn-space{
   margin-left: 15px;
 }
@@ -217,4 +221,22 @@ display: inline-block;
   padding-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+#add_store_image{   /* mozilla, netscape */
+ opacity: 0.5;
+}
+
+.dropzone{
+  border-style:dashed;
+  border-radius: 30px;
+  font-size: 30px;
+  opacity: 0.5;
+}
+.dropzone:hover{
+  opacity: 1.0;
+}
+
+.detele{
+  margin-top: 10px;
 }
