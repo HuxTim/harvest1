@@ -2,6 +2,7 @@
 @import "bootstrap";
 @import "bootstrap-timepicker";
 @import "dropzone/dropzone";
+@import url("http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.5.4/bootstrap-select.min.css");
 
 #ratings { color: #ee8b2d;}
 #ratings-existing { color: #ee8b2d;}
@@ -239,4 +240,47 @@ display: inline-block;
 
 .detele{
   margin-top: 10px;
+
+/* Search Style */
+#custom-search-input{
+    padding: 2px;
+    border: solid 1px #E4E4E4;
+    border-radius: 3px;
+    background-color: #fff;
 }
+
+#custom-search-input input{
+    border: 0;
+    box-shadow: none;
+}
+#custom-search-input button{
+
+    margin: 2px 0 0 0;
+    background: none;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+    padding: 4px 12px 4px 10px;
+    border-left: solid 1px #ccc;
+    line-height: 2;
+}
+
+#custom-search-input button:hover{
+    border: 0;
+    box-shadow: none;
+    border-left: solid 1px #ccc;
+}
+#selectBox {
+    width: fit-content;
+    border: none;
+    box-shadow: none;
+    border-right: solid 1px #ccc;
+    -webkit-appearance: none;
+  }
+
+#selectBox button {
+    background: #666666;
+    box-shadow: none;
+    border: 0;
+    color: #666666;
+  }
