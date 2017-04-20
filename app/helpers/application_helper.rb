@@ -39,6 +39,19 @@ module ApplicationHelper
     ]
   end
 
+
+  def day_hash()
+    days = {
+      "Monday" => 0,
+      "Tuesday" => 1,
+      "Wednesday" => 2,
+      "Thursday" => 3,
+      "Friday" => 4,
+      "Saturday" => 5,
+      "Sunday" => 6
+    }
+  end
+
   def timestampe_helper(day, time)
     timestampe = day.to_i * 86400
     time = time.split(' ')
