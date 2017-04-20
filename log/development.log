@@ -50125,3 +50125,529 @@ Processing by WelcomeController#index as HTML
 Completed 200 OK in 181ms (Views: 177.3ms | ActiveRecord: 0.2ms)
 
 
+Started GET "/" for ::1 at 2017-04-20 00:24:49 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/" for ::1 at 2017-04-20 00:24:50 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered shared/_search.html.erb (6.5ms)
+  Rendered shared/_search.html.erb (3.8ms)
+  Rendered welcome/index.html.erb within layouts/application (24.2ms)
+  Rendered welcome/index.html.erb within layouts/application (23.3ms)
+  Rendered layouts/_shim.html.erb (0.6ms)
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (501.0ms)
+  Rendered layouts/_header.html.erb (502.5ms)
+Completed 200 OK in 26292ms (Views: 26264.3ms | ActiveRecord: 0.5ms)
+
+
+Completed 200 OK in 26287ms (Views: 26263.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/stores" for ::1 at 2017-04-20 00:25:21 -0400
+Processing by StoresController#index as HTML
+  Rendering stores/index.html.erb within layouts/application
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  Rendered stores/index.html.erb within layouts/application (2.4ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (1.3ms)
+Completed 200 OK in 313ms (Views: 270.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for ::1 at 2017-04-20 00:25:22 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered shared/_search.html.erb (7.1ms)
+  Rendered welcome/index.html.erb within layouts/application (36.2ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (1.8ms)
+Completed 200 OK in 182ms (Views: 178.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2017-04-20 00:25:24 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered shared/_search.html.erb (1.4ms)
+  Rendered welcome/index.html.erb within layouts/application (4.2ms)
+  Rendered layouts/_shim.html.erb (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (1.9ms)
+Completed 200 OK in 139ms (Views: 136.8ms | ActiveRecord: 0.2ms)
+
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_market_reviews_on_market_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_market_reviews_on_market_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_market_reviews_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_market_reviews_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_messages_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_messages_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_products_on_store_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_products_on_store_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_shopping_lists_on_product_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_shopping_lists_on_product_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_shopping_lists_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_shopping_lists_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_store_reviews_on_store_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_store_reviews_on_store_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_store_reviews_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_store_reviews_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_stores_on_vendor_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_stores_on_vendor_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_subscriptions_on_vendor_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_subscriptions_on_vendor_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_subscriptions_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_subscriptions_on_user_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_vendors_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_vendors_on_user_id' AND type='index'
+[0m
+Started GET "/" for ::1 at 2017-04-20 00:27:16 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (18.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered shared/_search.html.erb (34.4ms)
+  Rendered welcome/index.html.erb within layouts/application (121.2ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (20.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (325.6ms)
+Completed 200 OK in 11857ms (Views: 11787.8ms | ActiveRecord: 20.8ms)
+
+
+Started GET "/" for ::1 at 2017-04-20 00:32:47 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered shared/_search.html.erb (1.7ms)
+  Rendered welcome/index.html.erb within layouts/application (32.8ms)
+Completed 500 Internal Server Error in 4292ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (Invalid CSS after "  }": expected "}", was ""):
+    3: <head>
+    4:   <title>Harvest</title>
+    5:   <%= csrf_meta_tags %>
+    6:   <%= stylesheet_link_tag    'application', media: 'all','data-turbolinks-track': 'reload' %>
+    7:   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    8:   <%= render 'layouts/shim' %>
+    9: </head>
+  
+app/assets/stylesheets/custom.scss:286
+app/views/layouts/application.html.erb:6:in `_app_views_layouts_application_html_erb__2610245858676213485_70093792831740'
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (11.6ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.8ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (171.8ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/index.html.erb
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/console.js.erb within layouts/javascript
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/style.css.erb within layouts/inlined_string
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/console.js.erb within layouts/javascript (526.9ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/main.js.erb within layouts/javascript
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/index.html.erb (766.3ms)
+Started GET "/" for ::1 at 2017-04-20 00:33:53 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered shared/_search.html.erb (1.0ms)
+  Rendered welcome/index.html.erb within layouts/application (2.9ms)
+  Rendered layouts/_shim.html.erb (0.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.4ms)
+Completed 200 OK in 5501ms (Views: 5499.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/search?utf8=%E2%9C%93&option=All&q=bread&button=" for ::1 at 2017-04-20 00:34:11 -0400
+Processing by SearchesController#index as HTML
+  Parameters: {"utf8"=>"✓", "option"=>"All", "q"=>"bread", "button"=>""}
+  [1m[36mProduct Load (5.5ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE ("products"."name" LIKE '%bread%' OR "products"."description" LIKE '%bread%')[0m
+  [1m[36mStore Load (0.4ms)[0m  [1m[34mSELECT "stores".* FROM "stores" WHERE ("stores"."name" LIKE '%bread%' OR "stores"."description" LIKE '%bread%')[0m
+  [1m[36mMarket Load (0.5ms)[0m  [1m[34mSELECT "markets".* FROM "markets" WHERE ("markets"."name" LIKE '%bread%' OR "markets"."description" LIKE '%bread%')[0m
+  Rendering searches/index.html.erb within layouts/application
+  Rendered searches/index.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (3.0ms)
+Completed 200 OK in 332ms (Views: 176.7ms | ActiveRecord: 26.7ms)
+
+
+Started GET "/" for ::1 at 2017-04-20 00:34:14 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered shared/_search.html.erb (1.2ms)
+  Rendered welcome/index.html.erb within layouts/application (3.6ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.5ms)
+Completed 200 OK in 139ms (Views: 136.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/search?utf8=%E2%9C%93&option=Products&q=bread&button=" for ::1 at 2017-04-20 00:34:22 -0400
+Processing by SearchesController#index as HTML
+  Parameters: {"utf8"=>"✓", "option"=>"Products", "q"=>"bread", "button"=>""}
+  [1m[36mProduct Load (0.1ms)[0m  [1m[34mSELECT "products".* FROM "products" WHERE ("products"."name" LIKE '%bread%' OR "products"."description" LIKE '%bread%')[0m
+  Rendering searches/index.html.erb within layouts/application
+  Rendered searches/index.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.6ms)
+Completed 200 OK in 127ms (Views: 118.7ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/markets" for ::1 at 2017-04-20 00:34:31 -0400
+Processing by MarketsController#index as HTML
+  Rendering markets/index.html.erb within layouts/application
+  [1m[36mMarket Load (22.4ms)[0m  [1m[34mSELECT "markets".* FROM "markets"[0m
+  Rendered markets/index.html.erb within layouts/application (24.5ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.7ms)
+Completed 200 OK in 171ms (Views: 126.3ms | ActiveRecord: 22.6ms)
+
+
+Started GET "/markets" for ::1 at 2017-04-20 00:34:33 -0400
+Processing by MarketsController#index as HTML
+  Rendering markets/index.html.erb within layouts/application
+  [1m[36mMarket Load (0.6ms)[0m  [1m[34mSELECT "markets".* FROM "markets"[0m
+  Rendered markets/index.html.erb within layouts/application (2.7ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.6ms)
+Completed 200 OK in 119ms (Views: 116.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/" for ::1 at 2017-04-20 00:34:35 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered shared/_search.html.erb (1.3ms)
+  Rendered welcome/index.html.erb within layouts/application (12.8ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.6ms)
+Completed 200 OK in 134ms (Views: 131.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/markets" for ::1 at 2017-04-20 00:34:36 -0400
+Processing by MarketsController#index as HTML
+  Rendering markets/index.html.erb within layouts/application
+  [1m[36mMarket Load (0.2ms)[0m  [1m[34mSELECT "markets".* FROM "markets"[0m
+  Rendered markets/index.html.erb within layouts/application (2.0ms)
+  Rendered layouts/_shim.html.erb (0.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.6ms)
+Completed 200 OK in 138ms (Views: 134.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/markets" for ::1 at 2017-04-20 00:34:39 -0400
+Processing by MarketsController#index as HTML
+  Rendering markets/index.html.erb within layouts/application
+  [1m[36mMarket Load (0.1ms)[0m  [1m[34mSELECT "markets".* FROM "markets"[0m
+  Rendered markets/index.html.erb within layouts/application (1.6ms)
+  Rendered layouts/_shim.html.erb (0.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.6ms)
+Completed 200 OK in 118ms (Views: 115.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/markets" for ::1 at 2017-04-20 00:36:22 -0400
+Processing by MarketsController#index as HTML
+  Rendering markets/index.html.erb within layouts/application
+  [1m[36mMarket Load (0.1ms)[0m  [1m[34mSELECT "markets".* FROM "markets"[0m
+  Rendered markets/index.html.erb within layouts/application (1.7ms)
+  Rendered layouts/_shim.html.erb (0.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.5ms)
+Completed 200 OK in 116ms (Views: 114.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2017-04-20 00:36:27 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered shared/_search.html.erb (1.3ms)
+  Rendered welcome/index.html.erb within layouts/application (12.0ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.5ms)
+Completed 200 OK in 127ms (Views: 125.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/products" for ::1 at 2017-04-20 00:36:29 -0400
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.erb within layouts/application (2.2ms)
+Started GET "/products" for ::1 at 2017-04-20 00:36:29 -0400
+Processing by ProductsController#index as HTML
+  Rendering products/index.html.erb within layouts/application
+  [1m[36mProduct Load (0.2ms)[0m  [1m[34mSELECT "products".* FROM "products"[0m
+  Rendered products/index.html.erb within layouts/application (4.5ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (4.9ms)
+Completed 200 OK in 269ms (Views: 266.4ms | ActiveRecord: 0.4ms)
+
+
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (3.1ms)
+Completed 200 OK in 231ms (Views: 227.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for ::1 at 2017-04-20 00:36:34 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered shared/_search.html.erb (1.0ms)
+  Rendered welcome/index.html.erb within layouts/application (3.1ms)
+  Rendered layouts/_shim.html.erb (0.6ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.5ms)
+Completed 200 OK in 124ms (Views: 120.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2017-04-20 00:36:41 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered shared/_search.html.erb (0.9ms)
+  Rendered welcome/index.html.erb within layouts/application (2.9ms)
+  Rendered layouts/_shim.html.erb (0.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.5ms)
+Completed 200 OK in 120ms (Views: 117.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/s" for ::1 at 2017-04-20 00:36:42 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/s"):
+  
+actionpack (5.0.1) lib/action_dispatch/middleware/debug_exceptions.rb:53:in `call'
+web-console (3.1.1) lib/web_console/middleware.rb:131:in `call_app'
+web-console (3.1.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.1.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.1.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.0.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.0.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.0.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/request_id.rb:24:in `call'
+rack (2.0.1) lib/rack/method_override.rb:22:in `call'
+rack (2.0.1) lib/rack/runtime.rb:22:in `call'
+activesupport (5.0.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.0.1) lib/action_dispatch/middleware/static.rb:136:in `call'
+rack (2.0.1) lib/rack/sendfile.rb:111:in `call'
+railties (5.0.1) lib/rails/engine.rb:522:in `call'
+puma (3.4.0) lib/puma/configuration.rb:224:in `call'
+puma (3.4.0) lib/puma/server.rb:569:in `handle_request'
+puma (3.4.0) lib/puma/server.rb:406:in `process_client'
+puma (3.4.0) lib/puma/server.rb:271:in `block in run'
+puma (3.4.0) lib/puma/thread_pool.rb:114:in `block in spawn_thread'
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.6ms)
+  Rendered collection of /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb [123 times] (80.2ms)
+Started GET "/stores" for ::1 at 2017-04-20 00:36:44 -0400
+Started GET "/stores" for ::1 at 2017-04-20 00:36:44 -0400
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (691.6ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (1006.6ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/index.html.erb
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/console.js.erb within layouts/javascript
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/style.css.erb within layouts/inlined_string
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.6ms)
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/console.js.erb within layouts/javascript (308.1ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/main.js.erb within layouts/javascript
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/index.html.erb (486.9ms)
+Processing by StoresController#index as HTML
+Processing by StoresController#index as HTML
+Started GET "/stores" for ::1 at 2017-04-20 00:36:44 -0400
+Processing by StoresController#index as HTML
+  Rendering stores/index.html.erb within layouts/application
+  Rendering stores/index.html.erb within layouts/application
+  Rendering stores/index.html.erb within layouts/application
+  [1m[36mStore Load (0.1ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  [1m[36mStore Load (68.9ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  Rendered stores/index.html.erb within layouts/application (72.0ms)
+  Rendered stores/index.html.erb within layouts/application (70.7ms)
+  Rendered stores/index.html.erb within layouts/application (1.5ms)
+Completed 500 Internal Server Error in 218ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (can't add a new key into hash during iteration):
+    3: <head>
+    4:   <title>Harvest</title>
+    5:   <%= csrf_meta_tags %>
+    6:   <%= stylesheet_link_tag    'application', media: 'all','data-turbolinks-track': 'reload' %>
+    7:   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    8:   <%= render 'layouts/shim' %>
+    9: </head>
+  
+app/views/layouts/application.html.erb:6:in `_app_views_layouts_application_html_erb__2610245858676213485_70093795158880'
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (5.9ms)
+Completed 200 OK in 550ms (Views: 458.8ms | ActiveRecord: 0.3ms)
+
+
+  Rendered layouts/_shim.html.erb (0.0ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (1.8ms)
+Completed 200 OK in 556ms (Views: 401.4ms | ActiveRecord: 69.1ms)
+
+
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (7.4ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (128.8ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/index.html.erb
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_markup.html.erb (0.7ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/console.js.erb within layouts/javascript
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.6ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/style.css.erb within layouts/inlined_string
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/console.js.erb within layouts/javascript (71.9ms)
+  Rendering /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/main.js.erb within layouts/javascript
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/Yanique/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/web-console-3.1.1/lib/web_console/templates/index.html.erb (155.2ms)
+Started GET "/" for ::1 at 2017-04-20 00:36:47 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered shared/_search.html.erb (1.0ms)
+  Rendered welcome/index.html.erb within layouts/application (3.0ms)
+  Rendered layouts/_shim.html.erb (0.6ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (3.2ms)
+Completed 200 OK in 141ms (Views: 137.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/stores" for ::1 at 2017-04-20 00:40:32 -0400
+Processing by StoresController#index as HTML
+  Rendering stores/index.html.erb within layouts/application
+  [1m[36mStore Load (0.2ms)[0m  [1m[34mSELECT "stores".* FROM "stores"[0m
+  Rendered stores/index.html.erb within layouts/application (1.7ms)
+  Rendered layouts/_shim.html.erb (0.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (1.9ms)
+Completed 200 OK in 524ms (Views: 507.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for ::1 at 2017-04-20 00:40:35 -0400
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered shared/_search.html.erb (1.1ms)
+  Rendered welcome/index.html.erb within layouts/application (9.0ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  Rendered layouts/_header.html.erb (2.9ms)
+Completed 200 OK in 130ms (Views: 127.9ms | ActiveRecord: 0.2ms)
+
+
