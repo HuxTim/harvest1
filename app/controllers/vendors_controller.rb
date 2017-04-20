@@ -15,7 +15,7 @@ class VendorsController < ApplicationController
 
   # GET /vendors/new
   def new
-    @vendor = Vendor.new
+    @vendor = current_user.vendors.new
   end
 
   # GET /vendors/1/edit
@@ -70,6 +70,6 @@ class VendorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vendor_params
-      params.require(:vendor).permit(:description)
+            params.require(:vendor).permit(:user_id)
     end
 end

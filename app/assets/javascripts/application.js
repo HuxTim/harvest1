@@ -17,3 +17,4 @@
 //= require material
 //= require moment
 //= require bootstrap-timepicker
+//= require dropzone

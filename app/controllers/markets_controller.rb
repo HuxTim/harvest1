@@ -1,5 +1,6 @@
 class MarketsController < ApplicationController
   before_action :set_market, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /markets
   # GET /markets.json
@@ -62,6 +63,7 @@ class MarketsController < ApplicationController
   # POST /markets.json
   def create
     @market = Market.new(name: params['market']['name'],
+    user_id: current_user.id,
     city: params['market']['city'],
     state: params['market']['state'],
     zipcode: params['market']['zipcode'],
@@ -73,7 +75,7 @@ class MarketsController < ApplicationController
     respond_to do |format|
       if @market.save
         format.html { redirect_to @market, notice: 'Market was successfully created.' }
-        format.json { render :show, status: :created, location: @market }
+        format.json { render json: {market_id: @market.id}}
       else
         format.html { render :new }
         format.json { render json: @market.errors, status: :unprocessable_entity }
@@ -122,5 +124,11 @@ class MarketsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def market_params
       params.require(:market).permit(:city, :state, :zipcode, :rating, :description, :open_time, :close_time)
+    end
+
+    def require_login
+      unless current_user
+        redirect_to login_path, notice: 'Please log in first!'
+      end
     end
 end

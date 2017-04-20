@@ -1,6 +1,9 @@
 class Market < ApplicationRecord
+  belongs_to :user
   has_many :stores
   has_many :market_reviews
+  has_many :market_images, :dependent => :destroy
+  accepts_nested_attributes_for :market_images, :reject_if => lambda { |t| t['market_images'].nil? }
 
   VALID_ZIPCODE_REGEX = /\A\d{5}-\d{4}|\A\d{5}\z/
   validates :name, presence: true, length: {maximum: 50 },allow_blank: false

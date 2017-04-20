@@ -4,23 +4,27 @@
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#Carousel" data-slide-to="0" class="active"></li>
-        <li data-target="#Carousel" data-slide-to="1"></li>
-        <li data-target="#Carousel" data-slide-to="2"></li>
+        <% (1..@market.market_images.length-1).each do |i|%>
+        <li data-target="#Carousel" data-slide-to="<%= i %>"></li>
+        <% end %>
       </ol>
 
       <!-- Wrapper for Slides -->
       <div class="carousel-inner">
+        <% if @market.market_images.all.length == 0 %>
         <div class="item active">
-          <img src="http://placehold.it/1200x400/20BFA9/ffffff&text=This is Third example">
+          <img src="http://placehold.it/800x200/20BFA9/ffffff&text=This is Third example">
         </div>
+        <% else %>
+        <div class="item active">
+          <%= image_tag @market.market_images.all.first.image.url(:large) %>
+        </div>
+        <% @market.market_images[1..-1].each do |market_image|%>
         <div class="item">
-          <img src="http://placehold.it/1200x400/20BFA9/ffffff&text=This is Third example">
-
+          <%= image_tag market_image.image.url(:large) %>
         </div>
-        <div class="item">
-          <img src="http://placehold.it/1200x400/20BFA9/ffffff&text=This is Third example">
-        </div>
-
+        <% end %>
+        <% end %>
         <!-- Controls -->
         <a class="left carousel-control" href="#Carousel" data-slide="prev">
           <span class="icon-prev"></span>
@@ -90,55 +94,57 @@
   </div>
 </section>
 
-<section>
-  <div id="market_details" class="carousel slide details" >
-    <ul class="nav nav-pills nav-justified">
-      <li data-target="#market_details" data-slide-to="0" class="active"><a href="#">Store</a></li>
-      <li data-target="#market_details" data-slide-to="1"><a href="#">Review</a></li>
-    </ul>
+<section class="row">
+  <div class="col-sm-12">
+    <div id="market_details" class="carousel slide details" >
+      <ul class="nav nav-pills nav-justified">
+        <li data-target="#market_details" data-slide-to="0" class="active"><a href="#">Store</a></li>
+        <li data-target="#market_details" data-slide-to="1"><a href="#">Review</a></li>
+      </ul>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item active">
-        <div id = "market_stores">
-          <%= render 'stores', locals: { stores: @stores } %>
-        </div>
-        <div id="stores_next" class="btn btn-default col-sm-12">Show More Stores</div>
-        <input type="hidden" id="current_store_page" value="<%= @current_page %>">
-      </div><!-- End Item -->
-
-      <div class="item">
-        <div class="row">
-          <div class="col-md-12">
-            <%= form_for(@review) do |f| %>
-
-            <div class="form-group">
-              <%= f.text_area :comment, {:class => "form-control", :rows => "5", :placeholder => "Enter your review here..."}%>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-12 well">
-                  <div id="ratings" class="starrr col-sm-4 "></div>
-                  <div id="ratings-notice" class="text-right">You gave a rating of <span id="count">0</span> star(s)</div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="actions">
-                <%= f.submit "Submit", {:class => "btn btn-primary col-sm-12"}%></div>
-              </div>
-              <% end %>
-            </div>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <div id = "market_stores">
+            <%= render 'stores', locals: { stores: @stores } %>
           </div>
-          <hr>
-
-          <div id = "market_reviews" class="text-center">
-            <%= render 'reviews', locals: { reviews: @reviews } %>
-          </div>
-          <div id="reviews_next" class="btn btn-default col-sm-12">Show More Review</div>
-          <input type="hidden" id="current_review_page" value="<%= @current_page %>">
+          <div id="stores_next" class="btn btn-default col-sm-12">Show More Stores</div>
+          <input type="hidden" id="current_store_page" value="<%= @current_page %>">
         </div><!-- End Item -->
 
-      </div><!-- End Carousel Inner -->
+        <div class="item">
+          <div class="row">
+            <div class="col-md-12">
+              <%= form_for(@review) do |f| %>
+
+              <div class="form-group">
+                <%= f.text_area :comment, {:class => "form-control", :rows => "5", :placeholder => "Enter your review here..."}%>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-12 well">
+                  <div id="ratings" class="starrr col-sm-4 "></div>
+                  <div id="ratings-notice" class="text-right">You gave a rating of <span id="count">0</span> star(s)</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="actions">
+                  <%= f.submit "Submit", {:class => "btn btn-primary col-sm-12"}%></div>
+                </div>
+                <% end %>
+              </div>
+            </div>
+            <hr>
+
+            <div id = "market_reviews" class="text-center">
+              <%= render 'reviews', locals: { reviews: @reviews } %>
+            </div>
+            <div id="reviews_next" class="btn btn-default col-sm-12">Show More Review</div>
+            <input type="hidden" id="current_review_page" value="<%= @current_page %>">
+          </div><!-- End Item -->
+
+        </div><!-- End Carousel Inner -->
+      </div>
     </div>
   </section>
   <script>

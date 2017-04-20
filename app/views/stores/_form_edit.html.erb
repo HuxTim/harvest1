@@ -1,0 +1,120 @@
+<section>
+  <%= form_for(store) do |f| %>
+  <%= render 'shared/hint_messages', object: store %></br>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.label :name%>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-4">
+        <%= f.label :'Open Day'%>
+        <%= select_tag :open_day, options_for_select(day_list, :selected => day_list[0]),{:class => "form-control", :id => "openday"} %>
+      </div>
+      <div class="col-md-4">
+        <%= f.label :'Open Time'%>
+        <div class="input-group bootstrap-timepicker timepicker">
+          <% if store.open_time != nil %>
+          <%= f.text_field :open_time, class: "form-control",id: "store_opentime", value: get_time_from_timestamp(store.open_time)  %>
+          <% else %>
+          <%= f.text_field :open_time, class: "form-control",id: "store_opentime"%>
+          <% end %>
+          <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+        </div>
+        <script type="text/javascript">
+        $('#store_opentime').timepicker();
+        </script>
+      </div>
+      <div class="col-md-4">
+        <%= f.label :'Close Time'%>
+        <div class="input-group bootstrap-timepicker timepicker">
+          <% if store.close_time != nil %>
+          <%= f.text_field :close_time, class: "form-control",id: "store_closetime", value: get_time_from_timestamp(store.close_time)  %>
+          <% else %>
+          <%= f.text_field :close_time, class: "form-control",id: "store_closetime"%>
+          <% end %>
+          <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+        </div>
+        <script type="text/javascript">
+        $('#store_closetime').timepicker();
+        </script>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.label :description %>
+        <%= f.text_area :description, {:class => "form-control", :rows => "5"}%>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</section>
+
+<section id = "add_store_image">
+    <div class="row">
+      <div class="col-md-12">
+        <%= form_for(StoreImage.new, html: { multipart: true, class: "form dropzone", id: "store_image_upload"}) do |f|  %>
+        <%= f.hidden_field :store_id, :id => "store_id", :value => @store.id %>
+        <div class="form-group">
+          <div class="fallback">
+            <%= f.file_field :image %><br>
+          </div>
+        </div>
+        <% end %></br>
+      </div>
+    </div>
+</section>
+
+<section>
+    <%= render 'store_images', locals: { store_images: @store.store_images } %>
+</section>
+<section>
+  <div class="row">
+    <div class="col-sm-6">
+        <%= link_to "Back", @store,  {class: "col-sm-12 btn btn-warning"} %>
+    </div>
+
+    <div class="col-sm-6">
+        <li id="edit_finish" class="col-sm-12 btn btn-primary">Finish Edit</li>
+    </div>
+  </div>
+</div>
+</section>
+
+<script>
+$(document).ready(function() {
+  $('#finish_upload').addClass('disabled');
+  // $('#store_image_upload').addClass('disabled');
+  // $('#store_image_upload').removeClass('dz-clickable"');
+});
+
+$(document).ready(function() {
+  $("#edit_finish").click(function() {
+    $(".edit_store").submit();
+  });
+});
+
+$(document).ready(function(){
+  // disable auto discover
+  Dropzone.autoDiscover = false;
+
+  // grap our upload form by its id
+  $("#store_image_upload").dropzone({
+    // restrict image size to a maximum 1MB
+    maxFilesize: 5,
+    // changed the passed param to one accepted by
+    // our rails app
+    paramName: "store_image[image]",
+    // show remove links on each image upload
+    addRemoveLinks: true
+  });
+});
+</script>

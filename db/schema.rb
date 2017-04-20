@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170329010554) do
+ActiveRecord::Schema.define(version: 20170409212810) do
+
+  create_table "market_images", force: :cascade do |t|
+    t.integer  "market_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
 
   create_table "market_reviews", force: :cascade do |t|
     t.integer  "user_id"
@@ -35,6 +45,7 @@ ActiveRecord::Schema.define(version: 20170329010554) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "address"
+    t.integer  "user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -43,6 +54,16 @@ ActiveRecord::Schema.define(version: 20170329010554) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "product_images", force: :cascade do |t|
+    t.integer  "product_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "products", force: :cascade do |t|
@@ -67,6 +88,16 @@ ActiveRecord::Schema.define(version: 20170329010554) do
     t.index ["user_id"], name: "index_shopping_lists_on_user_id"
   end
 
+  create_table "store_images", force: :cascade do |t|
+    t.integer  "store_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
   create_table "store_reviews", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "store_id"
@@ -87,7 +118,6 @@ ActiveRecord::Schema.define(version: 20170329010554) do
     t.integer  "market_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["market_id"], name: "index_stores_on_market_id"
     t.index ["vendor_id"], name: "index_stores_on_vendor_id"
   end
 

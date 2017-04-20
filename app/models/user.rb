@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :reviews
   has_many :stores
   has_many :vendors
+  has_many :markets
 
   before_save { self.email = email.downcase }
   validates :name,  presence: true, length: { maximum: 30 }
