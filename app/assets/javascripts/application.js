@@ -40,13 +40,4 @@ $(document).ready(function() {
       }
     });
   });
-
-});
-$(document).ready(function(){
-  $('.selectpicker').selectpicker({
-    width:'100px'
-  });
-
-$('#selectBox option').click(function(){
-.....
 });
