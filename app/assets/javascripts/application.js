@@ -18,3 +18,6 @@
 //= require moment
 //= require bootstrap-timepicker
 //= require dropzone
+//= require bootstrap/alert
+//= require bootstrap/dropdown
+//= require bootstrap-select
