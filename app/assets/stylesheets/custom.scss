@@ -2,6 +2,7 @@
 @import "bootstrap";
 @import "bootstrap-timepicker";
 @import "dropzone/dropzone";
+@import "bootstrap-multiselect";
 @import url("http://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.5.4/bootstrap-select.min.css");
 
 #ratings { color: #ee8b2d;}
@@ -312,4 +313,8 @@ footer{
 
 .thumbnail:hover{
   background: rgba(0,0,0,0.1);
+}
+
+body{
+  padding-top: 60px;
 }

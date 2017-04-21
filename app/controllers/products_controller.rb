@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-
+  include ProductsHelper
   # GET /products
   # GET /products.json
   def index
@@ -15,6 +15,7 @@ class ProductsController < ApplicationController
   # GET /products/new
   def new
     @product = Product.new
+    @tags = tag_list
   end
 
   # GET /products/1/edit

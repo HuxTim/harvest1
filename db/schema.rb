@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170409212810) do
+ActiveRecord::Schema.define(version: 20170421214821) do
+
+  create_table "applications", force: :cascade do |t|
+    t.integer  "store_id"
+    t.integer  "market_id"
+    t.integer  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "market_images", force: :cascade do |t|
     t.integer  "market_id"
@@ -46,14 +54,6 @@ ActiveRecord::Schema.define(version: 20170409212810) do
     t.datetime "updated_at",  null: false
     t.string   "address"
     t.integer  "user_id"
-  end
-
-  create_table "messages", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "product_images", force: :cascade do |t|
@@ -96,6 +96,15 @@ ActiveRecord::Schema.define(version: 20170409212810) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+  end
+
+  create_table "store_market_relationships", force: :cascade do |t|
+    t.integer  "store_id"
+    t.integer  "market_id"
+    t.integer  "close_time"
+    t.integer  "open_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "store_reviews", force: :cascade do |t|

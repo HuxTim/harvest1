@@ -1,0 +1,83 @@
+<section>
+  <%= form_for(product) do |f| %>
+  <%= render 'shared/hint_messages', object: product %></br>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.label :name%>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.label :description %>
+        <%= f.text_area :description, {:class => "form-control", :rows => "5"}%>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+
+      <div class="col-md-4">
+        <%= f.label :discount%>
+        <%= f.select :is_special, options_for_select([["yes",0],["no",1]], :selected => "no"),{}, {class: "form-control"}%>
+      </div>
+      <div class="col-md-2">
+        <%= f.label :price%>
+        <%= f.text_field :price, {:class => "form-control", id: "price_number"}%>
+      </div>
+      <div class="col-md-2">
+        <%= f.label :unit%>
+        <%= f.select :is_special, options_for_select([["yes",0],["no",1]], :selected => "no"),{}, {class: "form-control"}%>
+        <%= f.text_field :price, {:class => "form-control", id: "price_unit"}%>
+      </div>
+      <div class="col-md-4">
+        <%= f.label :tag%>
+        <div class="row">
+          <div class="col-md-12">
+        <select id="product_tags" multiple="multiple">
+          <% @tags.each do |tag|%>
+            <option value="<%= tag %>"><%= tag %></option>
+          <% end %>
+        </select>
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= link_to "Back", current_user,  {class: "btn btn-warning col-md-12"} %>
+    </div>
+    <div class="col-md-6">
+      <li id="store_new_next_step" class="btn btn-primary col-md-12">Create</li>
+    </div>
+  </div></br>
+</section>
+
+<section id = "add_product_image">
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for(ProductImage.new, html: { multipart: true, class: "form dropzone", id: "product_image_upload"}) do |f|  %>
+      <%= f.hidden_field :product_id, :id => "product_id"%>
+      <div class="form-group">
+        <div class="fallback">
+          <%= f.file_field :image %><br>
+        </div>
+      </div>
+      <% end %></br>
+
+      <div class="row">
+        <div class="col-md-12">
+          <%= link_to "Finish UpLoad", current_user,  {class: "btn btn-success col-md-12", id: "finish_upload"} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
