@@ -113,7 +113,7 @@
     <div class="carousel-inner">
       <div class="item active">
         <div id = "store_products">
-          <%= render 'products', locals: { products: @products } %>
+          <%= render 'shared/products', locals: { products: @products } %>
         </div>
         <div id="products_next" class="btn btn-default col-sm-12">Show More Products</div>
         <input type="hidden" id="current_product_page" value="<%= @current_page %>">

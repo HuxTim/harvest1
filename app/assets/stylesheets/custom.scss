@@ -10,27 +10,31 @@
   font-size: 1.3em;
   color: #777777;
 }
+#search_area{
+  width: 100%;
+  height: 60%;
+}
 
 .gi-2x{font-size: 2em;}
 .gi-3x{font-size: 3em;}
 .gi-4x{font-size: 4em;}
 .gi-5x{font-size: 5em;}
-
-.nav > li > a {
-    float: none;
-    line-height: 19px;
-    padding: 9px 10px 11px;
-    text-decoration: none;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-    color:  #ddd;
-    &:hover {color:blue;}
-}
+//
+// .nav > li > a {
+//     float: none;
+//     line-height: 19px;
+//     padding: 9px 10px 11px;
+//     text-decoration: none;
+//     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+//     color:  #ddd;
+//     &:hover {color:blue;}
+// }
 
 .image{
   width: 100%;
-  height: 60%;
-  position: absolute;
-  left:0;
+  height: 100%;
+  // position: absolute;
+  // left:0;
   // background: rgba(0, 0, 0, 0.3);
   background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), image-url('search_background_image.jpeg');
   background-size: cover;
@@ -46,22 +50,12 @@
 bottom-padding{
   padding-bottom: 30px;
 }
+
 #more .card{
   height: 300px;
   margin: 30px;
 }
-#search_area{
-  padding-top: 70px;
-  // width: 100%;
-  // height: 60%;
-  // position: absolute;
-  // left:0;
-  // background-image: image-url('search_background_image.jpeg');
-  // background-size: cover;
-  // background-repeat: no-repeat;
-  // background-position: center;
 
-}
 
 .card-header{
   font-size: 15px;
@@ -73,6 +67,12 @@ bottom-padding{
   margin-bottom: 15px;
 }
 
+.navbar{
+  font-size: 16px;
+  border: 0px;
+  color: #000000;
+  background-color: rgba(255,255,255,0.8);
+}
 
 // #logo {
 //   float: left;
@@ -90,14 +90,13 @@ bottom-padding{
 //   }
 // }
 
-.navbar-buttons {
-  float:left;
-}
-
-
-body { padding-top: 50px;
-
- }
+// .navbar-buttons {
+//   float:left;
+// }
+//
+// body { padding-top: 50px;
+//
+//  }
 
 // $bgDefault      : #d2a679;
 // $bgHighlight    : #d2a679;
@@ -264,6 +263,7 @@ display: inline-block;
     border-left: solid 1px #ccc;
     line-height: 2;
 }
+
 #custom-search-input button:hover{
     border: 0;
     box-shadow: none;
@@ -283,3 +283,33 @@ display: inline-block;
     border: 0;
     color: #666666;
   }
+
+header {
+  padding-top: 150px;
+  padding-bottom: 100px;
+  padding-left: 30px;
+  padding-right: 30px;
+  color: white;
+  height: 300px;
+  width: 100%;
+  background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), image-url('search_background_image.jpeg');
+}
+
+footer{
+  a{
+    color: #fff;
+  }
+  background: #44423d;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.section-hr{
+  border-color: #000;
+  border-width: 3px;
+  max-width: 50px;
+}
+
+.thumbnail:hover{
+  background: rgba(0,0,0,0.1);
+}

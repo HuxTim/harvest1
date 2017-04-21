@@ -1,0 +1,11 @@
+<% @markets.each do |market| %>
+<div class="col-md-4">
+  <%= link_to market, class: "thumbnail well" do %>
+    <img class="media-object" alt="Card image cap" src="http://placehold.it/350x150/20BFA9/ffffff&text=Eample">
+    <div class="caption">
+      <h4 class="card-title"><%= market.name%></h4>
+      <span class="card-text"><%= market.description%></span>
+    </div>
+  <% end %>
+</div>
+<% end %>

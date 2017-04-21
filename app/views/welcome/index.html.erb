@@ -1,9 +1,48 @@
-<div id="search_area">
-   <%= render 'shared/search' %>
-</div>
-    <div class="">
-      <div class="form-horizontal center container" id="search_area">
+<header>
+    <div id="search_area">
+       <%= render 'shared/search' %>
+    </div>
+    <div class="text-center">
+      <div class="form-horizontal center container" id="search_area"></div>
+    </div>
+</header>
+
+<section>
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Popular Products</h2>
+        <hr class="section-hr">
       </div>
     </div>
+  <div class="row">
+        <%= render 'shared/products', locals: { products: @products = Product.all[0..2] } %>
+  </div>
+</section>
+
+<section>
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Popular Stores</h2>
+        <hr class="section-hr">
+      </div>
+    </div>
+  <div class="row">
+      <%= render 'shared/stores', locals: { stores: @stores = Store.all[0..2] } %>
+  </div>
+</section>
+
+<section>
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Popular Markets</h2>
+        <hr class="section-hr">
+      </div>
+  </div>
+  <div class="row">
+        <%= render 'shared/markets', locals: { stores: @markets = Market.all[0..2] } %>
+  </div>
+</section>
+
+
 
 <%# <!-- <%= render 'layouts/market_cards' %>
