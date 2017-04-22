@@ -18,8 +18,33 @@
       </div>
     </div>
   </div>
-  <% end %>
 
+
+  <div class="row">
+    <div class="col-md-12">
+      <h5>Select Market</h5>
+      <div class="form-group input-group">
+        <input type="text" class="form-control" id="query_market">
+        <span class="input-group-btn">
+          <div id="market_search_button" class="btn btn-default">
+            <span class="glyphicon glyphicon-search"></span>
+          </div>
+        </span>
+      </div>
+      <div id="search_results"></div>
+      <hr>
+      <div class="form-group">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div id="selected_results"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+</section>
+<section>
   <div class="row">
     <div class="col-md-6">
       <%= link_to "Back", current_user,  {class: "btn btn-warning col-md-12"} %>
@@ -30,35 +55,23 @@
   </div></br>
 </section>
 
-<section id = "select_market">
-    <div class="row">
-      <div class="col-md-12">
-        <h2>Select Market</h2>
-        <input class="form-control" type="text" id="search_market"></input>
-        <div class="well" id="search_market_result">
-          type
-        </div>
-      </div>
-    </div>
-</section>
-
 <section id = "add_store_image">
-    <div class="row">
-      <div class="col-md-12">
-        <%= form_for(StoreImage.new, html: { multipart: true, class: "form dropzone", id: "store_image_upload"}) do |f|  %>
-        <%= f.hidden_field :store_id, :id => "store_id"%>
-        <div class="form-group">
-          <div class="fallback">
-            <%= f.file_field :image %><br>
-          </div>
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for(StoreImage.new, html: { multipart: true, class: "form dropzone", id: "store_image_upload"}) do |f|  %>
+      <%= f.hidden_field :store_id, :id => "store_id"%>
+      <div class="form-group">
+        <div class="fallback">
+          <%= f.file_field :image %><br>
         </div>
-        <% end %></br>
+      </div>
+      <% end %></br>
 
-        <div class="row">
-          <div class="col-md-12">
-            <%= link_to "Finish UpLoad", current_user,  {class: "btn btn-success col-md-12", id: "finish_upload"} %>
-          </div>
+      <div class="row">
+        <div class="col-md-12">
+          <%= link_to "Finish UpLoad", current_user,  {class: "btn btn-success col-md-12", id: "finish_upload"} %>
         </div>
       </div>
     </div>
+  </div>
 </section>

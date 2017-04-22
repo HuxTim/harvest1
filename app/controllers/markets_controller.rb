@@ -45,7 +45,7 @@ class MarketsController < ApplicationController
     @market = Market.find(params[:id])
     @stores = @market.stores.all.paginate(page:params['current_store_page'].to_i + 1,per_page:6)
     respond_to do |format|
-      format.html { render  partial: "stores", locals: { stores: @stores }}
+      format.html { render  partial: "shared/stores", locals: { stores: @stores }}
       format.json { render @stores}
     end
   end

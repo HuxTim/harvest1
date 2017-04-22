@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_one :vendor
+  has_one :vendor,:dependent => :destroy
   has_many :reviews
   has_many :stores
   has_many :markets

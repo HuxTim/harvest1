@@ -164,9 +164,9 @@ display: inline-block;
   background-image:none !important;
 }
 
-.carousel img{
+#showcase .carousel img{
   width: 100%;
-  height: 200px;
+  height: 350px;
 }
 
 .carousel-control:hover,
@@ -211,7 +211,7 @@ display: inline-block;
 }
 
 .btn-space{
-  margin-left: 15px;
+  margin-right: 10px;
 }
 
 .modal-header{
@@ -303,6 +303,7 @@ footer{
   background: #44423d;
   padding-top: 50px;
   padding-bottom: 50px;
+  margin-top: 20px;
 }
 
 .section-hr{
@@ -322,4 +323,30 @@ body{
 a{
   display: block;
   width: 100%;
+}
+
+.review-photo{
+  height: 50px;
+}
+
+.market_tag{
+  margin-top: 10px;
+  margin-right: 10px;
+  border-radius: 15px;
+  :hover{
+    background-color: #666666;
+  }
+}
+
+.selected_tag{
+  margin-top: 10px;
+  margin-right: 10px;
+  border-radius: 15px;
+  :hover{
+    background-color: #666666;
+  }
+}
+
+.management-board{
+  padding-bottom: 20px;
 }

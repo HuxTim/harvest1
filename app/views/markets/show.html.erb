@@ -137,7 +137,7 @@
             <hr>
 
             <div id = "market_reviews" class="text-center">
-              <%= render 'reviews', locals: { reviews: @reviews } %>
+              <%= render 'shared/reviews', locals: { reviews: @reviews } %>
             </div>
             <div id="reviews_next" class="btn btn-default col-sm-12">Show More Review</div>
             <input type="hidden" id="current_review_page" value="<%= @current_page %>">
