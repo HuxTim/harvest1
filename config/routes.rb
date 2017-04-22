@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :store_market_relationships
+  resources :requests
   get 'sessions/new'
 
   get 'welcome/index'

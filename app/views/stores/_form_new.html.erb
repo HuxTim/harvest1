@@ -1,4 +1,4 @@
-<section>
+<section id="add_description">
   <%= form_for(store) do |f| %>
   <%= render 'shared/hint_messages', object: store %></br>
   <div class="form-group">
@@ -6,43 +6,6 @@
       <div class="col-md-12">
         <%= f.label :name%>
         <%= f.text_field :name, class: "form-control" %>
-      </div>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <div class="row">
-      <div class="col-md-4">
-        <%= f.label :'Open Day'%>
-        <%= select_tag :open_day, options_for_select(day_list, :selected => day_list[0]),{:class => "form-control", :id => "openday"} %>
-      </div>
-      <div class="col-md-4">
-        <%= f.label :'Open Time'%>
-        <div class="input-group bootstrap-timepicker timepicker">
-          <% if store.open_time != nil %>
-          <%= f.text_field :open_time, class: "form-control",id: "store_opentime", value: get_time_from_timestamp(store.open_time)  %>
-          <% else %>
-          <%= f.text_field :open_time, class: "form-control",id: "store_opentime"%>
-          <% end %>
-          <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-        </div>
-        <script type="text/javascript">
-        $('#store_opentime').timepicker();
-        </script>
-      </div>
-      <div class="col-md-4">
-        <%= f.label :'Close Time'%>
-        <div class="input-group bootstrap-timepicker timepicker">
-          <% if store.close_time != nil %>
-          <%= f.text_field :close_time, class: "form-control",id: "store_closetime", value: get_time_from_timestamp(store.close_time)  %>
-          <% else %>
-          <%= f.text_field :close_time, class: "form-control",id: "store_closetime"%>
-          <% end %>
-          <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-        </div>
-        <script type="text/javascript">
-        $('#store_closetime').timepicker();
-        </script>
       </div>
     </div>
   </div>
@@ -62,10 +25,23 @@
       <%= link_to "Back", current_user,  {class: "btn btn-warning col-md-12"} %>
     </div>
     <div class="col-md-6">
-      <li id="store_new_next_step" class="btn btn-primary col-md-12">Create</li>
+      <a id="store_new_next_step" class="btn btn-primary col-md-12">Create</a>
     </div>
   </div></br>
 </section>
+
+<section id = "select_market">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Select Market</h2>
+        <input class="form-control" type="text" id="search_market"></input>
+        <div class="well" id="search_market_result">
+          type
+        </div>
+      </div>
+    </div>
+</section>
+
 <section id = "add_store_image">
     <div class="row">
       <div class="col-md-12">
@@ -86,44 +62,3 @@
       </div>
     </div>
 </section>
-<script>
-$(document).ready(function() {
-  $('#finish_upload').addClass('disabled');
-  // $('#store_image_upload').addClass('disabled');
-  // $('#store_image_upload').removeClass('dz-clickable"');
-
-  $("#store_new_next_step").click(function() {
-    var valuesToSubmit = $("#new_store").serialize();
-    $.ajax({
-      url: "/stores",
-      dataType: "json",
-      type: "POST",
-      data: valuesToSubmit,
-      success: function(data, success) {
-        document.getElementById("store_id").value = data['store_id']
-        $('#finish_upload').removeClass('disabled');
-        jQuery('#add_store_image').css({ opacity: 1});
-      },
-      error: function(data, failure) {
-        alert(data);
-      }
-    });
-  });
-});
-
-$(document).ready(function(){
-  // disable auto discover
-  Dropzone.autoDiscover = false;
-
-  // grap our upload form by its id
-  $("#store_image_upload").dropzone({
-    // restrict image size to a maximum 1MB
-    maxFilesize: 5,
-    // changed the passed param to one accepted by
-    // our rails app
-    paramName: "store_image[image]",
-    // show remove links on each image upload
-    addRemoveLinks: true
-  });
-});
-</script>

@@ -1,7 +1,7 @@
 class User < ApplicationRecord
+  has_one :vendor
   has_many :reviews
   has_many :stores
-  has_many :vendors
   has_many :markets
 
   before_save { self.email = email.downcase }

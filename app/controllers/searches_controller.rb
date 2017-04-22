@@ -8,7 +8,7 @@ class SearchesController < ApplicationController
     @products = Product.ransack(name_or_description_cont: q).result
     @stores = Store.ransack(name_or_description_cont: q).result
     @markets = Market.ransack(name_or_description_cont: q).result
-    
+
     #Filters results based on selected option.
     if params[:option] == "Stores"
       @products = []

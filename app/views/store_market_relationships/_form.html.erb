@@ -1,0 +1,17 @@
+<%= form_for(store_market_relationship) do |f| %>
+  <% if store_market_relationship.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(store_market_relationship.errors.count, "error") %> prohibited this store_market_relationship from being saved:</h2>
+
+      <ul>
+      <% store_market_relationship.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
