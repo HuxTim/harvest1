@@ -1,18 +1,36 @@
 <% @products.each do |product| %>
 <div class="col-md-4">
-  <%= link_to product, class: "thumbnail well" do %>
-    <img class="media-object" alt="Card image cap" src="http://placehold.it/350x150/20BFA9/ffffff&text=Eample">
-    <div class="caption">
-      <h3 class="card-title"><%= product.name%></h3>
-          <h4><span class="label label-success"><%= product.price%></span>
-            <% if product.is_special == true%>
-            <span class="label label-danger">Special</span>
-            <% end %>
-          </h4>
-
-      <span class="card-text"><%= product.description%></span>
-      <h4><span class="label label-warning"><%= product.tag%></span></h4>
-    </div>
+  <div class="thumbnail well check-product" id="<%= product.id %>" data-toggle="modal" data-target="#checkProductPanel">
+  <% if product.product_images.all.length == 0 %>
+  <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(http://placehold.it/350x150/fff/ffffff&text='')"><span class="glyphicon-md glyphicon glyphicon glyphicon-apple"></span></div>
+  <% else %>
+  <div class="text-center thumbnail-image thumbnail-image-square" style="background: url(<%= product.product_images.all.first.image.url(:small)%>)"></div>
   <% end %>
+
+  <div class="caption">
+    <h3 class="card-title"><%= product.name%></h3>
+    <h4><span class="label label-success"><%= product.price%></span>
+      <% if product.is_special == true%>
+      <span class="label label-danger">Special</span>
+      <% end %>
+    </h4>
+
+    <span class="card-text"><%= product.description%></span>
+    <h4><span class="label label-warning"><%= product.tag%></span></h4>
+  </div>
+</div>
 </div>
 <% end %>
+
+<div class="modal fade" id="checkProductPanel" tabindex="-1" role="dialog" aria-labelledby="checkProductPanelLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">ProdcutDetail</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

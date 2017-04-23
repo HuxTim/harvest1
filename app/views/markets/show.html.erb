@@ -39,37 +39,6 @@
 
 <section class="row information">
   <div class="col-sm-12 panel panel-default">
-    <div class="col-sm-8">
-      <h2>
-        <div class="row">
-          <div class="col-sm-6">
-            <%= @market.name %>
-          </div>
-          <div class="col-sm-6">
-            <%= link_to 'Edit Information', edit_market_path, class: "btn btn-warning btn-space col-sm-4" %>
-            <%= link_to 'Delete', @market, method: :delete, class: "btn btn-danger btn-space col-sm-3", data: { confirm: t('messages.Are you sure delete this market'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%>
-
-          </div>
-        </div>
-      </h2>
-      <input type="hidden" id="market_id" value="<%= @market.id %>">
-      <table class="table">
-        <tbody>
-          <tr>
-            <td class = "col-sm-2 well"><strong>Address</strong></td>
-            <td><%= @market.address%>, <%= @market.city %>, <%= @market.state%>, <%= @market.zipcode %></td>
-          </tr>
-          <tr>
-            <td class = "col-sm-2 well"><strong>Open time</strong></td>
-            <td><%= get_day_from_timestamp(@market.open_time) %>    <%= get_time_from_timestamp(@market.open_time) %> - <%= get_time_from_timestamp(@market.close_time) %></td>
-          </tr>
-          <tr>
-            <td class = "col-sm-2 well"><strong>Description</strong></td>
-            <td><%= @market.description %></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
     <div class="col-sm-4 well">
       <div id="rating">
         <h4>Average user rating</h4>
@@ -86,234 +55,112 @@
         <% end %>
         <% end %>
       </div>
-      <hr>
-      <div class="label label-default">
-        this is for owner information
-      </div>
+      <div class="alert alert-success"><%= link_to "Owner :" + @market.user.name, @market.user, class: "text-success" %></div>
     </div>
-  </div>
-</section>
 
-<section class="row">
-  <div class="col-sm-12">
-    <div id="market_details" class="carousel slide details" >
-      <ul class="nav nav-pills nav-justified">
-        <li data-target="#market_details" data-slide-to="0" class="active"><a href="#">Store</a></li>
-        <li data-target="#market_details" data-slide-to="1"><a href="#">Review</a></li>
-      </ul>
 
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner">
-        <div class="item active">
-          <div id = "market_stores">
-            <%= render 'shared/stores', locals: { stores: @stores } %>
-          </div>
-          <div id="stores_next" class="btn btn-default col-sm-12">Show More Stores</div>
-          <input type="hidden" id="current_store_page" value="<%= @current_page %>">
-        </div><!-- End Item -->
-
-        <div class="item">
-          <div class="row">
-            <div class="col-md-12">
-              <%= form_for(@review) do |f| %>
-
-              <div class="form-group">
-                <%= f.text_area :comment, {:class => "form-control", :rows => "5", :placeholder => "Enter your review here..."}%>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-12 well">
-                  <div id="ratings" class="starrr col-sm-4 "></div>
-                  <div id="ratings-notice" class="text-right">You gave a rating of <span id="count">0</span> star(s)</div>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="actions">
-                  <%= f.submit "Submit", {:class => "btn btn-primary col-sm-12"}%></div>
-                </div>
-                <% end %>
-              </div>
-            </div>
-            <hr>
-
-            <div id = "market_reviews" class="text-center">
-              <%= render 'shared/reviews', locals: { reviews: @reviews } %>
-            </div>
-            <div id="reviews_next" class="btn btn-default col-sm-12">Show More Review</div>
-            <input type="hidden" id="current_review_page" value="<%= @current_page %>">
-          </div><!-- End Item -->
-
-        </div><!-- End Carousel Inner -->
+    <div class="col-sm-8">
+      <div class="col-sm-12">
+        <h2><%= @market.name %>
+        </h2>
       </div>
+      <input type="hidden" id="market_id" value="<%= @market.id %>">
+      <div class="col-sm-12">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td class = "col-sm-2 well"><strong>Address</strong></td>
+              <td><%= @market.address%>, <%= @market.city %>, <%= @market.state%>, <%= @market.zipcode %></td>
+            </tr>
+            <tr>
+              <td class = "col-sm-2 well"><strong>Open time</strong></td>
+              <td><%= get_day_from_timestamp(@market.open_time) %><%= get_time_from_timestamp(@market.open_time) %> - <%= get_time_from_timestamp(@market.close_time) %></td>
+            </tr>
+            <tr>
+              <td class = "col-sm-2 well"><strong>Description</strong></td>
+              <td><%= @market.description %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <% if isMarketOwner(@market) %>
+      <div class="row management-board">
+        <div class="col-sm-12">
+          <div class="col-sm-4"><%= link_to 'Edit Information', edit_market_path, class: "btn btn-warning btn-lg btn-space col-sm-12" %></div>
+          <div class="col-sm-4"><%= link_to 'Delete', @market, method: :delete, class: "btn btn-danger  btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure delete this market'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
+          <% if isVendor %>
+          <div class="col-sm-4"><div class="btn btn-warning btn-lg btn-space col-sm-12">Be Vendor</div></div>
+          <% end %>
+          <div class="">
+          </div>
+        </div>
+        <% else %>
+        <div class="row management-board">
+          <div class="col-sm-12">
+            <% if isVendor %>
+            <div class="col-sm-12"><div id="" class="btn btn-warning btn-lg btn-space col-sm-12">Apply Join</div></div>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+
+      </div>
+
+
+
     </div>
   </section>
-  <script>
-  $("#reviews_next").click(function() {
-    $.ajax({
-      url: "/markets/"+ $("#market_id").val() +"/reviews",
-      dataType: "html",
-      type: "GET",
-      data: "current_review_page=" + $("#current_review_page").val(),
-      success: function(data, success) {
-        $('#market_reviews').append(data);
-        $('#current_review_page').val(parseInt($("#current_review_page").val()) + 1);
-      },
-      error: function(data, failure) {
-        alert(success);
-      }
-    });
-  });
 
-  $("#stores_next").click(function() {
-    $.ajax({
-      url: "/markets/"+ $("#market_id").val() +"/stores",
-      dataType: "html",
-      type: "GET",
-      data: "current_store_page=" + $("#current_store_page").val(),
-      success: function(data, success) {
-        $('#market_stores').append(data);
-        $('#current_store_page').val(parseInt($("#current_store_page").val()) + 1);
-      },
-      error: function(data, failure) {
-        alert(success);
-      }
-    });
-  });
+  <section class="row">
+    <div class="col-sm-12">
+      <div id="market_details" class="carousel slide details" >
+        <ul class="nav nav-pills nav-justified">
+          <li data-target="#market_details" data-slide-to="0" class="active"><a href="#">Store</a></li>
+          <li data-target="#market_details" data-slide-to="1"><a href="#">Review</a></li>
+        </ul>
 
-  var clickEvent = false;
-  $('#market_details').on('click', '.nav a', function() {
-    clickEvent = true;
-    $('.nav li').removeClass('active');
-    $(this).parent().addClass('active');
-  }).on('slid.bs.carousel', function(e) {
-    if(!clickEvent) {
-      var count = $('.nav').children().length -1;
-      var current = $('.nav li.active');
-      current.removeClass('active').next().addClass('active');
-      var id = parseInt(current.data('slide-to'));
-      if(count == id) {
-        $('.nav li').first().addClass('active');
-      }
-    }
-    clickEvent = false;
-  });
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item active">
+            <div id = "market_stores">
+              <%= render 'shared/stores', locals: { stores: @stores } %>
+            </div>
+            <div id="stores_next" class="btn btn-default col-sm-12">Show More Stores</div>
+            <input type="hidden" id="current_store_page" value="<%= @current_page %>">
+          </div><!-- End Item -->
 
+          <div class="item">
+            <div class="row">
+              <div class="col-md-12">
+                <%= form_for(@review) do |f| %>
 
+                <div class="form-group">
+                  <%= f.text_area :comment, {:class => "form-control", :rows => "5", :placeholder => "Enter your review here..."}%>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-12 well">
+                    <div id="ratings" class="starrr col-sm-4 "></div>
+                    <div id="ratings-notice" class="text-right">You gave a rating of <span id="count">0</span> star(s)</div>
+                  </div>
+                </div>
 
-  var __slice = [].slice;
+                <div class="form-group">
+                  <div class="actions">
+                    <%= f.submit "Submit", {:class => "btn btn-primary col-sm-12"}%></div>
+                  </div>
+                  <% end %>
+                </div>
+              </div>
+              <hr>
 
-  (function($, window) {
-    var Starrr;
+              <div id = "market_reviews" class="text-center">
+                <%= render 'shared/reviews', locals: { reviews: @reviews } %>
+              </div>
+              <div id="reviews_next" class="btn btn-default col-sm-12">Show More Review</div>
+              <input type="hidden" id="current_review_page" value="<%= @current_page %>">
+            </div><!-- End Item -->
 
-    Starrr = (function() {
-      Starrr.prototype.defaults = {
-        rating: void 0,
-        numStars: 5,
-        change: function(e, value) {}
-      };
-
-      function Starrr($el, options) {
-        var i, _, _ref,
-        _this = this;
-
-        this.options = $.extend({}, this.defaults, options);
-        this.$el = $el;
-        _ref = this.defaults;
-        for (i in _ref) {
-          _ = _ref[i];
-          if (this.$el.data(i) != null) {
-            this.options[i] = this.$el.data(i);
-          }
-        }
-        this.createStars();
-        this.syncRating();
-        this.$el.on('mouseover.starrr', 'span', function(e) {
-          return _this.syncRating(_this.$el.find('span').index(e.currentTarget) + 1);
-        });
-        this.$el.on('mouseout.starrr', function() {
-          return _this.syncRating();
-        });
-        this.$el.on('click.starrr', 'span', function(e) {
-          return _this.setRating(_this.$el.find('span').index(e.currentTarget) + 1);
-        });
-        this.$el.on('starrr:change', this.options.change);
-      }
-
-      Starrr.prototype.createStars = function() {
-        var _i, _ref, _results;
-
-        _results = [];
-        for (_i = 1, _ref = this.options.numStars; 1 <= _ref ? _i <= _ref : _i >= _ref; 1 <= _ref ? _i++ : _i--) {
-          _results.push(this.$el.append("<span class='gi-2x glyphicon .glyphicon-star-empty'></span>"));
-        }
-        return _results;
-      };
-
-      Starrr.prototype.setRating = function(rating) {
-        if (this.options.rating === rating) {
-          rating = void 0;
-        }
-        this.options.rating = rating;
-        this.syncRating();
-        return this.$el.trigger('starrr:change', rating);
-      };
-
-      Starrr.prototype.syncRating = function(rating) {
-        var i, _i, _j, _ref;
-
-        rating || (rating = this.options.rating);
-        if (rating) {
-          for (i = _i = 0, _ref = rating - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
-            this.$el.find('span').eq(i).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-          }
-        }
-        if (rating && rating < 5) {
-          for (i = _j = rating; rating <= 4 ? _j <= 4 : _j >= 4; i = rating <= 4 ? ++_j : --_j) {
-            this.$el.find('span').eq(i).removeClass('glyphicon-star').addClass('glyphicon-star-empty');
-          }
-        }
-        if (!rating) {
-          return this.$el.find('span').removeClass('glyphicon-star').addClass('glyphicon-star-empty');
-        }
-      };
-
-      return Starrr;
-
-    })();
-
-    return $.fn.extend({
-      starrr: function() {
-        var args, option;
-
-        option = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
-        return this.each(function() {
-          var data;
-
-          data = $(this).data('star-rating');
-          if (!data) {
-            $(this).data('star-rating', (data = new Starrr($(this), option)));
-          }
-          if (typeof option === 'string') {
-            return data[option].apply(data, args);
-          }
-        });
-      }
-    });
-  })(window.jQuery, window);
-
-  $(function() {
-    return $(".starrr").starrr();
-  });
-
-  $( document ).ready(function() {
-
-    $('#ratings').on('starrr:change', function(e, value){
-      $('#count').html(value);
-    });
-
-    $('#ratings-existing').on('starrr:change', function(e, value){
-      $('#count-existing').html(value);
-    });
-  });
-
-  </script>
+          </div><!-- End Carousel Inner -->
+        </div>
+      </div>
+    </section>

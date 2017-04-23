@@ -1,4 +1,6 @@
-
+<% if @product %>
+  <%= render 'shared/hint_messages', object: @product %></br>
+<% end %>
 <section id = "showcase" class="row">
   <div class="col-md-12">
     <div id="Carousel" class="center carousel slide" data-ride="carousel">
@@ -14,7 +16,7 @@
       <div class="carousel-inner">
         <% if @store.store_images.all.length == 0 %>
         <div class="item active">
-          <img src="http://placehold.it/800x200/20BFA9/ffffff&text=This is Third example">
+          <img src="http://placehold.it/800x200/fff/ffffff&text=Example">
         </div>
         <% else %>
         <div class="item active">
@@ -92,12 +94,11 @@
       <div class="alert alert-success">Owner : <%= link_to @store.vendor.user.name, @store.vendor, class: "text-success" %></div>
 
     </div>
-    <% if isOwner(current_user,@store) %>
+    <% if logged_in? and isStoreOwner(current_user,@store) %>
     <div class="row management-board">
       <div class="col-sm-12">
-        <div class="col-sm-4"><%= link_to 'Add Prod', new_store_product_path(@store), class: "btn btn-default btn-lg col-sm-12" %></div>
-        <div class="col-sm-4"><%= link_to 'Edit Information', edit_store_path, class: "btn btn-warning btn-lg btn-space col-sm-12" %></div>
-        <div class="col-sm-4">  <%= link_to 'Delete', @store, method: :delete, class: "btn btn-danger btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure delete this store'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
+        <div class="col-sm-6"><%= link_to 'Edit Information', edit_store_path, class: "btn btn-default btn-lg btn-space col-sm-12" %></div>
+        <div class="col-sm-6">  <%= link_to 'Delete', @store, method: :delete, class: "btn btn-default btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure delete this store'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
       </div>
     </div>
     <% end %>
@@ -110,13 +111,13 @@
       <li data-target="#store_details" data-slide-to="0" class="active"><a href="#">Product</a></li>
       <li data-target="#store_details" data-slide-to="1"><a href="#">Review</a></li>
     </ul>
-
-
-
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
         <div id = "store_products">
+          <% if logged_in? and isStoreOwner(current_user,@store) %>
+          <%= render 'add_products' %>
+          <% end %>
           <%= render 'shared/products', locals: { products: @products } %>
         </div>
         <div id="products_next" class="btn btn-default col-sm-12">Show More Products</div>
@@ -151,8 +152,38 @@
         <div id="reviews_next" class="btn btn-default col-sm-12">Show More Review</div>
         <input type="hidden" id="current_review_page" value="<%= @current_page %>">
       </div><!-- End Item -->
-
-
     </div><!-- End Carousel Inner -->
   </div>
 </section>
+
+
+<!-- Modal -->
+<% if logged_in? and isStoreOwner(current_user,@store) %>
+<div class="modal fade" id="addProductPanel" tabindex="-1" role="dialog" aria-labelledby="addProductPanelLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Add New Prodcut</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'products/form_new', product: @product = @store.products.new %>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<% end %>
+
+
+<div class="modal fade" id="checkProductPanel" tabindex="-1" role="dialog" aria-labelledby="checkProductPanelLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">ProdcutDetail</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

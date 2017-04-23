@@ -1,0 +1,97 @@
+<section id = "add_product_image">
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for(ProductImage.new, html: { multipart: true, class: "form dropzone", id: "product_image_upload"}) do |f|  %>
+      <%= f.hidden_field :product_id, :id => "product_id", :value => product.id%>
+      <div class="form-group">
+        <div class="fallback">
+          <%= f.file_field :image %><br>
+        </div>
+      </div>
+      <% end %></br>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <%= render 'product_images', locals: { product_images: product.product_images } %>
+</section>
+
+<section>
+  <%= form_for(product) do |f| %>
+  <%= render 'shared/hint_messages', object: product %></br>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.label :name%>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.label :description %>
+        <%= f.text_area :description, {:class => "form-control", :rows => "5"}%>
+        <%= f.hidden_field :store_id, {:value => product.store_id}%>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+
+      <div class="col-md-4">
+        <%= f.label :discount%>
+        <%= f.select :is_special, options_for_select([["yes",0],["no",1]], :selected => "no"),{}, {class: "form-control"}%>
+      </div>
+      <div class="col-md-2">
+        <%= f.label :price%>
+        <%= f.text_field :price, {:class => "form-control", id: "price_number"}%>
+      </div>
+      <div class="col-md-2">
+        <%= f.label :unit%>
+        <%= f.select :price, options_for_select(unit_list, :selected => "lb"),{}, {class: "form-control"}%>
+      </div>
+      <div class="col-md-4">
+        <%= f.label :tag%>
+        <div class="row">
+          <div class="col-md-12">
+        <select class="product_tags" multiple="multiple">
+          <% tag_list.each do |tag|%>
+            <option value="<%= tag %>"><%= tag %></option>
+          <% end %>
+        </select>
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+       <%= submit_tag "Submit", name: nil, class: "btn btn-success" %>
+</div>
+  <% end %>
+</section>
+
+<script>
+  $(document).ready(function() {
+    $('.product_tags').multiselect();
+    Dropzone.autoDiscover = false;
+    // grap our upload form by its id
+    $("#product_image_upload").dropzone({
+      // restrict image size to a maximum 1MB
+      clickable: true,
+      maxFiles: 5,
+      parallelUploads: 10,
+      maxFilesize: 5,
+      // changed the passed param to one accepted by
+      // our rails app
+      paramName: "product_image[image]",
+      // show remove links on each image upload
+      addRemoveLinks: false
+    });
+  });
+</script>

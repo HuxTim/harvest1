@@ -1,7 +1,11 @@
 <% @stores.each do |store| %>
 <div class="col-md-4">
   <%= link_to store, class: "thumbnail well" do %>
-    <img class="media-object" alt="Card image cap" src="http://placehold.it/350x150/20BFA9/ffffff&text=Eample">
+    <% if store.store_images.all.length == 0 %>
+    <div class="text-center thumbnail-image thumbnail-image-md" style="background:url(http://placehold.it/350x150/fff/ffffff&text='')"><span class="glyphicon-md glyphicon glyphicon glyphicon-home"></span></div>
+    <% else %>
+    <div class="text-center thumbnail-image thumbnail-image-md" style="background: url(<%= store.store_images.all.first.image.url(:small)%>)"></div>
+    <% end %>
     <div class="caption">
       <h4 class="card-title"><%= store.name%></h4>
       <span class="card-text"><%= store.description%></span>

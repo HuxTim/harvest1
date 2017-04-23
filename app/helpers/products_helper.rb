@@ -1,5 +1,5 @@
 module ProductsHelper
-  def tag_list()
+  def tag_list
     tags = [
       "vegetable",
       "meat",
@@ -14,18 +14,19 @@ module ProductsHelper
     ]
   end
 
-  def unit_list()
+  def unit_list
     units = [
       "LB",
-      "meat",
-      "fish",
-      "fruit",
+      "kilograms",
+      "pounds",
+      "liter",
+      "one"
     ]
   end
 end
 #
 # product
-# 
+#
 # profile page for user_id
 #
 # subscription_and_email

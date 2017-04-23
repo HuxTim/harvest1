@@ -104,4 +104,12 @@ module ApplicationHelper
       return hour + ":" + min + " AM"
     end
   end
+
+  def isVendor
+    if(current_user.vendor)
+      return true
+    else
+      return false
+    end
+  end
 end

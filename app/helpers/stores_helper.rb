@@ -1,5 +1,5 @@
 module StoresHelper
-  def isOwner(user, store)
+  def isStoreOwner(user, store)
     if(store.vendor.id == current_user.vendor.id)
       return true
     else

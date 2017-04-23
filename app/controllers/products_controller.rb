@@ -10,6 +10,10 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+    respond_to do |format|
+      format.html { render  partial: "products/show", locals: { products: @product }}
+      format.json { render @products}
+    end
   end
 
   # GET /products/new
@@ -26,13 +30,13 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to @product.store, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
-        format.html { render :new }
+
+        format.html { redirect_to @product.store, :flash => { :error => @product.errors.map{|k,v| "#{k} #{v}"}.join(',') }   }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
@@ -70,6 +74,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:store_id, :name, :quantity, :price, :description, :tag)
+      params.require(:product).permit(:store_id, :name, :quantity, :price, :description, :tag, :is_special)
     end
 end

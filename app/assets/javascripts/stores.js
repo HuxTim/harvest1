@@ -48,27 +48,62 @@ $(document).ready(function() {
       type: "GET",
       data: valuesToSubmit,
       success: function(data, success) {
-         document.getElementById("search_results").innerHTML = ""
-         var arr = [];
-         for (i = 0; i < $('.selected_tag').length; i++) {
-           arr.push(Number($('.selected_tag').eq(i).attr('id')))
-         }
+        document.getElementById("search_results").innerHTML = ""
+        var arr = [];
+        for (i = 0; i < $('.selected_tag').length; i++) {
+          arr.push(Number($('.selected_tag').eq(i).attr('id')))
+        }
 
         for (i = 0; i < data['markets'].length; i++) {
           if(!arr.includes(Number(data['markets'][i]['id'])))
           document.getElementById("search_results").innerHTML += ("<div class='btn btn-primary market_tag' name='market_tag' id='"+data['markets'][i]['id']+"'>" + data['markets'][i]['name']+"</div>");
-         }
+        }
       },
       error: function(data, failure) {
         alert(data);
       }
     });
   });
+
+
+  $('#store_details').on('click', '.nav a', function() {
+    clickEvent = true;
+    $('.nav li').removeClass('active');
+    $(this).parent().addClass('active');
+  }).on('slid.bs.carousel', function(e) {
+    if(!clickEvent) {
+      var count = $('.nav').children().length -1;
+      var current = $('.nav li.active');
+      current.removeClass('active').next().addClass('active');
+      var id = parseInt(current.data('slide-to'));
+      if(count == id) {
+        $('.nav li').first().addClass('active');
+      }
+    }
+    clickEvent = false;
+  });
+
+  $("#products_next").click(function() {
+    $.ajax({
+      url: "/stores/"+ $("#store_id").val() +"/products",
+      dataType: "html",
+      type: "GET",
+      data: "current_product_page=" + $("#current_product_page").val(),
+      success: function(data, success) {
+        $('#store_products').append(data);
+        $('#current_product_page').val(parseInt($("#current_product_page").val()) + 1);
+      },
+      error: function(data, failure) {
+        alert(success);
+      }
+    });
+  });
+
 });
 
 $(document).on("click", '.market_tag', function(event) {
-   document.getElementById("selected_results").innerHTML += ("<div class='btn btn-success selected_tag' name='selected_market' id='"+ $(this).attr('id') +"'>"+$(this).html()+"</div>");
-   $(this).remove();
+  document.getElementById("selected_results").innerHTML += ("<div class='btn btn-success selected_tag' name='selected_market' id='"+ $(this).attr('id') +"'>"+$(this).html()+"</div>");
+  $(this).remove();
 });
 
 $(document).on("click", '.selected_tag', function(event) {
@@ -117,38 +152,6 @@ $(function() {
   };
 });
 
-$('#store_details').on('click', '.nav a', function() {
-  clickEvent = true;
-  $('.nav li').removeClass('active');
-  $(this).parent().addClass('active');
-}).on('slid.bs.carousel', function(e) {
-  if(!clickEvent) {
-    var count = $('.nav').children().length -1;
-    var current = $('.nav li.active');
-    current.removeClass('active').next().addClass('active');
-    var id = parseInt(current.data('slide-to'));
-    if(count == id) {
-      $('.nav li').first().addClass('active');
-    }
-  }
-  clickEvent = false;
-});
-
-$("#products_next").click(function() {
-  $.ajax({
-    url: "/stores/"+ $("#store_id").val() +"/products",
-    dataType: "html",
-    type: "GET",
-    data: "current_product_page=" + $("#current_product_page").val(),
-    success: function(data, success) {
-      $('#store_products').append(data);
-      $('#current_product_page').val(parseInt($("#current_product_page").val()) + 1);
-    },
-    error: function(data, failure) {
-      alert(success);
-    }
-  });
-});
 
 var __slice = [].slice;
 
@@ -264,4 +267,30 @@ $( document ).ready(function() {
   $('#ratings-existing').on('starrr:change', function(e, value){
     $('#count-existing').html(value);
   });
+});
+
+$(document).ready(function() {
+  $('#add_products').click(function(){
+    $('#')
+  });
+
+  $('.check-product').click(function(){
+    var id = $(this).attr('id')
+    $.ajax({
+      url: "/products/" + id,
+      dataType: "html",
+      type: "GET",
+      success: function(data, success) {
+        $('#checkProductPanel .modal-body').empty()
+        $('#checkProductPanel .modal-body').append(data);
+      },
+      error: function(data, failure) {
+        alert(data);
+      }
+    });
+  });
+
+});
+$(document).ready(function() {
+  $('.product_tags').multiselect();
 });

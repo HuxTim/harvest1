@@ -74,7 +74,7 @@
 </section>
 
 <section>
-    <%= render 'store_images', locals: { store_images: @store.store_images } %>
+    <%= render 'store_products', locals: { store_products: @store.products } %>
 </section>
 <section>
   <div class="row">
@@ -87,6 +87,10 @@
     </div>
   </div>
 </div>
+</section>
+
+<section>
+  <%= render 'store_images', locals: { store_images: @store.store_images } %>
 </section>
 
 <script>

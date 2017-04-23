@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-sm-12">
+    <% @product.product_images.each do |image| %>
+    <div class="col-sm-3 thumbnail" id="image_<%= image.id %>">
+        <%= image_tag image.image.url(:small) %>
+        <li class="btn btn-default detele" value="<%= image.id %>">Delete</li></br>
+    </div>
+    <% end %>
+  </div>
+</div>
+<script>
+$(document).ready(function() {
+  $('.detele').click(function() {
+    element = $("#image_" + $(this).val());
+    $.ajax({
+      url: "/product_images/" + $(this).val(),
+      dataType: "json",
+      type: "DELETE",
+      success: function(data, success) {
+
+        element.remove()
+      },
+      error: function(data, failure) {
+        alert(data);
+      }
+    });
+  });
+});
+</script>
