@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   resources :reviews
   resources :products
+  resources :shopping_lists
   resources :markets do
     resources :stores
     resources :market_reviews

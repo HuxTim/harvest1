@@ -1,4 +1,8 @@
+<% if product.is_special %>
+<div class="row row-special">
+<% else %>
 <div class="row">
+<% end %>
   <div class="col-md-12">
     <div class="col-md-5">
       <div id="Carousel" class="center carousel slide" data-ride="carousel">
@@ -44,22 +48,27 @@
       <hr>
       <div class="row">
         <% if product.is_special %>
-        <div class="col-sm-10">
-          <div class="product-price product-price-active"><%= product.price %></div>
-        </div>
         <div class="col-sm-2">
           <span class="glyphicon-active glyphicon-sm glyphicon glyphicon-piggy-bank"></span>
         </div>
-        <% else %>
         <div class="col-sm-10">
-          <div class="product-price"><%= product.price %></div>
+          <div class="product-price product-price-active"><%= product.price %></div>
         </div>
+
+        <% else %>
         <div class="col-sm-2">
           <span class="glyphicon-sm glyphicon glyphicon-piggy-bank"></span>
         </div>
+        <div class="col-sm-10">
+          <div class="product-price"><%= product.price %></div>
+        </div>
+
         <% end %>
       </div>
       <div class="row">
+        <div class="col-sm-2">
+          <span class="glyphicon-sm glyphicon glyphicon-flag"></span>
+        </div>
         <div class="col-sm-10">
           <h4 class="tags">
             <% split_tags(product.tag).each do |tag| %>
@@ -67,14 +76,17 @@
             <% end %>
           </h4>
         </div>
-        <div class="col-sm-2">
-          <span class="glyphicon-sm glyphicon glyphicon-flag"></span>
-        </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
         <% if logged_in? %>
-        <%= submit_tag "Add To Shopping List", name: nil, class: "btn btn-success" %>
+        <% if ShoppingList.where(product_id: product.id, user_id: current_user.id).all.first%>
+                <button type="button" class="btn btn-default delShoppingList" value="<%= product.id%>">Delete List</button>
+        <% else %>
+                <button type="button" class="btn btn-success addShoppingList" value="<%= product.id%>">Add To List</button>
+        <% end %>
+
         <% end %>
       </div>
     </div>
@@ -89,3 +101,45 @@
   color: rgba(66,120,12,0.5);
 }
 </style>
+<script>
+$(".addShoppingList").click(function() {
+  var btn = $(this);
+  $.ajax({
+    url: "/shopping_lists",
+    dataType: "json",
+    type: "POST",
+    data: {product_id: btn.attr('value')},
+    success: function(data, success) {
+      btn.removeClass('btn-success')
+      btn.addClass('btn-default')
+      btn.removeClass('addShoppingList')
+      btn.addClass('delShoppingList')
+      $("#checkProductPanel").modal('hide');
+      alert(data['statue']);
+    },
+    error: function(data, failure) {
+      alert(data['status']);
+    }
+  });
+});
+
+$(".delShoppingList").click(function() {
+  var btn = $(this);
+  $.ajax({
+    url: "/shopping_lists/" +  btn.attr('value'),
+    dataType: "json",
+    type: "DELETE",
+    success: function(data, success) {
+      btn.removeClass('btn-default')
+      btn.addClass('btn-success')
+      btn.removeClass('delShoppingList')
+      btn.addClass('addShoppingList')
+      $("#checkProductPanel").modal('hide');
+      alert(data['statue']);
+    },
+    error: function(data, failure) {
+      alert(data['status']);
+    }
+  });
+});
+</script>
