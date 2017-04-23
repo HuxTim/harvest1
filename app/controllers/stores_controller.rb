@@ -30,7 +30,7 @@ class StoresController < ApplicationController
     @store = Store.find(params[:id])
     @products = @store.products.all.paginate(page:params['current_product_page'].to_i + 1,per_page:6)
     respond_to do |format|
-      format.html { render  partial: "shared/products", locals: { products: @products }}
+      format.html { render  partial: "shared/products", locals: { products: @products}}
       format.json { render @products}
     end
   end

@@ -16,6 +16,7 @@
     </div>
   <div class="row">
         <%= render 'shared/products', locals: { products: @products = Product.all[0..2] } %>
+        <%= render 'shared/product_modal' %>
   </div>
 </section>
 

@@ -14,6 +14,14 @@ module ProductsHelper
     ]
   end
 
+  def split_tags(tags)
+    @tags_list = []
+    if tags
+      @tags_list = tags.split(",")
+    end
+    return @tags_list
+  end
+
   def unit_list
     units = [
       "LB",

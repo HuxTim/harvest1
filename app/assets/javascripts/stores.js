@@ -268,29 +268,6 @@ $( document ).ready(function() {
     $('#count-existing').html(value);
   });
 });
-
-$(document).ready(function() {
-  $('#add_products').click(function(){
-    $('#')
-  });
-
-  $('.check-product').click(function(){
-    var id = $(this).attr('id')
-    $.ajax({
-      url: "/products/" + id,
-      dataType: "html",
-      type: "GET",
-      success: function(data, success) {
-        $('#checkProductPanel .modal-body').empty()
-        $('#checkProductPanel .modal-body').append(data);
-      },
-      error: function(data, failure) {
-        alert(data);
-      }
-    });
-  });
-
-});
 $(document).ready(function() {
   $('.product_tags').multiselect();
 });

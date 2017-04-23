@@ -13,15 +13,17 @@
       <div class="carousel-inner">
         <% if @market.market_images.all.length == 0 %>
         <div class="item active">
-          <img src="http://placehold.it/800x200/20BFA9/ffffff&text=This is Third example">
+          <div class="text-center carousel-image carousel-image-lg" style="background:url(http://placehold.it/800x200/fff/ffffff&text='')"><span class="glyphicon-lg glyphicon glyphicon glyphicon-bullhorn"></span></div>
         </div>
         <% else %>
         <div class="item active">
-          <%= image_tag @market.market_images.all.first.image.url(:large) %>
+          <div class="text-center carousel-image carousel-image-lg" style="background:url(<%=  @market.market_images.all.first.image.url(:large) %>)"></div>
+
         </div>
         <% @market.market_images[1..-1].each do |market_image|%>
         <div class="item">
-          <%= image_tag market_image.image.url(:large) %>
+          <div class="text-center carousel-image carousel-image-lg" style="background:url(<%=  market_image.image.url(:large) %>)"></div>
+
         </div>
         <% end %>
         <% end %>

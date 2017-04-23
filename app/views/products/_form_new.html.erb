@@ -24,7 +24,7 @@
 
       <div class="col-md-4">
         <%= f.label :discount%>
-        <%= f.select :is_special, options_for_select([["yes",0],["no",1]], :selected => "no"),{}, {class: "form-control"}%>
+        <%= f.select :is_special, options_for_select([["yes",1],["no",0]], :selected => "no"),{}, {class: "form-control"}%>
       </div>
       <div class="col-md-2">
         <%= f.label :price%>
@@ -38,20 +38,16 @@
         <%= f.label :tag%>
         <div class="row">
           <div class="col-md-12">
-        <select class="product_tags" multiple="multiple">
-          <% tag_list.each do |tag|%>
-            <option value="<%= tag %>"><%= tag %></option>
-          <% end %>
-        </select>
-      </div>
-      </div>
+            <%= f.select :tag, options_for_select(tag_list, :selected => "vegetable"),{}, {multiple: true, class: "form-control product_tags"}%>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="modal-footer">
     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-       <%= submit_tag "Submit", name: nil, class: "btn btn-success" %>
-</div>
+    <%= submit_tag "Submit", name: nil, class: "btn btn-success" %>
+  </div>
   <% end %>
 </section>

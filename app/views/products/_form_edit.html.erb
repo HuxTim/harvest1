@@ -1,3 +1,4 @@
+<%= link_to 'Delete', product, method: :delete, class: "btn btn-danger ", data: { confirm: t('messages.Are you sure delete this Product. After delete the Product, Data can not be retore'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%>
 <section id = "add_product_image">
   <div class="row">
     <div class="col-md-12">
@@ -58,40 +59,68 @@
         <%= f.label :tag%>
         <div class="row">
           <div class="col-md-12">
-        <select class="product_tags" multiple="multiple">
-          <% tag_list.each do |tag|%>
-            <option value="<%= tag %>"><%= tag %></option>
-          <% end %>
-        </select>
+            <%= f.select :tag, options_for_select(tag_list, :selected => "vegetable"),{}, {multiple: true, class: "form-control product_tags"}%>
+          </div>
+        </div>
       </div>
-      </div>
-      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+        <% split_tags(product.tag).each do |tag| %>
+        <div class="label label-tags label-warning"><%= tag %></div>
+        <% end %>
     </div>
   </div>
 
   <div class="modal-footer">
     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-       <%= submit_tag "Submit", name: nil, class: "btn btn-success" %>
-</div>
+    <%= f.submit "Submit", name: nil, class: "btn btn-success" %>
+  </div>
   <% end %>
 </section>
 
 <script>
-  $(document).ready(function() {
-    $('.product_tags').multiselect();
-    Dropzone.autoDiscover = false;
-    // grap our upload form by its id
-    $("#product_image_upload").dropzone({
-      // restrict image size to a maximum 1MB
-      clickable: true,
-      maxFiles: 5,
-      parallelUploads: 10,
-      maxFilesize: 5,
-      // changed the passed param to one accepted by
-      // our rails app
-      paramName: "product_image[image]",
-      // show remove links on each image upload
-      addRemoveLinks: false
-    });
+$(document).ready(function() {
+  $('.product_tags').multiselect();
+  Dropzone.autoDiscover = false;
+  // grap our upload form by its id
+  $("#product_image_upload").dropzone({
+    // restrict image size to a maximum 1MB
+    clickable: true,
+    maxFiles: 5,
+    parallelUploads: 10,
+    maxFilesize: 5,
+    // changed the passed param to one accepted by
+    // our rails app
+    paramName: "product_image[image]",
+    // show remove links on each image upload
+    addRemoveLinks: false
   });
+});
+
+$(function() {
+  $.rails.allowAction = function(link) {
+    if (!link.attr('data-confirm')) {
+      return true;
+    }
+    $.rails.showConfirmDialog(link);
+    return false;
+  };
+  $.rails.confirmed = function(link) {
+    link.removeAttr('data-confirm');
+    return link.trigger('click.rails');
+  };
+
+  return $.rails.showConfirmDialog = function(link) {
+    var html, message;
+    message = link.attr('data-confirm');
+    html = "<div class='modal fade' id='confirmationDialog' tabindex='-1' role='dialog' aria-labelledby='confirmationDialogLabel' aria-hidden='true'> <div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h4 class='modal-title'>Message<h4></div><div class = 'modal-body alert alert-danger'>" + message + "</div><div class='modal-footer'><button type = 'button' data-dismiss='modal' class=\"btn btn-danger\" >" + (link.data('cancel')) + "</button>\n        <button type = 'button' data-dismiss=\"modal\" class=\"btn btn-danger confirm\">" + (link.data('ok')) + "</button>\n      </div>\n    </div>\n  </div>\n</div>";
+    $(html).modal();
+    return $('#confirmationDialog .confirm').on('click', function() {
+      return $.rails.confirmed(link);
+    });
+  };
+});
 </script>
