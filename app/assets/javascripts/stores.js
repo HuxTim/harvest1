@@ -1,7 +1,13 @@
 $(document).ready(function() {
+
+  $('#new_store_review').submit(function() {
+    document.getElementById("store_review_rating").value= (document.getElementById("count").innerHTML);
+    return true; // return false to cancel form action
+  });
+
   $('#finish_upload').addClass('disabled');
 
-  $("#store_new_next_step").click(function() {
+  $("#store_new_next_step").on('click',function() {
     var valuesToSubmit = $("#new_store").serialize();
     var market_ids = "";
     for (i = 0; i < $('.selected_tag').length; i++) {
@@ -83,7 +89,7 @@ $(document).ready(function() {
     clickEvent = false;
   });
 
-  $("#products_next").click(function() {
+  $("#products_next").on('click',function() {
     $.ajax({
       url: "/stores/"+ $("#store_id").val() +"/products",
       dataType: "html",
@@ -92,6 +98,22 @@ $(document).ready(function() {
       success: function(data, success) {
         $('#store_products').append(data);
         $('#current_product_page').val(parseInt($("#current_product_page").val()) + 1);
+      },
+      error: function(data, failure) {
+        alert(success);
+      }
+    });
+  });
+
+  $("#reviews_next").on('click',function() {
+    $.ajax({
+      url: "/stores/"+ $("#store_id").val() +"/reviews",
+      dataType: "html",
+      type: "GET",
+      data: "current_review_page=" + $("#current_review_page").val(),
+      success: function(data, success) {
+        $('#store_reviews').append(data);
+        $('#current_review_page').val(parseInt($("#current_review_page").val()) + 1);
       },
       error: function(data, failure) {
         alert(success);
@@ -144,7 +166,8 @@ $(function() {
   return $.rails.showConfirmDialog = function(link) {
     var html, message;
     message = link.attr('data-confirm');
-    html = "<div class=\"modal\" id=\"confirmationDialog\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <a class=\"close\" data-dismiss=\"modal\">×</a>\n        <h4>Message<h4>\n      </div><div class = \"well\">\n      " + message + "</div>\n      <div class=\"modal-footer\">\n        <a data-dismiss=\"modal\" class=\"btn btn-default\">" + (link.data('cancel')) + "</a>\n        <a data-dismiss=\"modal\" class=\"btn btn-primary confirm\">" + (link.data('ok')) + "</a>\n      </div>\n    </div>\n  </div>\n</div>";
+    // html = "<div class='modal fade' id='confirmationDialog' tabindex='-1' role='dialog' aria-labelledby='confirmationDialogLabel' aria-hidden='true'> <div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h4 class='modal-title'>Message<h4></div><div class = 'modal-body alert alert-danger'>" + message + "</div><div class='modal-footer'><div class='col-sm-12'><div class='col-sm-6'><a data-dismiss=\"modal\" class=\"btn btn-default\">" + (link.data('cancel')) + "</a>\n </div>\n   <div class='col-sm-6'><a data-dismiss=\"modal\" class=\"btn btn-danger confirm\">" + (link.data('ok')) + "</a></div>\n</div></div></div>\n    </div>\n  </div>\n</div>";
+    html = "<div class=\"modal\" id=\"confirmationDialog\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n      <h4 class=\"modal-title\">Message<h4>\n      </div><div class = \"modal-body alert alert-danger\">\n      " + message + "</div>\n      <div class=\"modal-footer\">\n    <div class=\"col-sm-12\"><div class=\"col-sm-6\">    <a data-dismiss=\"modal\" class=\"btn btn-default\">" + (link.data('cancel')) + "</a></div>\n   <div  class=\"col-sm-6\">     <a data-dismiss=\"modal\" class=\"btn btn-danger confirm\">" + (link.data('ok')) + "</a></div></div>\n      </div>\n    </div>\n  </div>\n</div>";
     $(html).modal();
     return $('#confirmationDialog .confirm').on('click', function() {
       return $.rails.confirmed(link);
@@ -157,7 +180,6 @@ var __slice = [].slice;
 
 (function($, window) {
   var Starrr;
-
   Starrr = (function() {
     Starrr.prototype.defaults = {
       rating: void 0,
@@ -181,6 +203,7 @@ var __slice = [].slice;
       this.createStars();
       this.syncRating();
       this.$el.on('mouseover.starrr', 'span', function(e) {
+
         return _this.syncRating(_this.$el.find('span').index(e.currentTarget) + 1);
       });
       this.$el.on('mouseout.starrr', function() {

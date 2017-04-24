@@ -78,9 +78,9 @@
     <div class="col-sm-4 well">
       <div id="rating">
         <h4>Average user rating</h4>
-        <h2 class="bold padding-bottom-7">UNKNOW <small>/ 5</small></h2>
+        <h2 class="bold padding-bottom-7"><%= @store.store_reviews.average(:rating)%> <small>/ 5</small></h2>
         <% (0..4).each do |i|%>
-        <% if i >= 0 %>
+        <% if i >= @store.store_reviews.average(:rating) %>
         <button type="button" class="btn btn-default btn-sm" aria-label="Left Align">
           <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
         </button>
@@ -124,6 +124,8 @@
         <input type="hidden" id="current_product_page" value="<%= @current_page %>">
       </div><!-- End Item -->
       <div class="item">
+        <% if logged_in? and !isStoreOwner(current_user,@store)%>
+
         <div class="row">
           <div class="col-md-12">
             <%= form_for(@review) do |f| %>
@@ -135,16 +137,19 @@
               <div class="col-sm-12 well">
                 <div id="ratings" class="starrr col-sm-4 "></div>
                 <div id="ratings-notice" class="text-right">You gave a rating of <span id="count">0</span> star(s)</div>
+                <%= f.hidden_field :rating, {:value => 0}%>
+                <%= f.hidden_field :store_id, {:value => @store.id}%>
               </div>
             </div>
 
             <div class="text-right">
-              <%= f.submit "Submit", {:class => "btn btn-primary col-sm-12"}%>
+              <%= f.submit "Submit", {:class => "btn btn-success col-sm-12"}%>
             </div>
             <% end %>
           </div>
         </div>
         <hr>
+        <% end %>
 
         <div id = "store_reviews" class="text-center">
           <%= render 'shared/reviews', locals: { reviews: @reviews } %>
@@ -175,3 +180,130 @@
 <% end %>
 
 <%= render 'shared/product_modal' %>
+
+<script>
+$(document).ready(function() {
+
+  $('#new_store_review').submit(function() {
+    document.getElementById("store_review_rating").value= (document.getElementById("count").innerHTML);
+    return true; // return false to cancel form action
+  });
+
+  $('#finish_upload').addClass('disabled');
+
+  $("#store_new_next_step").on('click',function() {
+    var valuesToSubmit = $("#new_store").serialize();
+    var market_ids = "";
+    for (i = 0; i < $('.selected_tag').length; i++) {
+      market_ids += $('.selected_tag').eq(i).attr('id') + ",";
+    }
+    var formdata = valuesToSubmit+"&market_ids="+market_ids;
+    $.ajax({
+      url: "/stores",
+      dataType: "json",
+      type: "POST",
+      data: formdata,
+      success: function(data, success) {
+        $("#store_new_next_step").addClass('disabled')
+        $("#new_store").addClass('disabled')
+        $("#new_store input").prop("disabled", true);
+        $('#add_description *').click(false);
+        document.getElementById("store_id").value = data['store_id'];
+        $('#finish_upload').removeClass('disabled');
+        jQuery('#add_store_image').css({ opacity: 1});
+        // Dropzone.storeImageUpload.options = {
+        //   // restrict image size to a maximum 1MB
+        //   clickable: true,
+        //   maxFiles: 5,
+        //   parallelUploads: 10,
+        //   maxFilesize: 5,
+        //   // changed the passed param to one accepted by
+        //   // our rails app
+        //   paramName: "store_image[image]",
+        //   // show remove links on each image upload
+        //   addRemoveLinks: false
+        // };
+      },
+      error: function(data, failure) {
+        alert(data);
+      }
+    });
+  });
+
+  $("#market_search_button").click(function() {
+    var valuesToSubmit = $("#query_market").serialize();
+    $.ajax({
+      url: "/stores/new/markets",
+      dataType: "json",
+      type: "GET",
+      data: valuesToSubmit,
+      success: function(data, success) {
+        document.getElementById("search_results").innerHTML = ""
+        var arr = [];
+        for (i = 0; i < $('.selected_tag').length; i++) {
+          arr.push(Number($('.selected_tag').eq(i).attr('id')))
+        }
+
+        for (i = 0; i < data['markets'].length; i++) {
+          if(!arr.includes(Number(data['markets'][i]['id'])))
+          document.getElementById("search_results").innerHTML += ("<div class='btn btn-primary market_tag' name='market_tag' id='"+data['markets'][i]['id']+"'>" + data['markets'][i]['name']+"</div>");
+        }
+      },
+      error: function(data, failure) {
+        alert(data);
+      }
+    });
+  });
+
+
+  $('#store_details').on('click', '.nav a', function() {
+    clickEvent = true;
+    $('.nav li').removeClass('active');
+    $(this).parent().addClass('active');
+  }).on('slid.bs.carousel', function(e) {
+    if(!clickEvent) {
+      var count = $('.nav').children().length -1;
+      var current = $('.nav li.active');
+      current.removeClass('active').next().addClass('active');
+      var id = parseInt(current.data('slide-to'));
+      if(count == id) {
+        $('.nav li').first().addClass('active');
+      }
+    }
+    clickEvent = false;
+  });
+
+  $("#products_next").on('click',function() {
+    $.ajax({
+      url: "/stores/"+ $("#store_id").val() +"/products",
+      dataType: "html",
+      type: "GET",
+      data: "current_product_page=" + $("#current_product_page").val(),
+      success: function(data, success) {
+        $('#store_products').append(data);
+        $('#current_product_page').val(parseInt($("#current_product_page").val()) + 1);
+      },
+      error: function(data, failure) {
+        alert(success);
+      }
+    });
+  });
+
+  $("#reviews_next").on('click',function() {
+    $.ajax({
+      url: "/stores/"+ $("#store_id").val() +"/reviews",
+      dataType: "html",
+      type: "GET",
+      data: "current_review_page=" + $("#current_review_page").val(),
+      success: function(data, success) {
+        $('#store_reviews').append(data);
+        $('#current_review_page').val(parseInt($("#current_review_page").val()) + 1);
+      },
+      error: function(data, failure) {
+        alert(success);
+      }
+    });
+  });
+
+});
+</script>

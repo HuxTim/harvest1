@@ -85,31 +85,34 @@
           </tbody>
         </table>
       </div>
-      <% if isMarketOwner(@market) %>
+
       <div class="row management-board">
         <div class="col-sm-12">
+          <% if isMarketOwner(@market) %>
           <div class="col-sm-4"><%= link_to 'Edit Information', edit_market_path, class: "btn btn-warning btn-lg btn-space col-sm-12" %></div>
           <div class="col-sm-4"><%= link_to 'Delete', @market, method: :delete, class: "btn btn-danger  btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure delete this market'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
           <% if isVendor %>
-          <div class="col-sm-4"><div class="btn btn-warning btn-lg btn-space col-sm-12">Be Vendor</div></div>
-          <% end %>
-          <div class="">
-          </div>
-        </div>
-        <% else %>
-        <div class="row management-board">
-          <div class="col-sm-12">
-            <% if isVendor %>
-            <div class="col-sm-12"><div id="" class="btn btn-warning btn-lg btn-space col-sm-12">Apply Join</div></div>
+            <% if joined_in?(@market) %>
+            <div class="col-sm-4"><%= link_to 'Quit Market', StoreMarketRelationship.where(:store_id => current_user.vendor.store.id, :market_id => @market.id), method: :delete, class: "btn btn-danger  btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure quit this market'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
+            <% else %>
+            <div class="col-sm-4"><%= link_to 'Join Market', new_store_market_relationship_path, class: "btn btn-success btn-lg btn-space col-sm-12" %></div>
             <% end %>
-          </div>
-        </div>
-        <% end %>
+          <% end %>
 
+          <% else %>
+
+            <% if isVendor %>
+              <% if joined_in?(@market) %>
+              <div class="col-sm-12"><%= link_to 'Quit Market',  StoreMarketRelationship.where(:store_id => current_user.vendor.store.id, :market_id => @market.id), method: :delete, class: "btn btn-danger  btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure quit this market'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
+              <% else %>
+              <div class="col-sm-12"><%= link_to 'Join Market', new_request_path, class: "btn btn-success btn-lg btn-space col-sm-12" %></div>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
       </div>
 
-
-
+      </div>
     </div>
   </section>
 
@@ -132,6 +135,7 @@
           </div><!-- End Item -->
 
           <div class="item">
+            <% if logged_in? and !isMarketOwner(@market)%>
             <div class="row">
               <div class="col-md-12">
                 <%= form_for(@review) do |f| %>
@@ -143,17 +147,20 @@
                   <div class="col-sm-12 well">
                     <div id="ratings" class="starrr col-sm-4 "></div>
                     <div id="ratings-notice" class="text-right">You gave a rating of <span id="count">0</span> star(s)</div>
+                    <%= f.hidden_field :rating, {:value => 0}%>
+                    <%= f.hidden_field :market_id, {:value => @market.id}%>
                   </div>
                 </div>
 
                 <div class="form-group">
                   <div class="actions">
-                    <%= f.submit "Submit", {:class => "btn btn-primary col-sm-12"}%></div>
+                    <%= f.submit "Submit", {:class => "btn btn-success col-sm-12"}%></div>
                   </div>
                   <% end %>
                 </div>
               </div>
               <hr>
+              <% end %>
 
               <div id = "market_reviews" class="text-center">
                 <%= render 'shared/reviews', locals: { reviews: @reviews } %>
@@ -166,3 +173,62 @@
         </div>
       </div>
     </section>
+
+    <script>
+    $(document).ready(function(){
+      $('#new_market_review').submit(function() {
+        document.getElementById("market_review_rating").value= (document.getElementById("count").innerHTML);
+        return true; // return false to cancel form action
+      });
+
+      $("#stores_next").on('click',function() {
+        $.ajax({
+          url: "/markets/"+ $("#market_id").val() +"/stores",
+          dataType: "html",
+          type: "GET",
+          data: "current_store_page=" + $("#current_store_page").val(),
+          success: function(data, success) {
+            $('#market_stores').append(data);
+            $('#current_store_page').val(parseInt($("#current_store_page").val()) + 1);
+          },
+          error: function(data, failure) {
+            alert(success);
+          }
+        });
+      });
+
+      $("#reviews_next").on('click',function() {
+        $.ajax({
+          url: "/markets/"+ $("#market_id").val() +"/reviews",
+          dataType: "html",
+          type: "GET",
+          data: "current_review_page=" + $("#current_review_page").val(),
+          success: function(data, success) {
+            $('#market_reviews').append(data);
+            $('#current_review_page').val(parseInt($("#current_review_page").val()) + 1);
+          },
+          error: function(data, failure) {
+            alert(success);
+          }
+        });
+      });
+
+      var clickEvent = false;
+      $('#market_details').on('click', '.nav a', function() {
+        clickEvent = true;
+        $('.nav li').removeClass('active');
+        $(this).parent().addClass('active');
+      }).on('slid.bs.carousel', function(e) {
+        if(!clickEvent) {
+          var count = $('.nav').children().length -1;
+          var current = $('.nav li.active');
+          current.removeClass('active').next().addClass('active');
+          var id = parseInt(current.data('slide-to'));
+          if(count == id) {
+            $('.nav li').first().addClass('active');
+          }
+        }
+        clickEvent = false;
+      });
+    });
+    </script>

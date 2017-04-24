@@ -5,13 +5,9 @@
       <%= link_to store do %>
       <div class="thumbnail well">
         <% if store.store_images.all.length == 0 %>
-        <div class="item active">
-          <img src="http://placehold.it/400x100/20BFA9/ffffff&text=This is  example">
-        </div>
+        <div class="text-center thumbnail-image thumbnail-image-md" style="background:url(http://placehold.it/350x150/fff/ffffff&text='')"><span class="glyphicon-md glyphicon glyphicon glyphicon-home"></span></div>
         <% else %>
-        <div class="item active">
-          <%= image_tag store.store_images.all.first.image.url(:large) %>
-        </div>
+        <div class="text-center thumbnail-image thumbnail-image-md" style="background: url(<%= store.store_images.all.first.image.url(:small)%>)"></div>
         <% end %>
         <div class="caption">
           <h4 class="card-title"><%= store.name%></h4>

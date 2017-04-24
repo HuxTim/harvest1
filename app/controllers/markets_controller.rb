@@ -36,7 +36,7 @@ class MarketsController < ApplicationController
     @reviews = @market.market_reviews.all.order("created_at DESC").paginate(page:params['current_review_page'].to_i + 1,per_page:5)
 
     respond_to do |format|
-      format.html { render  partial: "reviews", locals: { reviews: @reviews }}
+      format.html { render  partial: "shared/reviews", locals: { reviews: @reviews }}
       format.json { render @reviews}
     end
   end
