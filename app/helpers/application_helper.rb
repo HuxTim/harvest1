@@ -106,7 +106,7 @@ module ApplicationHelper
   end
 
   def isVendor
-    if(current_user.vendor)
+    if(logged_in? and current_user.vendor)
       return true
     else
       return false
