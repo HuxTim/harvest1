@@ -1,6 +1,6 @@
 module MarketsHelper
   def isMarketOwner(market)
-    if(market.user.id == current_user.id)
+    if(market.user and logged_in? and market.user.id == current_user.id)
       return true
     else
       return false
