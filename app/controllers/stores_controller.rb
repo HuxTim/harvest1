@@ -1,7 +1,6 @@
 class StoresController < ApplicationController
   before_action :set_store, only: [:show, :edit, :update, :destroy]
   before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
-
   # GET /stores
   # GET /stores.json
   def index
@@ -22,7 +21,7 @@ class StoresController < ApplicationController
     @store = Store.find(params[:id])
     @reviews = @store.store_reviews.all.order("created_at DESC").paginate(page:params['current_review_page'].to_i + 1,per_page:5)
     respond_to do |format|
-      format.html { render  partial: "reviews", locals: { reviews: @reviews }}
+      format.html { render  partial: "shared/reviews", locals: { reviews: @reviews }}
       format.json { render @reviews}
     end
   end
@@ -31,7 +30,7 @@ class StoresController < ApplicationController
     @store = Store.find(params[:id])
     @products = @store.products.all.paginate(page:params['current_product_page'].to_i + 1,per_page:6)
     respond_to do |format|
-      format.html { render  partial: "products", locals: { products: @products }}
+      format.html { render  partial: "shared/products", locals: { products: @products}}
       format.json { render @products}
     end
   end
@@ -51,16 +50,20 @@ class StoresController < ApplicationController
   def create
     # puts current_user
     # puts current_user.name
-    @store = Store.new(name: params['store']['name'],
-    market_id: 23,
-    vendor_id: current_user.vendors.all.first.id,
-    description: params['store']['description'],
-    open_time: timestampe_helper(params['open_day'], params['store']['open_time']),
-    close_time: timestampe_helper(params['open_day'], params['store']['close_time']))
-
+    market_ids = params['market_ids'].split(',')
+    market_ids = market_ids.uniq
+    @store = Store.new(store_params)
+    @store.vendor_id = current_user.vendor.id
 
     respond_to do |format|
       if @store.save
+        market_ids.each do |market_id|
+          Request.create(
+          market_id: market_id,
+          store_id: @store.id,
+          status: 0
+          )
+        end
         format.html { redirect_to @store, notice: 'Store was successfully created.' }
         format.json { render json: {store_id: @store.id}}
       else
@@ -73,12 +76,8 @@ class StoresController < ApplicationController
   # PATCH/PUT /stores/1
   # PATCH/PUT /stores/1.json
   def update
-    @store.name = params['store']['name']
-    @store.description = params['store']['description']
-    @store.open_time = timestampe_helper(params['open_day'], params['store']['open_time'])
-    @store.close_time = timestampe_helper(params['open_day'], params['store']['close_time'])
     respond_to do |format|
-      if @store.save
+      if @store.update(store_params)
         format.html { redirect_to @store, notice: 'Store was successfully updated.' }
         format.json { render :show, status: :ok, location: @store }
       else
@@ -91,11 +90,19 @@ class StoresController < ApplicationController
   # DELETE /stores/1
   # DELETE /stores/1.json
   def destroy
-    @market =   @store.market
     @store.destroy
     respond_to do |format|
-      format.html { redirect_to @market , notice: 'Store was successfully destroyed.' }
+      format.html { redirect_to current_user , notice: 'Store was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def ajax_search_markets
+    # search function implementation
+    @markets = Market.all
+    respond_to do |format|
+      # format.html { render  partial: "shared/stores", locals: { stores: @stores }}
+      format.json { render json: {markets: @markets}}
     end
   end
 
@@ -107,7 +114,7 @@ class StoresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def store_params
-      params.require(:store).permit(:description, :open_time, :close_time)
+      params.require(:store).permit(:description, :name)
     end
 
     def require_login

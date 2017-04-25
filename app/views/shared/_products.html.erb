@@ -1,0 +1,50 @@
+<% @products.each do |product| %>
+<div class="col-md-4">
+  <div class="thumbnail well check-product" id="<%= product.id %>" data-toggle="modal" data-target="#checkProductPanel">
+    <% if product.product_images.all.length == 0 %>
+    <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(http://placehold.it/150x150/fff/ffffff&text='');background-size: 100% 100%;
+          background-repeat: no-repeat;"><span class="glyphicon-md glyphicon glyphicon glyphicon-apple"></span></div>
+    <% else %>
+    <div class="text-center thumbnail-image thumbnail-image-square" style="background: url(<%= product.product_images.all.first.image.url(:medium)%>); background-size: 100% 100%;
+      background-repeat: no-repeat;"></div>
+    <% end %>
+
+    <div class="caption">
+      <h3 class="card-title"><%= product.name%></h3>
+      <h4><span class="label label-success"><%= product.price%></span>
+        <% if product.is_special == true%>
+        <span class="label label-danger">Special</span>
+        <% end %>
+      </h4>
+
+      <span class="card-text"><%= product.description%></span>
+        <h4 class="tags">
+        <% split_tags(product.tag)[0..5].each do |tag| %>
+          <div class="label label-success"><%= tag %></div>
+        <% end %>
+      </h4>
+    </div>
+  </div>
+</div>
+
+<% end %>
+
+<script>
+$(document).ready(function() {
+  $('.check-product').click(function(){
+    var id = $(this).attr('id')
+    $.ajax({
+      url: "/products/" + id,
+      dataType: "html",
+      type: "GET",
+      success: function(data, success) {
+        $('#checkProductPanel .modal-body').empty()
+        $('#checkProductPanel .modal-body').append(data);
+      },
+      error: function(data, failure) {
+        alert(data);
+      }
+    });
+  });
+});
+</script>

@@ -1,15 +1,18 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
 <p id="notice"><%= notice %></p>
-
-<h1>Search Results</h1>
-
 <% if @results.blank? %>
  <h4>There are no results containing the term <%= params[:q] %>.</h4>
 <% end %>
+<<<<<<< HEAD
 
 <div class="container">
 
   <div class="col-sm-9">
+=======
+<!--
+<div class="row">
+  <div class="col-sm-12">
+>>>>>>> b94718c70216729176ad9efaa5e0b03ff173dd0e
     <% @products.each do |product| %>
     <div class="col-md-4">
       <div class="card" style="width: 18rem;">
@@ -17,15 +20,44 @@
         <div class="card-block">
           <h4 class="card-title"><%= product.name %></h4>
           <p class="card-text"><%= product.description %></p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <%= link_to 'Go somewhere', product, class: "btn btn-primary" %>
         </div>
       </div>
     </div>
   <% end %>
   </div>
+<<<<<<< HEAD
+=======
+</div> -->
+>>>>>>> b94718c70216729176ad9efaa5e0b03ff173dd0e
+
+<section>
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Popular Markets</h2>
+        <hr class="section-hr">
+      </div>
+  </div>
+  <div class="row">
+        <%= render 'shared/products', locals: { stores: @products} %>
+  </div>
+</section>
 
 
-
+<<<<<<< HEAD
 
 
 </div>
+=======
+<section>
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Popular Markets</h2>
+        <hr class="section-hr">
+      </div>
+  </div>
+  <div class="row">
+        <%= render 'shared/stores', locals: { stores: @stores } %>
+  </div>
+</section>
+>>>>>>> b94718c70216729176ad9efaa5e0b03ff173dd0e

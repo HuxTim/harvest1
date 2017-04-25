@@ -1,0 +1,20 @@
+<% @markets.each do |market| %>
+<div class="col-md-4">
+  <%= link_to market, class: "thumbnail well" do %>
+  <% if market.market_images.all.length == 0 %>
+  <div class="text-center thumbnail-image thumbnail-image-md" style="background:url(/bg_default_market2.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;">
+    <!-- <span class="glyphicon-md glyphicon glyphicon glyphicon-bullhorn"></span> -->
+  </div>
+  <% else %>
+  <div class="text-center thumbnail-image thumbnail-image-md" style="background: url(<%= market.market_images.all.first.image.url(:small)%>);background-size: 100% 100%;
+        background-repeat: no-repeat;"></div>
+  <% end %>
+  <div class="caption">
+    <h4 class="card-title"><%= market.name%></h4>
+    <span class="card-text"><%= market.description%></span>
+  </div>
+  <% end %>
+</div>
+<% end %>

@@ -1,24 +1,22 @@
-<h1 >Stores</h1>
 <div class="row">
   <div class="col-sm-12">
     <% @stores.each do |store| %>
     <div class="col-md-4">
-      <%= link_to store do %>
-      <div class="thumbnail well">
+      <%= link_to store, class: "thumbnail well" do %>
         <% if store.store_images.all.length == 0 %>
-        <div class="item active">
-          <img src="http://placehold.it/400x100/20BFA9/ffffff&text=This is  example">
+        <div class="text-center thumbnail-image thumbnail-image-md" style="background:url(/bg_default_store.png);
+          background-size: 100% 100%;
+          background-repeat: no-repeat;">
+          <!-- <span class="glyphicon-md glyphicon glyphicon glyphicon-home"></span> -->
         </div>
         <% else %>
-        <div class="item active">
-          <%= image_tag store.store_images.all.first.image.url(:large) %>
-        </div>
+        <div class="text-center thumbnail-image thumbnail-image-md" style="background: url(<%= store.store_images.all.first.image.url(:small)%>);      background-size: 100% 100%;
+              background-repeat: no-repeat;"></div>
         <% end %>
         <div class="caption">
           <h4 class="card-title"><%= store.name%></h4>
-          <span class="card-text"><%= store.description[0..30]%></span>
+          <span class="card-text"><%= store.description%></span>
         </div>
-      </div>
       <% end %>
     </div>
     <% end %>
