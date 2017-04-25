@@ -9,174 +9,215 @@
 User.destroy_all
 Vendor.destroy_all
 Market.destroy_all
-Store.destroy_all
-Product.destroy_all
+MarketImage.destroy_all
 MarketReview.destroy_all
+Store.destroy_all
+StoreMarketRelationship.destroy_all
+StoreImage.destroy_all
 StoreReview.destroy_all
+ShoppingList.destroy_all
+Product.destroy_all
+ProductImage.destroy_all
+Subscription.destroy_all
 
-<<<<<<< HEAD
+
 firstnames = ["Abigail", "Bill", "Ike", "George", "Jake", "Christina", "Max", "Thomas", "Sarah", "Daisy", "Delila", "Rose"]
 lastnames = ["Smith", "Arrow", "House", "Levin", "Woolf", "Hunt", "Roth", "Zhang", "Amami", "Spinner-Reyes"]
 
-puts "creating sample users"
-puts "creating vendors"
+
+
+puts "creating sample users and vendors"
+i = 0
 50.times do
-	name = firstnames.sample + " " + lastnames.sample
-	email = name + "@gmail.com"
-	@user = User.create(name: name, email: email, zipcode: "02453", city: "Waltham", state: "MA", password: "123456", password_confirmation: "123456")
-	if rand() > .5 
-	@user.vendors.create!()
-	end
+  name = firstnames.sample + " " + lastnames.sample
+  email = name[0,3] + i.to_s  + "@gmail.com"
+  @user = User.create!(name: name, email: email, zipcode: "02453", city: "Waltham", state: "MA", password: "123456", password_confirmation: "123456")
+  if i > 25
+    @vendor = Vendor.create!(user_id: @user.id)
+  end
+  i = i + 1
 end
 
-adjectives = ["active", "fun", "exciting", "refreshing"]
 puts "creating markets"
-2.times do
-	offset = rand(User.count)
-	@user = Users.first(:offset => offset)
-	name = @user.name + "'s Market"
-	description = "a " + adjectives.sample + " market"
-	@market = Market.create!(name: name,
-                              city: "Waltham",
-                              state: "MA",
-                              zipcode: "02453",
-                              rating: "-1",
-                              description: description,
-=======
-User.create!([{
-  name: "John Smith",
-  email: "John@example.com",
-  zipcode: "02453",
+
+  @users = User.offset(1)
+
+  @user = @users.first
+  name = "Central Square Farmers Market"
+  description = ""
+  @market = @user.markets.create!(name: name,
+  city: "Cambridge",
+  state: "MA",
+  zipcode: "02139",
+  rating: "1",
+  address: "Bishop Allen Drive at Norfolk Street",
+  description: @user.name + "'s Market:" + description,
+  open_time: 43200,
+  close_time: 64800)
+  10.times do
+    @user = User.offset(rand(User.count)).first
+    if @user.id != @market.user_id
+      MarketReview.create!(rating: [1, 2, 3, 4, 5].sample,
+      comment: i.to_s + " test review",
+      user_id: @user.id,
+      market_id: @market.id)
+    end
+  end
+
+  @user = @users.second
+  name = "Waltham Farmers Market"
+  description = "We are in the Arthur J. Clark Government Building."
+  @market = @user.markets.create!(name: name,
   city: "Waltham",
   state: "MA",
-  password: "123456",
-  password_confirmation: "123456"
-# },
-# {
-#   name: "Captain Ahab",
-#   email: "illgetthatwhale@trustme.com",
-#   zipcode: "34099",
-#   city: "San Francisco"
-#   password_digest: "ihatewhales"
-# },
-# {
-#   name: "Bugs Bunny",
-#   email: "whatsupdoc@bunny.com",
-#   zipcode: "91203",
-#   city: "Boston"
-#   password_digest: "ilovecarrots"
-}])
+  zipcode: "02452",
+  rating: "1",
+  address: "119 School Street, at Lexington Street",
+  description: @user.name + "'s Market:" + description,
+  open_time: 5*86400+9*3600+30*60,
+  close_time: 5*86400+43200+2*3600)
+  10.times do
+    @user = User.offset(rand(User.count)).first
+    if @user.id != @market.user_id
+      MarketReview.create!(rating: [1, 2, 3, 4, 5].sample,
+      comment: i.to_s + " test review",
+      user_id: @user.id,
+      market_id: @market.id)
+    end
+  end
+
+  @user = @users.third
+  name = "Framingham / Village Green Farmers Market"
+  description = "Pay with:\nCash\nSNAP / EBT \nEBTWIC FMNP Coupons WIC\nWIC Fruit & Veg Coupons\nSeniors' Coupons\nCredit Cards"
+  @market = @user.markets.create!(name: name,
+  city: "Framingham",
+  state: "MA",
+  zipcode: "01760",
+  rating: "1",
+  address: "Village Green at Framingham Center",
+  description: @user.name + "'s Market:" + description,
+  open_time: 3*86400+43200,
+  close_time: 3*86400+43200+5*3600+30*60)
+  10.times do
+    @user = User.offset(rand(User.count)).first
+    if @user.id != @market.user_id
+      MarketReview.create!(rating: [1, 2, 3, 4, 5].sample,
+      comment: i.to_s + " test review",
+      user_id: @user.id,
+      market_id: @market.id)
+    end
+  end
 
 
-
-@first_user = User.first
-
-@first_market = @first_user.markets.create!(name: "John's Market",
-                               city: "Waltham",
-                              state: "MA",
-                              zipcode: "02453",
-                              rating: "1",
-                              address: "21 weston",
-                              description: "a nice market A market is one of the many varieties of systems, institutions, procedures, social relations and infrastructures whereby parties engage in exchange. Wikipedia",
->>>>>>> 042c8e5c9e991fbc5d065bd808075f83ffa75a91
-                              open_time: 0,
-                              close_time: 3600)
-	
-	10.times do
-		offset = rand(User.count)
-		@user = Users.first(:offset => offset)
-		if @user.id != @market.user_id
-		  	MarketReview.create!(rating: [1, 2, 3, 4, 5].sample,
-		        comment: i.to_s + "test review",
-		        user_id: @user.id,
-		        market_id: @market.id)
-		end
-	end
-end
-
-vendorid = 0
-products = ["Bread", "Pastas", "Vegetable", "Meats", "Cheese", "Milk"]
+products = ["Spice Shop", "Brewery", "Store", "Butchery", "Cheeses", "Bakery", "Cafe", "Farmstand", "Deli", "Fruit Stand", "Fruit Stand", "Fruit Stand", "Fruit Stand", "Fruit Stand", "Seafood", "Steaks", "Garden", "Vegetables", "Garden", "Vegetables", "Garden"]
 adjectives = ["Fresh", "Red", "Gluten-free", "Nike", "Moldy"]
+item = ["White Button Mushrooms", "Portobello Mushrooms", "Yuka", "Idaho Potatoes", "Eggplant", "Lima Beans", "Garlic", "Red Onion", "Vidalia Onion", "Sweet Onion", "Tomato", "Oregano" , "Basil", "Cilantro", "Orange Bell Pepper", "Yellow Bell Pepper", "Red Bell Pepper", "Green Bell Pepper", "Sesame Bagels", "Asiago Bread Loaf", "Flour", "Corn", "Spinach", "Carrots", "Bokchoy", "Broccoli", "Lobster", "Cod", "Tuna", "Shark", "Salmon", "Kiwi", "Golden Delicious Apple", "Fiji Apple" ,"Granny Smith Apple", "Parmesan 5 yr", "Muenster", "Cheddar", "Mozarella", "Pineapple", "Honeydew", "Canteloupe", "Watermelon", "Bananas", "Mandarin Oranges", "Blood Oranges", "Strawberries", "Blueberries", "Raspberries", "Beer", "Cider", "Tenderloin", "Pork Chops", "Chicken Breast", "Chicken Wings", "NY Strip", "T-Bone Steak", "Lamb Chop"]
+tags = ["spice", "no-carb", "organic", "gluten-free", "soy-free", "vegetarian", "berry", "peanuts", "seafood", "meat", "dairy", "carb", "cheese", "fruit", "vegetable"]
 puts "creating stores"
-(Vendor.count).times do
-	vendorid += 1
-	marketid = rand() > .5 ? 1 : 2
-	offset = rand(User.count)
-	
-	name = @user.name + "'s " + product + " Shop"
+Vendor.all.each do |vendor|
+  if rand() > 0.9
+    Marketid = Market.all.second.id  
 
-	  @store = Store.create!(name: name,
-                description: "test store"
-                open_time: 0,
-                close_time: 3600,
-                vendor_id: vendorid,
-                market_id: 0)
-	  
-	Product.create!(name: "Bread",
-                 price: "$4.00/lb",
-                 description: i.to_s + "test product ",
-                 tag: "gluten free, soy-free",
-                 store_id: @store.id)
+    @store = Store.create!(name: (User.find(vendor.user_id).name + "'s " + products.sample),
+    description: "test store",
+    vendor_id: vendor.id)
 
-	@user = Users.first(:offset => offset)
-	product = products.sample
-  	StoreReview.create!(rating: [1, 2, 3, 4, 5].sample,
-                comment: i.to_s + "test store review",
-                user_id: @first_user.id,
-                store_id: @store.id)
+    puts @store.id
+    
+    @store.store_market_relationships.create!(market_id: marketid,
+    open_time: Market.find(marketid).open_time+1800*rand(3),
+    close_time: Market.find(marketid).close_time-1800*rand(3),)
 
-<<<<<<< HEAD
+    @store.requests.create!(market_id: marketid,
+    open_time: Market.find(marketid).open_time+1800*rand(3),
+    close_time: Market.find(marketid).close_time-1800*rand(3),
+    status: (rand() > 0.5 ? 5 : 6))
 
+    10.times do
+    name = item.sample
+    price = "$"+((4+rand(6))*0.5).to_s+"/lb"
+    Product.create!(name: name,
+    price: price,
+    description: "test product",
+    tag: tags.sample+","+tags.sample,
+    store_id: @store.id)
+    end
+
+    10.times do
+      @user = User.offset(rand(User.count)).first
+      product = products.sample
+      StoreReview.create!(rating: [1, 2, 3, 4, 5].sample,
+      comment: "test store review",
+      user_id: @user.id,
+      store_id: @store.id)
+    end
+
+    Marketid = Market.all.third.id  
+
+    @store.store_market_relationships.create!(market_id: marketid,
+    open_time: Market.find(marketid).open_time+1800*rand(3),
+    close_time: Market.find(marketid).close_time-1800*rand(3),)
+
+    @store.requests.create!(market_id: marketid,
+    open_time: Market.find(marketid).open_time+1800*rand(3),
+    close_time: Market.find(marketid).close_time-1800*rand(3),
+    status: (rand() > 0.5 ? 5 : 6))
+
+    5.times do
+    name = item.sample
+    price = "$"+((4+rand(6))*0.5).to_s+"/lb"
+    Product.create!(name: name,
+    price: price,
+    description: "test product",
+    tag: tags.sample+","+tags.sample,
+    store_id: @store.id)
+    end
+
+    10.times do
+      @user = User.offset(rand(User.count)).first
+      product = products.sample
+      StoreReview.create!(rating: [1, 2, 3, 4, 5].sample,
+      comment: "test store review",
+      user_id: @user.id,
+      store_id: @store.id)
+    end
+  
+  else
+    marketid = rand() > 0.66 ? Market.all.first.id : rand() > 0.5 ? Market.all.second.id : Market.all.third.id
+
+    @store = Store.create!(name: (User.find(vendor.user_id).name + "'s " + products.sample),
+    description: "test store",
+    vendor_id: vendor.id)
+
+    @store.store_market_relationships.create!(market_id: marketid,
+    open_time: Market.find(marketid).open_time+1800*rand(3),
+    close_time: Market.find(marketid).close_time-1800*rand(3),)
+
+    @store.requests.create!(market_id: marketid,
+    open_time: Market.find(marketid).open_time+1800*rand(3),
+    close_time: Market.find(marketid).close_time-1800*rand(3),
+    status: (rand() > 0.5 ? 5 : 6))
+
+    10.times do
+    name = item.sample
+    price = "$"+((4+rand(6))*0.5).to_s+"/lb"
+    Product.create!(name: name,
+    price: price,
+    description: "test product",
+    tag: tags.sample+","+tags.sample,
+    store_id: @store.id)
+    end
+
+    10.times do
+      @user = User.offset(rand(User.count)).first
+      product = products.sample
+      StoreReview.create!(rating: [1, 2, 3, 4, 5].sample,
+      comment: "test store review",
+      user_id: @user.id,
+      store_id: @store.id)
+    end
+  end
 end
-
-@first_product = Product.create!(name: "Bread",
-                                 price: "$4.00/lb",
-                                 description: "delicious bread",
-                                 tag: "gluten free, soy-free",
-                                 store_id: @first_store.id)
-end
-=======
-@first_vendor = @first_user.vendors.create!()
->>>>>>> 042c8e5c9e991fbc5d065bd808075f83ffa75a91
-
-# Store.create(vendor_railid: @vendor.id)
-@first_store = Store.create!(name: "John's Bread",
-                                                    description: "delicious bread",
-                                                    open_time: 0,
-                                                    close_time: 3600,
-                                                    vendor_id: @first_vendor.id,
-                                                    market_id: @first_market.id)
-
-(0..20).each do |i|
-  Store.create!(name: "John's Bread",
-                description: i.to_s + "A they've checked out your screenshots and are still interested, until they come to your drab App Store description when they hit the back button and go to download your competitor's app.",
-                open_time: 0,
-                close_time: 3600,
-                vendor_id: @first_vendor.id)
-
-  MarketReview.create!(rating: 3,
-                comment: i.to_s + " is a review for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots and are still interested, until they come to your drab App Store description when ",
-                user_id: @first_user.id,
-                market_id: @first_market.id)
-
-  StoreReview.create!(rating: 2,
-                comment: i.to_s + " is a review for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots and are still interested, until they come to your drab App Store description when ",
-                user_id: @first_user.id,
-                store_id: @first_store.id)
-
-  Product.create!(name: "Bread",
-                 price: "$4.00/lb",
-                 description: i.to_s + "for test!A potential customer has liked your icon enough to tap through, they've checked out your screenshots delicious bread",
-                 tag: "gluten free, soy-free",
-                 store_id: @first_store.id)
-end
-
-@first_product = Product.create!(name: "Bread",
-                                 price: "$4.00/lb",
-                                 description: "delicious bread",
-                                 tag: "gluten free, soy-free",
-                                 store_id: @first_store.id)
-
 
 p "Created #{User.count} users"
 p "Created #{Market.count} markets"

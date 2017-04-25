@@ -111,43 +111,111 @@ puts "creating markets"
 
 products = ["Spice Shop", "Brewery", "Store", "Butchery", "Cheeses", "Bakery", "Cafe", "Farmstand", "Deli", "Fruit Stand", "Fruit Stand", "Fruit Stand", "Fruit Stand", "Fruit Stand", "Seafood", "Steaks", "Garden", "Vegetables", "Garden", "Vegetables", "Garden"]
 adjectives = ["Fresh", "Red", "Gluten-free", "Nike", "Moldy"]
-item = ["White Button Mushrooms", "Portobello Mushrooms", "Yuka", "Idaho Potatoes", "Eggplant", "Lima Beans", "Garlic", "Red Onion", "Vidalia Onion", "Sweet Onion", "Tomato", "Oregano" , "Basil", "Cilantro", "Orange Bell Pepper", "Yellow Bell Pepper", "Red Bell Pepper", "Green Bell Pepper", "Sesame Bagels", "Asiago Bread Loaf", "Flour", "Corn", "Spinach", "Carrots", "Bokchoy", "Broccoli", "Lobster", "Cod", "Tuna", "Shark", "Salmon", "Kiwi", "Golden Delicious Apple", "Fiji Apple" ,"Granny Smith Apple", "Parmesan 5 yr", "Muenster", "Cheddar", "Mozarella", "Pineapple", "Honeydew", "Canteloupe", "Watermelon", "Bananas", "Mandarin Oranges", "Blood Oranges", "Strawberries", "Blueberries", "Raspberries", "Beer", "Cider", "Tenderloin", "Pork Chops", "Chicken Breast", "Chicken Wings", "NY Strip", "T-Bone Steak", "Lamb Chop"]
+item = ["White Button Mushrooms", "Portobello Mushrooms", "Yuka", "Idaho Potatoes", "Eggplant", "Lima Beans", "Garlic", "Red Onion", "Vidalia Onion", "Sweet Onion", "Tomato", "Oregano" , "Basil", "Cilantro", "Orange Bell Pepper", "Yellow Bell Pepper", "Red Bell Pepper", "Green Bell Pepper", "Sesame Bagels", "Asiago Bread Loaf", "Flour", "Corn", "Spinach", "Carrots", "Bokchoy", "Broccoli", "Lobster", "Cod", "Tuna", "Shark", "Salmon", "Kiwi", "Golden Delicious Apple", "Fiji Apple" ,"Granny Smith Apple", "Parmesan 5 yr", "Muenster", "Cheddar", "Mozarella", "Pineapple", "Honeydew", "Canteloupe", "Watermelon", "Bananas", "Mandarin Oranges", "Blood Oranges", "Strawberries", "Blueberries", "Raspberries", "Beer", "Cider", "Tenderloin","Honey", "Pork Chops", "Chicken Breast", "Chicken Wings", "NY Strip", "T-Bone Steak", "Lamb Chop"]
 tags = ["spice", "no-carb", "organic", "gluten-free", "soy-free", "vegetarian", "berry", "peanuts", "seafood", "meat", "dairy", "carb", "cheese", "fruit", "vegetable"]
 puts "creating stores"
 Vendor.all.each do |vendor|
+  if rand() > 0.9
+    Marketid = Market.all.second.id  
 
-  marketid = rand() > 0.66 ? Market.all.first.id : rand() > 0.5 ? Market.all.second.id : Market.all.third.id
+    @store = Store.create!(name: (User.find(vendor.user_id).name + "'s " + products.sample),
+    description: "test store",
+    vendor_id: vendor.id)
 
-  @store = Store.create!(name: (User.find(vendor.user_id).name + "'s " + products.sample),
-  description: "test store",
-  vendor_id: vendor.id)
+    puts @store.id
+    
+    @store.store_market_relationships.create!(market_id: marketid,
+    open_time: Market.find(marketid).open_time+1800*rand(3),
+    close_time: Market.find(marketid).close_time-1800*rand(3),)
 
-  @store.store_market_relationships.create!(market_id: marketid,
-  open_time: Market.find(marketid).open_time+1800*rand(3),
-  close_time: Market.find(marketid).close_time-1800*rand(3),)
+    @store.requests.create!(market_id: marketid,
+    open_time: Market.find(marketid).open_time+1800*rand(3),
+    close_time: Market.find(marketid).close_time-1800*rand(3),
+    status: (rand() > 0.5 ? 5 : 6))
 
-  @store.requests.create!(market_id: marketid,
-  open_time: Market.find(marketid).open_time+1800*rand(3),
-  close_time: Market.find(marketid).close_time-1800*rand(3),
-  status: (rand() > 0.5 ? 5 : 6))
-
-  5.times do
-  name = item.sample
-  price = "$"+((4+rand(6))*0.5).to_s+"/lb"
-  Product.create!(name: name,
-  price: price,
-  description: "test product",
-  tag: tags.sample+","+tags.sample,
-  store_id: @store.id)
-  end
-
-  10.times do
-    @user = User.offset(rand(User.count)).first
-    product = products.sample
-    StoreReview.create!(rating: [1, 2, 3, 4, 5].sample,
-    comment: "test store review",
-    user_id: @user.id,
+    10.times do
+    name = item.sample
+    price = "$"+((4+rand(6))*0.5).to_s+"/lb"
+    Product.create!(name: name,
+    price: price,
+    description: "test product",
+    tag: tags.sample+","+tags.sample,
     store_id: @store.id)
+    end
+
+    10.times do
+      @user = User.offset(rand(User.count)).first
+      product = products.sample
+      StoreReview.create!(rating: [1, 2, 3, 4, 5].sample,
+      comment: "test store review",
+      user_id: @user.id,
+      store_id: @store.id)
+    end
+
+    Marketid = Market.all.third.id  
+
+    @store.store_market_relationships.create!(market_id: marketid,
+    open_time: Market.find(marketid).open_time+1800*rand(3),
+    close_time: Market.find(marketid).close_time-1800*rand(3),)
+
+    @store.requests.create!(market_id: marketid,
+    open_time: Market.find(marketid).open_time+1800*rand(3),
+    close_time: Market.find(marketid).close_time-1800*rand(3),
+    status: (rand() > 0.5 ? 5 : 6))
+
+    5.times do
+    name = item.sample
+    price = "$"+((4+rand(6))*0.5).to_s+"/lb"
+    Product.create!(name: name,
+    price: price,
+    description: "test product",
+    tag: tags.sample+","+tags.sample,
+    store_id: @store.id)
+    end
+
+    10.times do
+      @user = User.offset(rand(User.count)).first
+      product = products.sample
+      StoreReview.create!(rating: [1, 2, 3, 4, 5].sample,
+      comment: "test store review",
+      user_id: @user.id,
+      store_id: @store.id)
+    end
+  
+  else
+    marketid = rand() > 0.66 ? Market.all.first.id : rand() > 0.5 ? Market.all.second.id : Market.all.third.id
+
+    @store = Store.create!(name: (User.find(vendor.user_id).name + "'s " + products.sample),
+    description: "test store",
+    vendor_id: vendor.id)
+
+    @store.store_market_relationships.create!(market_id: marketid,
+    open_time: Market.find(marketid).open_time+1800*rand(3),
+    close_time: Market.find(marketid).close_time-1800*rand(3),)
+
+    @store.requests.create!(market_id: marketid,
+    open_time: Market.find(marketid).open_time+1800*rand(3),
+    close_time: Market.find(marketid).close_time-1800*rand(3),
+    status: (rand() > 0.5 ? 5 : 6))
+
+    10.times do
+    name = item.sample
+    price = "$"+((4+rand(6))*0.5).to_s+"/lb"
+    Product.create!(name: name,
+    price: price,
+    description: "test product",
+    tag: tags.sample+","+tags.sample,
+    store_id: @store.id)
+    end
+
+    10.times do
+      @user = User.offset(rand(User.count)).first
+      product = products.sample
+      StoreReview.create!(rating: [1, 2, 3, 4, 5].sample,
+      comment: "test store review",
+      user_id: @user.id,
+      store_id: @store.id)
+    end
   end
 end
 
