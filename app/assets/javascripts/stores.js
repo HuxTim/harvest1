@@ -20,6 +20,7 @@ $(document).ready(function() {
       type: "POST",
       data: formdata,
       success: function(data, success) {
+        alert(data['status']);
         $("#store_new_next_step").addClass('disabled')
         $("#new_store").addClass('disabled')
         $("#new_store input").prop("disabled", true);
@@ -41,18 +42,18 @@ $(document).ready(function() {
         // };
       },
       error: function(data, failure) {
-        alert(data);
+        alert(data.error);
       }
     });
   });
 
   $("#market_search_button").click(function() {
-    var valuesToSubmit = $("#query_market").serialize();
+    var query = $("#market_query").val();
     $.ajax({
       url: "/stores/new/markets",
       dataType: "json",
       type: "GET",
-      data: valuesToSubmit,
+      data: {query:query},
       success: function(data, success) {
         document.getElementById("search_results").innerHTML = ""
         var arr = [];
