@@ -1,2 +1,0 @@
-class StoreReviewController < ApplicationController
-end

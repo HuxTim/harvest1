@@ -16,13 +16,18 @@ gem 'zip-codes'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 gem 'bootstrap-timepicker-rails-addon', '~> 0.5.1'
+gem 'bootstrap-multiselect-rails'
 gem 'dropzonejs-rails'
+gem 'bootstrap-select-rails'
+gem 'ransack'
+
 
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 
 gem "paperclip", "~> 5.0.0"
 gem "aws-sdk"
+gem 'dropzonejs-rails'
 
 
 group :development, :test do

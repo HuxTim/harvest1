@@ -1,20 +1,30 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-
+  include ProductsHelper
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+      @products = Product.all
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
+    if !@product.popularity
+      @product.update(popularity: 1)
+    else
+      @product.update(popularity: @product.popularity + 1)
+    end
+    respond_to do |format|
+      format.html { render  partial: "products/show", locals: { products: @product }}
+      format.json { render @products}
+    end
   end
 
   # GET /products/new
   def new
     @product = Product.new
+    @tags = tag_list
   end
 
   # GET /products/1/edit
@@ -25,13 +35,14 @@ class ProductsController < ApplicationController
   # POST /products.json
   def create
     @product = Product.new(product_params)
-
+    @product.popularity = 0;
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.html { redirect_to @product.store, notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
-        format.html { render :new }
+
+        format.html { redirect_to @product.store, :flash => { :error => @product.errors.map{|k,v| "#{k} #{v}"}.join(',') }   }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
@@ -42,10 +53,10 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       if @product.update(product_params)
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+        format.html { redirect_to @product.store, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
-        format.html { render :edit }
+        format.html { redirect_to @product.store, :flash => { :error => @product.errors.map{|k,v| "#{k} #{v}"}.join(',') }  }
         format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
@@ -54,9 +65,10 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
+    @store = @product.store
     @product.destroy
     respond_to do |format|
-      format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
+      format.html { redirect_to @store, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +81,7 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:store_id, :name, :quantity, :price, :description, :tag)
+      params[:product][:tag] = params[:product][:tag].join(",")
+      params.require(:product).permit(:store_id, :name, :quantity, :price, :description, :tag, :is_special)
     end
 end

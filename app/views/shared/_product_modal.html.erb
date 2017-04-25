@@ -1,0 +1,36 @@
+<div class="modal fade" id="checkProductPanel" tabindex="-1" role="dialog" aria-labelledby="checkProductPanelLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">ProdcutDetail</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+$(document).ready(function() {
+  $('#add_products').click(function(){
+    $('#')
+  });
+
+  $('.check-product').click(function(){
+    var id = $(this).attr('id')
+    $.ajax({
+      url: "/products/" + id,
+      dataType: "html",
+      type: "GET",
+      success: function(data, success) {
+        $('#checkProductPanel .modal-body').empty()
+        $('#checkProductPanel .modal-body').append(data);
+      },
+      error: function(data, failure) {
+        alert(data);
+      }
+    });
+  });
+});
+</script>

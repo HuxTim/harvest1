@@ -1,0 +1,127 @@
+<%= link_to 'Delete', product, method: :delete, class: "btn btn-danger ", data: { toggle: 'confirmationDialog', confirm: t('messages.Are you sure delete this Product. After delete the Product, Data can not be retore'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%>
+<section id = "add_product_image">
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for(ProductImage.new, html: { multipart: true, class: "form dropzone", id: "product_image_upload"}) do |f|  %>
+      <%= f.hidden_field :product_id, :id => "product_id", :value => product.id%>
+      <div class="form-group">
+        <div class="fallback">
+          <%= f.file_field :image %><br>
+        </div>
+      </div>
+      <% end %></br>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <%= render 'product_images', locals: { product_images: product.product_images } %>
+</section>
+
+<section>
+  <%= form_for(product) do |f| %>
+  <%= render 'shared/hint_messages', object: product %></br>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.label :name%>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-md-12">
+        <%= f.label :description %>
+        <%= f.text_area :description, {:class => "form-control", :rows => "5"}%>
+        <%= f.hidden_field :store_id, {:value => product.store_id}%>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+
+      <div class="col-md-4">
+        <%= f.label :discount%>
+        <%= f.select :is_special, options_for_select([["yes",0],["no",1]], :selected => "no"),{}, {class: "form-control"}%>
+      </div>
+      <div class="col-md-2">
+        <%= f.label :price%>
+        <%= f.text_field :price, {:class => "form-control", id: "price_number"}%>
+      </div>
+      <div class="col-md-2">
+        <%= f.label :unit%>
+        <%= f.select :price, options_for_select(unit_list, :selected => "lb"),{}, {class: "form-control"}%>
+      </div>
+      <div class="col-md-4">
+        <%= f.label :tag%>
+        <div class="row">
+          <div class="col-md-12">
+            <%= f.select :tag, options_for_select(tag_list, :selected => "vegetable"),{}, {multiple: true, class: "form-control product_tags"}%>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+        <% split_tags(product.tag).each do |tag| %>
+        <div class="label label-tags label-success"><%= tag %></div>
+        <% end %>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+    <%= f.submit "Submit", name: nil, class: "btn btn-success" %>
+  </div>
+  <% end %>
+</section>
+
+<script>
+$(document).ready(function() {
+  $('.product_tags').multiselect();
+  Dropzone.autoDiscover = false;
+  // grap our upload form by its id
+  $("#product_image_upload").dropzone({
+    // restrict image size to a maximum 1MB
+    clickable: true,
+    maxFiles: 5,
+    parallelUploads: 10,
+    maxFilesize: 5,
+    // changed the passed param to one accepted by
+    // our rails app
+    paramName: "product_image[image]",
+    // show remove links on each image upload
+    addRemoveLinks: false
+  });
+});
+
+$(function() {
+  $.rails.allowAction = function(link) {
+    if (!link.attr('data-confirm')) {
+      return true;
+    }
+    $.rails.showConfirmDialog(link);
+    return false;
+  };
+  $.rails.confirmed = function(link) {
+    link.removeAttr('data-confirm');
+    return link.trigger('click.rails');
+  };
+
+  return $.rails.showConfirmDialog = function(link) {
+    var html, message;
+    message = link.attr('data-confirm');
+
+    html = "<div class=\"modal\" id=\"confirmationDialog\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n      <h4 class=\"modal-title\">Message<h4>\n      </div><div class = \"modal-body alert alert-danger\">\n      " + message + "</div>\n      <div class=\"modal-footer\">\n    <div class=\"col-sm-12\"><div class=\"col-sm-6\">    <a data-dismiss=\"modal\" class=\"btn btn-default\">" + (link.data('cancel')) + "</a></div>\n   <div  class=\"col-sm-6\">     <a data-dismiss=\"modal\" class=\"btn btn-danger confirm\">" + (link.data('ok')) + "</a></div></div>\n      </div>\n    </div>\n  </div>\n</div>";
+    $(html).modal();
+    return $('#confirmationDialog .confirm').on('click', function() {
+      return $.rails.confirmed(link);
+    });
+  };
+});
+</script>

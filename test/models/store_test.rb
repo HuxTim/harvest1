@@ -19,11 +19,6 @@ class StoreTest < ActiveSupport::TestCase
       assert_not @store.valid?
   end
 
-  test "market id should be present" do
-    @store.market_id = ""
-    assert_not @store.valid?
-  end
-
   test "name should not be too long" do
     @store.name = "a" * 51
     assert_not @store.valid?

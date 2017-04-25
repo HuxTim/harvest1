@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
   include SessionsHelper
   include ApplicationHelper
+  include ProductsHelper
+
   def cities
     state = params[:state]
     respond_to do |format|
@@ -10,5 +11,4 @@ class ApplicationController < ActionController::Base
       format.html { render json: {cities: CS.cities(state)}}
     end
   end
-
 end
