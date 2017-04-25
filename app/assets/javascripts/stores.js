@@ -139,7 +139,7 @@ $(document).ready(function(){
   // grap our upload form by its id
   $("#store_image_upload").dropzone({
     // restrict image size to a maximum 1MB
-    clickable: false,
+    clickable: true,
     maxFiles: 5,
     parallelUploads: 10,
     maxFilesize: 5,

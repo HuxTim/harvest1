@@ -14,7 +14,10 @@ class StoreMarketRelationshipsController < ApplicationController
 
   # GET /store_market_relationships/new
   def new
-    @store_market_relationship = StoreMarketRelationship.new
+    @store_market_relationship = StoreMarketRelationship.new(store_id: current_user.vendor.store.id,market_id: params[:market_id])
+    respond_to do |format|
+        format.html { render  partial: "new", locals: { store_market_relationship: @store_market_relationship }}
+    end
   end
 
   # GET /store_market_relationships/1/edit

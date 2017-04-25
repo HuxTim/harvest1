@@ -76,12 +76,8 @@ class StoresController < ApplicationController
   # PATCH/PUT /stores/1
   # PATCH/PUT /stores/1.json
   def update
-    @store.name = params['store']['name']
-    @store.description = params['store']['description']
-    @store.open_time = timestampe_helper(params['open_day'], params['store']['open_time'])
-    @store.close_time = timestampe_helper(params['open_day'], params['store']['close_time'])
     respond_to do |format|
-      if @store.save
+      if @store.update(store_params)
         format.html { redirect_to @store, notice: 'Store was successfully updated.' }
         format.json { render :show, status: :ok, location: @store }
       else

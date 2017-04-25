@@ -64,7 +64,7 @@
             <td><%= market.city %>, <%= market.state%>, <%= market.zipcode %></td>
           </tr>
           <tr>
-            <td><%= get_day_from_timestamp(market.open_time) %>    <%= get_time_from_timestamp(market.open_time) %> - <%= get_time_from_timestamp(market.close_time) %></td>
+            <td><%= get_day_from_timestamp(market.open_time) %><%= get_time_from_timestamp(market.open_time) %> - <%= get_time_from_timestamp(market.close_time) %></td>
           </tr>
           <% end %>
           <tr>
@@ -78,9 +78,13 @@
     <div class="col-sm-4 well">
       <div id="rating">
         <h4>Average user rating</h4>
-        <h2 class="bold padding-bottom-7"><%= @store.store_reviews.average(:rating)%> <small>/ 5</small></h2>
+        <% if @store.store_reviews.average(:rating) %>
+        <h2 class="bold padding-bottom-7"><small><%= @store.store_reviews.average(:rating)%>/5</small></h2>
+        <% else %>
+        <h2 class="bold padding-bottom-7"> <small>UNKNOWN/5</small></h2>
+        <% end %>
         <% (0..4).each do |i|%>
-        <% if i >= @store.store_reviews.average(:rating) %>
+        <% if @store.store_reviews.average(:rating) and i >= @store.store_reviews.average(:rating) %>
         <button type="button" class="btn btn-default btn-sm" aria-label="Left Align">
           <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
         </button>

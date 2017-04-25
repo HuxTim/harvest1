@@ -62,16 +62,9 @@ class MarketsController < ApplicationController
   # POST /markets
   # POST /markets.json
   def create
-    @market = Market.new(name: params['market']['name'],
-    user_id: current_user.id,
-    city: params['market']['city'],
-    state: params['market']['state'],
-    zipcode: params['market']['zipcode'],
-    address: params['market']['address'],
-    rating: 0,
-    description: params['market']['description'],
-    open_time: timestampe_helper(params['open_day'], params['market']['open_time']),
-    close_time: timestampe_helper(params['open_day'], params['market']['close_time']))
+    @market = Market.new(market_params)
+    @market.user_id = current_user.id
+    @market.rating = 0
     respond_to do |format|
       if @market.save
         format.html { redirect_to @market, notice: 'Market was successfully created.' }
@@ -86,16 +79,8 @@ class MarketsController < ApplicationController
   # PATCH/PUT /markets/1
   # PATCH/PUT /markets/1.json
   def update
-    @market.name = params['market']['name']
-    @market.city = params['market']['city']
-    @market.state = params['market']['state']
-    @market.zipcode = params['market']['zipcode']
-    @market.address = params['market']['address']
-    @market.description = params['market']['description']
-    @market.open_time = timestampe_helper(params['open_day'], params['market']['open_time'])
-    @market.close_time = timestampe_helper(params['open_day'], params['market']['close_time'])
     respond_to do |format|
-      if @market.save()
+      if @market.update(market_params)
         format.html { redirect_to @market, notice: 'Market was successfully updated.' }
         format.json { render :show, status: :ok, location: @market }
       else
@@ -123,7 +108,7 @@ class MarketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def market_params
-      params.require(:market).permit(:city, :state, :zipcode, :rating, :description, :open_time, :close_time)
+      params.require(:market).permit(:city, :state, :zipcode, :description, :open_time => timestampe_helper(params['open_day'], params['market']['open_time']), :close_time => timestampe_helper(params['open_day'], params['market']['close_time']))
     end
 
     def require_login
