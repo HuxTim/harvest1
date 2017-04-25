@@ -23,7 +23,6 @@ gem 'will_paginate-bootstrap'
 
 gem "paperclip", "~> 5.0.0"
 gem "aws-sdk"
-gem 'dropzonejs-rails'
 
 
 group :development, :test do
