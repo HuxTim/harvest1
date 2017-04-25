@@ -1,17 +1,38 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <h4 class="modal-title">Send Application</h4>
+</div>
 <%= form_for(request) do |f| %>
-  <% if request.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(request.errors.count, "error") %> prohibited this request from being saved:</h2>
-
-      <ul>
-      <% request.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="modal-body">
+  <div class="form-group">
+      <%= f.hidden_field :market_id, value: request.market_id  %>
+      <%= f.hidden_field :store_id, value: request.store_id  %>
+    <div class="row">
+      <div class="col-md-6">
+        <%= f.label :'Open Time'%>
+        <div class="input-group bootstrap-timepicker timepicker">
+          <%= f.text_field :open_time, class: "form-control",id: "request_opentime", value: get_time_from_timestamp(Market.find(request.market_id).open_time)  %>
+          <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+        </div>
+        <script type="text/javascript">
+        $('#request_opentime').timepicker();
+        </script>
+      </div>
+      <div class="col-md-6">
+        <%= f.label :'Close Time'%>
+        <div class="input-group bootstrap-timepicker timepicker">
+          <%= f.text_field :close_time, class: "form-control",id: "request_closetime", value: get_time_from_timestamp(Market.find(request.market_id).close_time)  %>
+          <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+        </div>
+        <script type="text/javascript">
+        $('#request_closetime').timepicker();
+        </script>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
   </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+  <%= f.submit "Submit", class: "btn btn-success" %>
+</div>
 <% end %>

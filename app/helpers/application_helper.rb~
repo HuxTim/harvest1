@@ -52,17 +52,17 @@ module ApplicationHelper
     }
   end
 
-  def timestampe_helper(day, time)
-    timestampe = day.to_i * 86400
+  def timestamp_helper(day, time)
+    timestamp = day.to_i * 86400
     time = time.split(' ')
     if time[1] == 'PM'
-      timestampe = timestampe + 43200
+      timestamp = timestamp + 43200
     end
-    timestampe = timestampe + time[0].split(':')[0].to_i * 3600 + time[0].split(':')[1].to_i * 60
+    timestamp = timestamp + time[0].split(':')[0].to_i * 3600 + time[0].split(':')[1].to_i * 60
   end
 
-  def get_day_from_timestamp(timestampe)
-    day = (timestampe / 86400)
+  def get_day_from_timestamp(timestamp)
+    day = (timestamp / 86400)
     case day
     when 0
       return "Monday"
@@ -83,8 +83,8 @@ module ApplicationHelper
     end
   end
 
-  def get_time_from_timestamp(timestampe)
-    time = (timestampe % 86400)
+  def get_time_from_timestamp(timestamp)
+    time = (timestamp % 86400)
     if (time / 3600).to_i > 9
       hour = (time / 3600).to_i.to_s
     else

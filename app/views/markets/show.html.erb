@@ -89,21 +89,22 @@
       <div class="row management-board">
         <div class="col-sm-12">
           <% if isMarketOwner(@market) %>
-          <div class="col-sm-4"><%= link_to 'Edit Information', edit_market_path, class: "btn btn-warning btn-lg btn-space col-sm-12" %></div>
-          <div class="col-sm-4"><%= link_to 'Delete', @market, method: :delete, class: "btn btn-danger  btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure delete this market'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
+          <div class="col-sm-4"><%= link_to 'Edit Info', edit_market_path, class: "btn btn-success btn-lg btn-space col-sm-12" %></div>
+
           <% if isVendor %>
           <% if joined_in?(@market) %>
-          <div class="col-sm-4"><%= link_to 'Quit Market', StoreMarketRelationship.where(:store_id => current_user.vendor.store.id, :market_id => @market.id), method: :delete, class: "btn btn-danger  btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure quit this market'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
+          <div class="col-sm-4"><%= link_to 'Quit Market', StoreMarketRelationship.where(:store_id => current_user.vendor.store.id, :market_id => @market.id).first, method: :delete, class: "btn btn-danger  btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure quit this market'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
           <% else %>
           <div class="col-sm-4"><div id="sendRelationship" class="btn btn-success btn-lg btn-space col-sm-12" data-toggle= "modal" data-target= "#sendMessagePanel">Join Market</div></div>
           <% end %>
           <% end %>
+          <div class="col-sm-4"><%= link_to 'Delete', @market, method: :delete, class: "btn btn-danger  btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure delete this market'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
 
           <% else %>
 
           <% if isVendor %>
           <% if joined_in?(@market) %>
-          <div class="col-sm-12"><%= link_to 'Quit Market',  StoreMarketRelationship.where(:store_id => current_user.vendor.store.id, :market_id => @market.id), method: :delete, class: "btn btn-danger  btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure quit this market'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
+          <div class="col-sm-12"><%= link_to 'Quit Market',  StoreMarketRelationship.where(:store_id => current_user.vendor.store.id, :market_id => @market.id).first, method: :delete, class: "btn btn-danger  btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure quit this market'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
           <% else %>
           <div class="col-sm-12"><div id="sendRequest" class="btn btn-success btn-lg btn-space col-sm-12" data-toggle= "modal" data-target= "#sendMessagePanel">Join Market</div></div>
           <% end %>
@@ -192,6 +193,23 @@
 
       $.ajax({
         url: "/store_market_relationships/new",
+        dataType: "html",
+        type: "GET",
+        data: {market_id: $("#market_id").val()},
+        success: function(data, success) {
+          $('#modal-content').empty()
+          $('#modal-content').append(data);
+        },
+        error: function(data, failure) {
+          alert(data);
+        }
+      });
+    });
+
+    $('#sendRequest').click(function(){
+
+      $.ajax({
+        url: "/requests/new",
         dataType: "html",
         type: "GET",
         data: {market_id: $("#market_id").val()},

@@ -65,6 +65,8 @@ class MarketsController < ApplicationController
     @market = Market.new(market_params)
     @market.user_id = current_user.id
     @market.rating = 0
+    @market.open_time = timestamp_helper(params['open_day'], params['market']['open_time'])
+    @market.close_time = timestamp_helper(params['open_day'], params['market']['close_time'])
     respond_to do |format|
       if @market.save
         format.html { redirect_to @market, notice: 'Market was successfully created.' }
@@ -108,7 +110,7 @@ class MarketsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def market_params
-      params.require(:market).permit(:city, :state, :zipcode, :description, :open_time => timestampe_helper(params['open_day'], params['market']['open_time']), :close_time => timestampe_helper(params['open_day'], params['market']['close_time']))
+      params.require(:market).permit(:name,:address, :city, :state, :zipcode, :description)
     end
 
     def require_login

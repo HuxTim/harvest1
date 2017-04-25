@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170424215232) do
-=======
-ActiveRecord::Schema.define(version: 20170424201453) do
->>>>>>> 35e9dd1e676ba575009b5f4a239066021421850d
 
   create_table "market_images", force: :cascade do |t|
     t.integer  "market_id"

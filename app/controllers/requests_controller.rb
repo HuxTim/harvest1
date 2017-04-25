@@ -14,7 +14,10 @@ class RequestsController < ApplicationController
 
   # GET /requests/new
   def new
-    @request = Request.new
+    @request = Request.new(store_id: current_user.vendor.store.id,market_id: params[:market_id])
+    respond_to do |format|
+        format.html { render  partial: "new", locals: { request: @request }}
+    end
   end
 
   # GET /requests/1/edit
@@ -25,13 +28,15 @@ class RequestsController < ApplicationController
   # POST /requests.json
   def create
     @request = Request.new(request_params)
-
+    @request.status = 0
+    @request.open_time = 0
+    @request.close_time = 0
     respond_to do |format|
       if @request.save
-        format.html { redirect_to @request, notice: 'Request was successfully created.' }
+        format.html { redirect_to @request.market, notice: 'Application was successfully send.' }
         format.json { render :show, status: :created, location: @request }
       else
-        format.html { render :new }
+        format.html { redirect_to @request.market, :flash => { :error => @request.errors.map{|k,v| "#{k} #{v}"}.join(',') }  }
         format.json { render json: @request.errors, status: :unprocessable_entity }
       end
     end
@@ -69,6 +74,6 @@ class RequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
-      params.fetch(:request, {})
+      params.require(:request).permit(:open_time,:close_time,:market_id,:store_id)
     end
 end
