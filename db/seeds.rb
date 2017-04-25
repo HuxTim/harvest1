@@ -116,14 +116,14 @@ tags = ["spice", "no-carb", "organic", "gluten-free", "soy-free", "vegetarian", 
 puts "creating stores"
 Vendor.all.each do |vendor|
   if rand() > 0.9
-    Marketid = Market.all.second.id  
+    marketid = Market.all.second.id
 
     @store = Store.create!(name: (User.find(vendor.user_id).name + "'s " + products.sample),
     description: "test store",
     vendor_id: vendor.id)
 
     puts @store.id
-    
+
     @store.store_market_relationships.create!(market_id: marketid,
     open_time: Market.find(marketid).open_time+1800*rand(3),
     close_time: Market.find(marketid).close_time-1800*rand(3),)
@@ -152,7 +152,7 @@ Vendor.all.each do |vendor|
       store_id: @store.id)
     end
 
-    Marketid = Market.all.third.id  
+    marketid = Market.all.third.id
 
     @store.store_market_relationships.create!(market_id: marketid,
     open_time: Market.find(marketid).open_time+1800*rand(3),
@@ -181,7 +181,7 @@ Vendor.all.each do |vendor|
       user_id: @user.id,
       store_id: @store.id)
     end
-  
+
   else
     marketid = rand() > 0.66 ? Market.all.first.id : rand() > 0.5 ? Market.all.second.id : Market.all.third.id
 

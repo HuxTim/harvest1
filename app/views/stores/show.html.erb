@@ -16,16 +16,19 @@
       <div class="carousel-inner">
         <% if @store.store_images.all.length == 0 %>
         <div class="item active">
-          <div class="text-center carousel-image carousel-image-lg" style="background:url(http://placehold.it/800x200/fff/ffffff&text='')"><span class="glyphicon-lg glyphicon glyphicon glyphicon-home"></span></div>
+          <div class="text-center carousel-image carousel-image-lg" style="background:url('/bg_default_store.png');background-size: 100% 100%;
+                background-repeat: no-repeat;"><span class="glyphicon-lg glyphicon glyphicon glyphicon-home"></span></div>
         </div>
         <% else %>
         <div class="item active">
-          <div class="text-center carousel-image carousel-image-lg" style="background:url(<%=  @store.store_images.all.first.image.url(:large) %>)"></div>
+          <div class="text-center carousel-image carousel-image-lg" style="background:url(<%=  @store.store_images.all.first.image.url(:large) %>;background-size: 100% 100%;
+                background-repeat: no-repeat;)"></div>
 
         </div>
         <% @store.store_images[1..-1].each do |store_image|%>
         <div class="item">
-          <div class="text-center carousel-image carousel-image-lg" style="background:url(<%= store_image.image.url(:large) %>)"></div>
+          <div class="text-center carousel-image carousel-image-lg" style="background:url(<%= store_image.image.url(:large) %>);background-size: 100% 100%;
+                background-repeat: no-repeat;"></div>
         </div>
         <% end %>
         <% end %>

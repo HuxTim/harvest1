@@ -2,9 +2,11 @@
 <div class="col-md-4">
   <div class="thumbnail well check-product" id="<%= product.id %>" data-toggle="modal" data-target="#checkProductPanel">
     <% if product.product_images.all.length == 0 %>
-    <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(http://placehold.it/150x150/fff/ffffff&text='')"><span class="glyphicon-md glyphicon glyphicon glyphicon-apple"></span></div>
+    <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(http://placehold.it/150x150/fff/ffffff&text='');background-size: 100% 100%;
+          background-repeat: no-repeat;"><span class="glyphicon-md glyphicon glyphicon glyphicon-apple"></span></div>
     <% else %>
-    <div class="text-center thumbnail-image thumbnail-image-square" style="background: url(<%= product.product_images.all.first.image.url(:small)%>)"></div>
+    <div class="text-center thumbnail-image thumbnail-image-square" style="background: url(<%= product.product_images.all.first.image.url(:medium)%>); background-size: 100% 100%;
+      background-repeat: no-repeat;"></div>
     <% end %>
 
     <div class="caption">

@@ -18,15 +18,18 @@
         <div class="carousel-inner">
           <% if product.product_images.all.length == 0 %>
           <div class="item active">
-            <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(http://placehold.it/150x150/fff/ffffff&text='')"><span class="glyphicon-md glyphicon glyphicon glyphicon-apple"></span></div>
+            <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(http://placehold.it/150x150/fff/ffffff&text='');background-size: 100% 100%;
+                  background-repeat: no-repeat;"><span class="glyphicon-md glyphicon glyphicon glyphicon-apple"></span></div>
           </div>
           <% else %>
           <div class="item active">
-            <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(<%= product.product_images.all.first.image.url(:large) %>)"></div>
+            <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(<%= product.product_images.all.first.image.url(:large) %>);background-size: 100% 100%;
+                  background-repeat: no-repeat;"></div>
           </div>
           <% @product.product_images[1..-1].each do |product_image|%>
           <div class="item">
-            <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(<%= product_image.image.url(:large) %>)"></div>
+            <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(<%= product_image.image.url(:large) %>);background-size: 100% 100%;
+                  background-repeat: no-repeat;"></div>
           </div>
           <% end %>
           <% end %>

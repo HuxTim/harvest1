@@ -232,15 +232,16 @@ bottom-padding{
   width: 100%;
 }
 
+.thumbnail-image{
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .thumbnail .thumbnail-image-md{
   padding: 30px;
   width: 100%;
   height: 150px;
-  background: url(http://placehold.it/350x150/fff/ffffff&text=);
-  background-size: 100% 100%;
-  // background-color:rgba(0,0,0,0.5);
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .thumbnail-image-square{
