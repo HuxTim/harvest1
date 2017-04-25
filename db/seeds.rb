@@ -152,7 +152,9 @@ Vendor.all.each do |vendor|
       store_id: @store.id)
     end
 
-    marketid = Market.all.third.id  
+
+    marketid = Market.all.third.id
+
 
     @store.store_market_relationships.create!(market_id: marketid,
     open_time: Market.find(marketid).open_time+1800*rand(3),

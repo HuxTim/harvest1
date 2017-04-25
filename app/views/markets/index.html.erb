@@ -1,63 +1,24 @@
-<h1>Markets</h1>
-<div class="mdl-grid">
-<% @markets.each do |market| %>
-  <div class="demo-card-event mdl-card mdl-shadow--2dp">
-    <div class="mdl-card__title mdl-card--expand">
-      <h4>
-        city : <%= market.city %>
-        state : <%= market.state %>
-        zipcode : <%= market.zipcode %>
-        rating : <%= market.rating %>
-        description : <%= market.description %>
-        open_time : <%= market.open_time %>
-        close_time : <%= market.close_time %>
-      </h4>
-    </div>
-    <div class="mdl-card__actions mdl-card--border">
-      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-        <%= link_to 'Show', market %>
-        <%= link_to 'Edit', edit_market_path(market) %>
-        <%= link_to 'Destroy', market, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </a>
-      <div class="mdl-layout-spacer"></div>
-      <i class="material-icons">event</i>
-    </div>
-  </div>
-<% end %>
-</div>
-
-<!-- <table>
-  <thead>
-    <tr>
-      <th>City</th>
-      <th>State</th>
-      <th>Zipcode</th>
-      <th>Rating</th>
-      <th>Description</th>
-      <th>Open time</th>
-      <th>Close time</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<div class="row">
+  <div class="col-sm-12">
     <% @markets.each do |market| %>
-      <tr>
-        <td><%= market.city %></td>
-        <td><%= market.state %></td>
-        <td><%= market.zipcode %></td>
-        <td><%= market.rating %></td>
-        <td><%= market.description %></td>
-        <td><%= market.open_time %></td>
-        <td><%= market.close_time %></td>
-        <td><%= link_to 'Show', market %></td>
-        <td><%= link_to 'Edit', edit_market_path(market) %></td>
-        <td><%= link_to 'Destroy', market, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <div class="col-md-4">
+      <%= link_to market, class: "thumbnail well" do %>
+      <% if market.market_images.all.length == 0 %>
+      <div class="text-center thumbnail-image thumbnail-image-md" style="background:url(/bg_default_market2.png);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;">
+        <!-- <span class="glyphicon-md glyphicon glyphicon glyphicon-bullhorn"></span> -->
+      </div>
+      <% else %>
+      <div class="text-center thumbnail-image thumbnail-image-md" style="background: url(<%= market.market_images.all.first.image.url(:small)%>);background-size: 100% 100%;
+            background-repeat: no-repeat;"></div>
+      <% end %>
+      <div class="caption">
+        <h4 class="card-title"><%= market.name%></h4>
+        <span class="card-text"><%= market.description%></span>
+      </div>
+      <% end %>
+    </div>
     <% end %>
-  </tbody>
-</table> -->
-
-<br>
-
-<%= link_to 'New Market', new_market_path %>
+  </div>
+</div>
