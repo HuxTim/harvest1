@@ -1,0 +1,15 @@
+<% @markets.each do |market| %>
+<div class="col-md-3">
+  <div class="panel panel-default panel-market text-center">
+    <div class="panel-heading" style="background: #<%= @color = "%06x" % (rand * 0xffffff)%>"><h3><%= link_to market.name,market %></h3></div>
+    <div class="panel-heading" style="background: <%= darken_color(@color, 0.4) %>"><br></div>
+    <div class="panel-body" >
+      <h4><%= get_day_from_timestamp(market.open_time) %></h4>
+      <hr>
+      <h4><%= get_time_from_timestamp(market.open_time) %> - <%= get_time_from_timestamp(market.close_time) %></h4>
+      <hr>
+      <h4><%= market.address%>, <%= market.city %>, <%= market.state%>, <%= market.zipcode %></h4>
+    </div>
+  </div>
+</div>
+<% end %>

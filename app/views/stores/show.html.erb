@@ -1,50 +1,54 @@
 <% if @product %>
-  <%= render 'shared/hint_messages', object: @product %></br>
+<%= render 'shared/hint_messages', object: @product %></br>
 <% end %>
-<section id = "showcase" class="row">
-  <div class="col-md-12">
-    <div id="Carousel" class="center carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#Carousel" data-slide-to="0" class="active"></li>
-        <% (1..@store.store_images.length-1).each do |i|%>
-        <li data-target="#Carousel" data-slide-to="<%= i %>"></li>
-        <% end %>
-      </ol>
 
-      <!-- Wrapper for Slides -->
-      <div class="carousel-inner">
-        <% if @store.store_images.all.length == 0 %>
-        <div class="item active">
-          <div class="text-center carousel-image carousel-image-lg" style="background:url(http://placehold.it/800x200/fff/ffffff&text='')"><span class="glyphicon-lg glyphicon glyphicon glyphicon-home"></span></div>
+<section id="showcase" class="row well">
+    <div class="col-md-4">
+      <div id="Carousel" class="center carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#Carousel" data-slide-to="0" class="active"></li>
+          <% (1..@store.store_images.length-1).each do |i|%>
+          <li data-target="#Carousel" data-slide-to="<%= i %>"></li>
+          <% end %>
+        </ol>
+
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+          <% if @store.store_images.all.length == 0 %>
+          <div class="item active">
+            <div class="text-center carousel-image carousel-image-lg" style="background:url('/bg_default_store.png');background-size: 100% 100%;
+            background-repeat: no-repeat;"><span class="glyphicon-lg glyphicon glyphicon glyphicon-home"></span></div>
+          </div>
+          <% else %>
+          <div class="item active">
+            <div class="text-center carousel-image carousel-image-lg" style="background:url(<%=  @store.store_images.all.first.image.url(:large) %>;background-size: 100% 100%;
+              background-repeat: no-repeat;)"></div>
+
+            </div>
+            <% @store.store_images[1..-1].each do |store_image|%>
+            <div class="item">
+              <div class="text-center carousel-image carousel-image-lg" style="background:url(<%= store_image.image.url(:large) %>);background-size: 100% 100%;
+                background-repeat: no-repeat;"></div>
+              </div>
+              <% end %>
+              <% end %>
+
+              <!-- Controls -->
+              <a class="left carousel-control" href="#Carousel" data-slide="prev">
+                <span class="icon-prev"></span>
+              </a>
+              <a class="right carousel-control" href="#Carousel" data-slide="next">
+                <span class="icon-next"></span>
+              </a>
+            </div>
+          </div><!--slider-->
         </div>
-        <% else %>
-        <div class="item active">
-          <div class="text-center carousel-image carousel-image-lg" style="background:url(<%=  @store.store_images.all.first.image.url(:large) %>)"></div>
 
+        <div class="col-sm-1">
         </div>
-        <% @store.store_images[1..-1].each do |store_image|%>
-        <div class="item">
-          <div class="text-center carousel-image carousel-image-lg" style="background:url(<%= store_image.image.url(:large) %>)"></div>
-        </div>
-        <% end %>
-        <% end %>
 
-        <!-- Controls -->
-        <a class="left carousel-control" href="#Carousel" data-slide="prev">
-          <span class="icon-prev"></span>
-        </a>
-        <a class="right carousel-control" href="#Carousel" data-slide="next">
-          <span class="icon-next"></span>
-        </a>
-      </div>
-    </div><!--slider-->
-  </div>
-</section>
-
-<section class="row information">
-  <div class="col-sm-12 panel panel-default">
-    <div class="col-sm-8">
+    <div class="col-sm-7">
       <h2>
         <div class="row">
           <div class="col-sm-12">
@@ -53,29 +57,7 @@
         </div>
       </h2>
       <input type="hidden" id="store_id" value="<%= @store.id %>">
-      <table class="table">
-
-        <tbody>
-          <%  @store.markets.each do |market| %>
-          <tr>
-            <td><%= link_to market.name, market%></td>
-          </tr>
-          <tr>
-            <td><%= market.city %>, <%= market.state%>, <%= market.zipcode %></td>
-          </tr>
-          <tr>
-            <td><%= get_day_from_timestamp(market.open_time) %><%= get_time_from_timestamp(market.open_time) %> - <%= get_time_from_timestamp(market.close_time) %></td>
-          </tr>
-          <% end %>
-          <tr>
-            <td class = "col-sm-2 well"><strong>Description</strong></td>
-            <td><%= @store.description %></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="col-sm-4 well">
+      <%= @store.description %>
       <div id="rating">
         <h4>Average user rating</h4>
         <% if @store.store_reviews.average(:rating) %>
@@ -98,216 +80,162 @@
       <hr>
       <div class="alert alert-success">Owner : <%= link_to @store.vendor.user.name, @store.vendor, class: "text-success" %></div>
 
-    </div>
-    <% if logged_in? and isStoreOwner(current_user,@store) %>
-    <div class="row management-board">
-      <div class="col-sm-12">
-        <div class="col-sm-6"><%= link_to 'Edit Information', edit_store_path, class: "btn btn-default btn-lg btn-space col-sm-12" %></div>
-        <div class="col-sm-6">  <%= link_to 'Delete', @store, method: :delete, class: "btn btn-default btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure delete this store'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
-      </div>
-    </div>
-    <% end %>
-  </div>
-</section>
-<section>
-  <div id="store_details" class="carousel slide details" >
-    <ul class="nav nav-pills nav-justified">
-      <li data-target="#store_details" data-slide-to="0" class="active"><a href="#">Product</a></li>
-      <li data-target="#store_details" data-slide-to="1"><a href="#">Review</a></li>
-    </ul>
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item active">
-        <div id = "store_products">
-          <% if logged_in? and isStoreOwner(current_user,@store) %>
-          <%= render 'add_products' %>
-          <% end %>
-          <%= render 'shared/products', locals: { products: @products } %>
-        </div>
-        <div id="products_next" class="btn btn-default col-sm-12">Show More Products</div>
-        <input type="hidden" id="current_product_page" value="<%= @current_page %>">
-      </div><!-- End Item -->
-      <div class="item">
-        <% if logged_in? and !isStoreOwner(current_user,@store)%>
 
-        <div class="row">
-          <div class="col-md-12">
-            <%= form_for(@review) do |f| %>
-            <div class="form-group">
-              <%= f.text_area :comment, {:class => "form-control", :rows => "5", :placeholder => "Enter your review here..."}%>
-            </div>
 
-            <div class="form-group">
-              <div class="col-sm-12 well">
-                <div id="ratings" class="starrr col-sm-4 "></div>
-                <div id="ratings-notice" class="text-right">You gave a rating of <span id="count">0</span> star(s)</div>
-                <%= f.hidden_field :rating, {:value => 0}%>
-                <%= f.hidden_field :store_id, {:value => @store.id}%>
-              </div>
-            </div>
 
-            <div class="text-right">
-              <%= f.submit "Submit", {:class => "btn btn-success col-sm-12"}%>
-            </div>
-            <% end %>
+
+        <% if logged_in? and isStoreOwner(current_user,@store) %>
+        <div class="row management-board">
+          <hr>
+          <div class="col-sm-12">
+            <div class="col-sm-6"><%= link_to 'Edit Information', edit_store_path, class: "btn btn-default btn-lg btn-space col-sm-12" %></div>
+            <div class="col-sm-6">  <%= link_to 'Delete', @store, method: :delete, class: "btn btn-default btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure delete this store'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
           </div>
         </div>
-        <hr>
         <% end %>
-
-        <div id = "store_reviews" class="text-center">
-          <%= render 'shared/reviews', locals: { reviews: @reviews } %>
-        </div>
-        <div id="reviews_next" class="btn btn-default col-sm-12">Show More Review</div>
-        <input type="hidden" id="current_review_page" value="<%= @current_page %>">
-      </div><!-- End Item -->
-    </div><!-- End Carousel Inner -->
-  </div>
-</section>
-
-
-<!-- Modal -->
-<% if logged_in? and isStoreOwner(current_user,@store) %>
-<div class="modal fade" id="addProductPanel" tabindex="-1" role="dialog" aria-labelledby="addProductPanelLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title">Add New Prodcut</h4>
       </div>
-      <div class="modal-body">
-        <%= render 'products/form_new', product: @product = @store.products.new %>
+
+      <div class="col-sm-12">
+        <h3 class="text-center">Where you can find us</h3>
+        <hr>
+        <%= render 'shared/markets_panel', locals: { markets: @markets = @store.markets } %>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<% end %>
+    </section>
 
-<%= render 'shared/product_modal' %>
+    <section class="row">
+      <div id="store_details" class="carousel slide details" >
+        <ul class="nav nav-pills nav-justified">
+          <li data-target="#store_details" data-slide-to="0" class="active"><a href="#">Product</a></li>
+          <li data-target="#store_details" data-slide-to="1"><a href="#">Review</a></li>
+        </ul>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item active">
+            <div id = "store_products">
+              <% if logged_in? and isStoreOwner(current_user,@store) %>
+              <%= render 'add_products' %>
+              <% end %>
+              <%= render 'shared/products', locals: { products: @products } %>
+            </div>
+            <div id="products_next" class="btn btn-default col-sm-12">Show More Products</div>
+            <input type="hidden" id="current_product_page" value="<%= @current_page %>">
+          </div><!-- End Item -->
+          <div class="item">
+            <% if logged_in? and !isStoreOwner(current_user,@store)%>
 
-<script>
-$(document).ready(function() {
+            <div class="row">
+              <div class="col-md-12">
+                <%= form_for(@review) do |f| %>
+                <div class="form-group">
+                  <%= f.text_area :comment, {:class => "form-control", :rows => "5", :placeholder => "Enter your review here..."}%>
+                </div>
 
-  $('#new_store_review').submit(function() {
-    document.getElementById("store_review_rating").value= (document.getElementById("count").innerHTML);
-    return true; // return false to cancel form action
-  });
+                <div class="form-group">
+                  <div class="col-sm-12 well">
+                    <div id="ratings" class="starrr col-sm-4 "></div>
+                    <div id="ratings-notice" class="text-right">You gave a rating of <span id="count">0</span> star(s)</div>
+                    <%= f.hidden_field :rating, {:value => 0}%>
+                    <%= f.hidden_field :store_id, {:value => @store.id}%>
+                  </div>
+                </div>
 
-  $('#finish_upload').addClass('disabled');
+                <div class="text-right">
+                  <%= f.submit "Submit", {:class => "btn btn-success col-sm-12"}%>
+                </div>
+                <% end %>
+              </div>
+            </div>
+            <hr>
+            <% end %>
 
-  $("#store_new_next_step").on('click',function() {
-    var valuesToSubmit = $("#new_store").serialize();
-    var market_ids = "";
-    for (i = 0; i < $('.selected_tag').length; i++) {
-      market_ids += $('.selected_tag').eq(i).attr('id') + ",";
-    }
-    var formdata = valuesToSubmit+"&market_ids="+market_ids;
-    $.ajax({
-      url: "/stores",
-      dataType: "json",
-      type: "POST",
-      data: formdata,
-      success: function(data, success) {
-        $("#store_new_next_step").addClass('disabled')
-        $("#new_store").addClass('disabled')
-        $("#new_store input").prop("disabled", true);
-        $('#add_description *').click(false);
-        document.getElementById("store_id").value = data['store_id'];
-        $('#finish_upload').removeClass('disabled');
-        jQuery('#add_store_image').css({ opacity: 1});
-        // Dropzone.storeImageUpload.options = {
-        //   // restrict image size to a maximum 1MB
-        //   clickable: true,
-        //   maxFiles: 5,
-        //   parallelUploads: 10,
-        //   maxFilesize: 5,
-        //   // changed the passed param to one accepted by
-        //   // our rails app
-        //   paramName: "store_image[image]",
-        //   // show remove links on each image upload
-        //   addRemoveLinks: false
-        // };
-      },
-      error: function(data, failure) {
-        alert(data);
-      }
-    });
-  });
+            <div id = "store_reviews" class="text-center">
+              <%= render 'shared/reviews', locals: { reviews: @reviews } %>
+            </div>
+            <div id="reviews_next" class="btn btn-default col-sm-12">Show More Review</div>
+            <input type="hidden" id="current_review_page" value="<%= @current_page %>">
+          </div><!-- End Item -->
+        </div><!-- End Carousel Inner -->
+      </div>
+    </section>
 
-  $("#market_search_button").click(function() {
-    var valuesToSubmit = $("#query_market").serialize();
-    $.ajax({
-      url: "/stores/new/markets",
-      dataType: "json",
-      type: "GET",
-      data: valuesToSubmit,
-      success: function(data, success) {
-        document.getElementById("search_results").innerHTML = ""
-        var arr = [];
-        for (i = 0; i < $('.selected_tag').length; i++) {
-          arr.push(Number($('.selected_tag').eq(i).attr('id')))
+
+    <!-- Modal -->
+    <% if logged_in? and isStoreOwner(current_user,@store) %>
+    <div class="modal fade" id="addProductPanel" tabindex="-1" role="dialog" aria-labelledby="addProductPanelLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">Add New Prodcut</h4>
+          </div>
+          <div class="modal-body">
+            <%= render 'products/form_new', product: @product = @store.products.new %>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <% end %>
+
+    <%= render 'shared/product_modal' %>
+
+    <script>
+    $(document).ready(function() {
+
+      $('#new_store_review').submit(function() {
+        document.getElementById("store_review_rating").value= (document.getElementById("count").innerHTML);
+        return true; // return false to cancel form action
+      });
+
+      $('#finish_upload').addClass('disabled');
+
+      $('#store_details').on('click', '.nav a', function() {
+        clickEvent = true;
+        $('.nav li').removeClass('active');
+        $(this).parent().addClass('active');
+      }).on('slid.bs.carousel', function(e) {
+        if(!clickEvent) {
+          var count = $('.nav').children().length -1;
+          var current = $('.nav li.active');
+          current.removeClass('active').next().addClass('active');
+          var id = parseInt(current.data('slide-to'));
+          if(count == id) {
+            $('.nav li').first().addClass('active');
+          }
         }
+        clickEvent = false;
+      });
 
-        for (i = 0; i < data['markets'].length; i++) {
-          if(!arr.includes(Number(data['markets'][i]['id'])))
-          document.getElementById("search_results").innerHTML += ("<div class='btn btn-primary market_tag' name='market_tag' id='"+data['markets'][i]['id']+"'>" + data['markets'][i]['name']+"</div>");
-        }
-      },
-      error: function(data, failure) {
-        alert(data);
-      }
+      $("#products_next").on('click',function() {
+        $.ajax({
+          url: "/stores/"+ $("#store_id").val() +"/products",
+          dataType: "html",
+          type: "GET",
+          data: "current_product_page=" + $("#current_product_page").val(),
+          success: function(data, success) {
+            $('#store_products').append(data);
+            $('#current_product_page').val(parseInt($("#current_product_page").val()) + 1);
+          },
+          error: function(data, failure) {
+            alert("Something Wrong Happen, Please try it later");
+          }
+        });
+      });
+
+      $("#reviews_next").on('click',function() {
+        $.ajax({
+          url: "/stores/"+ $("#store_id").val() +"/reviews",
+          dataType: "html",
+          type: "GET",
+          data: "current_review_page=" + $("#current_review_page").val(),
+          success: function(data, success) {
+            $('#store_reviews').append(data);
+            $('#current_review_page').val(parseInt($("#current_review_page").val()) + 1);
+          },
+          error: function(data, failure) {
+            alert("Something Wrong Happen, Please try it later");
+          }
+        });
+      });
+
     });
-  });
-
-
-  $('#store_details').on('click', '.nav a', function() {
-    clickEvent = true;
-    $('.nav li').removeClass('active');
-    $(this).parent().addClass('active');
-  }).on('slid.bs.carousel', function(e) {
-    if(!clickEvent) {
-      var count = $('.nav').children().length -1;
-      var current = $('.nav li.active');
-      current.removeClass('active').next().addClass('active');
-      var id = parseInt(current.data('slide-to'));
-      if(count == id) {
-        $('.nav li').first().addClass('active');
-      }
-    }
-    clickEvent = false;
-  });
-
-  $("#products_next").on('click',function() {
-    $.ajax({
-      url: "/stores/"+ $("#store_id").val() +"/products",
-      dataType: "html",
-      type: "GET",
-      data: "current_product_page=" + $("#current_product_page").val(),
-      success: function(data, success) {
-        $('#store_products').append(data);
-        $('#current_product_page').val(parseInt($("#current_product_page").val()) + 1);
-      },
-      error: function(data, failure) {
-        alert(success);
-      }
-    });
-  });
-
-  $("#reviews_next").on('click',function() {
-    $.ajax({
-      url: "/stores/"+ $("#store_id").val() +"/reviews",
-      dataType: "html",
-      type: "GET",
-      data: "current_review_page=" + $("#current_review_page").val(),
-      success: function(data, success) {
-        $('#store_reviews').append(data);
-        $('#current_review_page').val(parseInt($("#current_review_page").val()) + 1);
-      },
-      error: function(data, failure) {
-        alert(success);
-      }
-    });
-  });
-
-});
-</script>
+    </script>

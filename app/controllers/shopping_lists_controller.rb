@@ -22,9 +22,9 @@ class ShoppingListsController < ApplicationController
     respond_to do |format|
       if @shopping_list and @shopping_list.user_id == current_user.id
         @shopping_list.destroy
-        format.json { render json: {statue: 'Delete successfully.'} }
+        format.json { render json: {notice: 'Delete successfully.'} }
       else
-        format.json { render json: {statue: 'Something Wrong.'} }
+        format.json { render json: {statue: :unprocessable_entity} }
       end
     end
   end

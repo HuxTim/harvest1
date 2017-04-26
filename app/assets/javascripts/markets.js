@@ -15,7 +15,7 @@ $(document).ready(function(){
         $('#current_store_page').val(parseInt($("#current_store_page").val()) + 1);
       },
       error: function(data, failure) {
-        alert(success);
+        alert("Something Wrong Happen, Please try it later");
       }
     });
   });
@@ -31,7 +31,7 @@ $(document).ready(function(){
         $('#current_review_page').val(parseInt($("#current_review_page").val()) + 1);
       },
       error: function(data, failure) {
-        alert(success);
+        alert("Something Wrong Happen, Please try it later");
       }
     });
   });

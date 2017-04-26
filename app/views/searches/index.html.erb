@@ -1,43 +1,34 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous"> -->
 <p id="notice"><%= notice %></p>
 <% if @results.blank? %>
  <h4>There are no results containing the term <%= params[:q] %>.</h4>
 <% end %>
-<!--
-<div class="row">
-  <div class="col-sm-12">
-    <% @products.each do |product| %>
-    <div class="col-md-4">
-      <div class="card" style="width: 20rem;">
-        <img class="card-img-top" src="https://placeholdit.co//i/318x180?&bg=DCDCDC" alt="Card image cap">
-        <div class="card-block">
-          <h4 class="card-title"><%= product.name %></h4>
-          <p class="card-text"><%= product.description %></p>
-          <%= link_to 'Go somewhere', product, class: "btn btn-primary" %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-  </div>
-</div> -->
+
+<div class="container">
+
+  <div class="col-sm-9">
+
 
 <section>
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h2 class="section-heading">Popular Markets</h2>
+        <h2 class="section-heading">Popular Products</h2>
         <hr class="section-hr">
       </div>
   </div>
   <div class="row">
-        <%= render 'shared/products', locals: { stores: @products} %>
+        <%= render 'shared/products', locals: { products: @products} %>
+        <%= render 'shared/product_modal' %>
   </div>
 </section>
 
 
+</div>
+
 <section>
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h2 class="section-heading">Popular Markets</h2>
+        <h2 class="section-heading">Popular Stores</h2>
         <hr class="section-hr">
       </div>
   </div>
