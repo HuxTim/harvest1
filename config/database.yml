@@ -5,9 +5,14 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: harvest_database
   pool: 5
-  timeout: 5000
+  username: blog
+  password:
+  host: localhost
+
 
 development:
   <<: *default
@@ -21,5 +26,7 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: harvest_database
+  
