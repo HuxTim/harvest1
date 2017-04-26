@@ -63,7 +63,7 @@
               <span class="glyphicon-sm glyphicon glyphicon-tag"></span>
               <span class="tags">
                 <% split_tags(product.tag).each do |tag| %>
-                <span class="tag"><a class="btn btn-tags btn-success" style="background: #<%= "%06x" % (rand * 0xffffff)%>" href="/search?tag=<%= tag%>"><%= tag %></a></span>
+                <span class="tag"><a class="btn btn-tags btn-success" style="background: #<%= "%06x" % (rand * 0xffffff)%>" href="/search?&option=Products&tag=<%= tag%>"><%= tag %></a></span>
                 <% end %>
               </span>
             </div>

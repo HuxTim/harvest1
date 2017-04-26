@@ -17,6 +17,10 @@ class SearchesController < ApplicationController
     elsif params[:option] == "Products"
       @stores = []
       @markets = []
+      if params[:tag].present?
+        q = params[:tag]
+        @products = Product.ransack(tag_cont: q).result
+      end
     elsif params[:option] == "Markets"
       @stores = []
       @products = []

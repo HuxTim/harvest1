@@ -114,16 +114,9 @@ class StoresController < ApplicationController
 
   def ajax_search_markets
     # search function implementation
-<<<<<<< HEAD
+    q = params[:query]
+    @markets = Market.ransack(name_or_description_cont: q).result
 
-    @markets = Market.all  #Market.ransack(name_or_description_cont: q).result
-=======
-    params[:query]
-    @markets = Market.all
-
-
-
->>>>>>> 767533d1e2c9039513f558785747f3a79d01f9b3
     respond_to do |format|
       # format.html { render  partial: "shared/stores", locals: { stores: @stores }}
       format.json { render json: {markets: @markets}}
