@@ -532,12 +532,46 @@ span.tags{
 }
 
 .panel-market{
+  border: 0px;
   .panel-heading{
     a{
         color: #fff;
     }
+    border: 0px;
     color: #fff;
+  }
 
+  .panel-body{
+    color: #000;
   }
   color: #fff;
+}
+
+.market_information{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+#showcase{
+  padding: 0px;
+}
+.well{
+  padding: 5px;
+}
+
+#showcase.well{
+  padding: 0px;
+  margin: 0px;
+  margin-bottom: 20px;
+}
+
+#showcase .col-md-4{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.row{
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
 }

@@ -1,90 +1,92 @@
 <% if @product %>
 <%= render 'shared/hint_messages', object: @product %></br>
 <% end %>
-<section id = "showcase" class="row">
-  <div class="col-md-12">
-    <div id="Carousel" class="center carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#Carousel" data-slide-to="0" class="active"></li>
-        <% (1..@store.store_images.length-1).each do |i|%>
-        <li data-target="#Carousel" data-slide-to="<%= i %>"></li>
-        <% end %>
-      </ol>
 
-      <!-- Wrapper for Slides -->
-      <div class="carousel-inner">
-        <% if @store.store_images.all.length == 0 %>
-        <div class="item active">
-          <div class="text-center carousel-image carousel-image-lg" style="background:url('/bg_default_store.png');background-size: 100% 100%;
-          background-repeat: no-repeat;"><span class="glyphicon-lg glyphicon glyphicon glyphicon-home"></span></div>
-        </div>
-        <% else %>
-        <div class="item active">
-          <div class="text-center carousel-image carousel-image-lg" style="background:url(<%=  @store.store_images.all.first.image.url(:large) %>;background-size: 100% 100%;
-            background-repeat: no-repeat;)"></div>
+<section id="showcase" class="row well">
+    <div class="col-md-4">
+      <div id="Carousel" class="center carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#Carousel" data-slide-to="0" class="active"></li>
+          <% (1..@store.store_images.length-1).each do |i|%>
+          <li data-target="#Carousel" data-slide-to="<%= i %>"></li>
+          <% end %>
+        </ol>
 
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+          <% if @store.store_images.all.length == 0 %>
+          <div class="item active">
+            <div class="text-center carousel-image carousel-image-lg" style="background:url('/bg_default_store.png');background-size: 100% 100%;
+            background-repeat: no-repeat;"><span class="glyphicon-lg glyphicon glyphicon glyphicon-home"></span></div>
           </div>
-          <% @store.store_images[1..-1].each do |store_image|%>
-          <div class="item">
-            <div class="text-center carousel-image carousel-image-lg" style="background:url(<%= store_image.image.url(:large) %>);background-size: 100% 100%;
-              background-repeat: no-repeat;"></div>
+          <% else %>
+          <div class="item active">
+            <div class="text-center carousel-image carousel-image-lg" style="background:url(<%=  @store.store_images.all.first.image.url(:large) %>;background-size: 100% 100%;
+              background-repeat: no-repeat;)"></div>
+
             </div>
-            <% end %>
-            <% end %>
-
-            <!-- Controls -->
-            <a class="left carousel-control" href="#Carousel" data-slide="prev">
-              <span class="icon-prev"></span>
-            </a>
-            <a class="right carousel-control" href="#Carousel" data-slide="next">
-              <span class="icon-next"></span>
-            </a>
-          </div>
-        </div><!--slider-->
-      </div>
-    </section>
-
-    <section class="row information">
-      <div class="col-sm-12 panel panel-default">
-        <div class="col-sm-8">
-          <h2>
-            <div class="row">
-              <div class="col-sm-12">
-                <%= @store.name %>
+            <% @store.store_images[1..-1].each do |store_image|%>
+            <div class="item">
+              <div class="text-center carousel-image carousel-image-lg" style="background:url(<%= store_image.image.url(:large) %>);background-size: 100% 100%;
+                background-repeat: no-repeat;"></div>
               </div>
+              <% end %>
+              <% end %>
+
+              <!-- Controls -->
+              <a class="left carousel-control" href="#Carousel" data-slide="prev">
+                <span class="icon-prev"></span>
+              </a>
+              <a class="right carousel-control" href="#Carousel" data-slide="next">
+                <span class="icon-next"></span>
+              </a>
             </div>
-          </h2>
-          <input type="hidden" id="store_id" value="<%= @store.id %>">
-          <%= @store.description %>
+          </div><!--slider-->
         </div>
 
-        <div class="col-sm-4 well">
-          <div id="rating">
-            <h4>Average user rating</h4>
-            <% if @store.store_reviews.average(:rating) %>
-            <h2 class="bold padding-bottom-7"><small><%= @store.store_reviews.average(:rating)%>/5</small></h2>
-            <% else %>
-            <h2 class="bold padding-bottom-7"> <small>UNKNOWN/5</small></h2>
-            <% end %>
-            <% (0..4).each do |i|%>
-            <% if @store.store_reviews.average(:rating) and i >= @store.store_reviews.average(:rating) %>
-            <button type="button" class="btn btn-default btn-sm" aria-label="Left Align">
-              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-            </button>
-            <% else %>
-            <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-            </button>
-            <% end %>
-            <% end %>
+        <div class="col-sm-1">
+        </div>
+
+    <div class="col-sm-7">
+      <h2>
+        <div class="row">
+          <div class="col-sm-12">
+            <%= @store.name %>
           </div>
-          <hr>
-          <div class="alert alert-success">Owner : <%= link_to @store.vendor.user.name, @store.vendor, class: "text-success" %></div>
-
         </div>
+      </h2>
+      <input type="hidden" id="store_id" value="<%= @store.id %>">
+      <%= @store.description %>
+      <div id="rating">
+        <h4>Average user rating</h4>
+        <% if @store.store_reviews.average(:rating) %>
+        <h2 class="bold padding-bottom-7"><small><%= @store.store_reviews.average(:rating)%>/5</small></h2>
+        <% else %>
+        <h2 class="bold padding-bottom-7"> <small>UNKNOWN/5</small></h2>
+        <% end %>
+        <% (0..4).each do |i|%>
+        <% if @store.store_reviews.average(:rating) and i >= @store.store_reviews.average(:rating) %>
+        <button type="button" class="btn btn-default btn-sm" aria-label="Left Align">
+          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+        </button>
+        <% else %>
+        <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+        </button>
+        <% end %>
+        <% end %>
+      </div>
+      <hr>
+      <div class="alert alert-success">Owner : <%= link_to @store.vendor.user.name, @store.vendor, class: "text-success" %></div>
+
+
+
+
+
         <% if logged_in? and isStoreOwner(current_user,@store) %>
         <div class="row management-board">
+          <hr>
           <div class="col-sm-12">
             <div class="col-sm-6"><%= link_to 'Edit Information', edit_store_path, class: "btn btn-default btn-lg btn-space col-sm-12" %></div>
             <div class="col-sm-6">  <%= link_to 'Delete', @store, method: :delete, class: "btn btn-default btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure delete this store'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
@@ -92,12 +94,12 @@
         </div>
         <% end %>
       </div>
-    </section>
 
-    <section id="market_information" class="row">
-      <h3 class="text-center">Where you can find us</h3>
-      <hr>
-      <%= render 'shared/markets_panel', locals: { markets: @markets = @store.markets } %>
+      <div class="col-sm-12">
+        <h3 class="text-center">Where you can find us</h3>
+        <hr>
+        <%= render 'shared/markets_panel', locals: { markets: @markets = @store.markets } %>
+      </div>
     </section>
 
     <section class="row">
