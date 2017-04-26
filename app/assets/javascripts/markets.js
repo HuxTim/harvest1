@@ -169,27 +169,3 @@ $( document ).ready(function() {
     $('#count-existing').html(value);
   });
 });
-
-$(function() {
-  $.rails.allowAction = function(link) {
-    if (!link.attr('data-confirm')) {
-      return true;
-    }
-    $.rails.showConfirmDialog(link);
-    return false;
-  };
-  $.rails.confirmed = function(link) {
-    link.removeAttr('data-confirm');
-    return link.trigger('click.rails');
-  };
-  return $.rails.showConfirmDialog = function(link) {
-    var html, message;
-    message = link.attr('data-confirm');
-    html = "<div class=\"modal\" id=\"confirmationDialog\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n      <h4 class=\"modal-title\">Message<h4>\n      </div><div class = \"modal-body alert alert-danger\">\n      " + message + "</div>\n      <div class=\"modal-footer\">\n    <div class=\"col-sm-12\"><div class=\"col-sm-6\">    <a data-dismiss=\"modal\" class=\"btn btn-default\">" + (link.data('cancel')) + "</a></div>\n   <div  class=\"col-sm-6\">     <a data-dismiss=\"modal\" class=\"btn btn-danger confirm\">" + (link.data('ok')) + "</a></div></div>\n      </div>\n    </div>\n  </div>\n</div>";
-    // html = "<div class=\"modal\" id=\"confirmationDialog\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n        <a class=\"close\" data-dismiss=\"modal\">×</a>\n        <h4>Message<h4>\n      </div><div class = \"well\">\n      " + message + "</div>\n      <div class=\"modal-footer\">\n        <a data-dismiss=\"modal\" class=\"btn btn-default\">" + (link.data('cancel')) + "</a>\n <a data-dismiss=\"modal\" class=\"btn btn-primary confirm\">" + (link.data('ok')) + "</a>\n      </div>\n    </div>\n  </div>\n</div>";
-    $(html).modal();
-    return $('#confirmationDialog .confirm').on('click', function() {
-      return $.rails.confirmed(link);
-    });
-  };
-});

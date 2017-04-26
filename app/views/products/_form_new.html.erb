@@ -28,11 +28,11 @@
       </div>
       <div class="col-md-2">
         <%= f.label :price%>
-        <%= f.text_field :price, {:class => "form-control", id: "price_number"}%>
+        <input type="text" class="form-control" id="price_number" name="price_number">
       </div>
       <div class="col-md-2">
         <%= f.label :unit%>
-        <%= f.select :price, options_for_select(unit_list, :selected => "lb"),{}, {class: "form-control"}%>
+        <%= f.select :price, options_for_select(unit_list, :selected => "kilograms"),{}, {class: "form-control", id: "price_unit"}%>
       </div>
       <div class="col-md-4">
         <%= f.label :tag%>

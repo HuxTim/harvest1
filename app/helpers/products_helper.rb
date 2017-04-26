@@ -24,11 +24,10 @@ module ProductsHelper
 
   def unit_list
     units = [
-      "LB",
       "kilograms",
       "pounds",
       "liter",
-      "one"
+      "per unit"
     ]
   end
 end

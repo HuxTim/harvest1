@@ -49,11 +49,11 @@
       </div>
       <div class="col-md-2">
         <%= f.label :price%>
-        <%= f.text_field :price, {:class => "form-control", id: "price_number"}%>
+        <input type="text" class="form-control" id="price_number" name="price_number" value="<%=product.price.split("/")[0] %>">
       </div>
       <div class="col-md-2">
         <%= f.label :unit%>
-        <%= f.select :price, options_for_select(unit_list, :selected => "lb"),{}, {class: "form-control"}%>
+        <%= f.select :price, options_for_select(unit_list, :selected => product.price.split("/")[1]),{}, {class: "form-control"}%>
       </div>
       <div class="col-md-4">
         <%= f.label :tag%>
@@ -116,8 +116,7 @@ $(function() {
   return $.rails.showConfirmDialog = function(link) {
     var html, message;
     message = link.attr('data-confirm');
-
-    html = "<div class=\"modal\" id=\"confirmationDialog\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n      <h4 class=\"modal-title\">Message<h4>\n      </div><div class = \"modal-body alert alert-danger\">\n      " + message + "</div>\n      <div class=\"modal-footer\">\n    <div class=\"col-sm-12\"><div class=\"col-sm-6\">    <a data-dismiss=\"modal\" class=\"btn btn-default\">" + (link.data('cancel')) + "</a></div>\n   <div  class=\"col-sm-6\">     <a data-dismiss=\"modal\" class=\"btn btn-danger confirm\">" + (link.data('ok')) + "</a></div></div>\n      </div>\n    </div>\n  </div>\n</div>";
+    html = "<div class=\"modal\" id=\"confirmationDialog\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n      <h4 class=\"modal-title\">Message<h4>\n      </div><div class = \"modal-body alert alert-danger\">\n      " + message + "</div>\n      <div class=\"modal-footer\">\n       <a data-dismiss=\"modal\" class=\"btn btn-default\">" + (link.data('cancel')) + "</a>   <a data-dismiss=\"modal\" class=\"btn btn-danger confirm\">" + (link.data('ok')) + "</a></div>\n    </div>\n  </div>\n</div>";
     $(html).modal();
     return $('#confirmationDialog .confirm').on('click', function() {
       return $.rails.confirmed(link);
