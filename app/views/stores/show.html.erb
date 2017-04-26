@@ -198,71 +198,6 @@ $(document).ready(function() {
 
   $('#finish_upload').addClass('disabled');
 
-  $("#store_new_next_step").on('click',function() {
-    var valuesToSubmit = $("#new_store").serialize();
-    var market_ids = "";
-    for (i = 0; i < $('.selected_tag').length; i++) {
-      market_ids += $('.selected_tag').eq(i).attr('id') + ",";
-    }
-    var formdata = valuesToSubmit+"&market_ids="+market_ids;
-    $.ajax({
-      url: "/stores",
-      dataType: "json",
-      type: "POST",
-      data: formdata,
-      success: function(data, success) {
-        $("#store_new_next_step").addClass('disabled')
-        $("#new_store").addClass('disabled')
-        $("#new_store input").prop("disabled", true);
-        $('#add_description *').click(false);
-        document.getElementById("store_id").value = data['store_id'];
-        $('#finish_upload').removeClass('disabled');
-        jQuery('#add_store_image').css({ opacity: 1});
-        // Dropzone.storeImageUpload.options = {
-        //   // restrict image size to a maximum 1MB
-        //   clickable: true,
-        //   maxFiles: 5,
-        //   parallelUploads: 10,
-        //   maxFilesize: 5,
-        //   // changed the passed param to one accepted by
-        //   // our rails app
-        //   paramName: "store_image[image]",
-        //   // show remove links on each image upload
-        //   addRemoveLinks: false
-        // };
-      },
-      error: function(data, failure) {
-        alert(data);
-      }
-    });
-  });
-
-  $("#market_search_button").click(function() {
-    var valuesToSubmit = $("#query_market").serialize();
-    $.ajax({
-      url: "/stores/new/markets",
-      dataType: "json",
-      type: "GET",
-      data: valuesToSubmit,
-      success: function(data, success) {
-        document.getElementById("search_results").innerHTML = ""
-        var arr = [];
-        for (i = 0; i < $('.selected_tag').length; i++) {
-          arr.push(Number($('.selected_tag').eq(i).attr('id')))
-        }
-
-        for (i = 0; i < data['markets'].length; i++) {
-          if(!arr.includes(Number(data['markets'][i]['id'])))
-          document.getElementById("search_results").innerHTML += ("<div class='btn btn-primary market_tag' name='market_tag' id='"+data['markets'][i]['id']+"'>" + data['markets'][i]['name']+"</div>");
-        }
-      },
-      error: function(data, failure) {
-        alert(data);
-      }
-    });
-  });
-
-
   $('#store_details').on('click', '.nav a', function() {
     clickEvent = true;
     $('.nav li').removeClass('active');
@@ -291,7 +226,7 @@ $(document).ready(function() {
         $('#current_product_page').val(parseInt($("#current_product_page").val()) + 1);
       },
       error: function(data, failure) {
-        alert(success);
+          alert("Something Wrong Happen, Please try it later");
       }
     });
   });
@@ -307,7 +242,7 @@ $(document).ready(function() {
         $('#current_review_page').val(parseInt($("#current_review_page").val()) + 1);
       },
       error: function(data, failure) {
-        alert(success);
+          alert("Something Wrong Happen, Please try it later");
       }
     });
   });

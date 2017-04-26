@@ -63,12 +63,29 @@ class StoresController < ApplicationController
         status: 0
         )
       end
-      render json: {store_id: @store.id}
+      render json: {statue: 'Create successfully.'}
     else
-      render json: { error: @store.errors}, status: :unprocessable_entity
+      render json: {error: @store.errors.full_messages.join(',')}, status: :unprocessable_entity
     end
 
-
+    # respond_to do |format|
+    #   if @store.save
+    #     market_ids.each do |market_id|
+    #       Request.create(
+    #       market_id: market_id,
+    #       store_id: @store.id,
+    #       status: 0
+    #       )
+    #     end
+    #     format.json { render json: {statue: 'Create successfully.'} }
+    #   else
+    #     print @store.errors.map{|k,v| "#{k} #{v}"}.join(',')
+    #     # json: @market_review.errors, status: :unprocessable_entity
+    #     errors.full_messages.join(',')
+    #     render json: { :error => exception.message }, :status => 500
+    #     format.json { render json: @store.errors.full_messages.join(','), status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /stores/1
@@ -80,7 +97,7 @@ class StoresController < ApplicationController
         format.json { render :show, status: :ok, location: @store }
       else
         format.html { render :edit }
-        format.json { render json: @store.errors.jo, status: :unprocessable_entity }
+        format.json { render json: @store.errors, status: :unprocessable_entity }
       end
     end
   end

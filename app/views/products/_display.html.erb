@@ -118,10 +118,10 @@ $(".addShoppingList").click(function() {
       btn.removeClass('addShoppingList')
       btn.addClass('delShoppingList')
       $("#checkProductPanel").modal('hide');
-      alert(data['statue']);
+      alert("You have add successfully");
     },
     error: function(data, failure) {
-      alert(data['status']);
+      alert("Something Wrong Happen, Please try it later");
     }
   });
 });
@@ -138,10 +138,10 @@ $(".delShoppingList").click(function() {
       btn.removeClass('delShoppingList')
       btn.addClass('addShoppingList')
       $("#checkProductPanel").modal('hide');
-      alert(data['statue']);
+      alert("You have delete successfully");
     },
     error: function(data, failure) {
-      alert(data['status']);
+      alert("Something Wrong Happen, Please try it later");
     }
   });
 });

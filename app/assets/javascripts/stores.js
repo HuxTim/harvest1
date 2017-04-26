@@ -20,7 +20,6 @@ $(document).ready(function() {
       type: "POST",
       data: formdata,
       success: function(data, success) {
-        alert(data['status']);
         $("#store_new_next_step").addClass('disabled')
         $("#new_store").addClass('disabled')
         $("#new_store input").prop("disabled", true);
@@ -28,22 +27,11 @@ $(document).ready(function() {
         document.getElementById("store_id").value = data['store_id'];
         $('#finish_upload').removeClass('disabled');
         jQuery('#add_store_image').css({ opacity: 1});
-        // Dropzone.storeImageUpload.options = {
-        //   // restrict image size to a maximum 1MB
-        //   clickable: true,
-        //   maxFiles: 5,
-        //   parallelUploads: 10,
-        //   maxFilesize: 5,
-        //   // changed the passed param to one accepted by
-        //   // our rails app
-        //   paramName: "store_image[image]",
-        //   // show remove links on each image upload
-        //   addRemoveLinks: false
-        // };
       },
       error: function(data, failure) {
-        alert(data.error);
+        alert("Error Happened, Please Chenck Your Input");
       }
+
     });
   });
 
@@ -67,7 +55,7 @@ $(document).ready(function() {
         }
       },
       error: function(data, failure) {
-        alert(data);
+        alert("Something Wrong Happen, Please try it later");
       }
     });
   });
@@ -101,7 +89,7 @@ $(document).ready(function() {
         $('#current_product_page').val(parseInt($("#current_product_page").val()) + 1);
       },
       error: function(data, failure) {
-        alert(success);
+        alert("Something Wrong Happen, Please try it later");
       }
     });
   });
@@ -117,7 +105,7 @@ $(document).ready(function() {
         $('#current_review_page').val(parseInt($("#current_review_page").val()) + 1);
       },
       error: function(data, failure) {
-        alert(success);
+        alert("Something Wrong Happen, Please try it later");
       }
     });
   });
