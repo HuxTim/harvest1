@@ -256,6 +256,18 @@ bottom-padding{
   background-position: center;
 }
 
+.thumbnail-image-square-bg{
+  padding: 10px;
+  padding-top: 80px;
+  width: 100%;
+  height: 250px;
+  background: url(http://placehold.it/350x150/fff/ffffff&text=);
+  background-size: 100% 100%;
+  // background-color:rgba(0,0,0,0.5);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .thumbnail .thumbnail-image-sm{
   padding: 10px;
   width: 100%;
@@ -395,10 +407,10 @@ body{
   padding-top: 60px;
 }
 
-a{
-  display: block;
-  width: 100%;
-}
+// a{
+//   display: block;
+//   width: 100%;
+// }
 
 .review-photo{
   height: 50px;
@@ -429,10 +441,15 @@ a{
 #rating{
   margin-bottom: 10px;
 }
-
+.caption .row{
+  margin-bottom: 10px;
+}
 .glyphicon-sm{
-  font-size: 30px;
-  color: rgba(0,0,0,0.5);
+
+  font-size: 20px;
+  padding-left: 10px;
+  padding-right: 20px;
+  color: $link-color;
 }
 
 .glyphicon-md{
@@ -484,9 +501,12 @@ PRODUCTS
 #add_product_image{
   margin-top: 20px;
 }
-.label-tags{
+
+.btn-tags{
+  border: 0px;
   font-size: 15px;
-  line-height: 30px;
+  line-height: 15px;
+  margin-bottom: 10px;
 }
 
 .row-special{
@@ -497,4 +517,27 @@ PRODUCTS
   -webkit-transition: all 0.35s;
   -moz-transition: all 0.35s;
   transition: all 0.35s;
+}
+
+.tag{
+  width: auto;
+  :hover{
+    color: rgba(0,0,0,0.5);
+  }
+}
+
+span.tags{
+  display:inline-block;
+  margin: 0px;
+}
+
+.panel-market{
+  .panel-heading{
+    a{
+        color: #fff;
+    }
+    color: #fff;
+
+  }
+  color: #fff;
 }

@@ -16,7 +16,7 @@ $(document).ready(function() {
         jQuery('#add_product_image').css({ opacity: 1});
       },
       error: function(data, failure) {
-        alert(data);
+        alert("Something Wrong Happen, Please try it later");
       }
     });
   });

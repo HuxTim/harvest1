@@ -1,4 +1,4 @@
-<%= link_to 'Delete', product, method: :delete, class: "btn btn-danger ", data: { toggle: 'confirmationDialog', confirm: t('messages.Are you sure delete this Product. After delete the Product, Data can not be retore'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%>
+<%= link_to 'Delete', product, method: :delete, class: "btn btn-danger col-sm-12", data: { toggle: 'confirmationDialog', confirm: t('messages.Are you sure delete this Product. After delete the Product, Data can not be retore'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%><br><br>
 <section id = "add_product_image">
   <div class="row">
     <div class="col-md-12">
@@ -45,7 +45,7 @@
 
       <div class="col-md-4">
         <%= f.label :discount%>
-        <%= f.select :is_special, options_for_select([["yes",0],["no",1]], :selected => "no"),{}, {class: "form-control"}%>
+        <%= f.select :is_special, options_for_select([["yes",1],["no",0]], :selected => "no"),{}, {class: "form-control"}%>
       </div>
       <div class="col-md-2">
         <%= f.label :price%>
@@ -59,7 +59,7 @@
         <%= f.label :tag%>
         <div class="row">
           <div class="col-md-12">
-            <%= f.select :tag, options_for_select(tag_list, :selected => "vegetable"),{}, {multiple: true, class: "form-control product_tags"}%>
+            <%= f.select :tag, options_for_select(tag_list, :selected => split_tags(product.tag)),{}, {multiple: true, class: "form-control product_tags"}%>
           </div>
         </div>
       </div>
@@ -69,7 +69,7 @@
   <div class="row">
     <div class="col-sm-12">
         <% split_tags(product.tag).each do |tag| %>
-        <div class="label label-tags label-success"><%= tag %></div>
+        <span class="tag"><a class="btn btn-tags btn-success" style="background: #<%= "%06x" % (rand * 0xffffff)%>" herf="#"><%= tag %></a></span>
         <% end %>
     </div>
   </div>

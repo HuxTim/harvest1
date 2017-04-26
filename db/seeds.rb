@@ -116,6 +116,44 @@ tags = ["spice", "no-carb", "organic", "gluten-free", "soy-free", "vegetarian", 
 puts "creating stores"
 Vendor.all.each do |vendor|
   if rand() > 0.9
+    marketid = Market.all.first.id
+
+    @store = Store.create!(name: (User.find(vendor.user_id).name + "'s " + products.sample),
+    description: "test store",
+    vendor_id: vendor.id)
+
+    puts @store.id
+
+    @store.store_market_relationships.create!(market_id: marketid,
+    open_time: Market.find(marketid).open_time+1800*rand(3),
+    close_time: Market.find(marketid).close_time-1800*rand(3),)
+
+    @store.requests.create!(market_id: marketid,
+    open_time: Market.find(marketid).open_time+1800*rand(3),
+    close_time: Market.find(marketid).close_time-1800*rand(3),
+    status: (rand() > 0.5 ? 5 : 6))
+
+
+
+    10.times do
+    name = item.sample
+    price = "$"+((4+rand(6))*0.5).to_s+"/lb"
+    Product.create!(name: name,
+    price: price,
+    description: "test product",
+    tag: tags.sample+","+tags.sample,
+    store_id: @store.id)
+    end
+
+    10.times do
+      @user = User.offset(rand(User.count)).first
+      product = products.sample
+      StoreReview.create!(rating: [1, 2, 3, 4, 5].sample,
+      comment: "test store review",
+      user_id: @user.id,
+      store_id: @store.id)
+    end
+
     marketid = Market.all.second.id
 
     @store = Store.create!(name: (User.find(vendor.user_id).name + "'s " + products.sample),
@@ -132,6 +170,8 @@ Vendor.all.each do |vendor|
     open_time: Market.find(marketid).open_time+1800*rand(3),
     close_time: Market.find(marketid).close_time-1800*rand(3),
     status: (rand() > 0.5 ? 5 : 6))
+
+
 
     10.times do
     name = item.sample

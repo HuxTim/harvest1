@@ -27,32 +27,21 @@ $(document).ready(function() {
         document.getElementById("store_id").value = data['store_id'];
         $('#finish_upload').removeClass('disabled');
         jQuery('#add_store_image').css({ opacity: 1});
-        // Dropzone.storeImageUpload.options = {
-        //   // restrict image size to a maximum 1MB
-        //   clickable: true,
-        //   maxFiles: 5,
-        //   parallelUploads: 10,
-        //   maxFilesize: 5,
-        //   // changed the passed param to one accepted by
-        //   // our rails app
-        //   paramName: "store_image[image]",
-        //   // show remove links on each image upload
-        //   addRemoveLinks: false
-        // };
       },
       error: function(data, failure) {
-        alert(data);
+        alert("Error Happened, Please Chenck Your Input");
       }
+
     });
   });
 
   $("#market_search_button").click(function() {
-    var valuesToSubmit = $("#query_market").serialize();
+    var query = $("#market_query").val();
     $.ajax({
       url: "/stores/new/markets",
       dataType: "json",
       type: "GET",
-      data: valuesToSubmit,
+      data: {query:query},
       success: function(data, success) {
         document.getElementById("search_results").innerHTML = ""
         var arr = [];
@@ -66,7 +55,7 @@ $(document).ready(function() {
         }
       },
       error: function(data, failure) {
-        alert(data);
+        alert("Something Wrong Happen, Please try it later");
       }
     });
   });
@@ -100,7 +89,7 @@ $(document).ready(function() {
         $('#current_product_page').val(parseInt($("#current_product_page").val()) + 1);
       },
       error: function(data, failure) {
-        alert(success);
+        alert("Something Wrong Happen, Please try it later");
       }
     });
   });
@@ -116,7 +105,7 @@ $(document).ready(function() {
         $('#current_review_page').val(parseInt($("#current_review_page").val()) + 1);
       },
       error: function(data, failure) {
-        alert(success);
+        alert("Something Wrong Happen, Please try it later");
       }
     });
   });
