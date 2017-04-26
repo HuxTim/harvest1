@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'ruby'
 gem 'rails_12factor', group: :production
-# gem 'sqlite3', group: :development
+gem 'sqlite3', group: :development
 gem 'pg', group: :production
 gem 'rails',        '5.0.1'
 gem 'puma',         '3.4.0'
