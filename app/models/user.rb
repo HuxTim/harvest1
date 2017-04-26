@@ -16,10 +16,6 @@ class User < ApplicationRecord
    validates :password, presence: true, length: { minimum: 6 }
 	 validates :zipcode, presence: true, length: { is: 5 }
 
-   validates :state, presence: true, inclusion: { in: CS.states(:us).keys.collect{|x| x.to_s }}
-   validates :city, presence: true, inclusion: { in: lambda{|user| CS.cities(user.state.to_sym, :us)}}
-
-
    def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                                                 BCrypt::Engine.cost
