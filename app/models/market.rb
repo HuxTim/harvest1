@@ -16,7 +16,7 @@ class Market < ApplicationRecord
 
   validates :open_time, presence: true
   validates :close_time, presence: true
-  validates :description,length: { maximum: 250 }
+  validates :description,length: { maximum: 750 }
   validates :rating, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 5}
 
   #how to validate the format of city and state

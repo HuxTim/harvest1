@@ -10,5 +10,5 @@ class Store < ApplicationRecord
 
   validates :name, presence: true, length: {maximum: 50 }
   validates :vendor_id, presence: true
-  validates :description,length: { maximum: 250 }
+  validates :description,length: { maximum: 750 }
 end

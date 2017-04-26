@@ -9,10 +9,8 @@ class ShoppingListsController < ApplicationController
 
     respond_to do |format|
       if @shopping_list.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
         format.json { render json: {statue: 'Add successfully.'}}
       else
-        format.html { render :new }
         format.json { render json: {statue: 'Something Wrong.'}}
       end
     end
