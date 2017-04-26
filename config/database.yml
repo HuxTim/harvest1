@@ -9,9 +9,7 @@ default: &default
   encoding: unicode
   database: harvest_database
   pool: 5
-  username: blog
-  password:
-  host: localhost
+
 
 
 development:
@@ -28,5 +26,5 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: harvest_database
+  pool: 5
   
