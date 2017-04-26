@@ -1,4 +1,14 @@
 <% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
-<%= render 'form', user: @user %>
-<%= link_to 'Back', users_path %>
+<h1 align="center">Sign up</h1>
+<section>
+	<div class="row">
+		<div class="col-md-6 offset-md-3">
+			<%= render 'form', user: @user %>
+		</div>
+	</div>
+</section>
+<section>
+	<div class="row">
+	<%= link_to 'Back', users_path %>
+	</div>
+</section>
