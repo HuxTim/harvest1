@@ -13,4 +13,3 @@ rerun.txt
 pickle-email-*.html
 .byebug_history
 *.DS_Store
-config/database.yml
