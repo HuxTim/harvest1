@@ -223,10 +223,10 @@ puts "halfway done starting"
     {'name' => "Gluten-Free Chocolate Chip Cookies (Dzn)", 'tags' => "Gluten-Free"},
     {'name' => "Gluten-Free Macadamia Nut Cookies (Dzn)", 'tags' => "Gluten-Free"}]
 
-  cheese = [{'name' => "Brie Cheese 8oz", 'tags' => "Gluten-Free"}, {'name' => "Gruyere Cheese 8oz", 'tags' => "Gluten-Free"},
-    {'name' => "Gouda Cheese 8oz", 'tags' => "Gluten-Free"}, {'name' => "Feta Cheese 8oz", 'tags' => "Gluten-Free"},
-    {'name' => "Cheddar Cheese", 'tags' => "Gluten-Free"}, {'name' => "Parmesan Cheese", 'tags' => "Gluten-Free"},
-    {'name' => " Mozarella Cheese 8oz", 'tags' => "Gluten-Free"}]
+  cheese = [{'name' => "Brie Cheese 8oz", 'tags' => ""}, {'name' => "Gruyere Cheese 8oz", 'tags' => ""},
+    {'name' => "Gouda Cheese 8oz", 'tags' => ""}, {'name' => "Feta Cheese 8oz", 'tags' => ""},
+    {'name' => "Cheddar Cheese", 'tags' => ""}, {'name' => "Parmesan Cheese", 'tags' => ""},
+    {'name' => " Mozarella Cheese 8oz", 'tags' => ""}]
 
 puts "Working on 3 market stores"
   vn= 0

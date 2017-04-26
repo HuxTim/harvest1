@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   delete '/product_images/:id', to: 'product_image#ajax_destory'
   get '/markets/:id/store_market_relationships/new', to: 'store_market_relationships#new'
   get '/search', to: 'searches#index'
+  get '/list', to: 'shopping_lists#index'
 
   resources :reviews
   resources :products

@@ -2,6 +2,10 @@ class ShoppingListsController < ApplicationController
   before_action :require_login, only: [:create, :destroy]
 
 
+  def index
+    
+  end
+
   # Huiming Jia, implement add and delete shop list function directly on product card don't detele
   def create
     @shopping_list = ShoppingList.create(product_id: params[:product_id],
