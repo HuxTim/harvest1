@@ -22,10 +22,16 @@
   <div class="form-group">
     <div class="row">
 
-      <div class="col-md-4">
+      <div class="col-md-2">
         <%= f.label :discount%>
         <%= f.select :is_special, options_for_select([["yes",1],["no",0]], :selected => "no"),{}, {class: "form-control"}%>
       </div>
+
+      <div class="col-md-2">
+        <%= f.label :group%>
+        <%= f.select :group, options_for_select(group_list, :selected => group_list[0]),{}, {class: "form-control"}%>
+      </div>
+
       <div class="col-md-2">
         <%= f.label :price%>
         <input type="text" class="form-control" id="price_number" name="price_number">

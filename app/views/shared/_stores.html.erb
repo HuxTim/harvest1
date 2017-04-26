@@ -13,7 +13,11 @@
     <% end %>
     <div class="caption">
       <h4 class="card-title"><%= store.name%></h4>
-      <span class="card-text"><%= store.description%></span>
+      <span class="card-text"><%= store.description[0..200]%>
+        <% if store.description.length>200 %>
+        <%= "..." %>
+        <% end %>
+      </span>
     </div>
   <% end %>
 </div>
