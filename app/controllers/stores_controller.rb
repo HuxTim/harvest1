@@ -1,6 +1,7 @@
 class StoresController < ApplicationController
   before_action :set_store, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+  before_action :require_login, only: [:new, :create, :edit, :update]
+  
   # GET /stores
   # GET /stores.json
   def index
@@ -102,16 +103,6 @@ class StoresController < ApplicationController
     end
   end
 
-  # DELETE /stores/1
-  # DELETE /stores/1.json
-  def destroy
-    @store.destroy
-    respond_to do |format|
-      format.html { redirect_to current_user , notice: 'Store was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
   def ajax_search_markets
     # search function implementation
     q = params[:query]
@@ -136,7 +127,7 @@ class StoresController < ApplicationController
 
   def require_login
     unless current_user
-      redirect_to login_path, notice: 'Please log in first!'
+      redirect_to login_path, :flash => { :error => 'Please log in first!'}
     end
   end
 end

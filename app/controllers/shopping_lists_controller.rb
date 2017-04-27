@@ -3,7 +3,7 @@ class ShoppingListsController < ApplicationController
 
 
   def index
-    
+
   end
 
   # Huiming Jia, implement add and delete shop list function directly on product card don't detele

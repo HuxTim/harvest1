@@ -1,29 +1,57 @@
-<p id="notice"><%= notice %></p>
+<div class="nav-side-menu text-center">
+  <img src="<%= gravatar_for @user,size: 200 %>" alt="profile" class="img-thumbnail">
+  <p>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </p>
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+  <p>
+    <strong>Zipcode:</strong>
+    <%= @user.zipcode %>
+  </p>
+  <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+  <div class="menu-list text-left">
+    <ul id="menu-content" class="menu-content collapse out">
+      <li>
+        <a href="#">
+          <i class="fa fa-dashboard fa-lg"></i> Dashboard
+        </a>
+      </li>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+      <li>
+        <a href="<%= root_path %>">
+          <i class="fa fa-dashboard fa-lg"></i> Home Page
+        </a>
+      </li>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+      <li>
+        <a href="<%= edit_user_path(@user) %>">
+          <i class="fa fa-dashboard fa-lg"></i> Edit Infomation
+        </a>
+      </li>
 
-<p>
-  <strong>Zipcode:</strong>
-  <%= @user.zipcode %>
-</p>
+      <li>
+        <a href="#">
+          <i class="fa fa-user fa-lg"></i> Profile
+        </a>
+      </li>
 
-<p>
-  <strong>City:</strong>
-  <%= @user.city %>
-</p>
+      <li>
+        <a href="#">
+          <i class="fa fa-users fa-lg"></i> Users
+        </a>
+      </li>
 
-<p>
-  <strong>State:</strong>
-  <%= @user.state %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+      <% if !isVendor%>
+      <li>
+        <a href="#">
+          <i class="fa fa-users fa-lg"></i> Be Vendor
+        </a>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

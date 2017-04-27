@@ -378,13 +378,13 @@ bottom-padding{
 
 header {
   padding-top: 150px;
-  padding-bottom: 100px;
+  padding-bottom: 150px;
   padding-left: 30px;
   padding-right: 30px;
   color: white;
-  height: 300px;
+  height: 400px;
   width: 100%;
-  background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), image-url('search_background_image.jpeg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(118, 163, 96, 0.5)), image-url('search_background_image.jpeg');
 }
 
 footer{
@@ -414,10 +414,20 @@ footer{
   max-width: 50px;
 }
 
+.thumbnail{/* For browsers that do not support gradients */
+ /* For browsers that do not support gradients */
+ border: 0px;
+ background: rgba(177, 242, 167,0.5);
+  -moz-transition: background 0.3s ease-out;
+  -o-transition: background 0.3s ease-out;
+  -webkit-transition: background 0.3s ease-out;
+  transition: background 0.3s ease-out;
+}
+
 .thumbnail:hover{
-  background: $link-color;
+  background: $link-color; /* For browsers that do not support gradients */
   div {
-    opacity: 0.5;
+    opacity: 0.8;
     filter: alpha(opacity=50); /* For IE8 and earlier */
   }
 }
@@ -573,12 +583,6 @@ PRODUCTS
 
 }
 
-.thumbnail{
-  -webkit-transition: all 0.35s;
-  -moz-transition: all 0.35s;
-  transition: all 0.35s;
-}
-
 .tag{
   width: auto;
   :hover{
@@ -652,6 +656,7 @@ a.navbar-brand{
 }
 
 .board-md{
+  min-height: 700px;
   h1{
     font-size: 60px;
     color: white;
@@ -661,10 +666,17 @@ a.navbar-brand{
   background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), image-url('login_bg.jpg');
   .well{
     padding: 30px;
-
   }
 }
 
 .line-space{
   height: 15px;
+}
+
+.gravatar {
+  margin-right: 10px;
+}
+
+.gravatar_edit {
+  margin-top: 15px;
 }

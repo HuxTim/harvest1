@@ -131,4 +131,10 @@ module ApplicationHelper
     rgb[2] = [(rgb[2].to_i + 255 * amount).round, 255].min
     "#%02x%02x%02x" % rgb
   end
+
+  def require_login
+    unless current_user
+      redirect_to login_path, :flash => { :error => 'Please log in first!'}
+    end
+  end
 end

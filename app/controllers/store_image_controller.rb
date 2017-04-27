@@ -1,6 +1,7 @@
 class StoreImageController < ApplicationController
   before_action :set_store, only: [:ajax_create]
   before_action :set_store_image, only: [:ajax_destory]
+  before_action :require_login, only: [:ajax_create, :ajax_destory]
 
   def ajax_create
     @store_image = @store.store_images.create(store_images_params)
