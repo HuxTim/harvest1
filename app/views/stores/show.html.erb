@@ -82,8 +82,8 @@
       <% if logged_in? and isStoreOwner(current_user,@store) %>
 
       <div class="management-board col-sm-12">
-        <div class="col-sm-6"><%= link_to 'Edit Information', edit_store_path, class: "btn btn-default btn-lg btn-space col-sm-12" %></div>
-        <div class="col-sm-6">  <%= link_to 'Delete', @store, method: :delete, class: "btn btn-default btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure delete this store'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
+        <div class="col-sm-12"><%= link_to 'Edit Information', edit_store_path, class: "btn btn-default btn-lg btn-space col-sm-12" %></div>
+        <!-- <div class="col-sm-6">  <%= link_to 'Delete', @store, method: :delete, class: "btn btn-default btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure delete this store'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div> -->
       </div>
 
       <% end %>
@@ -345,6 +345,31 @@
       $('#ratings-existing').on('starrr:change', function(e, value){
         $('#count-existing').html(value);
       });
+    });
+
+
+    $(function() {
+      $.rails.allowAction = function(link) {
+        if (!link.attr('data-confirm')) {
+          return true;
+        }
+        $.rails.showConfirmDialog(link);
+        return false;
+      };
+      $.rails.confirmed = function(link) {
+        link.removeAttr('data-confirm');
+        return link.trigger('click.rails');
+      };
+      return $.rails.showConfirmDialog = function(link) {
+        var html, message;
+        message = link.attr('data-confirm');
+
+        html = "<div class=\"modal\" id=\"confirmationDialog\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n      <h4 class=\"modal-title\">Message<h4>\n      </div><div class = \"modal-body alert alert-danger\">\n      " + message + "</div>\n      <div class=\"modal-footer\">\n       <a data-dismiss=\"modal\" class=\"btn btn-default\">" + (link.data('cancel')) + "</a>   <a data-dismiss=\"modal\" class=\"btn btn-danger confirm\">" + (link.data('ok')) + "</a></div>\n    </div>\n  </div>\n</div>";
+        $(html).modal();
+        return $('#confirmationDialog .confirm').on('click', function() {
+          return $.rails.confirmed(link);
+        });
+      };
     });
 
     </script>

@@ -93,4 +93,70 @@ $(document).ready(function(){
     addRemoveLinks: false
   });
 });
+
+$("#store_new_next_step").on('click',function() {
+  var valuesToSubmit = $("#new_store").serialize();
+  var market_ids = "";
+  for (i = 0; i < $('.selected_tag').length; i++) {
+    market_ids += $('.selected_tag').eq(i).attr('id') + ",";
+  }
+  var formdata = valuesToSubmit+"&market_ids="+market_ids;
+  $.ajax({
+    url: "/stores",
+    dataType: "json",
+    type: "POST",
+    data: formdata,
+    success: function(data, success) {
+      $("#store_new_next_step").addClass('disabled')
+      $("#new_store").addClass('disabled')
+      $("#new_store input").prop("disabled", true);
+      $('#add_description *').click(false);
+      document.getElementById("store_id").value = data['store_id'];
+      $('#finish_upload').removeClass('disabled');
+      jQuery('#add_store_image').css({ opacity: 1});
+    },
+    error: function(data, failure) {
+      alert("Error Happened, Please Chenck Your Input");
+    }
+
+  });
+});
+
+
+  $('#finish_upload').addClass('disabled');
+
+  $("#market_search_button").click(function() {
+    var query = $("#market_query").val();
+    $.ajax({
+      url: "/stores/new/markets",
+      dataType: "json",
+      type: "GET",
+      data: {query:query},
+      success: function(data, success) {
+        document.getElementById("search_results").innerHTML = ""
+        var arr = [];
+        for (i = 0; i < $('.selected_tag').length; i++) {
+          arr.push(Number($('.selected_tag').eq(i).attr('id')))
+        }
+
+        for (i = 0; i < data['markets'].length; i++) {
+          if(!arr.includes(Number(data['markets'][i]['id'])))
+          document.getElementById("search_results").innerHTML += ("<div class='btn btn-primary market_tag' name='market_tag' id='"+data['markets'][i]['id']+"'>" + data['markets'][i]['name']+"</div>");
+        }
+      },
+      error: function(data, failure) {
+        alert("Something Wrong Happen, Please try it later");
+      }
+    });
+  });
+
+  $(document).on("click", '.market_tag', function(event) {
+    document.getElementById("selected_results").innerHTML += ("<div class='btn btn-success selected_tag' name='selected_market' id='"+ $(this).attr('id') +"'>"+$(this).html()+"</div>");
+    $(this).remove();
+  });
+
+  $(document).on("click", '.selected_tag', function(event) {
+    document.getElementById("search_results").innerHTML += ("<div class='btn btn-primary market_tag' name='market_tag' id='"+$(this).attr('id')+"'>" + $(this).html()+"</div>");
+    $(this).remove();
+  });
 </script>

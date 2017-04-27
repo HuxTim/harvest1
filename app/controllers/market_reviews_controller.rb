@@ -1,6 +1,6 @@
 class MarketReviewsController < ApplicationController
+  before_action :set_review, only: [:destroy]
   before_action :require_login, only: [:create, :destroy]
-
 
   def create
     @market_review = MarketReview.create(market_reviews_params)
@@ -16,8 +16,20 @@ class MarketReviewsController < ApplicationController
     end
   end
 
+  def destroy
+    @review.destroy
+    respond_to do |format|
+      format.html { redirect_to current_user, notice: 'review was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
 
   private
+  def set_review
+    @review = MarketReview.find(params[:id])
+  end
+
     def market_reviews_params
       params.require(:market_review).permit(:comment,:rating,:market_id)
     end
