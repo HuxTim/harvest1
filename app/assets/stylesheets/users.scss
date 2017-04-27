@@ -3,6 +3,9 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 /* forms */
+body a:hover{
+   text-decoration: none !important;
+}
 .nav-side-menu {
   padding-top: 30px;
   padding-bottom: 100px;
@@ -57,17 +60,18 @@
   background-color: #4f5b69;
 }
 
-.nav-side-menu li a{
+.nav-side-menu a li{
   text-decoration: none;
   color: #fff;
 }
-.nav-side-menu li a i {
+.nav-side-menu a li i {
   padding-left: 10px;
   width: 16px;
   padding-right: 30px;
 }
 
 .nav-side-menu li:hover {
+    text-decoration: none;
   border-left: 3px solid #d19b3d;
   background-color: #5cb85c;
   -webkit-transition: all 0.3s ease;
@@ -102,6 +106,7 @@
     line-height: 50px !important;
   }
 }
+
 @media (min-width: 767px) {
   .nav-side-menu .menu-list .menu-content {
     display: block;

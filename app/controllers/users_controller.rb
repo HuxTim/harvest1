@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update,:update_password]
-  before_action :require_login, only: [:edit, :update, :show,:update_password, :update]
+  before_action :set_user, only: [:show, :update,:update_password,:markets,:requests,:reviews]
+  before_action :require_login, only: [:edit, :update, :show,:update_password, :update,:markets,:requests,:reviews]
 
   # GET /users
   # GET /users.json
@@ -77,12 +77,16 @@ class UsersController < ApplicationController
     render :show, locals: { user: @user = current_user, board: board = "shopping_list"}
   end
 
-  def market_and_store
-    render :show, locals: { user: @user = current_user, board: board = "market_and_store"}
+  def markets
+    render :show, locals: { user: @user = current_user, board: board = "markets"}
   end
 
-  def reviews_and_requests
-    render :show, locals: { user: @user = current_user, board: board = "reviews_and_requests"}
+  def reviews
+    render :show, locals: { user: @user = current_user, board: board = "reviews"}
+  end
+
+  def requests
+    render :show, locals: { user: @user = current_user, board: board = "requests"}
   end
 
   def bevendor

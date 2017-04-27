@@ -27,10 +27,10 @@ Rails.application.routes.draw do
   get '/users/:id/edit', to: 'users#edit'
   get '/users/:id/change_password', to: 'users#change_password', as: 'change_password'
   get '/users/:id/shopping_list', to: 'users#shopping_list', as: 'shopping_list'
-  get '/users/:id/market_and_store', to: 'users#market_and_store', as: 'market_and_store'
-  get '/users/:id/reviews_and_requests', to: 'users#reviews_and_requests', as: 'reviews_and_requests'
+  get '/users/:id/requests', to: 'users#requests', as: 'my_requests'
+  get '/users/:id/markets', to: 'users#markets', as: 'my_markets'
+  get '/users/:id/reviews', to: 'users#reviews', as: 'my_reviews'
   get '/users/:id/store/new', to: 'users#bevendor', as: 'bevendor'
-
   patch '/users/:id/update_password', to: 'users#update_password'
 
   resources :reviews
