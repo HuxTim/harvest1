@@ -635,3 +635,36 @@ span.tags{
   margin-left: 0px;
   margin-right: 0px;
 }
+.logo-small{
+  width: 15%;
+  height: 15%;
+  padding: 10px;
+}
+.logo-lg{
+  width: 80%;
+  height: 80%;
+  padding: 10px;
+}
+
+a.navbar-brand{
+  height: 20px;
+  font-size: 25px;
+}
+
+.board-md{
+  h1{
+    font-size: 60px;
+    color: white;
+  }
+  padding-top: 60px;
+  padding-bottom: 100px;
+  background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), image-url('login_bg.jpg');
+  .well{
+    padding: 30px;
+
+  }
+}
+
+.line-space{
+  height: 15px;
+}

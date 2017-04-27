@@ -11,8 +11,7 @@ class SessionsController < ApplicationController
       redirect_to welcome_index_path
     else
       # Create an error message.
-      flash.now[:danger] = 'Invalid email/password combination'
-      render 'welcome/new'
+      redirect_to sessions_new_path, :flash => { :error => 'Invalid email/password combination'}
     end
   end
 

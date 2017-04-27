@@ -1,4 +1,22 @@
 <section>
+  <div class="row">
+    <div class="col-sm-12">
+      <%= form_for(MarketImage.new, html: { multipart: true, class: "form dropzone", id: "market_image_upload"}) do |f|  %>
+      <%= f.hidden_field :market_id, :id => "market_id", :value => @market.id %>
+      <div class="form-group">
+        <div class="fallback">
+          <%= f.file_field :image %><br>
+        </div>
+      </div>
+      <% end %></br>
+    </div>
+  </div>
+</section>
+<section>
+  <%= render 'market_images', locals: { market_images: @market.market_images } %>
+</section>
+
+<section>
   <%= form_for market, remote: true do |f| %>
   <%= render 'shared/hint_messages', object: market %></br>
   <div class="form-group">
@@ -93,39 +111,25 @@
       </div>
     </div>
   </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-6">
+        <%= link_to "Back", @market,  {class: "col-sm-12 btn btn-warning"} %>
+      </div>
+
+      <div class="col-sm-6">
+        <%= f.submit "Finish Edit", class: "col-sm-12 btn btn-primary" %></br>
+      </div>
+    </div>
+  </div>
   <% end %>
 </section>
 
 <section>
-  <div class="row">
-    <div class="col-sm-12">
-      <%= form_for(MarketImage.new, html: { multipart: true, class: "form dropzone", id: "market_image_upload"}) do |f|  %>
-      <%= f.hidden_field :market_id, :id => "market_id", :value => @market.id %>
-      <div class="form-group">
-        <div class="fallback">
-          <%= f.file_field :image %><br>
-        </div>
-      </div>
-      <% end %></br>
-    </div>
-  </div>
-</section>
 
-<section>
-    <%= render 'market_images', locals: { market_images: @market.market_images } %>
-</section>
-<section>
-  <div class="row">
-    <div class="col-sm-6">
-        <%= link_to "Back", @market,  {class: "col-sm-12 btn btn-warning"} %>
-    </div>
-
-    <div class="col-sm-6">
-        <li id="edit_finish" class="col-sm-12 btn btn-primary">Finish Edit</li>
-    </div>
-  </div>
 </div>
 </section>
+
 
 <script>
 var clickEvent = false;
@@ -168,13 +172,6 @@ $(document).ready(function() {
     });
   });
 });
-
-$(document).ready(function() {
-  $("#edit_finish").click(function() {
-    $(".edit_market").submit();
-  });
-});
-
 $(document).ready(function(){
   // disable auto discover
   Dropzone.autoDiscover = false;
