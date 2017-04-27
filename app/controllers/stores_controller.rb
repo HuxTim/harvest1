@@ -1,7 +1,7 @@
 class StoresController < ApplicationController
   before_action :set_store, only: [:show, :edit, :update, :destroy]
   before_action :require_login, only: [:new, :create, :edit, :update]
-  
+
   # GET /stores
   # GET /stores.json
   def index
@@ -51,10 +51,14 @@ class StoresController < ApplicationController
   def create
     # puts current_user
     # puts current_user.name
+    if !@vendor = Vendor.create!(user_id: current_user.id)
+      render json: {error: @vendor.errors.full_messages.join(',')}, status: :unprocessable_entity
+    end
+
     market_ids = params['market_ids'].split(',')
     market_ids = market_ids.uniq
     @store = Store.new(store_params)
-    @store.vendor_id = current_user.vendor.id
+    @store.vendor_id = @vendor.id
 
     if @store.save
       market_ids.each do |market_id|

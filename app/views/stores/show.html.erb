@@ -22,13 +22,11 @@
         </div>
         <% else %>
         <div class="item active">
-          <div class="text-center carousel-image carousel-image-lg" style="background:url(<%=  @store.store_images.all.first.image.url(:large) %>;background-size: 100% 100%;
-            background-repeat: no-repeat;)"></div>
-
+          <div class="text-center carousel-image carousel-image-lg" style="background:url(<%=  @store.store_images.all.first.image.url(:medium) %>);background-size: 100% 100%;"></div>
           </div>
           <% @store.store_images[1..-1].each do |store_image|%>
           <div class="item">
-            <div class="text-center carousel-image carousel-image-lg" style="background:url(<%= store_image.image.url(:large) %>);background-size: 100% 100%;
+            <div class="text-center carousel-image carousel-image-lg" style="background:url(<%= store_image.image.url(:medium) %>);background-size: 100% 100%;
               background-repeat: no-repeat;"></div>
             </div>
             <% end %>
@@ -83,10 +81,10 @@
 
       <% if logged_in? and isStoreOwner(current_user,@store) %>
 
-        <div class="management-board col-sm-12">
-          <div class="col-sm-6"><%= link_to 'Edit Information', edit_store_path, class: "btn btn-default btn-lg btn-space col-sm-12" %></div>
-          <div class="col-sm-6">  <%= link_to 'Delete', @store, method: :delete, class: "btn btn-default btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure delete this store'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
-        </div>
+      <div class="management-board col-sm-12">
+        <div class="col-sm-6"><%= link_to 'Edit Information', edit_store_path, class: "btn btn-default btn-lg btn-space col-sm-12" %></div>
+        <div class="col-sm-6">  <%= link_to 'Delete', @store, method: :delete, class: "btn btn-default btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure delete this store'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
+      </div>
 
       <% end %>
 

@@ -24,6 +24,15 @@ Rails.application.routes.draw do
   get '/search', to: 'searches#index'
   get '/list', to: 'shopping_lists#index'
 
+  get '/users/:id/edit', to: 'users#edit'
+  get '/users/:id/change_password', to: 'users#change_password', as: 'change_password'
+  get '/users/:id/shopping_list', to: 'users#shopping_list', as: 'shopping_list'
+  get '/users/:id/market_and_store', to: 'users#market_and_store', as: 'market_and_store'
+  get '/users/:id/reviews_and_requests', to: 'users#reviews_and_requests', as: 'reviews_and_requests'
+  get '/users/:id/store/new', to: 'users#bevendor', as: 'bevendor'
+
+  patch '/users/:id/update_password', to: 'users#update_password'
+
   resources :reviews
   resources :products
   resources :shopping_lists

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
-  before_action :require_login, only: [:edit, :update, :show]
+  before_action :set_user, only: [:show, :update,:update_password]
+  before_action :require_login, only: [:edit, :update, :show,:update_password, :update]
 
   # GET /users
   # GET /users.json
@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    render :show, locals: { user: @user = @user, board: board = "dashboard"}
   end
 
   # GET /users/new
@@ -21,18 +22,17 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    render :show, locals: { user: @user = current_user, board: board = "edit"}
   end
 
   # POST /users
   # POST /users.json
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
       if @user.save
         log_in @user
         format.html { redirect_to @user, notice: 'User was successfully created.' }
-
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -44,14 +44,49 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(user_reset_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit }
+        format.html { render :show, locals: { user: @user, board: board = "edit"} }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def update_password
+    @user = User.find(params[:id])
+    if @user &&  @user.authenticate(params[:user][:old_password])
+      if @user.update(user_reset_password_params)
+        redirect_to @user, notice: 'Password was successfully changed.'
+      else
+        render :show, locals: { user: @user, board: board = "change_password"}
+      end
+    else
+      @user.errors.add(:password, "Password Wrong")
+      render :show, locals: { user: @user, board: board = "change_password"}
+    end
+  end
+
+  def change_password
+    render :show, locals: { user: @user = current_user, board: board = "change_password"}
+  end
+
+
+  def shopping_list
+    render :show, locals: { user: @user = current_user, board: board = "shopping_list"}
+  end
+
+  def market_and_store
+    render :show, locals: { user: @user = current_user, board: board = "market_and_store"}
+  end
+
+  def reviews_and_requests
+    render :show, locals: { user: @user = current_user, board: board = "reviews_and_requests"}
+  end
+
+  def bevendor
+    render :show, locals: { user: @user = current_user, board: board = "bevendor"}
   end
 
   private
@@ -63,6 +98,14 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation,
-                        :zipcode, :city, :state)
+                        :zipcode)
+    end
+
+    def user_reset_params
+      params.require(:user).permit(:name,:zipcode)
+    end
+
+    def user_reset_password_params
+      params.require(:user).permit(:password, :password_confirmation)
     end
 end

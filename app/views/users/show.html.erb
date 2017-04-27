@@ -1,57 +1,114 @@
-<div class="nav-side-menu text-center">
-  <img src="<%= gravatar_for @user,size: 200 %>" alt="profile" class="img-thumbnail">
-  <p>
-    <strong>Name:</strong>
-    <%= @user.name %>
-  </p>
-  <p>
-    <strong>Email:</strong>
-    <%= @user.email %>
-  </p>
-  <p>
-    <strong>Zipcode:</strong>
-    <%= @user.zipcode %>
-  </p>
-  <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-  <div class="menu-list text-left">
-    <ul id="menu-content" class="menu-content collapse out">
-      <li>
-        <a href="#">
-          <i class="fa fa-dashboard fa-lg"></i> Dashboard
-        </a>
-      </li>
+<div class="row">
+  <div class="col-sm-3 no-padding">
+    <div class="nav-side-menu text-center">
+      <img src="<%= gravatar_for @user,size: 150 %>" alt="profile" class="img-thumbnail">
+      <p>
+        <strong>Name:</strong>
+        <%= @user.name %>
+      </p>
+      <p>
+        <strong>Email:</strong>
+        <%= @user.email %>
+      </p>
+      <p>
+        <strong>Zipcode:</strong>
+        <%= @user.zipcode %>
+      </p>
 
-      <li>
-        <a href="<%= root_path %>">
-          <i class="fa fa-dashboard fa-lg"></i> Home Page
-        </a>
-      </li>
+      <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
-      <li>
-        <a href="<%= edit_user_path(@user) %>">
-          <i class="fa fa-dashboard fa-lg"></i> Edit Infomation
-        </a>
-      </li>
+      <div class="menu-list text-left">
+        <ul id="menu-content" class="menu-content collapse out">
+          <li id="dashboard">
+              <a href="<%= edit_user_path %>">
+                <i class="fa fa-dashboard fa-lg"></i> Dashboard
+              </a>
+          </li>
 
-      <li>
-        <a href="#">
-          <i class="fa fa-user fa-lg"></i> Profile
-        </a>
-      </li>
+          <li id="requests">
+              <a href="<%= requests_path %>">
+                <i class="fa fa-users fa-lg"></i><i class="glyphicon glyphicon-comment"></i> Requests
+              </a>
+          </li>
 
-      <li>
-        <a href="#">
-          <i class="fa fa-users fa-lg"></i> Users
-        </a>
-      </li>
+          <li id="edit_information">
+              <a href="<%= edit_user_path %>">
+                <i class="fa fa-dashboard fa-lg"></i><i class="glyphicon glyphicon-wrench"></i> Reset Account
+              </a>
+          </li>
 
-      <% if !isVendor%>
-      <li>
-        <a href="#">
-          <i class="fa fa-users fa-lg"></i> Be Vendor
-        </a>
-      </li>
+          <li id="change_password">
+              <a href="<%= change_password_path %>">
+                <i class="fa fa-dashboard fa-lg"></i><i class="glyphicon glyphicon-cog"></i> Change Password
+              </a>
+          </li>
+
+          <li id="shopping_list">
+              <a href="<%= shopping_list_path %>">
+                <i class="fa fa-user fa-lg"></i><i class="glyphicon glyphicon-shopping-cart"></i> Shopping List
+              </a>
+          </li>
+
+          <li id="reviews">
+              <a href="<%= reviews_path %>">
+                <i class="fa fa-users fa-lg"></i><i class="glyphicon glyphicon-comment"></i> My Reviews
+              </a>
+          </li>
+
+          <li id="market">
+              <a href="<%= markets_path %>">
+                <i class="fa fa-user fa-lg"></i><i class="glyphicon glyphicon glyphicon-grain"></i> My Market
+              </a>
+          </li>
+
+          <% if !isVendor%>
+          <li id="bevendor">
+              <a href="<%= new_store_path %>">
+                <i class="fa fa-users fa-lg"></i><i class="glyphicon glyphicon-leaf"></i> Be Vendor
+              </a>
+          </li>
+          <% else %>
+          <li id="bevendor">
+              <a href="<%= "/stores/" + @user.vendor.store.id.to_s %>">
+                <i class="fa fa-users fa-lg"></i><i class="glyphicon glyphicon-leaf"></i> Go to Store
+              </a>
+          </li>
+          <% end %>
+
+          <li>
+            <a href="<%= root_path %>">
+              <i class="fa fa-dashboard fa-lg"></i><i class="glyphicon glyphicon-home"></i> Home Page
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-9 no-padding">
+    <div id="profile-board">
+      <% if board == "edit" %>
+        <%= render  partial: "form_edit", locals: { user: user = @user} %>
+      <% elsif board == "dashboard"%>
+        <%= render  partial: "dashboard", locals: { user: @user} %>
+      <% elsif board == "shopping_list"%>
+        <%= render  partial: "shopping_list", locals: { user: @user} %>
+      <% elsif board == "market_and_store"%>
+        <%= render  partial: "market_and_store", locals: { user: @user} %>
+      <% elsif board == "reviews_and_requests"%>
+        <%= render  partial: "reviews_and_requests", locals: { user: @user} %>
+      <% elsif board == "change_password"%>
+        <%= render  partial: "change_password", locals: { user: @user} %>
+      <% elsif board == "bevendor"%>
+      ??
+        <!-- <%= render  partial: "stores/form_new", locals: { user: user = @user} %> -->
       <% end %>
-    </ul>
+
+    </div>
   </div>
 </div>
+
+<script>
+
+</script>

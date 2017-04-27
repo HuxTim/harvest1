@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
   $('#new_store_review').submit(function() {
     document.getElementById("store_review_rating").value= (document.getElementById("count").innerHTML);
     return true; // return false to cancel form action
@@ -122,23 +121,6 @@ $(document).on("click", '.selected_tag', function(event) {
   $(this).remove();
 });
 
-$(document).ready(function(){
-  // disable auto discover
-  Dropzone.autoDiscover = false;
-  // grap our upload form by its id
-  $("#store_image_upload").dropzone({
-    // restrict image size to a maximum 1MB
-    clickable: true,
-    maxFiles: 5,
-    parallelUploads: 10,
-    maxFilesize: 5,
-    // changed the passed param to one accepted by
-    // our rails app
-    paramName: "store_image[image]",
-    // show remove links on each image upload
-    addRemoveLinks: false
-  });
-});
 
 $(function() {
   $.rails.allowAction = function(link) {
