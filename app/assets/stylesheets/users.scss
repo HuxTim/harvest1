@@ -44,6 +44,15 @@ body a:hover{
   font-size: 20px;
   cursor: pointer;
 }
+
+.nav-side-menu .badge {
+  margin-left: 50px;
+  border-radius: 20px;
+  color: rgb(68, 66, 61);
+  background: white;
+  line-height: 15px;
+  font-size: 15px;
+}
 .nav-side-menu ul :not(collapsed) .arrow:before,
 .nav-side-menu li :not(collapsed) .arrow:before {
   font-family: FontAwesome;
@@ -128,4 +137,11 @@ body a:hover{
   padding: 10px;
   border-width: 10px;
   border-color: rgba(118, 163, 96,0.8);
+}
+table .label{
+  display: inline-block;
+}
+
+td{
+  font-size: 15px;
 }

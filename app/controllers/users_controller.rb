@@ -102,10 +102,16 @@ class UsersController < ApplicationController
 
   def reviews
     render :show, locals: { user: @user = current_user, board: board = "reviews"}
+    @user.requests.where(:status => 1).each do |request|
+      request.update(:status => 0)
+    end
   end
 
   def requests
     render :show, locals: { user: @user = current_user, board: board = "requests"}
+    @user.requests.where(:status => 0).each do |request|
+      request.update(:status => 1)
+    end
   end
 
   def bevendor

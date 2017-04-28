@@ -1,7 +1,17 @@
-<div class="row">
+<% if @user.markets.length > 0%>
+<div class="row well">
   <div class="col-sm-12">
     <h3 class="text-center">My Markets</h3>
-    <hr>
-    <%= render 'shared/markets_panel_lg', locals: { markets: @markets = @user.markets } %>
+      <%= render 'shared/markets_panel_lg', locals: { markets: @markets = @user.markets } %>
   </div>
 </div>
+<% end %>
+
+<% if isVendor and @user.vendor.store.markets.length > 0 %>
+<div class="row">
+  <div class="col-sm-12 well">
+    <h3 class="text-center">Store's Markets</h3>
+    <%= render 'shared/markets_panel', locals: { markets: @markets = @user.vendor.store.markets } %>
+  </div>
+</div>
+<% end %>

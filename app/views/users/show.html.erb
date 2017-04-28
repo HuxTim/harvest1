@@ -3,13 +3,14 @@
     <div class="nav-side-menu text-center">
       <img src="<%= gravatar_for @user,size: 150 %>" alt="profile" class="img-thumbnail">
       <p>
-        <strong>Name:</strong>
-        <%= @user.name %>
-      </p>
-      <p>
         <strong>Email:</strong>
         <%= @user.email %>
       </p>
+      <p>
+        <strong>Name:</strong>
+        <%= @user.name %>
+      </p>
+
       <p>
         <strong>Zipcode:</strong>
         <%= @user.zipcode %>
@@ -28,10 +29,11 @@
           </a>
 
           <a href="<%= my_requests_path %>">
-            <li id="requests">
-
-              <i class="fa fa-users fa-lg"></i><i class="glyphicon glyphicon-envelope"></i> Requests
-
+            <li id="requests active">
+              <i class="fa fa-users fa-lg "></i><i class="glyphicon glyphicon-envelope"></i> Requests
+              <% if @user.requests.where(:status => 0).count > 0 %>
+              <span class="badge"><%= @user.requests.where(:status => 0).count%></span>
+              <% end %>
             </li>
           </a>
 

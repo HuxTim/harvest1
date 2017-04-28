@@ -437,8 +437,6 @@ body.container{
   padding-top: 60px;
   text-align: justify;
   text-justify: inter-word;
-  //word-break: break-all;
-
 }
 
 // a{
@@ -553,7 +551,8 @@ PRODUCTS
 
 .product-description{
   font-size: 14px;
-  word-break: break-all;
+  text-align: justify;
+text-justify: inter-word;
 }
 
 .product-price{
