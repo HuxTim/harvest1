@@ -11,7 +11,7 @@
     <% @items.each do |group| %>
       <% if !group.nil? %>
         <% if group.any? %>
-      <h5 class="text-center"><%=group.first.product.group%></h5>
+      <h4 class="text-center"><%=group.first.product.group%></h4>
       <table class="table table-striped table-hover">
         <thead class="thead-inverse text-center">
           <tr>
@@ -33,7 +33,7 @@
                 <%=item.created_at.to_s[0..10]%>
               </td>
               <td>
-                <%= link_to 'Delete', item, method: :delete,  class: "btn btn-danger col-sm-12"%>
+                <%= link_to 'Delete', item, method: :delete, class: "btn btn-danger col-sm-12", data: { toggle: 'confirmationDialog', confirm: t('messages.Are you sure delete this Product. After delete the Product, Data can not be retore'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%>
               </td>
             </tr>
           <% end %>

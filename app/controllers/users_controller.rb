@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :update_password, :markets, :requests, :reviews, :shopping_list]
   before_action :require_login, only: [:edit, :update, :show,:update_password, :update,:markets,:requests,:reviews]
+  before_action :user_shopping_list, only: [:show, :shopping_list]
 
   # GET /users
   # GET /users.json
@@ -74,25 +75,6 @@ class UsersController < ApplicationController
 
 
   def shopping_list
-    @meats = []
-    @grains = []
-    @vegetables = []
-    @fruits = []
-    @misc = []
-    @items = [@vegetables, @fruit, @grains, @meats, @misc]
-    ShoppingList.where(:user_id => @user.id).each do |item|
-      if item.product.group.eql? "Vegetable"
-        @vegetables.push(item)
-      elsif item.product.group.eql? "Fruit"
-        @fruit.push(item)
-      elsif item.product.group.eql? "Grain"
-        @grains.push(item)
-      elsif item.product.group.eql? "Meat"
-        @meats.push(item)
-      else item.product.group.eql? "Misc."
-        @misc.push(item)
-      end
-    end
     render :show, locals: { user: @user = current_user, board: board = "shopping_list"}
   end
 
@@ -113,6 +95,28 @@ class UsersController < ApplicationController
   end
 
   private
+
+    def user_shopping_list
+      @meats = []
+      @grains = []
+      @vegetables = []
+      @fruits = []
+      @misc = []
+      @items = [@vegetables, @fruit, @grains, @meats, @misc]
+      ShoppingList.where(:user_id => @user.id).each do |item|
+        if item.product.group.eql? "Vegetable"
+          @vegetables.push(item)
+        elsif item.product.group.eql? "Fruit"
+          @fruit.push(item)
+        elsif item.product.group.eql? "Grain"
+          @grains.push(item)
+        elsif item.product.group.eql? "Meat"
+          @meats.push(item)
+        else item.product.group.eql? "Misc."
+          @misc.push(item)
+        end
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])

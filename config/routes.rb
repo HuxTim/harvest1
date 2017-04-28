@@ -34,12 +34,12 @@ Rails.application.routes.draw do
 
   resources :reviews
   resources :products
-  resources :shopping_lists
+
   resources :markets do
     resources :stores
     resources :market_reviews
   end
-  
+
   resources :users do
     resources :shopping_lists
   end
@@ -48,7 +48,7 @@ Rails.application.routes.draw do
     resources :products
     resources :store_reviews
   end
-
+  resources :shopping_lists
   resources :stores
   resources :vendors
   resources :users

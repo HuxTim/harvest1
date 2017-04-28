@@ -27,7 +27,7 @@ class StoreReviewsController < ApplicationController
 
   private
     def set_review
-      @review = MarketReview.find(params[:id])
+      @review = StoreReview.find(params[:id])
     end
     def store_reviews_params
       params.require(:store_review).permit(:comment,:rating,:store_id)
