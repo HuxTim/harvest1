@@ -39,6 +39,10 @@ Rails.application.routes.draw do
     resources :stores
     resources :market_reviews
   end
+  
+  resources :users do
+    resources :shopping_lists
+  end
 
   resources :stores do
     resources :products

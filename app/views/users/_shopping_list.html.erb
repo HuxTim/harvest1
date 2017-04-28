@@ -8,12 +8,43 @@
 
 <div class="col-sm-6 panel-custom-md">
   <h3 class="text-center">Your Shopping List</h2>
-    <% @meats.each do |item| %>
-      <div>
-      <%= item.product.name item.created_at%>
-    </div>
+    <% @items.each do |group| %>
+      <% if !group.nil? %>
+        <% if group.any? %>
+      <h5 class="text-center"><%=group.first.product.group%></h5>
+      <table class="table table-striped table-hover">
+        <thead class="thead-inverse text-center">
+          <tr>
+            <th>Item</th>
+            <th>Date Added</th>
+            <td></th>
+            <th colspan="3"></th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% group.each do |item| %>
+            <tr>
+              <td class="col-md-5 text-left">
+                <%=item.product.name%>
+              </td>
+              <td>
+                <%=item.created_at.to_s[0..10]%>
+              </td>
+              <td>
+                <%= link_to 'Delete', item, method: :delete,  class: "btn btn-danger col-sm-12"%>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% end %>
+      <% end %>
     <% end %>
 </div>
+
+
 <div class="col-sm-1"></div>
 <div class="col-sm-5 panel-custom-md">
   <h3 class="text-center">Your Shopping Schedule</h2>
