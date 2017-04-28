@@ -60,7 +60,7 @@ module ProductsHelper
       "Vegetable",
       "Fruit",
       "Grain",
-      "Misc"
+      "Misc."
     ]
   end
 end

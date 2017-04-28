@@ -435,7 +435,9 @@ footer{
 body.container{
 
   padding-top: 60px;
-  word-break: break-all;
+  text-align: justify;
+  text-justify: inter-word;
+  //word-break: break-all;
 
 }
 

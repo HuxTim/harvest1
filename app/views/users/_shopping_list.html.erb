@@ -1,1 +1,55 @@
-sl
+<div class="row">
+  <h1 class="text-center">Title Place Holder </h1>
+    <div class="col-md-4 col-md-offset-1">
+      Enter the day and time you want to go grocery shopping and a list will be generated of which markets and vendors you can find all your needs
+    </div>
+  </div>
+<div class="row">
+
+<div class="col-sm-6 panel-custom-md">
+  <h3 class="text-center">Your Shopping List</h2>
+    <% @meats.each do |item| %>
+      <div>
+      <%= item.product.name item.created_at%>
+    </div>
+    <% end %>
+</div>
+<div class="col-sm-1"></div>
+<div class="col-sm-5 panel-custom-md">
+  <h3 class="text-center">Your Shopping Schedule</h2>
+  <% @user.store_reviews.each do |review| %>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong><%= review.store.name%></strong> <span class="text-muted"><%= review.created_at%></span>
+        </div>
+        <div class="panel-body">
+          <%= review.comment%>
+          <hr>
+          <span>
+            <div class="row">
+              <% (0..4).each do |i|%>
+              <% if i >= review.rating %>
+              <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+              </button>
+              <% else %>
+              <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+              </button>
+              <% end %>
+              <% end %>
+              <div class="text-right"><%= link_to 'Delete', review, method: :delete, class: "btn btn-danger", data: { confirm: t('messages.Are you sure delete this review'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
+          </div>
+          </span>
+        </div><!-- /panel-body -->
+      </div><!-- /panel panel-default -->
+    </div><!-- /col-sm-5 -->
+    <div class="col-sm-12">
+
+    </div>
+  </div>
+  <% end %>
+</div>
+</div>

@@ -35,8 +35,15 @@
 </div>
 
 <div class="actions">
-  <%= f.submit "Create My Account", class: "btn btn-primary col-sm-12" %>
+  <%= f.submit "Create My Account", class: "btn btn-primary col-sm-5" %>
+  <%= link_to "Cancel and Go Back", root_path, class: 'btn btn-danger col-sm-5 col-sm-offset-2' %>
 </div>
 <% end %>
-<span class="a-padding">Already Have a Account <%= link_to "Log In Now?", sessions_new_path, class: 'a-padding' %></span>
-</div>
+
+<p>
+  <br>
+  </br>
+  <center>
+<span class="a-padding">Already Have an Account? <%= link_to "Log In Now", sessions_new_path, class: 'a-padding' %></span>
+  </center>
+</p>

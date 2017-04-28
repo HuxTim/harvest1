@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :store_reviews
   has_many :market_reviews
   has_many :markets
+  has_many :shopping_lists, :dependent => :destroy
 
   before_save { self.email = email.downcase }
   validates :name,  presence: true, length: { maximum: 30 }

@@ -5,6 +5,9 @@
   #
   #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
   #   Character.create(name: 'Luke', movie: movies.first)
+
+  #If needs to be remade, should be done so that all models are made with a function call
+
 puts "starting seeding process.."
   User.destroy_all
   Vendor.destroy_all
@@ -21,11 +24,8 @@ puts "halfway done starting"
   ProductImage.destroy_all
   Subscription.destroy_all
 
-
   firstnames = ["Abigail", "Bill", "Ike", "George", "Jake", "Christina", "Max", "Thomas", "Sarah", "Daisy", "Delila", "Rose"]
   lastnames = ["Smith", "Arrow", "House", "Levin", "Woolf", "Hunt", "Roth", "Zhang", "Amami", "Spinner-Reyes"]
-
-
 
   puts "creating sample users and vendors"
   i = 0
