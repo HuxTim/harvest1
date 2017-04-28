@@ -435,7 +435,8 @@ footer{
 body.container{
 
   padding-top: 60px;
-  word-break: break-all;
+  text-align: justify;
+text-justify: inter-word;
 
 }
 
@@ -551,7 +552,8 @@ PRODUCTS
 
 .product-description{
   font-size: 14px;
-  word-break: break-all;
+  text-align: justify;
+text-justify: inter-word;
 }
 
 .product-price{
