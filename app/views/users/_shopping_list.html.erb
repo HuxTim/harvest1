@@ -17,8 +17,7 @@
           <tr>
             <th>Item</th>
             <th>Date Added</th>
-            <td></th>
-            <th colspan="3"></th>
+            <th>Delete Item</th>
             <th colspan="3"></th>
           </tr>
         </thead>
@@ -33,7 +32,7 @@
                 <%=item.created_at.to_s[0..10]%>
               </td>
               <td>
-                <%= link_to 'Delete', item, method: :delete, class: "btn btn-danger col-sm-12", data: { toggle: 'confirmationDialog', confirm: t('messages.Are you sure delete this Product. After delete the Product, Data can not be retore'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%>
+                <%= link_to ' ', item, method: :delete, class: "btn btn-danger col-sm-12"%>
               </td>
             </tr>
           <% end %>

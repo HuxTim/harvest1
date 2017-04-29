@@ -21,8 +21,7 @@ class ShoppingListsController < ApplicationController
   end
 
   def destroy
-    @shopping_list = ShoppingList.where(product_id: params[:id],
-    user_id: current_user.id.all.first
+    @shopping_list = ShoppingList.where(id: @shopping_list.id)
     respond_to do |format|
       if @shopping_list and @shopping_list.user_id == current_user.id
         @shopping_list.destroy
