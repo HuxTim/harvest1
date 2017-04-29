@@ -28,7 +28,8 @@
             </li>
           </a>
 
-          <a href="<%= my_requests_path %>">
+          <% if @user.id == current_user.id %>
+          <a href="<%= user_requests_path %>">
             <li id="requests active">
               <i class="fa fa-users fa-lg "></i><i class="glyphicon glyphicon-envelope"></i> Requests
               <% if @user.requests.where(:status => 0).count > 0 %>
@@ -36,7 +37,9 @@
               <% end %>
             </li>
           </a>
+          <% end %>
 
+          <% if @user.id == current_user.id %>
           <a href="<%= edit_user_path %>">
             <li id="edit_information">
 
@@ -44,7 +47,9 @@
 
             </li>
           </a>
+          <% end %>
 
+          <% if @user.id == current_user.id %>
           <a href="<%= change_password_path %>">
             <li id="change_password">
 
@@ -52,6 +57,7 @@
 
             </li>
           </a>
+          <% end %>
 
 
           <a href="<%= shopping_list_path %>">
@@ -60,22 +66,23 @@
             </li>
           </a>
 
-          <a href="<%= my_reviews_path %>">
+          <a href="<%= user_reviews_path %>">
             <li id="reviews">
 
-              <i class="fa fa-users fa-lg"></i><i class="glyphicon glyphicon-comment"></i> My Reviews
+              <i class="fa fa-users fa-lg"></i><i class="glyphicon glyphicon-comment"></i> User Reviews
 
             </li>
           </a>
-          <a href="<%= my_markets_path %>">
+
+          <a href="<%= user_markets_path %>">
             <li id="market">
 
-              <i class="fa fa-user fa-lg"></i><i class="glyphicon glyphicon glyphicon-grain"></i> My Market
+              <i class="fa fa-user fa-lg"></i><i class="glyphicon glyphicon glyphicon-grain"></i> User Markets
 
             </li>
           </a>
 
-          <% if !isVendor%>
+          <% if !isVendor(@user) and  @user.id == current_user.id %>
           <a href="<%= new_store_path %>">
             <li id="bevendor">
 
@@ -83,7 +90,7 @@
 
             </li>
           </a>
-          <% else %>
+          <% elsif !isVendor %>
           <a href="<%= "/stores/" + @user.vendor.store.id.to_s %>">
             <li id="bevendor">
 
@@ -92,6 +99,7 @@
             </li>
           </a>
           <% end %>
+
           <a href="<%= root_path %>">
             <li>
 
@@ -107,23 +115,20 @@
 
   <div class="col-sm-9 no-padding">
     <div id="profile-board">
-      <% if board == "edit" %>
+      <% if board == "edit" and @user.id == current_user.id %>
       <%= render  partial: "form_edit", locals: { user: user = @user} %>
       <% elsif board == "dashboard"%>
-      <%= render  partial: "dashboard", locals: { user: @user} %>
-      <% elsif board == "shopping_list"%>
-      <%= render  partial: "shopping_list", locals: { user: @user} %>
+      <%= render  partial: "dashboard", locals: { user: @user,item: @items} %>
+      <% elsif board == "shopping_list" and @user.id == current_user.id %>
+      <%= render  partial: "shopping_list", locals: { user: @user,item: @items} %>
       <% elsif board == "markets"%>
       <%= render  partial: "markets", locals: { user: @user} %>
       <% elsif board == "reviews"%>
       <%= render  partial: "reviews", locals: { user: @user} %>
-      <% elsif board == "requests"%>
+      <% elsif board == "requests" and @user.id == current_user.id%>
       <%= render  partial: "requests", locals: { user: @user} %>
-      <% elsif board == "change_password"%>
+      <% elsif board == "change_password" and @user.id == current_user.id%>
       <%= render  partial: "change_password", locals: { user: @user} %>
-      <% elsif board == "bevendor"%>
-      ??
-      <!-- <%= render  partial: "stores/form_new", locals: { user: user = @user} %> -->
       <% end %>
 
     </div>

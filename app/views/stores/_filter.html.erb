@@ -1,0 +1,16 @@
+<div class="row filter">
+  <h2 class="text-center">Filter</h2>
+  <input type="hidden" value="<%= @group %>" id="filter">
+  <% if @group == "All" %>
+  <%= link_to "All", '/stores/' + @store.id.to_s + '?group=All', class: "btn active col-sm-12"%>
+  <% else %>
+  <%= link_to "All", '/stores/' + @store.id.to_s + '?group=All', class: "btn col-sm-12"%>
+  <% end %>
+  <%  group_list.each do |g| %>
+  <% if @group == g %>
+  <%= link_to g, '/stores/' + @store.id.to_s + '?group=' + g, class: "btn active col-sm-12"%>
+  <% else %>
+  <%= link_to g, '/stores/' + @store.id.to_s + '?group=' + g, class: "btn col-sm-12"%>
+  <% end %>
+  <% end %>
+</div>

@@ -1,6 +1,7 @@
 <div class="row">
 <div class="col-sm-6 panel-custom-md">
   <h2 class="text-center">Market Reviews</h2>
+
   <%= render 'shared/empty_messages', locals: { objects: @objects = @user.market_reviews, class: @class = "Review for Market" } %>
   <% @user.market_reviews.each do |review| %>
   <div class="row">
@@ -26,34 +27,38 @@
                 </button>
                 <% end %>
                 <% end %>
+                <% if @user.id == current_user.id %>
                 <div class="text-right"><%= link_to 'Delete', review, method: :delete, class: "btn btn-danger", data: { confirm: t('messages.Are you sure delete this review'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
+                <% end %>
             </div>
             </div>
           </span>
         </div><!-- /panel-body -->
       </div><!-- /panel panel-default -->
-    </div><!-- /col-sm-5 -->
+    </div>
   </div>
   <% end %>
 </div>
+
+
 <div class="col-sm-1"></div>
 <div class="col-sm-5 panel-custom-md">
   <h2 class="text-center">Store Reviews</h2>
   <%= render 'shared/empty_messages', locals: { objects: @objects = @user.store_reviews, class: @class = "Review for Store" } %>
-  <% @user.store_reviews.each do |review| %>
+  <% @user.store_reviews.each do |store_review| %>
   <div class="row">
     <div class="col-sm-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <strong><%= review.store.name%></strong> <span class="text-muted"><%= review.created_at%></span>
+          <strong><%= store_review.store.name%></strong> <span class="text-muted"><%= store_review.created_at%></span>
         </div>
         <div class="panel-body">
-          <%= review.comment%>
+          <%= store_review.comment%>
           <hr>
           <span>
             <div class="row">
               <% (0..4).each do |i|%>
-              <% if i >= review.rating %>
+              <% if i >= store_review.rating %>
               <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
                 <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
               </button>
@@ -63,15 +68,14 @@
               </button>
               <% end %>
               <% end %>
-              <div class="text-right"><%= link_to 'Delete', review, method: :delete, class: "btn btn-danger", data: { confirm: t('messages.Are you sure delete this review'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
+                <% if @user.id == current_user.id %>
+              <div class="text-right"><%= link_to 'Delete', store_review, method: :delete, class: "btn btn-danger", data: { confirm: t('messages.Are you sure delete this review'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
+              <% end %>
           </div>
           </span>
         </div><!-- /panel-body -->
       </div><!-- /panel panel-default -->
     </div><!-- /col-sm-5 -->
-    <div class="col-sm-12">
-
-    </div>
   </div>
   <% end %>
 </div>

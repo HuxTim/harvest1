@@ -17,22 +17,22 @@
           <!-- Wrapper for Slides -->
           <div class="carousel-inner">
             <% if product.product_images.all.length == 0 %>
-              <div class="item active">
-                <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(http://placehold.it/150x150/fff/ffffff&text='');background-size: 100% 100%;
-                background-repeat: no-repeat;"><span class="glyphicon-md glyphicon glyphicon glyphicon-apple"></span></div>
-              </div>
+            <div class="item active">
+              <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(http://placehold.it/150x150/fff/ffffff&text='');background-size: 100% 100%;
+              background-repeat: no-repeat;"><span class="glyphicon-md glyphicon glyphicon glyphicon-apple"></span></div>
+            </div>
             <% else %>
             <div class="item active">
-                <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(<%= product.product_images.all.first.image.url(:large) %>);background-size: 100% 100%;
+              <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(<%= product.product_images.all.first.image.url(:large) %>);background-size: 100% 100%;
+                background-repeat: no-repeat;"></div>
+              </div>
+              <% @product.product_images[1..-1].each do |product_image|%>
+              <div class="item">
+                <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(<%= product_image.image.url(:large) %>);background-size: 100% 100%;
                   background-repeat: no-repeat;"></div>
                 </div>
-                <% @product.product_images[1..-1].each do |product_image|%>
-                <div class="item">
-                  <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(<%= product_image.image.url(:large) %>);background-size: 100% 100%;
-                    background-repeat: no-repeat;"></div>
-                  </div>
                 <% end %>
-              <% end %>
+                <% end %>
                 <!-- Controls -->
                 <a class="left carousel-control" href="#Carousel" data-slide="prev">
                   <span class="icon-prev"></span>
@@ -62,7 +62,7 @@
             </div>
             <div class="row">
               <span class="glyphicon-sm glyphicon glyphicon-list-alt"></span>
-                <span class="label btn-tags label-success"><%= product.group %></span>
+              <span class="label btn-tags label-success"><%= product.group %></span>
             </div>
             <br>
             <div class="row">
@@ -77,7 +77,7 @@
               <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
               <% if logged_in? %>
               <% if ShoppingList.where(product_id: product.id, user_id: current_user.id).all.first%>
-              <button type="button" class="btn btn-default delShoppingList" value="<%= product.id%>">Delete List</button>
+              <button type="button" class="btn btn-default delShoppingList" value="<%= ShoppingList.where(product_id: product.id, user_id: current_user.id).all.first.id%>">Delete List</button>
               <% else %>
               <button type="button" class="btn btn-success addShoppingList" value="<%= product.id%>">Add To List</button>
               <% end %>
@@ -97,18 +97,19 @@
       }
       </style>
       <script>
-      $(".addShoppingList").click(function() {
+      $(".addShoppingList").click(      function() {
         var btn = $(this);
         $.ajax({
-          url: "/shopping_lists",
+          url: "/products/" + btn.attr('value') + "/shopping_lists",
           dataType: "json",
           type: "POST",
-          data: {product_id: btn.attr('value')},
           success: function(data, success) {
             btn.removeClass('btn-success')
             btn.addClass('btn-default')
             btn.removeClass('addShoppingList')
             btn.addClass('delShoppingList')
+            btn.empty();
+            btn.append("Delete List")
             $("#checkProductPanel").modal('hide');
             alert("You have add successfully");
           },
@@ -118,10 +119,12 @@
         });
       });
 
-      $(".delShoppingList").click(function() {
+
+
+      $(".delShoppingList").click(function()  {
         var btn = $(this);
         $.ajax({
-          url: "/shopping_lists/" +  btn.attr('value'),
+          url: "/shopping_lists/" + btn.attr('value'),
           dataType: "json",
           type: "DELETE",
           success: function(data, success) {
@@ -129,6 +132,8 @@
             btn.addClass('btn-success')
             btn.removeClass('delShoppingList')
             btn.addClass('addShoppingList')
+            btn.empty();
+            btn.append("Add To List")
             $("#checkProductPanel").modal('hide');
             alert("You have delete successfully");
           },

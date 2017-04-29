@@ -1,5 +1,6 @@
 class ShoppingListsController < ApplicationController
   before_action :require_login, only: [:create, :destroy]
+  before_action :set_shopping_list, only: [:destroy]
 
 
   def index
@@ -21,8 +22,6 @@ class ShoppingListsController < ApplicationController
   end
 
   def destroy
-    @shopping_list = ShoppingList.where(product_id: params[:id],
-    user_id: current_user.id.all.first
     respond_to do |format|
       if @shopping_list and @shopping_list.user_id == current_user.id
         @shopping_list.destroy

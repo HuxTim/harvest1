@@ -6,12 +6,13 @@
   </div>
 <div class="row">
 
+  <%= link_to "Delete", ShoppingList.first, :method => :delete %>
 <div class="col-sm-6 panel-custom-md">
   <h3 class="text-center">Your Shopping List</h2>
-    <% @items.each do |group| %>
-      <% if !group.nil? %>
-        <% if group.any? %>
-      <h4 class="text-center"><%=group.first.product.group%></h4>
+    <% @items.each do |a| %>
+      <% if !a.nil? %>
+        <% if a.any? %>
+      <h4 class="text-center"><%=a.first.product.group%></h4>
       <table class="table table-striped table-hover">
         <thead class="thead-inverse text-center">
           <tr>
@@ -24,16 +25,17 @@
         </thead>
 
         <tbody>
-          <% group.each do |item| %>
-            <tr>
+          <% a.each do |item| %>
+            <tr id="<%= item.id%>">
               <td class="col-md-5 text-left">
-                <%=item.product.name%>
+                <%=item.product.name %>
               </td>
               <td>
                 <%=item.created_at.to_s[0..10]%>
               </td>
               <td>
-                <%= link_to 'Delete', item, method: :delete, class: "btn btn-danger col-sm-12", data: { toggle: 'confirmationDialog', confirm: t('messages.Are you sure delete this Product. After delete the Product, Data can not be retore'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%>
+                <%= link_to "Delete List", item class:"btn btn-default"%>
+                <button type="button" class="btn btn-success delShoppingList" value="<%= item.id%>">Delete To List</button>
               </td>
             </tr>
           <% end %>
@@ -71,7 +73,7 @@
               </button>
               <% end %>
               <% end %>
-              <div class="text-right"><%= link_to 'Delete', review, method: :delete, class: "btn btn-danger", data: { confirm: t('messages.Are you sure delete this review'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
+
           </div>
           </span>
         </div><!-- /panel-body -->
@@ -84,3 +86,20 @@
   <% end %>
 </div>
 </div>
+
+<script>
+$(".delShoppingList").click(function() {
+  var btn = $(this);
+  $.ajax({
+    url: "/shopping_lists/" +  btn.attr('value'),
+    dataType: "json",
+    type: "DELETE",
+    success: function(data, success) {
+      alert("You have delete successfully");
+    },
+    error: function(data, failure) {
+      alert("Something Wrong Happen, Please try it later");
+    }
+  });
+});
+</script>

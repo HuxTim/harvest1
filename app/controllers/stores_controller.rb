@@ -12,7 +12,13 @@ class StoresController < ApplicationController
   # GET /stores/1.json
   def show
     @store = Store.find(params[:id])
-    @products = @store.products.all.paginate(page:1,per_page:6)
+    if !params[:group] or params[:group] == "All"
+      @products = @store.products.all.paginate(page:1,per_page:6)
+      @group = "All"
+    else
+      @products = @store.products.where(:group => params[:group]).paginate(page:1,per_page:6)
+      @group = params[:group]
+    end
     @reviews = @store.store_reviews.all.order("created_at DESC").paginate(page:1,per_page:5)
     @current_page = 1
     @review = StoreReview.new(store_id: params[:id])
@@ -21,18 +27,25 @@ class StoresController < ApplicationController
   def ajax_reviews
     @store = Store.find(params[:id])
     @reviews = @store.store_reviews.all.order("created_at DESC").paginate(page:params['current_review_page'].to_i + 1,per_page:5)
-    respond_to do |format|
-      format.html { render  partial: "shared/reviews", locals: { reviews: @reviews }}
-      format.json { render @reviews}
+    if @reviews.length > 0
+      render  partial: "shared/reviews", locals: { reviews: @reviews }
+    else
+      render :html => "", :status => :ok
     end
   end
 
   def ajax_products
     @store = Store.find(params[:id])
-    @products = @store.products.all.paginate(page:params['current_product_page'].to_i + 1,per_page:6)
-    respond_to do |format|
-      format.html { render  partial: "shared/products", locals: { products: @products}}
-      format.json { render @products}
+    if !params[:group] or params[:group] == "All"
+      @products = @store.products.all.paginate(page:params['current_product_page'].to_i + 1,per_page:6)
+    else
+      @products = @store.products.where(:group => params[:group]).paginate(page:params['current_product_page'].to_i + 1,per_page:6)
+    end
+
+    if @products.length > 0
+      render partial: "shared/products_sm", locals: { products: @products}
+    else
+      render :html => "", :status => :ok
     end
   end
 
@@ -72,25 +85,6 @@ class StoresController < ApplicationController
     else
       render json: {error: @store.errors.full_messages.join(',')}, status: :unprocessable_entity
     end
-
-    # respond_to do |format|
-    #   if @store.save
-    #     market_ids.each do |market_id|
-    #       Request.create(
-    #       market_id: market_id,
-    #       store_id: @store.id,
-    #       status: 0
-    #       )
-    #     end
-    #     format.json { render json: {statue: 'Create successfully.'} }
-    #   else
-    #     print @store.errors.map{|k,v| "#{k} #{v}"}.join(',')
-    #     # json: @market_review.errors, status: :unprocessable_entity
-    #     errors.full_messages.join(',')
-    #     render json: { :error => exception.message }, :status => 500
-    #     format.json { render json: @store.errors.full_messages.join(','), status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   # PATCH/PUT /stores/1
