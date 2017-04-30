@@ -59,7 +59,7 @@
       <div id="rating">
         <h4>Average user rating</h4>
         <% if @store.store_reviews.average(:rating) %>
-        <h2 class="bold padding-bottom-7"><small><%= @store.store_reviews.average(:rating)%>/5</small></h2>
+        <h2 class="bold padding-bottom-7"><small><%= @store.store_reviews.average(:rating).round(1)%>/5</small></h2>
         <% else %>
         <h2 class="bold padding-bottom-7"> <small>UNKNOWN/5</small></h2>
         <% end %>
