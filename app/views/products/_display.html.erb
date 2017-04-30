@@ -65,6 +65,7 @@
               <span class="label btn-tags label-success"><%= product.group %></span>
             </div>
             <br>
+            <% if split_tags(product.tag).length > 0 %>
             <div class="row">
               <span class="glyphicon-sm glyphicon glyphicon-tag"></span>
               <span class="tags">
@@ -73,6 +74,7 @@
                 <% end %>
               </span>
             </div>
+            <% end %>
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
               <% if logged_in? %>

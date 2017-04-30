@@ -46,13 +46,21 @@ class RequestsController < ApplicationController
   # PATCH/PUT /requests/1
   # PATCH/PUT /requests/1.json
   def update
-    respond_to do |format|
-      if @request.update(request_params)
-        format.html { redirect_to @request, notice: 'Request was successfully updated.' }
+    if @request.market.user.id != current_user.id
+      respond_to do |format|
+        format.html { redirect_to current_user, :flash => { :error => 'You do not have permission do this.' }}
         format.json { render :show, status: :ok, location: @request }
-      else
-        format.html { render :edit }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
+      end
+    else
+      respond_to do |format|
+        
+        if @request.update(request_params)
+          format.html { redirect_to current_user, notice: 'Request was successfully updated.' }
+          format.json { render :show, status: :ok, location: @request }
+        else
+          format.html { redirect_to current_user, :flash => { :error => 'Request was can not be updated.'}}
+          format.json { render json: @request.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -65,6 +73,6 @@ class RequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
-      params.require(:request).permit(:open_time,:close_time,:market_id,:store_id)
+      params.require(:request).permit(:open_time,:close_time,:market_id,:store_id,:status)
     end
 end
