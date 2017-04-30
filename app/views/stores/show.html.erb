@@ -17,7 +17,7 @@
       <div class="carousel-inner">
         <% if @store.store_images.all.length == 0 %>
         <div class="item active">
-          <div class="text-center carousel-image carousel-image-lg" style="background:url('/bg_default_store.png');background-size: 100% 100%;
+          <div class="text-center carousel-image carousel-image-lg" style="background:url('/images/bg_default_store_square.png');background-size: 100% 100%;
           background-repeat: no-repeat;"><span class="glyphicon-lg glyphicon glyphicon glyphicon-home"></span></div>
         </div>
         <% else %>
@@ -217,6 +217,7 @@
             $('#products_next').append("No more Products")
             $('#products_next').removeClass('btn-primary');
             $('#products_next').addClass('btn-default');
+            alert("No more Products");
           }
           else {
             $('#store_products').append(data);
@@ -242,6 +243,7 @@
             $('#store_reviews_next').append("No more Reviews")
             $('#store_reviews_next').removeClass('btn-primary');
             $('#store_reviews_next').addClass('btn-default');
+            alert("No more Reviews");
           }else{
             $('#store_reviews').append(data);
             $('#current_review_page').val(parseInt($("#current_review_page").val()) + 1);

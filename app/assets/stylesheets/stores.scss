@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .filter{
   border: 2px;
+  border-radius: 10px;
   border: #123456;
   margin-bottom: 20px;
   padding-bottom: 20px;
@@ -41,7 +42,7 @@
 .check-store{
   color: white;
   padding: 5px;
-  border-width: 2px;
+  border-width: 1px;
   border-color: #367036;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -122,4 +123,14 @@
   width: 100%;
   font-size: 15px;
   font-weight: 200;
+}
+
+#add_products .thumbnail-image{
+  padding-top: 60px;
+}
+
+#add_products .thumbnail-image:hover{
+  .glyphicon-md{
+      color:  #5cb85c;
+  }
 }

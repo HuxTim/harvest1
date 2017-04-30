@@ -29,7 +29,7 @@
       </div>
     </div>
   <div class="row">
-      <%= render 'shared/stores', locals: { stores: @stores = Store.all[0..2] } %>
+      <%= render 'shared/stores', locals: { stores: @stores = Store.all[0..3] } %>
   </div>
 </section>
 
@@ -41,7 +41,7 @@
       </div>
   </div>
   <div class="row">
-        <%= render 'shared/markets', locals: { markets: @markets = Market.all[0..2] } %>
+        <%= render 'shared/markets', locals: { markets: @markets = Market.all[0..1] } %>
   </div>
 </section>
 <script>

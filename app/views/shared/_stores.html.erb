@@ -1,12 +1,12 @@
 <% @stores.each do |store| %>
-<div class="col-md-4">
+<div class="col-md-3">
   <%= link_to store, class: "thumbnail well check-store" do %>
   <% if store.store_images.all.length == 0 %>
   <div class="thumbnail-image-board">
-    <div class="text-center thumbnail-image thumbnail-image-md" style="background:url(/bg_default_store.png);
+    <div class="text-center thumbnail-image thumbnail-image-md" style="background:url(/images/bg_default_store.png);
     background-size: 100% 100%;
     background-repeat: no-repeat;">
-    <div class="hover"><div class="text-overflow-block"><%= store.description[0..200] %></div></div>
+    <div class="hover"><div class="text-overflow-block"><%= store.description[0..150] %></div></div>
     <!-- <span class="glyphicon-md glyphicon glyphicon glyphicon-home"></span> -->
   </div>
 </div>
@@ -14,7 +14,7 @@
 <div class="thumbnail-image-board">
   <div class="text-center thumbnail-image thumbnail-image-md" style="background: url(<%= store.store_images.all.first.image.url(:small)%>);      background-size: 100% 100%;
     background-repeat: no-repeat;">
-    <div class="hover"><div class="text-overflow-block"><%= store.description[0..200] %></div></div>
+    <div class="hover"><div class="text-overflow-block"><%= store.description[0..150] %></div></div>
   </div>
 </div>
 <% end %>

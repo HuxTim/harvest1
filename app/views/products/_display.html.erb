@@ -1,91 +1,103 @@
-<% if product.is_special %>
-<div class="row row-special">
-  <% else %>
-  <div class="row">
-    <% end %>
-    <div class="col-md-12">
-      <div class="col-md-5">
-        <div id="Carousel" class="center carousel slide" data-ride="carousel">
-          <!-- Indicators -->
-          <ol class="carousel-indicators">
-            <li data-target="#Carousel" data-slide-to="0" class="active"></li>
-            <% (1..product.product_images.length-1).each do |i|%>
-            <li data-target="#Carousel" data-slide-to="<%= i %>"></li>
-            <% end %>
-          </ol>
+<div class="row">
+  <div class="col-md-5">
+    <div id="productCarousel" class="center carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#productCarousel" data-slide-to="0" class="active"></li>
+        <% (1..product.product_images.length-1).each do |i|%>
+        <li data-target="#productCarousel" data-slide-to="<%= i %>"></li>
+        <% end %>
+      </ol>
 
-          <!-- Wrapper for Slides -->
-          <div class="carousel-inner">
-            <% if product.product_images.all.length == 0 %>
-            <div class="item active">
-              <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(http://placehold.it/150x150/fff/ffffff&text='');background-size: 100% 100%;
-              background-repeat: no-repeat;"><span class="glyphicon-md glyphicon glyphicon glyphicon-apple"></span></div>
+      <!-- Wrapper for Slides -->
+      <div class="carousel-inner">
+        <% if product.product_images.all.length == 0 %>
+        <div class="item active">
+          <div class="text-center thumbnail-image thumbnail-image-square-sm" style="background:url(<%= product_background[product.group]%>);  background-size: 100% 100%,cover;
+            background-repeat: no-repeat;
+            background-position: center;"></div>
+          </div>
+          <% else %>
+          <div class="item active">
+            <div class="text-center thumbnail-image thumbnail-image-square-sm" style="background:url(<%= product.product_images.all.first.image.url(:large) %>);background-size: 100% 100%;
+              background-repeat: no-repeat;"></div>
             </div>
-            <% else %>
-            <div class="item active">
-              <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(<%= product.product_images.all.first.image.url(:large) %>);background-size: 100% 100%;
+            <% @product.product_images[1..-1].each do |product_image|%>
+            <div class="item">
+              <div class="text-center thumbnail-image thumbnail-image-square-sm" style="background:url(<%= product_image.image.url(:large) %>);background-size: 100% 100%;
                 background-repeat: no-repeat;"></div>
               </div>
-              <% @product.product_images[1..-1].each do |product_image|%>
-              <div class="item">
-                <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(<%= product_image.image.url(:large) %>);background-size: 100% 100%;
-                  background-repeat: no-repeat;"></div>
-                </div>
-                <% end %>
-                <% end %>
-                <!-- Controls -->
-                <a class="left carousel-control" href="#Carousel" data-slide="prev">
-                  <span class="icon-prev"></span>
-                </a>
-                <a class="right carousel-control" href="#Carousel" data-slide="next">
-                  <span class="icon-next"></span>
-                </a>
-              </div>
-            </div><!--slider-->
+              <% end %>
+              <% end %>
+              <!-- Controls -->
+              <a class="left carousel-control" href="#productCarousel" data-slide="prev">
+                <span class="icon-prev"></span>
+              </a>
+              <a class="right carousel-control" href="#productCarousel" data-slide="next">
+                <span class="icon-next"></span>
+              </a>
+            </div>
+          </div><!--slider-->
+          <% if product.is_special %>
+          <div class="text-center thumbnail-image special-badge" style="background:url(/images/sale.png);  background-size: 100% 100%,cover;
+            background-repeat: no-repeat;
+            background-position: center;">
           </div>
+          <% end %>
+        </div>
 
 
-          <div class="col-md-7">
-            <div class="product-name"><%= product.name %></div>
-            <div class="product-description"><%= product.description %></div>
-            <div class="product-discount"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i> </div>
-            <hr>
-            <div class="row">
-              <% if product.is_special %>
-              <span class="glyphicon-active glyphicon-sm glyphicon glyphicon-piggy-bank"></span>
-              <span class="product-price product-price-active"><%= product.price %></span>
-              <% else %>
-              <span class="glyphicon-sm glyphicon glyphicon-piggy-bank"></span>
-              <span class="product-price"><%= product.price %></span>
-              <% end %>
+        <div class="col-md-7">
+          <div class="product_information">
+          <div class="product-name"><%= product.name %></div>
+          <div class="product-description"><%= product.description %></div>
+          <hr>
+          <h4><%= link_to "Store : " + product.store.name, product.store %></h4>
+          <div class="product-discount"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i> </div>
+          <hr>
 
-            </div>
-            <div class="row">
-              <span class="glyphicon-sm glyphicon glyphicon-list-alt"></span>
-              <span class="label btn-tags label-success"><%= product.group %></span>
-            </div>
-            <br>
-            <% if split_tags(product.tag).length > 0 %>
-            <div class="row">
-              <span class="glyphicon-sm glyphicon glyphicon-tag"></span>
-              <span class="tags">
-                <% split_tags(product.tag).each do |tag| %>
-                <span class="tag"><a class="btn btn-tags btn-success" style="background: <%=tag_color[tag]%>" href="/search?&option=Products&tag=<%= tag%>"><%= tag %></a></span>
+          <div class="row">
+            <table>
+              <tbody>
+                <tr>
+                  <td class="col-md-1">
+                    <span class="glyphicon-tags glyphicon glyphicon-piggy-bank"></span>
+                  </td>
+                  <td class="col-md-11">
+                    <span class="product-price"><%= product.price %></span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="col-md-1"><span class="glyphicon-tags glyphicon glyphicon-list-alt"></span></td>
+                  <td class="col-md-11"><span class="label-tag label-tag-success"><%= product.group %></span></td>
+                </tr>
+
+                <% if split_tags(product.tag).length > 0 %>
+                <tr>
+                  <td class="col-md-1"><span class="glyphicon-tags glyphicon glyphicon-tag"></span></td>
+                  <td class="col-md-11">
+                    <% split_tags(product.tag).each do |tag| %>
+                    <a class="label-tag" style="background: <%=tag_color[tag]%>" href="/search?&option=Products&tag=<%= tag%>"><%= tag %></a>
+                    <% end %>
+                  </td>
+                </tr>
                 <% end %>
-              </span>
-            </div>
-            <% end %>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-              <% if logged_in? %>
-              <% if ShoppingList.where(product_id: product.id, user_id: current_user.id).all.first%>
-              <button type="button" class="btn btn-default delShoppingList" value="<%= ShoppingList.where(product_id: product.id, user_id: current_user.id).all.first.id%>">Delete List</button>
-              <% else %>
-              <button type="button" class="btn btn-success addShoppingList" value="<%= product.id%>">Add To List</button>
-              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-              <% end %>
-            </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+            <% if logged_in? %>
+            <% if ShoppingList.where(product_id: product.id, user_id: current_user.id).all.first%>
+            <button type="button" class="btn btn-default delShoppingList" value="<%= ShoppingList.where(product_id: product.id, user_id: current_user.id).all.first.id%>">Delete List</button>
+            <% else %>
+            <button type="button" class="btn btn-success addShoppingList" value="<%= product.id%>">Add To List</button>
+            <% end %>
+
+            <% end %>
           </div>
         </div>
       </div>

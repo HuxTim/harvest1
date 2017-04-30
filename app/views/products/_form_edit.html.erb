@@ -75,7 +75,7 @@
   <div class="row">
     <div class="col-sm-12">
         <% split_tags(product.tag).each do |tag| %>
-        <span class="tag"><a class="btn btn-tags btn-success" style="background: <%= tag_color[tag] %>" herf="#"><%= tag %></a></span>
+        <a class="label-tag" style="background: <%= tag_color[tag] %>" herf="#"><%= tag %></a>
         <% end %>
     </div>
   </div>
