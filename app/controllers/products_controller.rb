@@ -84,7 +84,7 @@ class ProductsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def product_params
     params[:product][:tag] = params[:product][:tag].reject { |i| i.empty? }.join(",")
-    if params[:price_number] == ~ /\d/ 
+    if params[:price_number]
       params[:product][:price] = params[:price_number] + "/" + params[:product][:price]
     else
       params[:product][:price] = nil

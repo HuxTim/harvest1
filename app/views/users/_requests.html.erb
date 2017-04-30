@@ -7,6 +7,7 @@
     <thead class="thead-inverse text-center">
       <tr>
         <th>Status</th>
+        <th>Market</th>
         <th>Store</th>
         <th>Owner</th>
         <th>Time</th>
@@ -26,16 +27,17 @@
             <div class="label label-default"><%= translate_status_to_market_owner(request.status) %><div>
             <% end %>
           </td>
+          <td class="col-md-2"><%= link_to request.market.name[0..10], request.market%></td>
           <td class="col-md-2"><%= link_to request.store.name[0..10], request.store%></td>
           <td class="col-md-2"><%= link_to request.store.vendor.user.name[0..10], request.store.vendor.user%></td>
           <td class="col-md-2"><%= request.created_at.strftime("%d %b. %Y") %></td>
-          <td class="col-md-2">
+          <td class="col-md-1">
             <%= form_for request, :method => :patch do |f|%>
             <%= f.hidden_field :status, :value => "1" %>
             <%= f.submit "Accept", class: "btn btn-primary" %>
             <% end %>
           </td>
-          <td class="col-md-2">
+          <td class="col-md-1">
             <%= form_for request,method: :patch do |f|%>
             <%= f.hidden_field :status,:value => "2" %>
             <%= f.submit "Refuse", class: "btn btn-default" ,data: {confirm: t('messages.Are you sure Refuse the application'), ok: t('buttons.Sure'), cancel: t('buttons.cancel') } %>

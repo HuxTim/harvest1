@@ -377,14 +377,22 @@ bottom-padding{
 }
 
 header {
-  padding-top: 150px;
+  h1{
+    font-size: 65px;
+    color: white;
+    padding-bottom: 25px;
+  }
+  border-radius: 10px;
+  padding-top: 100px;
   padding-bottom: 150px;
   padding-left: 30px;
   padding-right: 30px;
   color: white;
-  height: 400px;
+  height: 600px;
   width: 100%;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(118, 163, 96, 0.5)), image-url('search_background_image.jpeg');
+  background-image: linear-gradient(rgba(118, 163, 96, 0.2),rgba(0, 0, 0, 0.3), rgba(118, 163, 96, 0.2)), image-url('search_background_image1.jpeg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
 footer{
@@ -720,3 +728,19 @@ a.navbar-brand{
 // a.refuse{
 //   color: black;
 // }
+
+.transparent{
+background-color:rgba(255, 255, 255, 0.7);
+}
+
+.board-md-new-store{
+  background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), image-url('store_new_bg.png');
+  background-size: 100% 100%;
+background-repeat: no-repeat;
+}
+
+.board-md-new-market{
+  background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), image-url('market_new_bg.jpg');
+  background-size: 100% 100%;
+background-repeat: no-repeat;
+}

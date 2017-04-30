@@ -1,4 +1,5 @@
 <header>
+  <h1 class="text-center">Explore Best <br> Markets & Products & Stores<h1>
     <div id="search_area">
        <%= render 'shared/search' %>
     </div>
@@ -43,5 +44,21 @@
         <%= render 'shared/markets', locals: { markets: @markets = Market.all[0..2] } %>
   </div>
 </section>
+<script>
+$(document).ready(function(){
+var backgrounds = new Array(
+    "linear-gradient(rgba(118, 163, 96, 0.2),rgba(0, 0, 0, 0.3), rgba(118, 163, 96, 0.2)),url('assets/images/search_background_image1.jpeg')"
+  , "linear-gradient(rgba(118, 163, 96, 0.2),rgba(0, 0, 0, 0.3), rgba(118, 163, 96, 0.2)),url('assets/images/search_background_image2.jpg')"
+  , "linear-gradient(rgba(118, 163, 96, 0.2),rgba(0, 0, 0, 0.3), rgba(118, 163, 96, 0.2)),url('assets/images/search_background_image3.jpg')"
+  , "linear-gradient(rgba(118, 163, 96, 0.2),rgba(0, 0, 0, 0.3), rgba(118, 163, 96, 0.2)),url('assets/images/search_background_image4.jpg')"
+  , "linear-gradient(rgba(118, 163, 96, 0.2),rgba(0, 0, 0, 0.3), rgba(118, 163, 96, 0.2)),url('assets/images/search_background_image5.jpg')"
+  , "linear-gradient(rgba(118, 163, 96, 0.2),rgba(0, 0, 0, 0.3), rgba(118, 163, 96, 0.2)),url('assets/images/search_background_image6.jpg')"
+  , "linear-gradient(rgba(118, 163, 96, 0.2),rgba(0, 0, 0, 0.3), rgba(118, 163, 96, 0.2)),url('assets/images/search_background_image7.jpg')"
+);
+item = backgrounds[Math.floor(Math.random()*backgrounds.length)];
+var header = $('header')
+header.css('background-image', item);
+});
+</script>
 
 <%# <!-- <%= render 'layouts/market_cards' %>

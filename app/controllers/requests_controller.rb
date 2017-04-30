@@ -47,23 +47,41 @@ class RequestsController < ApplicationController
   # PATCH/PUT /requests/1.json
   def update
     if @request.market.user.id != current_user.id
-      respond_to do |format|
-        format.html { redirect_to current_user, :flash => { :error => 'You do not have permission do this.' }}
-        format.json { render :show, status: :ok, location: @request }
-      end
+        redirect_to current_user, :flash => { :error => 'You do not have permission do this.' }
     else
-      respond_to do |format|
-        
-        if @request.update(request_params)
-          format.html { redirect_to current_user, notice: 'Request was successfully updated.' }
-          format.json { render :show, status: :ok, location: @request }
+      if request_params[:status] == "1"
+        if StoreMarketRelationship.where(:market_id => @request.market.id,:store_id => @request.store.id).length > 0
+          @request.destroy
+          redirect_to current_user, notice: 'Store already in Market!'
         else
-          format.html { redirect_to current_user, :flash => { :error => 'Request was can not be updated.'}}
-          format.json { render json: @request.errors, status: :unprocessable_entity }
+          @store_market_relationship = StoreMarketRelationship.new(:market_id => @request.market.id,
+          :store_id => @request.store.id,
+          :open_time => @request.open_time,
+          :close_time => @request.close_time)
+
+          if @store_market_relationship.save
+            if @request.update(request_params)
+              redirect_to current_user, notice: 'Request was successfully updated.'
+            else
+              @store_market_relationship.destroy
+              redirect_to current_user, :flash => { :error => 'Request was can not be updated.'}
+
+            end
+          else
+            redirect_to current_user, :flash => { :error => 'Store can not be add in market.'}
+          end
+
+        end
+      else
+        if @request.update(request_params)
+          redirect_to current_user, notice: 'Request was successfully updated.'
+        else
+          redirect_to current_user, :flash => { :error => 'Request was can not be updated.'}
         end
       end
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

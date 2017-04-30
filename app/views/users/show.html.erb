@@ -90,7 +90,7 @@
 
             </li>
           </a>
-          <% elsif !isVendor %>
+          <% elsif isVendor(@user) %>
           <a href="<%= "/stores/" + @user.vendor.store.id.to_s %>">
             <li id="bevendor">
 
