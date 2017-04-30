@@ -1,33 +1,44 @@
 <% @products.each do |product| %>
 <div class="col-md-4">
-  <div class="thumbnail well check-product" id="<%= product.id %>" data-toggle="modal" data-target="#checkProductPanel">
+  <div class="thumbnail check-product" id="<%= product.id %>" data-toggle="modal" data-target="#checkProductPanel">
     <% if product.product_images.all.length == 0 %>
-    <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(http://placehold.it/150x150/fff/ffffff&text='');background-size: 100% 100%;
-    background-repeat: no-repeat;"><span class="glyphicon-md glyphicon glyphicon glyphicon-apple"></span></div>
+    <div class="thumbnail-image-board">
+    <div class="text-center thumbnail-image thumbnail-image-square" style="background:url(<%= product_background[product.group]%>);  background-size: 100% 100%,cover;
+      background-repeat: no-repeat;
+      background-position: center;"><div class="hover"><div class="text-overflow-block"><%= product.description[0..200] %></div></div></div>
+    </div>
     <% else %>
-    <div class="text-center thumbnail-image thumbnail-image-square" style="background: url(<%= product.product_images.all.first.image.url(:medium)%>); background-size: 100% 100%;
-      background-repeat: no-repeat;"></div>
-      <% end %>
+      <div class="thumbnail-image-board">
+    <div class="text-center thumbnail-image thumbnail-image-square" style="background: url(<%= product.product_images.all.first.image.url(:medium)%>);  background-size: 100% 100%,cover;
+      background-repeat: no-repeat;
+      background-position: center;"><div class="hover"><div class="text-overflow-block"><%= product.description[0..200] %></div></div></div>
+    </div>
+    <% end %>
 
       <div class="caption">
         <div class="card-title text-overflow"><%= product.name%></div>
-        <div class="row">
+        <div class="tags">
             <span class="glyphicon-sm glyphicon glyphicon-piggy-bank"></span>
-            <span class="label btn-tags label-success"><%= product.price%></span>
-              <% if product.is_special == true%>
-              <span class="label btn-tags label-danger">Special</span>
-              <% end %>
+            <span class="label label-tag label-success"><%= product.price%></span>
+            <% if product.is_special == true%>
+            <span class="label label-tag label-danger">Special</span>
+            <% end %>
         </div>
+
         <% if split_tags(product.tag).length > 0 %>
-        <div class="row">
+        <div class="tags">
             <span class="glyphicon-sm glyphicon glyphicon-tag"></span>
-            <span class="tags">
               <% split_tags(product.tag)[0..2].each do |tag| %>
-              <span class="tag"><a class="btn btn-tags btn-success" style="background: <%=tag_color[tag]%>"><%= tag %></a></span>
+              <a class="label label-tag label-success" style="background: <%=tag_color[tag]%>"><%= tag %></a>
               <% end %>
-            </span>
         </div>
         <% end %>
+
+        <div class="row">
+          <div class=" text-muted text-overflow">
+            <div class="glyphicon glyphicon-eye-open"></div> <%=product.popularity%> VIEWS
+          </div>
+        </div>
       </div>
     </div>
   </div>

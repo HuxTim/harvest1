@@ -31,30 +31,17 @@ a.a-modal{
 .gi-3x{font-size: 3em;}
 .gi-4x{font-size: 4em;}
 .gi-5x{font-size: 5em;}
-//
-// .nav > li > a {
-//     float: none;
-//     line-height: 19px;
-//     padding: 9px 10px 11px;
-//     text-decoration: none;
-//     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-//     color:  #ddd;
-//     &:hover {color:blue;}
-// }
 
 .image{
   width: 100%;
   height: 100%;
-  // position: absolute;
-  // left:0;
-  // background: rgba(0, 0, 0, 0.3);
   background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), image-url('search_background_image.jpeg');
   background-size: cover;
-  // background-color:rgba(0,0,0,0.5);
   background-repeat: no-repeat;
   background-position: center;
 }
-$brand-primary      : #d2a679;
+
+
 .table-condensed td a{
   &:hover {background: #ecf0f1;}
 }
@@ -86,82 +73,6 @@ bottom-padding{
   background-color: rgba(255,255,255,0.8);
 }
 
-// #logo {
-//   float: left;
-//   margin-right: 10px;
-//   margin-top: 7px;
-//   font-size: 1.7em;
-//   color: grey;
-//   text-transform: uppercase;
-//   letter-spacing: -1px;
-//   padding-top: 9px;
-//   font-weight: bold;
-//   &:hover {
-//
-//     text-decoration: none;
-//   }
-// }
-
-// .navbar-buttons {
-//   float:left;
-// }
-//
-// body { padding-top: 50px;
-//
-//  }
-
-// $bgDefault      : #d2a679;
-// $bgHighlight    : #d2a679;
-// $colDefault     : #ecf0f1;
-// $colHighlight       : #ffbbbc;
-// .navbar-default {
-//   background-color: $bgDefault;
-//   border-color: $bgHighlight;
-//   .navbar-brand {
-//     color: $colDefault;
-//     &:hover, &:focus {
-//       color: $colHighlight; }}
-//   .navbar-text {
-//     color: $colDefault; }
-//   .navbar-nav {
-//     > li {
-//       > a {
-//         color: $colDefault;
-//         &:hover,  &:focus {
-//           color: $colHighlight; }}}
-//     > .active {
-//       > a, > a:hover, > a:focus {
-//         color: $colHighlight;
-//         background-color: $bgHighlight; }}
-//     > .open {
-//       > a, > a:hover, > a:focus {
-//         color: $colHighlight;
-//         background-color: $bgHighlight; }}}
-//   .navbar-toggle {
-//     border-color: $bgHighlight;
-//     &:hover, &:focus {
-//       background-color: $bgHighlight; }
-//     .icon-bar {
-//       background-color: $colDefault; }}
-//   .navbar-collapse,
-//   .navbar-form {
-//     border-color: $colDefault; }
-//   .navbar-link {
-//     color: $colDefault;
-//     &:hover {
-//       color: $colHighlight; }}}
-// @media (max-width: 767px) {
-//   .navbar-default .navbar-nav .open .dropdown-menu {
-//     > li > a {
-//       color: $colDefault;
-//       &:hover, &:focus {
-//         color: $colHighlight; }}
-//     > .active {
-//       > a, > a:hover, > a:focus, {
-//         color: $colHighlight;
-//         background-color: $bgHighlight; }}}
-// }
-
 .carousel-control .fa-angle-left,
 .carousel-control .fa-angle-right {
   position: absolute;
@@ -175,6 +86,11 @@ bottom-padding{
   background-image:none !important;
 }
 
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  color: #fff;
+  background-color: $link-color;
+}
+
 #showcase .carousel img{
   width: 100%;
   height: 350px;
@@ -182,14 +98,6 @@ bottom-padding{
 .carousel img{
   width: 100%;
 }
-// #store_details li{
-//   background: #5cb85c;
-//   color: #fff;
-// }
-//
-// #store_details li{
-//   color: #5cb85c;
-// }
 
 .carousel-control:hover,
 .carousel-control:focus {
@@ -248,39 +156,8 @@ bottom-padding{
 }
 
 .thumbnail-image-square{
-  padding: 10px;
-  padding-top: 50px;
   width: 100%;
   height: 220px;
-  background: url(http://placehold.it/350x150/fff/ffffff&text=);
-  background-size: 100% 100%;
-  // background-color:rgba(0,0,0,0.5);
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.thumbnail .thumbnail-image-md{
-  padding: 30px;
-  width: 100%;
-  height: 150px;
-}
-
-.thumbnail-image-square-bg{
-  padding: 10px;
-  padding-top: 80px;
-  width: 100%;
-  height: 250px;
-  background: url(http://placehold.it/350x150/fff/ffffff&text=);
-  background-size: 100% 100%;
-  // background-color:rgba(0,0,0,0.5);
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.thumbnail .thumbnail-image-sm{
-  padding: 10px;
-  width: 100%;
-  height: 50px;
   background: url(http://placehold.it/350x150/fff/ffffff&text=);
   background-size: 100% 100%,cover;
   // background-color:rgba(0,0,0,0.5);
@@ -288,17 +165,43 @@ bottom-padding{
   background-position: center;
 }
 
-.thumbnail .thumbnail-image-lg{
-  padding: 10px;
+.thumbnail-image-square-bg{
   width: 100%;
-  height: 400px;
-  background: url(http://placehold.it/1000x800/fff/ffffff&text=);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-position: center;
+  height: 250px;
+  border-radius: 10px;
 }
+
+.thumbnail .thumbnail-image-md{
+  width: 100%;
+  height: 150px;
+}
+.thumbnail-image-board{
+  border-radius: 12px;
+  padding: 2px;
+  background: #367036;
+}
+
+
 .thumbnail li{
   width: 100%;
+}
+
+.thumbnail{/* For browsers that do not support gradients */
+ /* For browsers that do not support gradients */
+ padding-bottom: 10px;
+ // background: rgba(177, 242, 167,0.5);
+  -moz-transition: background 0.3s ease-out;
+  -o-transition: background 0.3s ease-out;
+  -webkit-transition: background 0.3s ease-out;
+  transition: background 0.3s ease-out;
+}
+
+.thumbnail-footer{
+  align-content: center;
+  font-size: 15px;
+  margin-left: 20px;
+  font-style: italic;
+  font-family:Arial,Helvetica,sans-serif;
 }
 
 .btn-space{
@@ -413,7 +316,6 @@ footer{
   background: #44423d;
   padding-top: 50px;
   padding-bottom: 50px;
-  margin-top: 20px;
 }
 
 .section-hr{
@@ -422,35 +324,12 @@ footer{
   max-width: 50px;
 }
 
-.thumbnail{/* For browsers that do not support gradients */
- /* For browsers that do not support gradients */
- border: 0px;
- background: rgba(177, 242, 167,0.5);
-  -moz-transition: background 0.3s ease-out;
-  -o-transition: background 0.3s ease-out;
-  -webkit-transition: background 0.3s ease-out;
-  transition: background 0.3s ease-out;
-}
-
-.thumbnail:hover{
-  background: $link-color; /* For browsers that do not support gradients */
-  div {
-    opacity: 0.8;
-    filter: alpha(opacity=50); /* For IE8 and earlier */
-  }
-}
-
 body.container{
 
   padding-top: 60px;
   text-align: justify;
   text-justify: inter-word;
 }
-
-// a{
-//   display: block;
-//   width: 100%;
-// }
 
 .review-photo{
   height: 50px;
@@ -523,11 +402,10 @@ img {
   margin-bottom: 10px;
 }
 .glyphicon-sm{
-
-  font-size: 20px;
+  font-size: 15px;
+  height: 100%;
   padding-left: 10px;
-  padding-right: 20px;
-  color: $link-color;
+  padding-right: 10px;
 }
 
 .glyphicon-md{
@@ -581,11 +459,26 @@ text-justify: inter-word;
   margin-top: 20px;
 }
 
-.btn-tags{
+.tags{
+  height: 25px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+// .label{
+//   padding: 0px;
+//   height: 100%;
+// }
+.label-tag{
   border: 0px;
   font-size: 15px;
-  line-height: 15px;
-  margin-bottom: 10px;
+  height: 25px;
+}
+
+.label-tag:hover{
+  background: #367036;
+  -webkit-transition: all 0.35s;
+  -moz-transition: all 0.35s;
+  transition: all 0.35s;
 }
 
 .row-special{
@@ -593,10 +486,9 @@ text-justify: inter-word;
 }
 
 .tag{
-  width: auto;
-  :hover{
-    color: rgba(0,0,0,0.5);
-  }
+  height: 100%;
+  border: 2px;
+  border-color: black;
 }
 
 span.tags{
@@ -708,12 +600,12 @@ a.navbar-brand{
 }
 
 .text-overflow {
-    display:block;/*内联对象需加*/
+    display:block;
     width:31em;
-    word-break:keep-all;/* 不换行 */
-    white-space:nowrap;/* 不换行 */
-    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
-    text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+    word-break:keep-all;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 .card-title{
@@ -724,10 +616,6 @@ a.navbar-brand{
   overflow: hidden;
   text-overflow:ellipsis;
 }
-//
-// a.refuse{
-//   color: black;
-// }
 
 .transparent{
 background-color:rgba(255, 255, 255, 0.7);
