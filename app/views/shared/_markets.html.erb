@@ -1,6 +1,6 @@
 <% @markets.each do |market| %>
 <div class="col-md-6">
-  <%= link_to market, class: "thumbnail well check-market" do %>
+  <%= link_to market, class: "thumbnail check-market" do %>
   <% if market.market_images.all.length == 0 %>
   <div class="thumbnail-image-board">
     <div class="text-center thumbnail-image thumbnail-image-md" style="background:url(/images/bg_default_market2.png);
@@ -23,27 +23,27 @@
       <table>
         <tbody>
           <tr>
-            <td class="col-md-3"><span class="glyphicon glyphicon-user"></span> OWNER</td>
+            <td class="col-md-3 text-overflow"><span class="glyphicon glyphicon-user"></span> OWNER</td>
             <td class="col-md-9 text-right text-overflow"><%= link_to market.user.name, market.user%></td>
           </tr>
           <tr>
-            <td class="col-md-3"><span class="glyphicon glyphicon-map-marker"></span> PLACE</td>
+            <td class="col-md-3 text-overflow"><span class="glyphicon glyphicon-map-marker"></span> PLACE</td>
             <td class="col-md-9 text-right"> <%= market.city %>, <%= market.state%></td>
           </tr>
           <tr>
-            <td class="col-md-3"><span class="glyphicon glyphicon-pushpin"></span> PLACE</td>
-            <td class="col-md-9 text-right text-overflow"><%= market.address%>,<%= market.zipcode %></td>
+            <td class="col-md-3 text-overflow"><span class="glyphicon glyphicon-pushpin"></span> PLACE</td>
+            <td class="col-md-9 text-right"><%= market.address%>,<%= market.zipcode %></td>
           </tr>
           <tr>
-            <td class="col-md-3"><span class="glyphicon glyphicon-time"></span> TIME</td>
+            <td class="col-md-3 text-overflow"><span class="glyphicon glyphicon-time"></span> TIME</td>
             <td class="col-md-9 text-right"><%= get_day_from_timestamp(market.open_time) %><%= get_time_from_timestamp(market.open_time) %> - <%= get_time_from_timestamp(market.close_time) %></td>
           </tr>
           <tr>
-            <td class="col-md-3"><span class="glyphicon glyphicon-star"></span> RATING</td>
+            <td class="col-md-3 text-overflow"><span class="glyphicon glyphicon-star"></span> RATING</td>
             <% if market.market_reviews.average(:rating) %>
-            <td class="col-md-9 text-right"><%= market.market_reviews.average(:rating).round(1)%></td>
+            <td class="col-md-9 text-right text-overflow"><%= market.market_reviews.average(:rating).round(1)%></td>
             <% else %>
-            <td class="col-md-9 text-right">Unknow</td>
+            <td class="col-md-9 text-right text-overflow">Unknow</td>
             <% end %>
           </tr>
         </tbody>

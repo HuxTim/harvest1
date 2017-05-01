@@ -1,6 +1,6 @@
 <% @stores.each do |store| %>
 <div class="col-md-3">
-  <%= link_to store, class: "thumbnail well check-store" do %>
+  <%= link_to store, class: "thumbnail check-store" do %>
   <% if store.store_images.all.length == 0 %>
   <div class="thumbnail-image-board">
     <div class="text-center thumbnail-image thumbnail-image-md" style="background:url(/images/bg_default_store.png);
@@ -24,11 +24,11 @@
     <table>
       <tbody>
         <tr>
-          <td class="col-md-6"><span class="glyphicon glyphicon-user"></span> OWNER</td>
-          <td class="col-md-6 text-right text-overflow"><%= link_to store.vendor.user.name, store.vendor.user%></td>
+          <td class="col-md-6 text-overflow"><span class="glyphicon glyphicon-user"></span> OWNER</td>
+          <td class="col-md-6 text-right"><%= link_to store.vendor.user.name[0..8], store.vendor.user%></td>
         </tr>
         <tr>
-          <td class="col-md-6"><span class="glyphicon glyphicon-star"></span> RATING</td>
+          <td class="col-md-6 text-overflow"><span class="glyphicon glyphicon-star"></span> RATING</td>
           <% if store.store_reviews.average(:rating) %>
           <td class="col-md-6 text-right"><%= store.store_reviews.average(:rating).round(1)%></td>
           <% else %>
@@ -36,7 +36,7 @@
           <% end %>
         </tr>
         <tr>
-          <td class="col-md-6"><span class="glyphicon glyphicon-comment"></span> REVIEW</td>
+          <td class="col-md-6 text-overflow"><span class="glyphicon glyphicon-comment"></span> REVIEW</td>
           <td class="col-md-6 text-right"><%= store.store_reviews.count%></td>
         </tr>
       </tbody>

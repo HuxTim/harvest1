@@ -198,9 +198,7 @@ bottom-padding{
   width: 100%;
 }
 
-.thumbnail{/* For browsers that do not support gradients */
- /* For browsers that do not support gradients */
- // background: rgba(177, 242, 167,0.5);
+.thumbnail{
   -moz-transition: background 0.3s ease-out;
   -o-transition: background 0.3s ease-out;
   -webkit-transition: background 0.3s ease-out;
@@ -643,4 +641,7 @@ background-repeat: no-repeat;
   background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), image-url('market_new_bg.jpg');
   background-size: 100% 100%;
 background-repeat: no-repeat;
+}
+.card-text tr{
+  height: 25px;
 }
