@@ -46,16 +46,42 @@ class RequestsController < ApplicationController
   # PATCH/PUT /requests/1
   # PATCH/PUT /requests/1.json
   def update
-    respond_to do |format|
-      if @request.update(request_params)
-        format.html { redirect_to @request, notice: 'Request was successfully updated.' }
-        format.json { render :show, status: :ok, location: @request }
+    if @request.market.user.id != current_user.id
+        redirect_to current_user, :flash => { :error => 'You do not have permission do this.' }
+    else
+      if request_params[:status] == "1"
+        if StoreMarketRelationship.where(:market_id => @request.market.id,:store_id => @request.store.id).length > 0
+          @request.destroy
+          redirect_to current_user, notice: 'Store already in Market!'
+        else
+          @store_market_relationship = StoreMarketRelationship.new(:market_id => @request.market.id,
+          :store_id => @request.store.id,
+          :open_time => @request.open_time,
+          :close_time => @request.close_time)
+
+          if @store_market_relationship.save
+            if @request.update(request_params)
+              redirect_to current_user, notice: 'Request was successfully updated.'
+            else
+              @store_market_relationship.destroy
+              redirect_to current_user, :flash => { :error => 'Request was can not be updated.'}
+
+            end
+          else
+            redirect_to current_user, :flash => { :error => 'Store can not be add in market.'}
+          end
+
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
+        if @request.update(request_params)
+          redirect_to current_user, notice: 'Request was successfully updated.'
+        else
+          redirect_to current_user, :flash => { :error => 'Request was can not be updated.'}
+        end
       end
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -65,6 +91,6 @@ class RequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
-      params.require(:request).permit(:open_time,:close_time,:market_id,:store_id)
+      params.require(:request).permit(:open_time,:close_time,:market_id,:store_id,:status)
     end
 end

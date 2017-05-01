@@ -1,3 +1,108 @@
 // Place all the styles related to the Markets controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.check-market{
+  color: white;
+  padding: 5px;
+  min-height: 350px;
+  border-width: 1px;
+  border-color: #367036;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background: #dfe0db;
+  // background: -webkit-linear-gradient(-36deg, rgb(50, 53, 51), rgb(18, 57, 18));
+  // background: linear-gradient(-36deg, rgb(50, 53, 51), rgb(18, 57, 18));
+  -webkit-transition: all 0.35s;
+  -moz-transition: all 0.35s;
+  transition: all 0.35s;
+  .hover{
+    height: 100%;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-size: 15px;
+    padding: 15px;
+    -webkit-transition: all 0.35s;
+    -moz-transition: all 0.35s;
+    transition: all 0.35s;
+  }
+
+  .card-title{
+    color: #333333;
+  }
+}
+
+.check-market:hover{
+  background: #e8fce8;
+  color: #778462;
+  border-color: #474f3a;
+  .card-title{
+    color: #474f3a;
+    -webkit-transition: all 0.35s;
+    -moz-transition: all 0.35s;
+    transition: all 0.35s;
+  }
+  table{
+    color: #474f3a;
+    -webkit-transition: all 0.35s;
+    -moz-transition: all 0.35s;
+    transition: all 0.35s;
+  }
+}
+.check-market .thumbnail-image-board{
+  padding: 0px;
+  background: #367036;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.check-market .thumbnail-image {
+  font-size: 15px;
+  color: transparent;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.text-overflow-block{
+  // display:block;
+  height: 170px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.check-market  .thumbnail-image:hover{
+  .hover{
+    background: rgb(62, 120, 75);
+  }
+  font-size: 15px;
+  color: white;
+  span{
+    color: transparent;
+  }
+}
+
+.check-market table{
+  color: #333333;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 200;
+}
+
+#market_information{
+  height: 400px;
+  #rating-board{
+    height: 100%;
+    padding: 25px;
+
+  }
+  .rating{
+    margin-bottom: 50px;
+
+  }
+  .well{
+    margin-bottom: 0px;
+  }
+}
+#market_information{
+  padding: 0px;
+}

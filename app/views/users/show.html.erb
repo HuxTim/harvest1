@@ -90,7 +90,7 @@
 
             </li>
           </a>
-          <% elsif !isVendor %>
+          <% elsif isVendor(@user) %>
           <a href="<%= "/stores/" + @user.vendor.store.id.to_s %>">
             <li id="bevendor">
 
@@ -127,6 +127,7 @@
       <%= render  partial: "reviews", locals: { user: @user} %>
       <% elsif board == "requests" and @user.id == current_user.id%>
       <%= render  partial: "requests", locals: { user: @user} %>
+      <%= render  partial: "responsed_requests", locals: { user: @user} %>
       <% elsif board == "change_password" and @user.id == current_user.id%>
       <%= render  partial: "change_password", locals: { user: @user} %>
       <% end %>

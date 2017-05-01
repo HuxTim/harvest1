@@ -1,8 +1,8 @@
 class Market < ApplicationRecord
   belongs_to :user
   has_many :store_market_relationships
-  has_many :stores, :through => :store_market_relationships,:dependent => :destroy
-  has_many :market_reviews
+  has_many :stores, -> { uniq }, :through => :store_market_relationships,:dependent => :destroy
+  has_many :market_reviews,:dependent => :destroy
   has_many :market_images, :dependent => :destroy
   has_many :requests,:dependent => :destroy
   accepts_nested_attributes_for :market_images, :reject_if => lambda { |t| t['market_images'].nil? }

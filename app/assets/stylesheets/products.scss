@@ -1,3 +1,113 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.check-product{
+  height: 425px;
+  padding: 5px;
+  border-width: 2px;
+  border-style:dotted;
+  // border-color: black;
+  border-color: #778462;
+  border-radius: 10px;
+  // background: #e8fce8;
+  background: -webkit-linear-gradient(90deg, #b6eae1 10%, #D2FBAD 90%); /* Chrome 10+, Saf5.1+ */
+  background: -moz-linear-gradient(90deg, #b6eae1 10%, #D2FBAD 90%); /* FF3.6+ */
+  background: linear-gradient(90deg, #b6eae1 10%, #D2FBAD 90%); /* W3C */
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  transition: all 1s;
+  .hover{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    font-size: 20px;
+    padding: 35px;
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    transition: all 0.25s;
+  }
+}
+
+.check-product-sm{
+  height: 400px;
+}
+
+.check-product:hover{
+  background: #f2eccd;
+}
+
+.ispecial{
+  background:image-url('discount.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.check-product .thumbnail-image {
+  border-radius: 10px;
+  font-size: 15px;
+  color: transparent;
+  border-width: 30px;
+  border-color: #367036;
+}
+
+.text-overflow-block{
+  height: 170px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.thumbnail-image:hover{
+  .hover{
+    background: rgb(62, 120, 75);
+  }
+  -webkit-transition: all 0.15s;
+  -moz-transition: all 0.15s;
+  transition: all 0.15s;
+  font-size: 15px;
+  color: white;
+  span{
+    color: transparent;
+  }
+}
+
+.tag-block{
+  padding-bottom: 50px;
+}
+
+.glyphicon-tags{
+  font-size: 20px;
+}
+
+.label-tag-success{
+  background-color: #5cb85c;
+}
+
+#checkProductPanel{
+  .modal-body{
+    padding: 0px;
+    padding-top: 10px;
+  }
+}
+.special-badge{
+  position: fixed;
+  margin-left: -120px;
+  vertical-align:bottom;
+  margin-top: 50px;
+  width: 400px;
+  height: 230px;
+  -webkit-transform: rotate(30deg);
+  -moz-transform: rotate(30deg);
+  -ms-transform: rotate(30deg);
+  -o-transform: rotate(30deg);
+  transform: rotate(30deg);
+}
+
+.product_information{
+  background-color: white;
+}
+
+// #productCarousel{
+//   min-height: 300px;
+// }
