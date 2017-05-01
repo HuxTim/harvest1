@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :update_password, :markets, :requests, :reviews, :shopping_list]
-  before_action :require_login, only: [:edit, :update, :show,:update_password, :update,:markets,:requests,:reviews]
+  before_action :set_user, only: [:show, :update, :update_password, :markets, :change_password,:requests, :reviews, :shopping_list]
+  before_action :require_login, only: [:edit, :update, :show,:change_password,:update_password, :update,:markets,:requests,:reviews]
   before_action :user_shopping_list, only: [:show, :shopping_list]
 
   # GET /users
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    render :show, locals: { user: @user = @user, board: board = "dashboard"}
+    render :show, locals: { user: @user = @user, board: board = "dashboard",item: @items}
   end
 
   # GET /users/new
@@ -70,33 +70,34 @@ class UsersController < ApplicationController
   end
 
   def change_password
-    render :show, locals: { user: @user = current_user, board: board = "change_password"}
+    render :show, locals: { user: @user = @user, board: board = "change_password"}
   end
 
 
   def shopping_list
-    render :show, locals: { user: @user = current_user, board: board = "shopping_list"}
+    render :show, locals: { user: @user = @user, board: board = "shopping_list", item: @items }
   end
 
   def markets
-    render :show, locals: { user: @user = current_user, board: board = "markets"}
+    render :show, locals: { user: @user = @user, board: board = "markets"}
   end
 
   def reviews
-    render :show, locals: { user: @user = current_user, board: board = "reviews"}
+    render :show, locals: { user: @user = @user, board: board = "reviews"}
   end
 
   def requests
-    render :show, locals: { user: @user = current_user, board: board = "requests"}
+    render :show, locals: { user: @user = @user, board: board = "requests"}
   end
 
   def bevendor
-    render :show, locals: { user: @user = current_user, board: board = "bevendor"}
+    render :show, locals: { user: @user = @user, board: board = "bevendor"}
   end
 
   private
 
     def user_shopping_list
+      @schedule = {:date => "", :hour1 => "", :hour2 => ""}
       @meats = []
       @grains = []
       @vegetables = []
@@ -117,6 +118,7 @@ class UsersController < ApplicationController
         end
       end
     end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])

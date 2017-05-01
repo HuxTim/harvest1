@@ -1,3 +1,39 @@
 // Place all the styles related to the Stores controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.filter{
+  border: 2px;
+  border: #123456;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  color: white;
+  // background: #5cb85c;
+  background: rgba(118, 163, 96,0.8); /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(rgba(118, 163, 96,0.8),rgb(68, 66, 61)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(rgba(118, 163, 96,0.8),rgb(68, 66, 61)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(rgba(118, 163, 96,0.8),rgb(68, 66, 61)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(rgba(118, 163, 96,0.8),rgb(68, 66, 61)); /* Standard syntax */
+}
+
+.filter .btn{
+  border-radius: 0px;
+  color: white;
+  font-size: 15px;
+  background: rgba(0, 0, 0,0);
+  border: 0px;
+}
+
+.filter .btn.active{
+  background: white;
+  color: #5cb85c;
+}
+
+.filter .btn:hover{
+  background: white;
+  color: #5cb85c;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s  ease;
+  -o-transition: all 0.3s  ease;
+  -ms-transition: all 0.3s  ease;
+  transition: all 0.3s  ease;
+}

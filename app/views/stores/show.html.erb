@@ -23,353 +23,377 @@
         <% else %>
         <div class="item active">
           <div class="text-center carousel-image carousel-image-lg" style="background:url(<%=  @store.store_images.all.first.image.url(:medium) %>);background-size: 100% 100%;"></div>
-          </div>
-          <% @store.store_images[1..-1].each do |store_image|%>
-          <div class="item">
-            <div class="text-center carousel-image carousel-image-lg" style="background:url(<%= store_image.image.url(:medium) %>);background-size: 100% 100%;
-              background-repeat: no-repeat;"></div>
-            </div>
-            <% end %>
-            <% end %>
-
-            <!-- Controls -->
-            <a class="left carousel-control" href="#Carousel" data-slide="prev">
-              <span class="icon-prev"></span>
-            </a>
-            <a class="right carousel-control" href="#Carousel" data-slide="next">
-              <span class="icon-next"></span>
-            </a>
-          </div>
-        </div><!--slider-->
-      </div>
-
-      <div class="col-sm-1">
-      </div>
-
-      <div class="col-sm-7">
-        <h2>
-          <div class="row">
-            <div class="col-sm-12">
-              <%= @store.name %>
-            </div>
-          </div>
-        </h2>
-        <input type="hidden" id="store_id" value="<%= @store.id %>">
-        <%= @store.description %>
-        <div id="rating">
-          <h4>Average user rating</h4>
-          <% if @store.store_reviews.average(:rating) %>
-          <h2 class="bold padding-bottom-7"><small><%= @store.store_reviews.average(:rating)%>/5</small></h2>
-          <% else %>
-          <h2 class="bold padding-bottom-7"> <small>UNKNOWN/5</small></h2>
-          <% end %>
-          <% (0..4).each do |i|%>
-          <% if @store.store_reviews.average(:rating) and i >= @store.store_reviews.average(:rating) %>
-          <button type="button" class="btn btn-default btn-sm" aria-label="Left Align">
-            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-          </button>
-          <% else %>
-          <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-          </button>
-          <% end %>
-          <% end %>
         </div>
-        <hr>
-        <div class="alert alert-success">Owner : <%= link_to @store.vendor.user.name, @store.vendor, class: "text-success" %></div>
+        <% @store.store_images[1..-1].each do |store_image|%>
+        <div class="item">
+          <div class="text-center carousel-image carousel-image-lg" style="background:url(<%= store_image.image.url(:medium) %>);background-size: 100% 100%;
+            background-repeat: no-repeat;"></div>
+          </div>
+          <% end %>
+          <% end %>
+
+          <!-- Controls -->
+          <a class="left carousel-control" href="#Carousel" data-slide="prev">
+            <span class="icon-prev"></span>
+          </a>
+          <a class="right carousel-control" href="#Carousel" data-slide="next">
+            <span class="icon-next"></span>
+          </a>
+        </div>
+      </div><!--slider-->
+    </div>
+
+    <div class="col-sm-1">
+    </div>
+
+    <div class="col-sm-7">
+      <h2>
+        <div class="row">
+          <div class="col-sm-12">
+            <%= @store.name %>
+          </div>
+        </div>
+      </h2>
+      <input type="hidden" id="store_id" value="<%= @store.id %>">
+      <%= @store.description %>
+      <div id="rating">
+        <h4>Average user rating</h4>
+        <% if @store.store_reviews.average(:rating) %>
+        <h2 class="bold padding-bottom-7"><small><%= @store.store_reviews.average(:rating)%>/5</small></h2>
+        <% else %>
+        <h2 class="bold padding-bottom-7"> <small>UNKNOWN/5</small></h2>
+        <% end %>
+        <% (0..4).each do |i|%>
+        <% if @store.store_reviews.average(:rating) and i >= @store.store_reviews.average(:rating) %>
+        <button type="button" class="btn btn-default btn-sm" aria-label="Left Align">
+          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+        </button>
+        <% else %>
+        <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
+          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+        </button>
+        <% end %>
+        <% end %>
       </div>
+      <hr>
+      <div class="alert alert-success">Owner : <%= link_to @store.vendor.user.name, @store.vendor.user, class: "text-success" %></div>
+    </div>
 
-      <% if logged_in? and isStoreOwner(current_user,@store) %>
-
-      <div class="management-board col-sm-12">
-        <div class="col-sm-12"><%= link_to 'Edit Information', edit_store_path, class: "btn btn-default btn-lg btn-space col-sm-12" %></div>
-        <!-- <div class="col-sm-6">  <%= link_to 'Delete', @store, method: :delete, class: "btn btn-default btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure delete this store'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div> -->
-      </div>
-
-      <% end %>
-
-      <div class="col-sm-12">
-        <h3 class="text-center">Where you can find us</h3>
-        <hr>
-        <%= render 'shared/markets_panel', locals: { markets: @markets = @store.markets } %>
-      </div>
-    </section>
-
-    <section class="row">
-      <div id="store_details" class="carousel slide details" >
-        <ul class="nav nav-pills nav-justified">
-          <li data-target="#store_details" data-slide-to="0" class="active"><a href="#">Product</a></li>
-          <li data-target="#store_details" data-slide-to="1"><a href="#">Review</a></li>
-        </ul>
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <div class="item active">
-            <div id = "store_products">
-              <% if logged_in? and isStoreOwner(current_user,@store) %>
-              <%= render 'add_products' %>
-              <% end %>
-              <%= render 'shared/products', locals: { products: @products } %>
-            </div>
-            <div id="products_next" class="btn btn-default col-sm-12">Show More Products</div>
-            <input type="hidden" id="current_product_page" value="<%= @current_page %>">
-          </div><!-- End Item -->
-          <div class="item">
-            <% if logged_in? and !isStoreOwner(current_user,@store)%>
-
-            <div class="row">
-              <div class="col-md-12">
-                <%= form_for(@review) do |f| %>
-                <div class="form-group">
-                  <%= f.text_area :comment, {:class => "form-control", :rows => "5", :placeholder => "Enter your review here..."}%>
-                </div>
-
-                <div class="form-group">
-                  <div class="col-sm-12 well">
-                    <div id="ratings" class="starrr col-sm-4 "></div>
-                    <div id="ratings-notice" class="text-right">You gave a rating of <span id="count">0</span> star(s)</div>
-                    <%= f.hidden_field :rating, {:value => 0}%>
-                    <%= f.hidden_field :store_id, {:value => @store.id}%>
-                  </div>
-                </div>
-
-                <div class="text-right">
-                  <%= f.submit "Submit", {:class => "btn btn-success col-sm-12"}%>
-                </div>
-                <% end %>
-              </div>
-            </div>
-            <hr>
-            <% end %>
-
-            <div id = "store_reviews" class="text-center">
-              <%= render 'shared/reviews', locals: { reviews: @reviews } %>
-            </div>
-            <div id="reviews_next" class="btn btn-default col-sm-12">Show More Review</div>
-            <input type="hidden" id="current_review_page" value="<%= @current_page %>">
-          </div><!-- End Item -->
-        </div><!-- End Carousel Inner -->
-      </div>
-    </section>
-
-
-    <!-- Modal -->
     <% if logged_in? and isStoreOwner(current_user,@store) %>
-    <div class="modal fade" id="addProductPanel" tabindex="-1" role="dialog" aria-labelledby="addProductPanelLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title">Add New Prodcut</h4>
-          </div>
-          <div class="modal-body">
-            <%= render 'products/form_new', product: @product = @store.products.new %>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+
+    <div class="management-board col-sm-12">
+      <div class="col-sm-12"><%= link_to 'Edit Information', edit_store_path, class: "btn btn-default btn-lg btn-space col-sm-12" %></div>
+      <!-- <div class="col-sm-6">  <%= link_to 'Delete', @store, method: :delete, class: "btn btn-default btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure delete this store'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div> -->
+    </div>
+
     <% end %>
 
-    <%= render 'shared/product_modal' %>
+    <div class="col-sm-12">
+      <h3 class="text-center">Where you can find us</h3>
+      <hr>
+      <%= render 'shared/markets_panel', locals: { markets: @markets = @store.markets } %>
+    </div>
+  </section>
 
-    <script>
-    $(document).ready(function() {
+  <section class="row">
+    <div id="store_details" class="carousel slide details" >
+      <ul class="nav nav-pills nav-justified">
+        <li data-target="#store_details" data-slide-to="0" class="active"><a href="#">Product</a></li>
+        <li data-target="#store_details" data-slide-to="1"><a href="#">Review</a></li>
+      </ul>
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item active">
 
-      $('#new_store_review').submit(function() {
-        document.getElementById("store_review_rating").value= (document.getElementById("count").innerHTML);
-        return true; // return false to cancel form action
-      });
+            <div class="col-sm-2">
+              <%= render 'filter'%>
+            </div>
+            <div class="col-sm-10">
+              <% if logged_in? and isStoreOwner(current_user,@store) %>
+              <%= render 'add_products', locals: { group: @group } %>
+              <% end %>
+              <div id = "store_products">
+              <%= render 'shared/products_sm', locals: { products: @products, store: @store } %>
+            </div>
+          </div>
+          <div id="products_next" class="btn btn-primary col-sm-12">Show More Products</div>
+          <input type="hidden" id="current_product_page" value="<%= @current_page %>">
+        </div><!-- End Item -->
 
-      $('#finish_upload').addClass('disabled');
+        <div class="item">
+          <% if logged_in? and !isStoreOwner(current_user,@store)%>
 
-      $('#store_details').on('click', '.nav a', function() {
-        clickEvent = true;
-        $('.nav li').removeClass('active');
-        $(this).parent().addClass('active');
-      }).on('slid.bs.carousel', function(e) {
-        if(!clickEvent) {
-          var count = $('.nav').children().length -1;
-          var current = $('.nav li.active');
-          current.removeClass('active').next().addClass('active');
-          var id = parseInt(current.data('slide-to'));
-          if(count == id) {
-            $('.nav li').first().addClass('active');
-          }
+          <div class="row">
+            <div class="col-md-12">
+              <%= form_for(@review) do |f| %>
+              <div class="form-group">
+                <%= f.text_area :comment, {:class => "form-control", :rows => "5", :placeholder => "Enter your review here..."}%>
+              </div>
+
+              <div class="form-group">
+                <div class="col-sm-12 well">
+                  <div id="ratings" class="starrr col-sm-4 "></div>
+                  <div id="ratings-notice" class="text-right">You gave a rating of <span id="count">0</span> star(s)</div>
+                  <%= f.hidden_field :rating, {:value => 0}%>
+                  <%= f.hidden_field :store_id, {:value => @store.id}%>
+                </div>
+              </div>
+
+              <div class="text-right">
+                <%= f.submit "Submit", {:class => "btn btn-success col-sm-12"}%>
+              </div>
+              <% end %>
+            </div>
+          </div>
+          <hr>
+          <% end %>
+
+          <div id = "store_reviews" class="text-center">
+            <%= render 'shared/reviews', locals: { reviews: @reviews } %>
+          </div>
+          <div id="store_reviews_next" class="btn btn-primary col-sm-12">Show More Review</div>
+          <input type="hidden" id="current_review_page" value="<%= @current_page %>">
+        </div><!-- End Item -->
+      </div><!-- End Carousel Inner -->
+    </div>
+  </section>
+
+
+  <!-- Modal -->
+  <% if logged_in? and isStoreOwner(current_user,@store) %>
+  <div class="modal fade" id="addProductPanel" tabindex="-1" role="dialog" aria-labelledby="addProductPanelLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title">Add New Prodcut</h4>
+        </div>
+        <div class="modal-body">
+          <%= render 'products/form_new', product: @product = @store.products.new %>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  <% end %>
+
+  <%= render 'shared/product_modal' %>
+
+  <script>
+  $(document).ready(function() {
+
+    $('#new_store_review').submit(function() {
+      document.getElementById("store_review_rating").value= (document.getElementById("count").innerHTML);
+      return true; // return false to cancel form action
+    });
+
+    $('#finish_upload').addClass('disabled');
+
+    $('#store_details').on('click', '.nav a', function() {
+      clickEvent = true;
+      $('.nav li').removeClass('active');
+      $(this).parent().addClass('active');
+    }).on('slid.bs.carousel', function(e) {
+      if(!clickEvent) {
+        var count = $('.nav').children().length -1;
+        var current = $('.nav li.active');
+        current.removeClass('active').next().addClass('active');
+        var id = parseInt(current.data('slide-to'));
+        if(count == id) {
+          $('.nav li').first().addClass('active');
         }
-        clickEvent = false;
-      });
+      }
+      clickEvent = false;
+    });
 
-      $("#products_next").on('click',function() {
-        $.ajax({
-          url: "/stores/"+ $("#store_id").val() +"/products",
-          dataType: "html",
-          type: "GET",
-          data: "current_product_page=" + $("#current_product_page").val(),
-          success: function(data, success) {
+    $("#products_next").on('click',function() {
+      $.ajax({
+        url: "/stores/"+ $("#store_id").val() +"/products",
+        dataType: "html",
+        type: "GET",
+        data: "current_product_page=" + $("#current_product_page").val() + "&group=" + $("#filter").val(),
+        success: function(data,status,xhr) {
+          if(data == ""){
+            $('#products_next').empty()
+            $('#products_next').append("No more Products")
+            $('#products_next').removeClass('btn-primary');
+            $('#products_next').addClass('btn-default');
+          }
+          else {
             $('#store_products').append(data);
             $('#current_product_page').val(parseInt($("#current_product_page").val()) + 1);
-          },
-          error: function(data, failure) {
-            alert("Something Wrong Happen, Please try it later");
           }
-        });
-      });
 
-      $("#reviews_next").on('click',function() {
-        $.ajax({
-          url: "/stores/"+ $("#store_id").val() +"/reviews",
-          dataType: "html",
-          type: "GET",
-          data: "current_review_page=" + $("#current_review_page").val(),
-          success: function(data, success) {
+        },
+        error: function(request, textStatus, errorThrown) {
+          alert("Something Wrong Happen, Please try it later");
+        }
+      });
+    });
+
+    $("#store_reviews_next").on('click',function() {
+      $.ajax({
+        url: "/stores/"+ $("#store_id").val() +"/reviews",
+        dataType: "html",
+        type: "GET",
+        data: "current_review_page=" + $("#current_review_page").val(),
+        success: function(data, success) {
+          if(data == ""){
+            $('#store_reviews_next').empty()
+            $('#store_reviews_next').append("No more Reviews")
+            $('#store_reviews_next').removeClass('btn-primary');
+            $('#store_reviews_next').addClass('btn-default');
+          }else{
             $('#store_reviews').append(data);
             $('#current_review_page').val(parseInt($("#current_review_page").val()) + 1);
-          },
-          error: function(data, failure) {
-            alert("Something Wrong Happen, Please try it later");
+          }
+
+        },
+        error: function(data, failure) {
+          alert("Something Wrong Happen, Please try it later");
+        }
+      });
+    });
+
+  });
+
+  var __slice = [].slice;
+  (function($, window) {
+    var Starrr;
+
+    Starrr = (function() {
+      Starrr.prototype.defaults = {
+        rating: void 0,
+        numStars: 5,
+        change: function(e, value) {}
+      };
+
+      function Starrr($el, options) {
+        var i, _, _ref,
+        _this = this;
+
+        this.options = $.extend({}, this.defaults, options);
+        this.$el = $el;
+        _ref = this.defaults;
+        for (i in _ref) {
+          _ = _ref[i];
+          if (this.$el.data(i) != null) {
+            this.options[i] = this.$el.data(i);
+          }
+        }
+        this.createStars();
+        this.syncRating();
+        this.$el.on('mouseover.starrr', 'span', function(e) {
+          return _this.syncRating(_this.$el.find('span').index(e.currentTarget) + 1);
+        });
+        this.$el.on('mouseout.starrr', function() {
+          return _this.syncRating();
+        });
+        this.$el.on('click.starrr', 'span', function(e) {
+          return _this.setRating(_this.$el.find('span').index(e.currentTarget) + 1);
+        });
+        this.$el.on('starrr:change', this.options.change);
+      }
+
+      Starrr.prototype.createStars = function() {
+        var _i, _ref, _results;
+
+        _results = [];
+        for (_i = 1, _ref = this.options.numStars; 1 <= _ref ? _i <= _ref : _i >= _ref; 1 <= _ref ? _i++ : _i--) {
+          _results.push(this.$el.append("<span class='gi-2x glyphicon .glyphicon-star-empty'></span>"));
+        }
+        return _results;
+      };
+
+      Starrr.prototype.setRating = function(rating) {
+        if (this.options.rating === rating) {
+          rating = void 0;
+        }
+        this.options.rating = rating;
+        this.syncRating();
+        return this.$el.trigger('starrr:change', rating);
+      };
+
+      Starrr.prototype.syncRating = function(rating) {
+        var i, _i, _j, _ref;
+
+        rating || (rating = this.options.rating);
+        if (rating) {
+          for (i = _i = 0, _ref = rating - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+            this.$el.find('span').eq(i).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
+          }
+        }
+        if (rating && rating < 5) {
+          for (i = _j = rating; rating <= 4 ? _j <= 4 : _j >= 4; i = rating <= 4 ? ++_j : --_j) {
+            this.$el.find('span').eq(i).removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+          }
+        }
+        if (!rating) {
+          return this.$el.find('span').removeClass('glyphicon-star').addClass('glyphicon-star-empty');
+        }
+      };
+
+      return Starrr;
+
+    })();
+
+    return $.fn.extend({
+      starrr: function() {
+        var args, option;
+
+        option = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+        return this.each(function() {
+          var data;
+
+          data = $(this).data('star-rating');
+          if (!data) {
+            $(this).data('star-rating', (data = new Starrr($(this), option)));
+          }
+          if (typeof option === 'string') {
+            return data[option].apply(data, args);
           }
         });
-      });
+      }
+    });
+  })(window.jQuery, window);
 
+  $(function() {
+    return $(".starrr").starrr();
+  });
+
+  $( document ).ready(function() {
+
+    $('#ratings').on('starrr:change', function(e, value){
+      $('#count').html(value);
     });
 
-    var __slice = [].slice;
-    (function($, window) {
-      var Starrr;
-
-      Starrr = (function() {
-        Starrr.prototype.defaults = {
-          rating: void 0,
-          numStars: 5,
-          change: function(e, value) {}
-        };
-
-        function Starrr($el, options) {
-          var i, _, _ref,
-          _this = this;
-
-          this.options = $.extend({}, this.defaults, options);
-          this.$el = $el;
-          _ref = this.defaults;
-          for (i in _ref) {
-            _ = _ref[i];
-            if (this.$el.data(i) != null) {
-              this.options[i] = this.$el.data(i);
-            }
-          }
-          this.createStars();
-          this.syncRating();
-          this.$el.on('mouseover.starrr', 'span', function(e) {
-            return _this.syncRating(_this.$el.find('span').index(e.currentTarget) + 1);
-          });
-          this.$el.on('mouseout.starrr', function() {
-            return _this.syncRating();
-          });
-          this.$el.on('click.starrr', 'span', function(e) {
-            return _this.setRating(_this.$el.find('span').index(e.currentTarget) + 1);
-          });
-          this.$el.on('starrr:change', this.options.change);
-        }
-
-        Starrr.prototype.createStars = function() {
-          var _i, _ref, _results;
-
-          _results = [];
-          for (_i = 1, _ref = this.options.numStars; 1 <= _ref ? _i <= _ref : _i >= _ref; 1 <= _ref ? _i++ : _i--) {
-            _results.push(this.$el.append("<span class='gi-2x glyphicon .glyphicon-star-empty'></span>"));
-          }
-          return _results;
-        };
-
-        Starrr.prototype.setRating = function(rating) {
-          if (this.options.rating === rating) {
-            rating = void 0;
-          }
-          this.options.rating = rating;
-          this.syncRating();
-          return this.$el.trigger('starrr:change', rating);
-        };
-
-        Starrr.prototype.syncRating = function(rating) {
-          var i, _i, _j, _ref;
-
-          rating || (rating = this.options.rating);
-          if (rating) {
-            for (i = _i = 0, _ref = rating - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
-              this.$el.find('span').eq(i).removeClass('glyphicon-star-empty').addClass('glyphicon-star');
-            }
-          }
-          if (rating && rating < 5) {
-            for (i = _j = rating; rating <= 4 ? _j <= 4 : _j >= 4; i = rating <= 4 ? ++_j : --_j) {
-              this.$el.find('span').eq(i).removeClass('glyphicon-star').addClass('glyphicon-star-empty');
-            }
-          }
-          if (!rating) {
-            return this.$el.find('span').removeClass('glyphicon-star').addClass('glyphicon-star-empty');
-          }
-        };
-
-        return Starrr;
-
-      })();
-
-      return $.fn.extend({
-        starrr: function() {
-          var args, option;
-
-          option = arguments[0], args = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
-          return this.each(function() {
-            var data;
-
-            data = $(this).data('star-rating');
-            if (!data) {
-              $(this).data('star-rating', (data = new Starrr($(this), option)));
-            }
-            if (typeof option === 'string') {
-              return data[option].apply(data, args);
-            }
-          });
-        }
-      });
-    })(window.jQuery, window);
-
-    $(function() {
-      return $(".starrr").starrr();
+    $('#ratings-existing').on('starrr:change', function(e, value){
+      $('#count-existing').html(value);
     });
+  });
 
-    $( document ).ready(function() {
 
-      $('#ratings').on('starrr:change', function(e, value){
-        $('#count').html(value);
+  $(function() {
+    $.rails.allowAction = function(link) {
+      if (!link.attr('data-confirm')) {
+        return true;
+      }
+      $.rails.showConfirmDialog(link);
+      return false;
+    };
+    $.rails.confirmed = function(link) {
+      link.removeAttr('data-confirm');
+      return link.trigger('click.rails');
+    };
+    return $.rails.showConfirmDialog = function(link) {
+      var html, message;
+      message = link.attr('data-confirm');
+
+      html = "<div class=\"modal\" id=\"confirmationDialog\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n      <h4 class=\"modal-title\">Message<h4>\n      </div><div class = \"modal-body alert alert-danger\">\n      " + message + "</div>\n      <div class=\"modal-footer\">\n       <a data-dismiss=\"modal\" class=\"btn btn-default\">" + (link.data('cancel')) + "</a>   <a data-dismiss=\"modal\" class=\"btn btn-danger confirm\">" + (link.data('ok')) + "</a></div>\n    </div>\n  </div>\n</div>";
+      $(html).modal();
+      return $('#confirmationDialog .confirm').on('click', function() {
+        return $.rails.confirmed(link);
       });
+    };
+  });
 
-      $('#ratings-existing').on('starrr:change', function(e, value){
-        $('#count-existing').html(value);
-      });
-    });
-
-
-    $(function() {
-      $.rails.allowAction = function(link) {
-        if (!link.attr('data-confirm')) {
-          return true;
-        }
-        $.rails.showConfirmDialog(link);
-        return false;
-      };
-      $.rails.confirmed = function(link) {
-        link.removeAttr('data-confirm');
-        return link.trigger('click.rails');
-      };
-      return $.rails.showConfirmDialog = function(link) {
-        var html, message;
-        message = link.attr('data-confirm');
-
-        html = "<div class=\"modal\" id=\"confirmationDialog\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n      <h4 class=\"modal-title\">Message<h4>\n      </div><div class = \"modal-body alert alert-danger\">\n      " + message + "</div>\n      <div class=\"modal-footer\">\n       <a data-dismiss=\"modal\" class=\"btn btn-default\">" + (link.data('cancel')) + "</a>   <a data-dismiss=\"modal\" class=\"btn btn-danger confirm\">" + (link.data('ok')) + "</a></div>\n    </div>\n  </div>\n</div>";
-        $(html).modal();
-        return $('#confirmationDialog .confirm').on('click', function() {
-          return $.rails.confirmed(link);
-        });
-      };
-    });
-
-    </script>
+  </script>

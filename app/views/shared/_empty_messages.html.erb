@@ -1,5 +1,5 @@
-<% if @objects.length == 0 %>
+<% if !@objects or @objects.length == 0 %>
 <div class="well text-center">
-  <h3 class="text-muted">You don't have <%= @class %></h3>
+  <h3 class="text-muted">User don't have <%= @class %></h3>
 </div>
 <% end %>

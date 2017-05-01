@@ -34,19 +34,20 @@ class MarketsController < ApplicationController
   def ajax_reviews
     @market = Market.find(params[:id])
     @reviews = @market.market_reviews.all.order("created_at DESC").paginate(page:params['current_review_page'].to_i + 1,per_page:5)
-
-    respond_to do |format|
-      format.html { render  partial: "shared/reviews", locals: { reviews: @reviews }}
-      format.json { render @reviews}
+    if @reviews.length > 0
+      render partial: "shared/reviews", locals: { reviews: @reviews}
+    else
+      render :html => "", :status => :ok
     end
   end
 
   def ajax_stores
     @market = Market.find(params[:id])
     @stores = @market.stores.all.paginate(page:params['current_store_page'].to_i + 1,per_page:6)
-    respond_to do |format|
-      format.html { render  partial: "shared/stores", locals: { stores: @stores }}
-      format.json { render @stores}
+    if @stores.length > 0
+      render partial: "shared/stores", locals: { stores: @stores}
+    else
+      render :html => "", :status => :ok
     end
   end
 
