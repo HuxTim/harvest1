@@ -1,7 +1,7 @@
 <div class="row ">
   	  <center><h1>Shopping Schedule Generator</h1></center>
   		<%= form_tag(shopping_list_path, method: "get") do %>
-  		  <div class="col-md-12">
+  		  <div class="col-md-12 text-center">
           <%= label_tag(:date, "I want to go shopping on") %>
           <%= select_tag(:date, options_for_select(["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]), {:include_blank => true})%>
           <%= label_tag(:hour1, "sometime between") %>
@@ -11,10 +11,6 @@
     			<%= submit_tag(name="Submit") %>
   		  </div>
   		<% end %>
-      <p> <% :date.blank?.to_s %> </p>
-      <%if :date.blank?%>
-        <p> asdf </p>
-      <% end %>
 </div>
 
 <div class="row">
@@ -59,40 +55,7 @@
 <div class="col-sm-1"></div>
 <div class="col-sm-5 panel-custom-md">
   <h3 class="text-center">Your Shopping Schedule</h2>
-  <% @user.store_reviews.each do |review| %>
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <strong><%= review.store.name%></strong> <span class="text-muted"><%= review.created_at%></span>
-        </div>
-        <div class="panel-body">
-          <%= review.comment%>
-          <hr>
-          <span>
-            <div class="row">
-              <% (0..4).each do |i|%>
-              <% if i >= review.rating %>
-              <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
-                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-              </button>
-              <% else %>
-              <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-              </button>
-              <% end %>
-              <% end %>
-
-          </div>
-          </span>
-        </div><!-- /panel-body -->
-      </div><!-- /panel panel-default -->
-    </div><!-- /col-sm-5 -->
-    <div class="col-sm-12">
-
-    </div>
-  </div>
-  <% end %>
+    <p> <% @hour1.to_s[1] %> <% @hour2.to_s %> asdf</p>
 </div>
 </div>
 

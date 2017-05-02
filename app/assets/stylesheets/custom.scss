@@ -246,7 +246,6 @@ bottom-padding{
 }
 /* Search Style */
 #custom-search-input{
-  padding: 2px;
   border: solid 1px #E4E4E4;
   border-radius: 3px;
   background-color: #fff;
@@ -257,7 +256,6 @@ bottom-padding{
   box-shadow: none;
 }
 #custom-search-input button{
-
   margin: 2px 0 0 0;
   background: none;
   box-shadow: none;
@@ -286,6 +284,7 @@ bottom-padding{
   box-shadow: none;
   border: 0;
   color: #666666;
+
 }
 
 header {
@@ -320,9 +319,10 @@ footer{
   }
 
   li{
-    color: #fff;
+    color: #478f00;
   }
-  background: #44423d;
+  background: #F5FFFA;
+  border-top: double;
   padding-top: 50px;
   padding-bottom: 50px;
 }

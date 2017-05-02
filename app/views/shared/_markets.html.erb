@@ -32,11 +32,11 @@
           </tr>
           <tr>
             <td class="col-md-3 text-overflow"><span class="glyphicon glyphicon-pushpin"></span> PLACE</td>
-            <td class="col-md-9 text-right"><%= market.address%>,<%= market.zipcode %></td>
+            <td class="col-md-9 text-right"><%= market.address%>, <%= market.zipcode %></td>
           </tr>
           <tr>
             <td class="col-md-3 text-overflow"><span class="glyphicon glyphicon-time"></span> TIME</td>
-            <td class="col-md-9 text-right"><%= get_day_from_timestamp(market.open_time) %><%= get_time_from_timestamp(market.open_time) %> - <%= get_time_from_timestamp(market.close_time) %></td>
+            <td class="col-md-9 text-right"><%= get_day_from_timestamp(market.open_time) %>, <%= get_time_from_timestamp(market.open_time) %> - <%= get_time_from_timestamp(market.close_time) %></td>
           </tr>
           <tr>
             <td class="col-md-3 text-overflow"><span class="glyphicon glyphicon-star"></span> RATING</td>

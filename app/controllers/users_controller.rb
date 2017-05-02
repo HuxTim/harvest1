@@ -76,6 +76,8 @@ class UsersController < ApplicationController
 
   def shopping_list
     render :show, locals: { user: @user = @user, board: board = "shopping_list", item: @items }
+    @hour1 = to_timestamp(params[:date], params[:hour1])
+    @hour2 = to_timestamp(params[:date], params[:hour2])
   end
 
   def markets
@@ -117,6 +119,10 @@ class UsersController < ApplicationController
           @misc.push(item)
         end
       end
+    end
+
+    def to_timestamp(date, hour)
+      hour_hash[hour]*3600+day_hash[date]*86400
     end
 
     # Use callbacks to share common setup or constraints between actions.
