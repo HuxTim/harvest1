@@ -2,6 +2,7 @@ class MarketImageController < ApplicationController
   # before_action :set_market_image, only: [:ajax_create, :edit, :update, :destroy]
   before_action :set_market, only: [:ajax_create]
   before_action :set_market_image, only: [:ajax_destory]
+  before_action :require_login, only: [:ajax_create, :ajax_destory]
 
   def ajax_create
     @market_image = @market.market_images.create(market_images_params)

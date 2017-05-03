@@ -1,0 +1,23 @@
+<div class="row well">
+<h1 class="text-center">Change Account Information</h1>
+<%= form_for user, :url => url_for(:controller => 'users', :action => 'update') do |f|%>
+<%= render 'shared/hint_messages', object: user %></br>
+<div class="form-group">
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="field">
+    <%= f.label :zipcode, "Zipcode" %>
+    <%= f.text_field :zipcode, class: "form-control" %>
+  </div>
+</div>
+
+<div class="actions">
+  <%= f.submit "Updata Information", class: "btn btn-primary col-sm-12" %>
+</div>
+<% end %>
+</div>

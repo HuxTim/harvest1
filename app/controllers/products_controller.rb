@@ -1,10 +1,12 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+
   include ProductsHelper
   # GET /products
   # GET /products.json
   def index
-      @products = Product.all
+    @products = Product.all
   end
 
   # GET /products/1
@@ -74,14 +76,19 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product
+    @product = Product.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def product_params
-      params[:product][:tag] = params[:product][:tag].reject { |i| i.empty? }.join(",")
-      params.require(:product).permit(:store_id, :name, :quantity, :price, :description, :tag, :is_special)
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def product_params
+    params[:product][:tag] = params[:product][:tag].reject { |i| i.empty? }.join(",")
+    if params[:price_number]
+      params[:product][:price] = params[:price_number] + "/" + params[:product][:price]
+    else
+      params[:product][:price] = nil
     end
+    params.require(:product).permit(:group,:store_id, :name, :quantity, :price, :description, :tag, :is_special)
+  end
 end

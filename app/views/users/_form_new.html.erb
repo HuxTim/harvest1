@@ -1,0 +1,49 @@
+<%= form_for(user) do |f| %>
+<%= render 'shared/hint_messages', object: user %></br>
+<div class="form-group">
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email, class: "form-control" %>
+  </div>
+</div>
+<div class="form-group">
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: "form-control" %>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirmation" %>
+    <%= f.password_field :password_confirmation, class: "form-control" %>
+  </div>
+</div>
+
+<div class="form-group">
+  <div class="field">
+    <%= f.label :zipcode, "Zipcode" %>
+    <%= f.text_field :zipcode, class: "form-control" %>
+  </div>
+</div>
+
+<div class="actions">
+  <%= f.submit "Create My Account", class: "btn btn-primary col-sm-5" %>
+  <%= link_to "Cancel and Go Back", root_path, class: 'btn btn-danger col-sm-5 col-sm-offset-2' %>
+</div>
+<% end %>
+
+<p>
+  <br>
+  </br>
+  <center>
+<span class="a-padding">Already Have an Account? <%= link_to "Log In Now", sessions_new_path, class: 'a-padding' %></span>
+  </center>
+</p>

@@ -1,29 +1,163 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-sm-3 no-padding">
+    <div class="nav-side-menu text-center">
+      <img src="<%= gravatar_for @user,size: 150 %>" alt="profile" class="img-thumbnail">
+      <p>
+        <strong>Email:</strong>
+        <%= @user.email %>
+      </p>
+      <p>
+        <strong>Name:</strong>
+        <%= @user.name %>
+      </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+      <p>
+        <strong>Zipcode:</strong>
+        <%= @user.zipcode %>
+      </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+      <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
-<p>
-  <strong>Zipcode:</strong>
-  <%= @user.zipcode %>
-</p>
+      <div class="menu-list text-left">
+        <ul id="menu-content" class="menu-content collapse out">
+          <a href="<%= "/users/" + @user.id.to_s %>">
+            <li id="dashboard">
 
-<p>
-  <strong>City:</strong>
-  <%= @user.city %>
-</p>
+              <i class="fa fa-dashboard fa-lg"></i> Dashboard
 
-<p>
-  <strong>State:</strong>
-  <%= @user.state %>
-</p>
+            </li>
+          </a>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+          <% if @user.id == current_user.id %>
+          <a href="<%= user_requests_path %>">
+            <li id="requests active">
+              <i class="fa fa-users fa-lg "></i><i class="glyphicon glyphicon-envelope"></i> Requests
+              <% if @user.requests.where(:status => 0).count > 0 %>
+              <span class="badge"><%= @user.requests.where(:status => 0).count%></span>
+              <% end %>
+            </li>
+          </a>
+          <% end %>
+
+          <% if @user.id == current_user.id %>
+          <a href="<%= edit_user_path %>">
+            <li id="edit_information">
+
+              <i class="fa fa-dashboard fa-lg"></i><i class="glyphicon glyphicon-wrench"></i> Reset Account
+
+            </li>
+          </a>
+          <% end %>
+
+          <% if @user.id == current_user.id %>
+          <a href="<%= change_password_path %>">
+            <li id="change_password">
+
+              <i class="fa fa-dashboard fa-lg"></i><i class="glyphicon glyphicon-cog"></i> Change Password
+
+            </li>
+          </a>
+          <% end %>
+
+
+          <a href="<%= shopping_list_path %>">
+            <li id="shopping_list">
+              <i class="fa fa-user fa-lg"></i><i class="glyphicon glyphicon-shopping-cart"></i> Shopping List
+            </li>
+          </a>
+
+          <a href="<%= user_reviews_path %>">
+            <li id="reviews">
+
+              <i class="fa fa-users fa-lg"></i><i class="glyphicon glyphicon-comment"></i> User Reviews
+
+            </li>
+          </a>
+
+          <a href="<%= user_markets_path %>">
+            <li id="market">
+
+              <i class="fa fa-user fa-lg"></i><i class="glyphicon glyphicon glyphicon-grain"></i> User Markets
+
+            </li>
+          </a>
+
+          <% if !isVendor(@user) and  @user.id == current_user.id %>
+          <a href="<%= new_store_path %>">
+            <li id="bevendor">
+
+              <i class="fa fa-users fa-lg"></i><i class="glyphicon glyphicon-leaf"></i> Be Vendor
+
+            </li>
+          </a>
+          <% elsif isVendor(@user) %>
+          <a href="<%= "/stores/" + @user.vendor.store.id.to_s %>">
+            <li id="bevendor">
+
+              <i class="fa fa-users fa-lg"></i><i class="glyphicon glyphicon-leaf"></i> Go to Store
+
+            </li>
+          </a>
+          <% end %>
+
+          <a href="<%= root_path %>">
+            <li>
+
+              <i class="fa fa-dashboard fa-lg"></i><i class="glyphicon glyphicon-home"></i> Home Page
+
+            </li>
+          </a>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-9 no-padding">
+    <div id="profile-board">
+      <% if board == "edit" and @user.id == current_user.id %>
+      <%= render  partial: "form_edit", locals: { user: user = @user} %>
+      <% elsif board == "dashboard"%>
+      <%= render  partial: "dashboard", locals: { user: @user,item: @items} %>
+      <% elsif board == "shopping_list" and @user.id == current_user.id %>
+      <%= render  partial: "shopping_list", locals: { user: @user,item: @items} %>
+      <% elsif board == "markets"%>
+      <%= render  partial: "markets", locals: { user: @user} %>
+      <% elsif board == "reviews"%>
+      <%= render  partial: "reviews", locals: { user: @user} %>
+      <% elsif board == "requests" and @user.id == current_user.id%>
+      <%= render  partial: "requests", locals: { user: @user} %>
+      <%= render  partial: "responsed_requests", locals: { user: @user} %>
+      <% elsif board == "change_password" and @user.id == current_user.id%>
+      <%= render  partial: "change_password", locals: { user: @user} %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+<script>
+$(function() {
+  $.rails.allowAction = function(link) {
+    if (!link.attr('data-confirm')) {
+      return true;
+    }
+    $.rails.showConfirmDialog(link);
+    return false;
+  };
+  $.rails.confirmed = function(link) {
+    link.removeAttr('data-confirm');
+    return link.trigger('click.rails');
+  };
+  return $.rails.showConfirmDialog = function(link) {
+    var html, message;
+    message = link.attr('data-confirm');
+
+    html = "<div class=\"modal\" id=\"confirmationDialog\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n      <h4 class=\"modal-title\">Message<h4>\n      </div><div class = \"modal-body alert alert-danger\">\n      " + message + "</div>\n      <div class=\"modal-footer\">\n       <a data-dismiss=\"modal\" class=\"btn btn-default\">" + (link.data('cancel')) + "</a>   <a data-dismiss=\"modal\" class=\"btn btn-danger confirm\">" + (link.data('ok')) + "</a></div>\n    </div>\n  </div>\n</div>";
+    $(html).modal();
+    return $('#confirmationDialog .confirm').on('click', function() {
+      return $.rails.confirmed(link);
+    });
+  };
+});
+</script>

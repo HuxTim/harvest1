@@ -1,17 +1,40 @@
 module ProductsHelper
   def tag_list
     tags = [
-      "vegetable",
-      "meat",
-      "fish",
-      "fruit",
-      "drink",
-      "bread",
-      "beef",
-      "lamb",
-      "chicken",
-      "fresh"
+      "Beef",
+      "Pork",
+      "Lamb",
+      "Chicken",
+      "Organic",
+      "Kosher",
+      "Seafood",
+      "Pesticide-Free",
+      "Gluten-Free"
+      # "vegetable",
+      # "meat",
+      # "fish",
+      # "fruit",
+      # "drink",
+      # "bread",
+      # "beef",
+      # "lamb",
+      # "chicken",
+      # "fresh"
     ]
+  end
+
+  def tag_color
+    tags = {
+      "Beef" => "#4d75b7",
+      "Pork" => "#603248",
+      "Lamb" => "#99705a",
+      "Chicken" => "#c6c471",
+      "Organic" => "#76895a",
+      "Kosher" => "#6b5672",
+      "Seafood" => "#753b50",
+      "Pesticide-Free" => "#48717c",
+      "Gluten-Free" => "#639679"
+    }
   end
 
   def split_tags(tags)
@@ -24,11 +47,20 @@ module ProductsHelper
 
   def unit_list
     units = [
-      "LB",
       "kilograms",
       "pounds",
       "liter",
-      "one"
+      "per unit"
+    ]
+  end
+
+  def group_list
+    groups = [
+      "Meat",
+      "Vegetable",
+      "Fruit",
+      "Grain",
+      "Misc."
     ]
   end
 end

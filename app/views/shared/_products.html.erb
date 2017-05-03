@@ -10,7 +10,7 @@
       <% end %>
 
       <div class="caption">
-        <h3 class="card-title"><%= product.name%></h3>
+        <div class="card-title text-overflow"><%= product.name%></div>
         <div class="row">
             <span class="glyphicon-sm glyphicon glyphicon-piggy-bank"></span>
             <span class="label btn-tags label-success"><%= product.price%></span>
@@ -18,14 +18,16 @@
               <span class="label btn-tags label-danger">Special</span>
               <% end %>
         </div>
+            <% if split_tags(product.tag).length > 0 %>
         <div class="row">
             <span class="glyphicon-sm glyphicon glyphicon-tag"></span>
             <span class="tags">
               <% split_tags(product.tag)[0..2].each do |tag| %>
-              <span class="tag"><a class="btn btn-tags btn-success" style="background: #<%= "%06x" % (rand * 0xffffff)%>"><%= tag %></a></span>
+              <span class="tag"><a class="btn btn-tags btn-success" style="background: <%=tag_color[tag]%>"><%= tag %></a></span>
               <% end %>
             </span>
         </div>
+        <% end %>
       </div>
     </div>
   </div>

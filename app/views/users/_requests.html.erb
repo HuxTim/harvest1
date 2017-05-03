@@ -1,0 +1,53 @@
+<div class="row well">
+<div class="col-sm-12 panel-custom-md">
+  <%= render 'shared/empty_messages', locals: { objects: @objects = @user.requests.where(:status => 0), class: @class = "Unresponsed Request" } %>
+  <% if @user.requests.where(:status => 0).count > 0 %>
+  <h1 class="text-center">Pending Application</h1>
+  <table class="table table-striped table-hover">
+    <thead class="thead-inverse text-center">
+      <tr>
+        <th>Status</th>
+        <th>Market</th>
+        <th>Store</th>
+        <th>Owner</th>
+        <th>Time</th>
+        <th colspan="3"></th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @user.requests.where(:status => 0).order('created_at DESC').each do |request| %>
+      <% if request.status == 0 or request.status == 1%>
+        <tr>
+          <td class="col-md-2">
+            <% if request.status == 0 %>
+            <div class="label label-warning"><%= translate_status_to_market_owner(request.status) %><div>
+            <% else %>
+            <div class="label label-default"><%= translate_status_to_market_owner(request.status) %><div>
+            <% end %>
+          </td>
+          <td class="col-md-2"><%= link_to request.market.name[0..10], request.market%></td>
+          <td class="col-md-2"><%= link_to request.store.name[0..10], request.store%></td>
+          <td class="col-md-2"><%= link_to request.store.vendor.user.name[0..10], request.store.vendor.user%></td>
+          <td class="col-md-2"><%= request.created_at.strftime("%d %b. %Y") %></td>
+          <td class="col-md-1">
+            <%= form_for request, :method => :patch do |f|%>
+            <%= f.hidden_field :status, :value => "1" %>
+            <%= f.submit "Accept", class: "btn btn-primary" %>
+            <% end %>
+          </td>
+          <td class="col-md-1">
+            <%= form_for request,method: :patch do |f|%>
+            <%= f.hidden_field :status,:value => "2" %>
+            <%= f.submit "Refuse", class: "btn btn-default" ,data: {confirm: t('messages.Are you sure Refuse the application'), ok: t('buttons.Sure'), cancel: t('buttons.cancel') } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
+</div>
+</div>

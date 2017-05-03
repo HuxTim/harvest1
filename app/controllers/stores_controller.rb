@@ -1,6 +1,7 @@
 class StoresController < ApplicationController
   before_action :set_store, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+  before_action :require_login, only: [:new, :create, :edit, :update]
+
   # GET /stores
   # GET /stores.json
   def index
@@ -11,7 +12,13 @@ class StoresController < ApplicationController
   # GET /stores/1.json
   def show
     @store = Store.find(params[:id])
-    @products = @store.products.all.paginate(page:1,per_page:6)
+    if !params[:group] or params[:group] == "All"
+      @products = @store.products.all.paginate(page:1,per_page:6)
+      @group = "All"
+    else
+      @products = @store.products.where(:group => params[:group]).paginate(page:1,per_page:6)
+      @group = params[:group]
+    end
     @reviews = @store.store_reviews.all.order("created_at DESC").paginate(page:1,per_page:5)
     @current_page = 1
     @review = StoreReview.new(store_id: params[:id])
@@ -20,18 +27,25 @@ class StoresController < ApplicationController
   def ajax_reviews
     @store = Store.find(params[:id])
     @reviews = @store.store_reviews.all.order("created_at DESC").paginate(page:params['current_review_page'].to_i + 1,per_page:5)
-    respond_to do |format|
-      format.html { render  partial: "shared/reviews", locals: { reviews: @reviews }}
-      format.json { render @reviews}
+    if @reviews.length > 0
+      render  partial: "shared/reviews", locals: { reviews: @reviews }
+    else
+      render :html => "", :status => :ok
     end
   end
 
   def ajax_products
     @store = Store.find(params[:id])
-    @products = @store.products.all.paginate(page:params['current_product_page'].to_i + 1,per_page:6)
-    respond_to do |format|
-      format.html { render  partial: "shared/products", locals: { products: @products}}
-      format.json { render @products}
+    if !params[:group] or params[:group] == "All"
+      @products = @store.products.all.paginate(page:params['current_product_page'].to_i + 1,per_page:6)
+    else
+      @products = @store.products.where(:group => params[:group]).paginate(page:params['current_product_page'].to_i + 1,per_page:6)
+    end
+
+    if @products.length > 0
+      render partial: "shared/products_sm", locals: { products: @products}
+    else
+      render :html => "", :status => :ok
     end
   end
 
@@ -50,10 +64,14 @@ class StoresController < ApplicationController
   def create
     # puts current_user
     # puts current_user.name
+    if !@vendor = Vendor.create!(user_id: current_user.id)
+      render json: {error: @vendor.errors.full_messages.join(',')}, status: :unprocessable_entity
+    end
+
     market_ids = params['market_ids'].split(',')
     market_ids = market_ids.uniq
     @store = Store.new(store_params)
-    @store.vendor_id = current_user.vendor.id
+    @store.vendor_id = @vendor.id
 
     if @store.save
       market_ids.each do |market_id|
@@ -67,25 +85,6 @@ class StoresController < ApplicationController
     else
       render json: {error: @store.errors.full_messages.join(',')}, status: :unprocessable_entity
     end
-
-    # respond_to do |format|
-    #   if @store.save
-    #     market_ids.each do |market_id|
-    #       Request.create(
-    #       market_id: market_id,
-    #       store_id: @store.id,
-    #       status: 0
-    #       )
-    #     end
-    #     format.json { render json: {statue: 'Create successfully.'} }
-    #   else
-    #     print @store.errors.map{|k,v| "#{k} #{v}"}.join(',')
-    #     # json: @market_review.errors, status: :unprocessable_entity
-    #     errors.full_messages.join(',')
-    #     render json: { :error => exception.message }, :status => 500
-    #     format.json { render json: @store.errors.full_messages.join(','), status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   # PATCH/PUT /stores/1
@@ -99,16 +98,6 @@ class StoresController < ApplicationController
         format.html { render :edit }
         format.json { render json: @store.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /stores/1
-  # DELETE /stores/1.json
-  def destroy
-    @store.destroy
-    respond_to do |format|
-      format.html { redirect_to current_user , notice: 'Store was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -136,7 +125,7 @@ class StoresController < ApplicationController
 
   def require_login
     unless current_user
-      redirect_to login_path, notice: 'Please log in first!'
+      redirect_to login_path, :flash => { :error => 'Please log in first!'}
     end
   end
 end

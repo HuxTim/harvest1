@@ -1,0 +1,25 @@
+<div class="board-md row ">
+  <h1 class="text-center">Log in</h1>
+  <div class="well col-md-4 col-md-offset-4">
+    <%= form_for(:session, url: login_path) do |f| %>
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit "Log in", class: "btn btn-primary col-sm-12" %></br>
+    </div>
+    <% end %>
+    <div class="line-space"></div>
+    <span><%= link_to "Login with Gmail!", "#", class: 'btn btn-danger col-sm-12' %></span>
+    <br>
+    </br>
+    <span class="a-padding">New to Harvest? <%= link_to "Sign up now!", user_signup_path%></span>
+
+  </div>
+</div>

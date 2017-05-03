@@ -12,8 +12,12 @@
         background-repeat: no-repeat;"></div>
   <% end %>
   <div class="caption">
-    <h4 class="card-title"><%= market.name%></h4>
-    <span class="card-text"><%= market.description%></span>
+    <div class="card-title text-overflow"><%= market.name%></div>
+    <span class="card-text"><%= market.description[0..180]%>
+      <% if market.description.length>200 %>
+      <%= "..." %>
+      <% end %>
+    </span>
   </div>
   <% end %>
 </div>

@@ -1,8 +1,8 @@
 class Market < ApplicationRecord
   belongs_to :user
   has_many :store_market_relationships
-  has_many :stores, :through => :store_market_relationships,:dependent => :destroy
-  has_many :market_reviews
+  has_many :stores, -> { uniq }, :through => :store_market_relationships,:dependent => :destroy
+  has_many :market_reviews,:dependent => :destroy
   has_many :market_images, :dependent => :destroy
   has_many :requests,:dependent => :destroy
   accepts_nested_attributes_for :market_images, :reject_if => lambda { |t| t['market_images'].nil? }
@@ -16,7 +16,7 @@ class Market < ApplicationRecord
 
   validates :open_time, presence: true
   validates :close_time, presence: true
-  validates :description,length: { maximum: 250 }
+  validates :description,length: { maximum: 750 }
   validates :rating, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 5}
 
   #how to validate the format of city and state

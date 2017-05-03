@@ -21,24 +21,29 @@
 
   <div class="form-group">
     <div class="row">
-
-      <div class="col-md-4">
-        <%= f.label :discount%>
+      <div class="col-md-2">
+        <%= f.label :special%>
         <%= f.select :is_special, options_for_select([["yes",1],["no",0]], :selected => "no"),{}, {class: "form-control"}%>
       </div>
+
+      <div class="col-md-2">
+        <%= f.label :group%>
+        <%= f.select :group, options_for_select(group_list, :selected => group_list[0]),{}, {class: "form-control"}%>
+      </div>
+
       <div class="col-md-2">
         <%= f.label :price%>
-        <%= f.text_field :price, {:class => "form-control", id: "price_number"}%>
+        <input type="text" class="form-control" id="price_number" name="price_number">
       </div>
       <div class="col-md-2">
         <%= f.label :unit%>
-        <%= f.select :price, options_for_select(unit_list, :selected => "lb"),{}, {class: "form-control"}%>
+        <%= f.select :price, options_for_select(unit_list, :selected => "kilograms"),{}, {class: "form-control", id: "price_unit"}%>
       </div>
       <div class="col-md-4">
         <%= f.label :tag%>
         <div class="row">
           <div class="col-md-12">
-            <%= f.select :tag, options_for_select(tag_list, :selected => "vegetable"),{}, {multiple: true, class: "form-control product_tags"}%>
+            <%= f.select :tag, options_for_select(tag_list, :selected => tag_list[0]),{}, {multiple: true, class: "form-control product_tags"}%>
           </div>
         </div>
       </div>
@@ -51,3 +56,8 @@
   </div>
   <% end %>
 </section>
+<script>
+$(document).ready(function() {
+  $('.product_tags').multiselect();
+});
+</script>

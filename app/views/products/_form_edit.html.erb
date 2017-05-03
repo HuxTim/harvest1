@@ -43,17 +43,23 @@
   <div class="form-group">
     <div class="row">
 
-      <div class="col-md-4">
-        <%= f.label :discount%>
+      <div class="col-md-2">
+        <%= f.label :special%>
         <%= f.select :is_special, options_for_select([["yes",1],["no",0]], :selected => "no"),{}, {class: "form-control"}%>
       </div>
+
+      <div class="col-md-2">
+        <%= f.label :group%>
+        <%= f.select :group, options_for_select(unit_list, :selected => product.group),{}, {class: "form-control"}%>
+      </div>
+
       <div class="col-md-2">
         <%= f.label :price%>
-        <%= f.text_field :price, {:class => "form-control", id: "price_number"}%>
+        <input type="text" class="form-control" id="price_number" name="price_number" value="<%=product.price.split("/")[0] %>">
       </div>
       <div class="col-md-2">
         <%= f.label :unit%>
-        <%= f.select :price, options_for_select(unit_list, :selected => "lb"),{}, {class: "form-control"}%>
+        <%= f.select :price, options_for_select(unit_list, :selected => product.price.split("/")[1]),{}, {class: "form-control"}%>
       </div>
       <div class="col-md-4">
         <%= f.label :tag%>
@@ -69,7 +75,7 @@
   <div class="row">
     <div class="col-sm-12">
         <% split_tags(product.tag).each do |tag| %>
-        <span class="tag"><a class="btn btn-tags btn-success" style="background: #<%= "%06x" % (rand * 0xffffff)%>" herf="#"><%= tag %></a></span>
+        <span class="tag"><a class="btn btn-tags btn-success" style="background: <%= tag_color[tag] %>" herf="#"><%= tag %></a></span>
         <% end %>
     </div>
   </div>
@@ -116,12 +122,15 @@ $(function() {
   return $.rails.showConfirmDialog = function(link) {
     var html, message;
     message = link.attr('data-confirm');
-
-    html = "<div class=\"modal\" id=\"confirmationDialog\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n      <h4 class=\"modal-title\">Message<h4>\n      </div><div class = \"modal-body alert alert-danger\">\n      " + message + "</div>\n      <div class=\"modal-footer\">\n    <div class=\"col-sm-12\"><div class=\"col-sm-6\">    <a data-dismiss=\"modal\" class=\"btn btn-default\">" + (link.data('cancel')) + "</a></div>\n   <div  class=\"col-sm-6\">     <a data-dismiss=\"modal\" class=\"btn btn-danger confirm\">" + (link.data('ok')) + "</a></div></div>\n      </div>\n    </div>\n  </div>\n</div>";
+    html = "<div class=\"modal\" id=\"confirmationDialog\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\">\n      <h4 class=\"modal-title\">Message<h4>\n      </div><div class = \"modal-body alert alert-danger\">\n      " + message + "</div>\n      <div class=\"modal-footer\">\n       <a data-dismiss=\"modal\" class=\"btn btn-default\">" + (link.data('cancel')) + "</a>   <a data-dismiss=\"modal\" class=\"btn btn-danger confirm\">" + (link.data('ok')) + "</a></div>\n    </div>\n  </div>\n</div>";
     $(html).modal();
     return $('#confirmationDialog .confirm').on('click', function() {
       return $.rails.confirmed(link);
     });
   };
+});
+
+$(document).ready(function() {
+  $('.product_tags').multiselect();
 });
 </script>

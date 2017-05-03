@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170424215232) do
+ActiveRecord::Schema.define(version: 20170426220030) do
 
   create_table "market_images", force: :cascade do |t|
     t.integer  "market_id"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20170424215232) do
     t.datetime "updated_at",  null: false
     t.integer  "popularity"
     t.boolean  "is_special"
+    t.string   "group"
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
@@ -142,8 +143,6 @@ ActiveRecord::Schema.define(version: 20170424215232) do
     t.string   "name"
     t.string   "email"
     t.string   "zipcode"
-    t.string   "city"
-    t.string   "state"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"

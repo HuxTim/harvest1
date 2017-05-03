@@ -1,37 +1,30 @@
 <div class="sidebar-nav">
     <div style="width:200px; padding: 8px 0;" class="well">
-        <p>
-			<ul class="nav">
-				<li>
-					<center><a href="{if $loggedin}clientarea{else}index{/if}.php">{$LANG.hometitle}</a></center>
-				</li>
-			</ul>
-		</p>
 		<ul class="nav nav-list">
-          <li class="nav-header"><a href="affiliates.php">{$LANG.affiliatestitle}</li>
           <li class="divider"></li>
+          <center><li class="nav-header">Categories</li></center>
+          <li><a href="/search?&option=Products&tag=grain">Breads & Bakery</a></li>
+          <li><a href="/search?&option=Products&tag=meat">Meat</a></li>
+          <li><a href="/search?&option=Products&tag=seafood">Seafood</a></li>
+          <li><a href="/search?&option=Products&tag=dairy">Dairy</a></li>
+          <li><a href="/search?&option=Products&tag=fruit">Fruits</a></li>
+          <li><a href="/search?&option=Products&tag=vegetable">Vegetables</a></li>
+          <li><a href="/search?&option=Products&tag=#">Beverages</a></li>
+          <li><a href="/search?&option=Products&tag=#">Sauces & Jams </a></li>
+          <li><a href="/search?&option=Products&tag=#">Snacks & Candy </a></li>
+          <li><a href="/search?&option=Products&tag=nut">Nuts & Seeds </a></li>
+          <li><a href="/search?&option=Products&tag=nut">Spices & Seasonings </a></li>
 
-    	  <li><a href="clientarea.php?action=details">{$LANG.editaccountdetails}</a></li>
-		  {if $condlinks.updatecc}
-          <li><a href="clientarea.php?action=creditcard">{$LANG.navmanagecc}</a></li>
-          {/if}
-          <li><a href="clientarea.php?action=contacts">{$LANG.clientareanavcontacts}</a></li>
-          {if $condlinks.addfunds}
-          <li><a href="clientarea.php?action=addfunds">{$LANG.addfunds}</a></li>
-          {/if}
-          <li><a href="clientarea.php?action=emails">{$LANG.navemailssent}</a></li>
-          <li><a href="clientarea.php?action=changepw">{$LANG.clientareanavchangepw}</a></li>
           <li class="divider"></li>
-
-          <li class="nav-header"><a href="affiliates.php">{$LANG.affiliatestitle}</li>
-		  <li class="nav-header">{$LANG.navservices}</li>
-		  <li><a href="clientarea.php?action=products"><i class="icon-home"></i>{$LANG.clientareanavservices}</a></li>
-          {if $condlinks.pmaddon}
-          <li><a href="index.php?m=project_management">{$LANG.clientareaprojects}</a></li>
-          {/if}
-          <li><a href="cart.php">{$LANG.navservicesorder}</a></li>
-          <li><a href="cart.php?gid=addons">{$LANG.clientareaviewaddons}</a></li>
+          <center><li class="nav-header">Specialties</li></center>
           <li class="divider"></li>
+          <li><a href="/search?&option=Products&tag=organic">Organic</a></li>
+          <li><a href="/search?&option=Products&tag=gluten-free">Gluten Free</a></li>
+          <li><a href="/search?&option=Products&tag=vegan">Vegan</a></li>
+          <li><a href="/search?&option=Products&tag=vegetarian">Vegetarian </a></li>
+          <li><a href="/search?&option=Products&tag=kosher">Kosher</a></li>
+          <li><a href="/search?&option=Products&tag=soy-free">Soy Free</a></li>
+          <li><a href="/search?&option=Products&tag=no-carb">No Carbs </a></li>
 		</ul>
 	</div>
 </div>
