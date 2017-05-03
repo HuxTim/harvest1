@@ -63,6 +63,16 @@ module ProductsHelper
       "Misc."
     ]
   end
+
+  def product_background
+    backgrounds = {
+      "Meat" => "/images/meat_bg.jpg",
+      "Vegetable" => "/images/vegetable_bg.jpg",
+      "Fruit" => "/images/fruit_bg.jpg",
+      "Grain" => "/images/grain_bg.jpg",
+      "Misc." => "/images/misc_bg.jpg"
+    }
+  end
 end
 #
 # product

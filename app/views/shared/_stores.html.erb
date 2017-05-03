@@ -1,24 +1,48 @@
 <% @stores.each do |store| %>
-<div class="col-md-4">
-  <%= link_to store, class: "thumbnail well" do %>
-    <% if store.store_images.all.length == 0 %>
-    <div class="text-center thumbnail-image thumbnail-image-md" style="background:url(/bg_default_store.png);
-      background-size: 100% 100%;
-      background-repeat: no-repeat;">
-      <!-- <span class="glyphicon-md glyphicon glyphicon glyphicon-home"></span> -->
-    </div>
-    <% else %>
-    <div class="text-center thumbnail-image thumbnail-image-md" style="background: url(<%= store.store_images.all.first.image.url(:small)%>);      background-size: 100% 100%;
-          background-repeat: no-repeat;"></div>
-    <% end %>
-    <div class="caption">
-      <div class="card-title text-overflow"><%= store.name%></div>
-      <span class="card-text"><%= store.description[0..180]%>
-        <% if store.description.length>200 %>
-        <%= "..." %>
-        <% end %>
-      </span>
-    </div>
-  <% end %>
+<div class="col-md-3">
+  <%= link_to store, class: "thumbnail check-store" do %>
+  <% if store.store_images.all.length == 0 %>
+  <div class="thumbnail-image-board">
+    <div class="text-center thumbnail-image thumbnail-image-md" style="background:url(/images/bg_default_store.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;">
+    <div class="hover"><div class="text-overflow-block"><%= store.description[0..150] %></div></div>
+    <!-- <span class="glyphicon-md glyphicon glyphicon glyphicon-home"></span> -->
+  </div>
+</div>
+<% else %>
+<div class="thumbnail-image-board">
+  <div class="text-center thumbnail-image thumbnail-image-md" style="background: url(<%= store.store_images.all.first.image.url(:small)%>);      background-size: 100% 100%;
+    background-repeat: no-repeat;">
+    <div class="hover"><div class="text-overflow-block"><%= store.description[0..150] %></div></div>
+  </div>
+</div>
+<% end %>
+<div class="caption row">
+  <div class="card-title text-overflow"><%= store.name%></div>
+  <div class="card-text">
+    <table>
+      <tbody>
+        <tr>
+          <td class="col-md-6 text-overflow"><span class="glyphicon glyphicon-user"></span> OWNER</td>
+          <td class="col-md-6 text-right"><%= link_to store.vendor.user.name[0..8], store.vendor.user%></td>
+        </tr>
+        <tr>
+          <td class="col-md-6 text-overflow"><span class="glyphicon glyphicon-star"></span> RATING</td>
+          <% if store.store_reviews.average(:rating) %>
+          <td class="col-md-6 text-right"><%= store.store_reviews.average(:rating).round(1)%></td>
+          <% else %>
+          <td class="col-md-6 text-right">Unknow</td>
+          <% end %>
+        </tr>
+        <tr>
+          <td class="col-md-6 text-overflow"><span class="glyphicon glyphicon-comment"></span> REVIEW</td>
+          <td class="col-md-6 text-right"><%= store.store_reviews.count%></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>
 </div>
 <% end %>

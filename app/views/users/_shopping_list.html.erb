@@ -1,12 +1,19 @@
-<div class="row">
-  <h1 class="text-center">Title Place Holder </h1>
-    <div class="col-md-4 col-md-offset-1">
-      Enter the day and time you want to go grocery shopping and a list will be generated of which markets and vendors you can find all your needs
-    </div>
-  </div>
-<div class="row">
+<div class="row ">
+  	  <center><h1>Shopping Schedule Generator</h1></center>
+  		<%= form_tag(shopping_list_path, method: "get") do %>
+  		  <div class="col-md-12 text-center">
+          <%= label_tag(:date, "I want to go shopping on") %>
+          <%= select_tag(:date, options_for_select(["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]), {:include_blank => true})%>
+          <%= label_tag(:hour1, "sometime between") %>
+    			<%= select_tag(:hour1, options_for_select(["10AM", "11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM"]), {:include_blank => true})%>
+          <%= label_tag(:hour2, "and") %>
+          <%= select_tag(:hour2, options_for_select(["11AM", "12PM", "1PM", "2PM", "3PM", "4PM", "5PM", "6PM", "7PM", "8PM"]), {:include_blank => true})%>
+    			<%= submit_tag(name="Submit") %>
+  		  </div>
+  		<% end %>
+</div>
 
-  <%= link_to "Delete", ShoppingList.first, :method => :delete %>
+<div class="row">
 <div class="col-sm-6 panel-custom-md">
   <h3 class="text-center">Your Shopping List</h2>
     <% @items.each do |a| %>
@@ -18,8 +25,7 @@
           <tr>
             <th>Item</th>
             <th>Date Added</th>
-            <td></th>
-            <th colspan="3"></th>
+            <th>Delete Item</th>
             <th colspan="3"></th>
           </tr>
         </thead>
@@ -34,8 +40,7 @@
                 <%=item.created_at.to_s[0..10]%>
               </td>
               <td>
-                <%= link_to "Delete List", item class:"btn btn-default"%>
-                <button type="button" class="btn btn-success delShoppingList" value="<%= item.id%>">Delete To List</button>
+                <%= link_to ' ', item, method: :delete, class: "btn btn-danger col-sm-12"%>
               </td>
             </tr>
           <% end %>
@@ -50,40 +55,7 @@
 <div class="col-sm-1"></div>
 <div class="col-sm-5 panel-custom-md">
   <h3 class="text-center">Your Shopping Schedule</h2>
-  <% @user.store_reviews.each do |review| %>
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <strong><%= review.store.name%></strong> <span class="text-muted"><%= review.created_at%></span>
-        </div>
-        <div class="panel-body">
-          <%= review.comment%>
-          <hr>
-          <span>
-            <div class="row">
-              <% (0..4).each do |i|%>
-              <% if i >= review.rating %>
-              <button type="button" class="btn btn-default btn-xs" aria-label="Left Align">
-                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-              </button>
-              <% else %>
-              <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-              </button>
-              <% end %>
-              <% end %>
-
-          </div>
-          </span>
-        </div><!-- /panel-body -->
-      </div><!-- /panel panel-default -->
-    </div><!-- /col-sm-5 -->
-    <div class="col-sm-12">
-
-    </div>
-  </div>
-  <% end %>
+    <p> <% @hour1.to_s[1] %> <% @hour2.to_s %> asdf</p>
 </div>
 </div>
 

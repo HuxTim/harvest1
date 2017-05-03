@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :update_password, :markets, :change_password,:requests, :reviews, :shopping_list]
   before_action :require_login, only: [:edit, :update, :show,:change_password,:update_password, :update,:markets,:requests,:reviews]
-  # before_action :user_shopping_list, only: [:show, :shopping_list]
+  before_action :user_shopping_list, only: [:show, :shopping_list]
 
   # GET /users
   # GET /users.json
@@ -76,6 +76,8 @@ class UsersController < ApplicationController
 
   def shopping_list
     render :show, locals: { user: @user = @user, board: board = "shopping_list", item: @items }
+    @hour1 = to_timestamp(params[:date], params[:hour1])
+    @hour2 = to_timestamp(params[:date], params[:hour2])
   end
 
   def markets
@@ -97,6 +99,7 @@ class UsersController < ApplicationController
   private
 
     def user_shopping_list
+      @schedule = {:date => "", :hour1 => "", :hour2 => ""}
       @meats = []
       @grains = []
       @vegetables = []
@@ -116,6 +119,10 @@ class UsersController < ApplicationController
           @misc.push(item)
         end
       end
+    end
+
+    def to_timestamp(date, hour)
+      hour_hash[hour]*3600+day_hash[date]*86400
     end
 
     # Use callbacks to share common setup or constraints between actions.

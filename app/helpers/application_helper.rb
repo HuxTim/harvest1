@@ -27,6 +27,11 @@ module ApplicationHelper
     CS.states(:state, :us)
   end
 
+  def hour_hash()
+    hour = {"9AM"=> 9, "10AM" => 10, "11AM" => 11, "12PM" => 12, "1PM" => 13, "2PM" => 14, "3PM" => 15,
+     "4PM" => 16, "5PM" => 17, "6PM" => 18, "7PM" => 19, "8PM" => 20}
+   end
+
   def day_list()
     days = [
       ["Monday", 0],
@@ -86,9 +91,13 @@ module ApplicationHelper
   def get_time_from_timestamp(timestamp)
     time = (timestamp % 86400)
     if (time / 3600).to_i > 9
-      hour = (time / 3600).to_i.to_s
+      hour = (time / 3600).to_i
+      if hour > 12
+        hour = hour - 12
+      end
+        hour = hour.to_s
     else
-      hour = '0' + (time / 3600).to_i.to_s
+      hour = ' ' + (time / 3600).to_i.to_s
     end
 
     if (time % 3600 / 60).to_i > 9
@@ -97,7 +106,7 @@ module ApplicationHelper
       min = '0' + (time % 3600 / 60).to_i.to_s
     end
 
-    if time > 43200
+    if time > 43199
       time = time - 43200
       return hour + ":" + min + " PM"
     else
