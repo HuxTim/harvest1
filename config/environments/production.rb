@@ -1,7 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   config.paperclip_defaults = {
-  :s3_protocol => :https
+  :s3_protocol => :https,
   storage: :s3,
   s3_credentials: {
     bucket: ENV.fetch('S3_BUCKET_NAME'),
