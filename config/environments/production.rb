@@ -1,6 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   config.paperclip_defaults = {
+  :s3_host_name => 's3.us-east-2.amazonaws.com',
   :s3_protocol => :https,
   storage: :s3,
   s3_credentials: {
