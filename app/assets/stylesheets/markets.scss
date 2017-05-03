@@ -91,7 +91,13 @@
 }
 
 #market_information{
-  height: 400px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 15px;
+  padding-right: 15px;
+
   #rating-board{
     height: 100%;
     padding: 25px;
@@ -107,4 +113,24 @@
 }
 #market_information{
   padding: 0px;
+}
+
+#map {
+  border-radius: 20px;
+  border-width: 5px;
+  height: 250px;
+}
+
+#management-board{
+  div{
+    width: 100%;
+  }
+
+  .management-btn{
+    margin-bottom: 10px;
+
+  }
+}
+#market-table{
+  margin-bottom: 25px;
 }
