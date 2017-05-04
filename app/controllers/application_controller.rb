@@ -14,6 +14,6 @@ class ApplicationController < ActionController::Base
 
   def error
     status_code = params[:code] || 500
-    render partial: "shared/error_page",
+    render partial: "shared/error_page"
   end
 end
