@@ -104,13 +104,17 @@
 
   }
   .rating{
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 
+  }
+  #owner{
+    padding: 10px;
   }
   .well{
     margin-bottom: 0px;
   }
 }
+
 #market_information{
   padding: 0px;
 }
@@ -125,12 +129,22 @@
   div{
     width: 100%;
   }
-
-  .management-btn{
-    margin-bottom: 10px;
-
-  }
 }
+
+.management-btn{
+  display: inline-block;
+  width: 100%;
+  margin: 5px;
+}
+
 #market-table{
   margin-bottom: 25px;
+}
+
+#store_reviews_next{
+  margin-bottom: 20px;
+}
+
+#stores_next{
+  margin-bottom: 20px;
 }

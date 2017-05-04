@@ -69,13 +69,13 @@
                 </tr>
 
                 <tr>
-                  <td class="col-md-1"><span class="glyphicon-tags glyphicon glyphicon-list-alt"></span></td>
+                  <td class="col-md-1"><span class="glyphicon-tags glyphicon glyphicon-shopping-cart"></span></td>
                   <td class="col-md-11"><span class="label-tag label-tag-success"><%= product.group %></span></td>
                 </tr>
 
                 <% if split_tags(product.tag).length > 0 %>
                 <tr>
-                  <td class="col-md-1"><span class="glyphicon-tags glyphicon glyphicon-tag"></span></td>
+                  <td class="col-md-1"><span class="glyphicon-tags glyphicon"></span></td>
                   <td class="col-md-11">
                     <% split_tags(product.tag).each do |tag| %>
                     <a class="label-tag" style="background: <%=tag_color[tag]%>" href="/search?&option=Products&tag=<%= tag%>"><%= tag %></a>

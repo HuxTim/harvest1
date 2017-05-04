@@ -392,6 +392,7 @@ img {
 }
 
 .management-board{
+  margin-top: 30px;
   a{
     position: static;
     width: 100%;
@@ -641,4 +642,10 @@ background-repeat: no-repeat;
 #error_page_board{
   padding-top: 100px;
   padding-bottom: 200px;
+}
+
+.owner{
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
 }

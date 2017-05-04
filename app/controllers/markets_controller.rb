@@ -68,13 +68,18 @@ class MarketsController < ApplicationController
     @market.rating = 0
     @market.open_time = timestamp_helper(params['open_day'], params['market']['open_time'])
     @market.close_time = timestamp_helper(params['open_day'], params['market']['close_time'])
-    respond_to do |format|
-      if @market.save
-        format.html { redirect_to @market, notice: 'Market was successfully created.' }
-        format.json { render json: {market_id: @market.id}}
-      else
-        format.html { render :new }
-        format.json { render json: @market.errors, status: :unprocessable_entity }
+    if !Geocoder.coordinates(@market.address + @market.city + @market.state) or Geocoder.coordinates(@market.address + @market.city + @market.state).length == 0
+      @market.errors.add(:name, "must be real address")
+      render :new
+    else
+      respond_to do |format|
+        if @market.save
+          format.html { redirect_to @market, notice: 'Market was successfully created.' }
+          format.json { render json: {market_id: @market.id}}
+        else
+          format.html { render :new }
+          format.json { render json: @market.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

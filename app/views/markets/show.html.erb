@@ -43,7 +43,7 @@
     <section id="market_information" class="row information">
       <div id="rating-board" class="col-sm-4 well">
         <div class="rating">
-          <h4>Average user rating</h4>
+          <h3>Average User Rating</h3>
           <h2 class="bold padding-bottom-7"><%= @market.rating%> <small>/ 5</small></h2>
           <% (0..4).each do |i|%>
           <% if i >= @market.rating %>
@@ -57,31 +57,40 @@
           <% end %>
           <% end %>
         </div>
-        <div class="alert alert-success"><%= link_to "Owner :" + @market.user.name, @market.user, class: "text-success" %></div>
+
+        <div id = "owner" class="row alert alert-success">
+          <div class="col-sm-3">
+              <img class="review-photo" src="<%= gravatar_for @market.user,size: 200 %>">
+          </div><!-- /col-sm-1 -->
+          <div class="col-sm-9">
+            <h4>Owner</h4>
+            <%= link_to @market.user.name, @market.user, ownerclass: "text-success" %>
+          </div>
+        </div>
         <% if logged_in? %>
         <div class="management-board">
-            <% if isMarketOwner(@market) %>
-            <div class="management-btn"><%= link_to 'Edit Info', edit_market_path, class: "btn btn-success btn-lg btn-space col-sm-12" %></div>
+          <% if isMarketOwner(@market) %>
+          <div class="management-btn"><%= link_to 'Edit Info', edit_market_path, class: "btn btn-warning btn-space col-sm-12" %></div>
 
-            <% if isVendor %>
-            <% if joined_in?(@market) %>
-            <div class="management-btn"><%= link_to 'Quit Market', StoreMarketRelationship.where(:store_id => current_user.vendor.store.id, :market_id => @market.id).first, method: :delete, class: "btn btn-danger  btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure quit this market'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
-            <% else %>
-            <div class="management-btn"><div id="sendRelationship" class="btn btn-success btn-lg btn-space col-sm-12" data-toggle= "modal" data-target= "#sendMessagePanel">Join Market</div></div>
-            <% end %>
-            <% end %>
-            <div class="management-btn"><%= link_to 'Delete', @market, method: :delete, class: "btn btn-danger btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure delete this market'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
+          <% if isVendor %>
+          <% if joined_in?(@market) %>
+          <div class="management-btn"><%= link_to 'Quit Market', StoreMarketRelationship.where(:store_id => current_user.vendor.store.id, :market_id => @market.id).first, method: :delete, class: "btn btn-danger  btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure quit this market'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
+          <% else %>
+          <div class="management-btn"><div id="sendRelationship" class="btn btn-success btn-space col-sm-12" data-toggle= "modal" data-target= "#sendMessagePanel">Join Market</div></div>
+          <% end %>
+          <% end %>
+          <div class="management-btn"><%= link_to 'Delete', @market, method: :delete, class: "btn btn-danger btn-space col-sm-12", data: { confirm: t('messages.Are you sure delete this market'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
 
-            <% else %>
+          <% else %>
 
-            <% if isVendor %>
-            <% if joined_in?(@market) %>
-            <div class="management-btn"><%= link_to 'Quit Market',  StoreMarketRelationship.where(:store_id => current_user.vendor.store.id, :market_id => @market.id).first, method: :delete, class: "btn btn-danger  btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure quit this market'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
-            <% else %>
-            <div class="management-btn"><div id="sendRequest" class="btn btn-success btn-lg btn-space col-sm-12" data-toggle= "modal" data-target= "#sendMessagePanel">Join Market</div></div>
-            <% end %>
-            <% end %>
-            <% end %>
+          <% if isVendor %>
+          <% if joined_in?(@market) %>
+          <div class="management-btn"><%= link_to 'Quit Market',  StoreMarketRelationship.where(:store_id => current_user.vendor.store.id, :market_id => @market.id).first, method: :delete, class: "btn btn-danger  btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure quit this market'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div>
+          <% else %>
+          <div class="management-btn"><div id="sendRequest" class="btn btn-success btn-space col-sm-12" data-toggle= "modal" data-target= "#sendMessagePanel">Join Market</div></div>
+          <% end %>
+          <% end %>
+          <% end %>
         </div>
         <% end %>
       </div>
@@ -117,12 +126,12 @@
         var map;
         function initMap() {
           map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: <%= Geocoder.coordinates(@market.address + @market.city + @market.state)[0] %>, lng: <%= Geocoder.coordinates(@market.address + @market.city + @market.state)[1] %>},
+            center: {lat: <%= Geocoder.coordinates(@market.address + @market.city + @market.state)?Geocoder.coordinates(@market.address + @market.city + @market.state)[0]:0 %>, lng: <%= Geocoder.coordinates(@market.address + @market.city + @market.state)?Geocoder.coordinates(@market.address + @market.city + @market.state)[1]:0 %>},
             zoom: 15
           });
 
           var marker = new google.maps.Marker({
-            position: {lat: <%= Geocoder.coordinates(@market.address + @market.city + @market.state)[0] %>, lng: <%= Geocoder.coordinates(@market.address + @market.city + @market.state)[1] %>},
+            position: {lat: <%= Geocoder.coordinates(@market.address + @market.city + @market.state)?Geocoder.coordinates(@market.address + @market.city + @market.state)[0]:0 %>, lng: <%= Geocoder.coordinates(@market.address + @market.city + @market.state)?Geocoder.coordinates(@market.address + @market.city + @market.state)[1]:0 %>},
             map: map
           });
         }
@@ -145,10 +154,16 @@
         <div class="carousel-inner">
           <div class="item active">
             <div id = "market_stores">
+              <%= render 'shared/empty_messages', locals: { objects: @objects = @stores, class: @class = "stores for in this market" } %>
               <%= render 'shared/stores', locals: { stores: @stores } %>
             </div>
-            <div id="stores_next" class="btn btn-primary col-sm-12">Show More Stores</div>
             <input type="hidden" id="current_store_page" value="<%= @current_page %>">
+
+            <% if @stores.length > 0 %>
+            <div id="stores_next" class="btn btn-primary col-sm-12">Show More Stores</div>
+            <% else %>
+            <div id="stores_next" class="btn btn-default col-sm-12">No More Stores</div>
+            <% end %>
           </div><!-- End Item -->
 
           <div class="item">
@@ -180,10 +195,16 @@
               <% end %>
 
               <div id = "market_reviews" class="text-center">
+                <%= render 'shared/empty_messages', locals: { objects: @objects = @reviews, class: @class = "reviews for in this market" } %>
                 <%= render 'shared/reviews', locals: { reviews: @reviews } %>
               </div>
-              <div id="store_reviews_next" class="btn btn-primary col-sm-12">Show More Review</div>
+
               <input type="hidden" id="current_review_page" value="<%= @current_page %>">
+              <% if @reviews.length > 0 %>
+              <div id="store_reviews_next" class="btn btn-primary col-sm-12">Show More Reviews</div>
+              <% else %>
+              <div id="store_reviews_next" class="btn btn-default col-sm-12">No More Reviews</div>
+              <% end %>
             </div><!-- End Item -->
 
           </div><!-- End Carousel Inner -->
