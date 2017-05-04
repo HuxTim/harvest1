@@ -11,4 +11,9 @@ class ApplicationController < ActionController::Base
       format.html { render json: {cities: CS.cities(state)}}
     end
   end
+
+  def error
+    status_code = params[:code] || 500
+    render partial: "shared/error_page",
+  end
 end
