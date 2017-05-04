@@ -5,7 +5,8 @@ class SearchesController < ApplicationController
   # GET /searches.json
   def index
     q = params[:q]
-    @products = Product.ransack(name_or_description_or_tag_cont: q).result
+    q = q.split(' ');
+    @products = Product.ransack(name_or_description_or_tag_matches_any: q).result
     @stores = Store.ransack(name_or_description_cont: q).result
     @markets = Market.ransack(name_or_description_cont: q).result
     #query_market
