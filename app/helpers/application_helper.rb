@@ -27,7 +27,7 @@ module ApplicationHelper
     CS.states(:state, :us)
   end
 
-  def hour_hash()
+  def Product()
     hour = {"9AM"=> 9, "10AM" => 10, "11AM" => 11, "12PM" => 12, "1PM" => 13, "2PM" => 14, "3PM" => 15,
      "4PM" => 16, "5PM" => 17, "6PM" => 18, "7PM" => 19, "8PM" => 20}
    end
