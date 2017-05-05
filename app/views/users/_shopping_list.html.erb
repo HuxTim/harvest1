@@ -51,11 +51,20 @@
     <% end %>
 </div>
 
-
 <div class="col-sm-1"></div>
 <div class="col-sm-5 panel-custom-md">
   <h3 class="text-center">Your Shopping Schedule</h2>
-    <p> <% @hour1.to_s[1] %> <% @hour2.to_s %> asdf</p>
+    <% if !@valid %>
+      Enter the weekday and time above and find which markets and vendors have the products you need!
+    <% else %>
+      <% if @hour2 <= @hour1%>
+        The time range you chose does not make sense. Please try again.
+      <% else %>
+        <% @schedule.each do |mkt, stores|%>
+          <h5 class="text-center"><%=mkt.name%></h5> 
+        <% end %>
+      <% end %>
+    <% end %>
 </div>
 </div>
 

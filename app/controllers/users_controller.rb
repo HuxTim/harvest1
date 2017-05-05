@@ -75,9 +75,15 @@ class UsersController < ApplicationController
 
 
   def shopping_list
+    @valid = !params[:date].empty? && !params[:hour1].empty? && !params[:hour2].empty?
+    if @valid
+      @hour1 = to_timestamp(params[:date], params[:hour1])
+      @hour2 = to_timestamp(params[:date], params[:hour2])
+      if @hour2 > @hour1
+        @schedule = getList(@hour1, @hour2)
+      end
+    end
     render :show, locals: { user: @user = @user, board: board = "shopping_list", item: @items }
-    @hour1 = to_timestamp(params[:date], params[:hour1])
-    @hour2 = to_timestamp(params[:date], params[:hour2])
   end
 
   def markets
@@ -97,6 +103,69 @@ class UsersController < ApplicationController
   end
 
   private
+
+    def getMarketsAvailable(hour1, hour2)
+      @markets = []
+      Market.all.each do |mkt|
+        if mkt.close_time > hour1 && mkt.open_time < hour2
+          @markets.push(mkt)
+        end
+      end
+      return @markets
+    end
+
+    def getMarketProducts(markets)
+      @markets = Hash.new
+      #make an empty array to contain all products for each market using a HT
+      markets.each do |mkt|
+        @markets[mkt] = []
+      end
+      #fill each array in each hash
+      markets.each do |mkt|
+        #go through each store in each market
+        mkt.stores.each do |str|
+          str.products.each do |pdt|
+            @markets[mkt].push(pdt)
+          end
+        end
+      end
+    end
+
+    def getList(hour1, hour2)
+      @list = Hash.new
+      @schedule = Hash.new
+      @marketproducts = getMarketProducts(getMarketsAvailable(hour1, hour2)) #HT with market => products
+
+      #search through all markets
+      @marketproducts.each do |mkt, products|
+        @schedule[mkt] = Hash.new
+        #search through the list
+        ShoppingList.where(:user_id => @user.id).each do |item|
+        #search through all products at the market for each item in the shopping list
+          #if items are nominally similar, for now eql works because of the way the data is seeded but for improvement there should be a feature to have different comparison styles
+          products.each do |prod|
+            if prod.name.eql? item.product.name
+              if @list[item].nil?
+                @list[item] = prod
+                #replace the existing item if another item is more popular
+              elsif @list[item].popularity < prod.popularity
+                @list[item] = prod
+              end
+            end
+          end
+        end
+
+        @list.each do |item|
+
+          if @schedule[mkt][item.store].nil?
+            @schedule[mkt][item.store] = [item]
+          else
+            @schedule[mkt][item.store].push(item)
+          end
+        end
+      end
+      return @schedule
+    end
 
     def user_shopping_list
       @schedule = {:date => "", :hour1 => "", :hour2 => ""}
@@ -122,7 +191,7 @@ class UsersController < ApplicationController
     end
 
     def to_timestamp(date, hour)
-      hour_hash[hour]*3600+day_hash[date]*86400
+      (hour_hash[hour]*3600+day_hash[date]*86400)
     end
 
     # Use callbacks to share common setup or constraints between actions.
