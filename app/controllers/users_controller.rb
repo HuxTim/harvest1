@@ -105,36 +105,41 @@ class UsersController < ApplicationController
   private
 
     def getMarketsAvailable(hour1, hour2)
-      @markets = []
+      markets = []
       Market.all.each do |mkt|
         if mkt.close_time > hour1 && mkt.open_time < hour2
-          @markets.push(mkt)
+          markets.push(mkt)
         end
       end
-      return @markets
+      return markets
     end
 
     def getMarketProducts(markets)
-      @markets = Hash.new
+      marketproducts = Hash.new
       #make an empty array to contain all products for each market using a HT
       markets.each do |mkt|
-        @markets[mkt] = []
+        marketproducts[mkt] = []
       end
       #fill each array in each hash
       markets.each do |mkt|
         #go through each store in each market
         mkt.stores.each do |str|
           str.products.each do |pdt|
-            @markets[mkt].push(pdt)
+            marketproducts[mkt].push(pdt)
           end
         end
       end
+      return marketproducts
     end
 
     def getList(hour1, hour2)
       @list = Hash.new
       @schedule = Hash.new
-      @marketproducts = getMarketProducts(getMarketsAvailable(hour1, hour2)) #HT with market => products
+      @marketproducts = getMarketProducts(getMarketsAvailable(0, 1000000)) #HT with market => products
+
+      if @marketproducts.empty?
+        return @schedule
+      end
 
       #search through all markets
       @marketproducts.each do |mkt, products|
@@ -148,21 +153,23 @@ class UsersController < ApplicationController
               if @list[item].nil?
                 @list[item] = prod
                 #replace the existing item if another item is more popular
-              elsif @list[item].popularity < prod.popularity
+              elsif !prod.popularity.nil? and !@list[item].popularity.nil?
+                if @list[item].popularity < prod.popularity
                 @list[item] = prod
+                end
               end
             end
           end
         end
 
-        @list.each do |item|
-
+        @list.each do |s_item, item|
           if @schedule[mkt][item.store].nil?
             @schedule[mkt][item.store] = [item]
           else
             @schedule[mkt][item.store].push(item)
           end
         end
+        @list = Hash.new
       end
       return @schedule
     end

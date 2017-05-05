@@ -61,7 +61,13 @@
         The time range you chose does not make sense. Please try again.
       <% else %>
         <% @schedule.each do |mkt, stores|%>
-          <h5 class="text-center"><%=mkt.name%></h5> 
+          <h4 class="text-center"><%=mkt.name%></h4>
+          <% stores.each do |store, products| %>
+            <h5> <%= store.name%> </h5>
+              <% products.each do |prod| %>
+                <p> <%=prod.name %></p
+              <% end %>
+          <% end %>
         <% end %>
       <% end %>
     <% end %>
