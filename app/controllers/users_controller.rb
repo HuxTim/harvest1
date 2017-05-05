@@ -135,7 +135,7 @@ class UsersController < ApplicationController
     def getList(hour1, hour2)
       @list = Hash.new
       @schedule = Hash.new
-      @marketproducts = getMarketProducts(getMarketsAvailable(0, 1000000)) #HT with market => products
+      @marketproducts = getMarketProducts(getMarketsAvailable(hour1, hour2)) #HT with market => products
 
       if @marketproducts.empty?
         return @schedule

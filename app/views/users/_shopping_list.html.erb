@@ -14,7 +14,7 @@
 </div>
 
 <div class="row">
-<div class="col-sm-6 panel-custom-md">
+<div class="col-sm-5 panel-custom-md">
   <h3 class="text-center">Your Shopping List</h2>
     <% @items.each do |a| %>
       <% if !a.nil? %>
@@ -52,7 +52,7 @@
 </div>
 
 <div class="col-sm-1"></div>
-<div class="col-sm-5 panel-custom-md">
+<div class="col-sm-6 panel-custom-md">
   <h3 class="text-center">Your Shopping Schedule</h2>
     <% if !@valid %>
       Enter the weekday and time above and find which markets and vendors have the products you need!
@@ -60,13 +60,26 @@
       <% if @hour2 <= @hour1%>
         The time range you chose does not make sense. Please try again.
       <% else %>
-        <% @schedule.each do |mkt, stores|%>
-          <h4 class="text-center"><%=mkt.name%></h4>
-          <% stores.each do |store, products| %>
-            <h5> <%= store.name%> </h5>
-              <% products.each do |prod| %>
-                <p> <%=prod.name %></p
-              <% end %>
+        <% if @schedule.empty?%>
+          Sorry! But there no stores at the time you selected with the products in your shopping list
+        <% else %>
+          <% @schedule.each do |mkt, stores|%>
+              <b>--------------------------------------------------------------------------------<br></b>
+              <b>Market:</b>&nbsp&nbsp&nbsp&nbsp<%=mkt.name%><br>
+              <b>Address: </b><%=mkt.address%>, <br>
+              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              <%=mkt.city%>, <%=mkt.state%> <%=mkt.zipcode%><br>
+              <b>Hours:</b>&nbsp&nbsp&nbsp&nbsp&nbsp<%=get_time_from_timestamp(mkt.open_time)%> - <%=get_time_from_timestamp(mkt.close_time)%> <br>
+              <b>-------------------------------------------------------------------------------</b><br>
+            <% stores.each do |store, products| %>
+              <b><%= store.name%>:</b><br>
+                <% products.each do |prod| %>
+                  <%=prod.name %><br>
+                  <%if products[-1].eql? prod%>
+                    <br>
+                  <% end %>
+                <% end %>
+            <% end %>
           <% end %>
         <% end %>
       <% end %>
