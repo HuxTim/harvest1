@@ -91,20 +91,60 @@
 }
 
 #market_information{
-  height: 400px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-left: 15px;
+  padding-right: 15px;
+
   #rating-board{
     height: 100%;
     padding: 25px;
 
   }
   .rating{
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 
+  }
+  #owner{
+    padding: 10px;
   }
   .well{
     margin-bottom: 0px;
   }
 }
+
 #market_information{
   padding: 0px;
+}
+
+#map {
+  border-radius: 20px;
+  border-width: 5px;
+  height: 250px;
+}
+
+#management-board{
+  div{
+    width: 100%;
+  }
+}
+
+.management-btn{
+  display: inline-block;
+  width: 100%;
+  margin: 5px;
+}
+
+#market-table{
+  margin-bottom: 25px;
+}
+
+#store_reviews_next{
+  margin-bottom: 20px;
+}
+
+#stores_next{
+  margin-bottom: 20px;
 }

@@ -123,14 +123,6 @@ bottom-padding{
 .details .nav a {
   border-radius:0px;
 }
-#market_information{
-  padding-left: 0px;
-  padding-right: 0px;
-  margin-left: 0px;
-  margin-right: 0px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
 
 .information .panel{
   margin-bottom: 0px;
@@ -400,8 +392,13 @@ img {
 }
 
 .management-board{
-  padding-top: 20px;
-  padding-bottom: 20px;
+  margin-top: 30px;
+  a{
+    position: static;
+    width: 100%;
+  }
+  // padding-top: 20px;
+  // padding-bottom: 20px;
 }
 
 #rating{
@@ -522,10 +519,6 @@ span.tags{
   color: #fff;
 }
 
-.market_information{
-  margin-left: 20px;
-  margin-right: 20px;
-}
 #showcase{
   padding: 0px;
 }
@@ -644,4 +637,15 @@ background-repeat: no-repeat;
 }
 .card-text tr{
   height: 25px;
+}
+
+#error_page_board{
+  padding-top: 100px;
+  padding-bottom: 200px;
+}
+
+.owner{
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
 }

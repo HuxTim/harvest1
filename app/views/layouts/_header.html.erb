@@ -13,6 +13,9 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
+
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'Products', products_path %></li>
         <% if logged_in? %>
           <li><%= link_to 'Shopping List', "/users/#{current_user.id}/shopping_list" %></li>
         <% end %>

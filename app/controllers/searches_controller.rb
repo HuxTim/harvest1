@@ -1,11 +1,21 @@
 class SearchesController < ApplicationController
   before_action :set_search, only: [:show, :edit, :update, :destroy]
 
+  def preprocess(query)
+    require 'rubygems'
+    require 'fast_stemmer'
+    if query == nil
+      query = ""
+    end
+    Stemmer::stem_word(query) # -> 'run'
+  end
+
   # GET /searches
   # GET /searches.json
   def index
-    q = params[:q]
-    @products = Product.ransack(name_or_description_cont: q).result
+    # q = params[:q]
+    q = preprocess(params[:q])
+    @products = Product.ransack(name_or_description_or_tag_cont: q).result
     @stores = Store.ransack(name_or_description_cont: q).result
     @markets = Market.ransack(name_or_description_cont: q).result
     #query_market

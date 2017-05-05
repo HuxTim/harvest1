@@ -36,6 +36,11 @@ Rails.application.routes.draw do
   get '/users/:id/store/new', to: 'users#bevendor', as: 'bevendor'
   patch '/users/:id/update_password', to: 'users#update_password'
 
+  %w(404 422 500).each do |code|
+    get code, to: "application#error", code: code
+  end
+
+
   resources :markets do
     resources :stores
     resources :market_reviews

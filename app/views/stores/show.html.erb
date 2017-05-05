@@ -82,7 +82,7 @@
     <% if logged_in? and isStoreOwner(current_user,@store) %>
 
     <div class="management-board col-sm-12">
-      <div class="col-sm-12"><%= link_to 'Edit Information', edit_store_path, class: "btn btn-default btn-lg btn-space col-sm-12" %></div>
+      <div class="col-sm-12"><%= link_to 'Edit Information', edit_store_path, class: "btn btn-warning btn-lg btn-space col-sm-12" %></div>
       <!-- <div class="col-sm-6">  <%= link_to 'Delete', @store, method: :delete, class: "btn btn-default btn-lg btn-space col-sm-12", data: { confirm: t('messages.Are you sure delete this store'), ok: t('buttons.Sure'), cancel: t('buttons.cancel')}%></div> -->
     </div>
 
@@ -113,11 +113,17 @@
               <%= render 'add_products', locals: { group: @group } %>
               <% end %>
               <div id = "store_products">
+              <%= render 'shared/empty_messages', locals: { objects: @objects = @products, class: @class = "products for in this store" } %>
               <%= render 'shared/products_sm', locals: { products: @products, store: @store } %>
             </div>
           </div>
+          <% if @products.length > 0 %>
           <div id="products_next" class="btn btn-primary col-sm-12">Show More Products</div>
+          <% else %>
+          <div id="products_next" class="btn btn-default col-sm-12">No More Products</div>
+          <% end %>
           <input type="hidden" id="current_product_page" value="<%= @current_page %>">
+          <hr>
         </div><!-- End Item -->
 
         <div class="item">
@@ -149,9 +155,15 @@
           <% end %>
 
           <div id = "store_reviews" class="text-center">
+            <%= render 'shared/empty_messages', locals: { objects: @objects = @reviews, class: @class = "Review for This Store" } %>
             <%= render 'shared/reviews', locals: { reviews: @reviews } %>
           </div>
+          <% if @reviews.length > 0 %>
           <div id="store_reviews_next" class="btn btn-primary col-sm-12">Show More Review</div>
+          <% else %>
+          <div id="store_reviews_next" class="btn btn-default col-sm-12">No More Review</div>
+          <% end %>
+
           <input type="hidden" id="current_review_page" value="<%= @current_page %>">
         </div><!-- End Item -->
       </div><!-- End Carousel Inner -->
