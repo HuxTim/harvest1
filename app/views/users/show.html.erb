@@ -120,7 +120,7 @@
       <% elsif board == "dashboard"%>
       <%= render  partial: "dashboard", locals: { user: @user,item: @items} %>
       <% elsif board == "shopping_list" and @user.id == current_user.id %>
-      <%= render  partial: "shopping_list", locals: { user: @user,item: @items} %>
+      <%= render  partial: "shopping_list", locals: { user: @user,item: @items,test:@test} %>
       <% elsif board == "markets"%>
       <%= render  partial: "markets", locals: { user: @user} %>
       <% elsif board == "reviews"%>
