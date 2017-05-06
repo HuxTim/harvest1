@@ -40,7 +40,8 @@ Rails.application.routes.draw do
     get code, to: "application#error", code: code
   end
 
-
+  resources :subscriptions
+  
   resources :markets do
     resources :stores
     resources :market_reviews
@@ -57,6 +58,10 @@ Rails.application.routes.draw do
     resources :store_reviews
     resources :market_reviews
     resources :requests
+  end
+
+  resources :stores do
+    resources :subscriptions
   end
 
   resources :products do

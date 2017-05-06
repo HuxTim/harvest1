@@ -1,4 +1,5 @@
 <header>
+  <div class="col-md-6">
   <h2><br><br><br><br><br><br><br>&nbsp;&nbsp;&nbsp;Find Fresh Produce<br>&nbsp;&nbsp;&nbsp;at Nearby Farmers Markets<h2>
     <div id="search_area">
        <%= render 'shared/search' %>
@@ -6,6 +7,10 @@
     <div class="text-center">
       <div class="form-horizontal center container" id="search_area"></div>
     </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-1"><br><br><br><br><br><br><br><br><br><br><br><br><br><%= image_tag("testimonial.JPG", height: '135', width: '90') %></div>
+    <div class="col-md-2"><br><br><br><br><br><br><br><br><br><br><br><br><br><br>This is a really great product. I never know where the farmers markets are open but now I do with Harvest!</div>
 </header>
 
 <section>
@@ -47,13 +52,14 @@
 <script>
 $(document).ready(function(){
 var backgrounds = new Array(
-    "linear-gradient(rgba(118, 163, 96, 0.2),rgba(0, 0, 0, 0.3), rgba(118, 163, 96, 0.2)),url('assets/images/search_background_image1.jpeg')"
+    "linear-gradient(rgba(118, 163, 96, 0.2),rgba(0, 0, 0, 0.3), rgba(118, 163, 96, 0.2)),url('assets/images/search_background_image1.jpg')"
   , "linear-gradient(rgba(118, 163, 96, 0.2),rgba(0, 0, 0, 0.3), rgba(118, 163, 96, 0.2)),url('assets/images/search_background_image2.jpg')"
   , "linear-gradient(rgba(118, 163, 96, 0.2),rgba(0, 0, 0, 0.3), rgba(118, 163, 96, 0.2)),url('assets/images/search_background_image3.jpg')"
   , "linear-gradient(rgba(118, 163, 96, 0.2),rgba(0, 0, 0, 0.3), rgba(118, 163, 96, 0.2)),url('assets/images/search_background_image4.jpg')"
   , "linear-gradient(rgba(118, 163, 96, 0.2),rgba(0, 0, 0, 0.3), rgba(118, 163, 96, 0.2)),url('assets/images/search_background_image5.jpg')"
   , "linear-gradient(rgba(118, 163, 96, 0.2),rgba(0, 0, 0, 0.3), rgba(118, 163, 96, 0.2)),url('assets/images/search_background_image6.jpg')"
   , "linear-gradient(rgba(118, 163, 96, 0.2),rgba(0, 0, 0, 0.3), rgba(118, 163, 96, 0.2)),url('assets/images/search_background_image7.jpg')"
+  , "linear-gradient(rgba(118, 163, 96, 0.2),rgba(0, 0, 0, 0.3), rgba(118, 163, 96, 0.2)),url('assets/images/search_background_image8.jpeg')"
 );
 item = backgrounds[Math.floor(Math.random()*backgrounds.length)];
 var header = $('header')
