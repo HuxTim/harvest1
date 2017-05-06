@@ -15,12 +15,13 @@ class SubscriptionMailer < ApplicationMailer
   end
 
   def subscription_digest()
-    @products = Product.all[0..2]
+    @stores = {}
+    Store.all[0..2].each do |store|
+      @stores[store] = []
+      store.products.all[0..1].each do |product|
+        @stores[store].push(product)
+      end
+    end
     mail to: "HarvestApp1@gmail.com", subject: "Harvest: Your Weekly Specials"
   end
-
-  private
-
-
-
 end
