@@ -115,20 +115,21 @@ class UsersController < ApplicationController
     end
 
     def getMarketProducts(markets)
-      @markets = Hash.new
+      markets1 = Hash.new
       #make an empty array to contain all products for each market using a HT
       markets.each do |mkt|
-        @markets[mkt] = []
+        markets1[mkt] = []
       end
       #fill each array in each hash
       markets.each do |mkt|
         #go through each store in each market
-        mkt.stores.each do |str|
-          str.products.each do |pdt|
-            @markets[mkt].push(pdt)
+          mkt.stores.each do |str|
+              str.products.each do |pdt|
+                markets1[mkt].push(pdt)
+              end
           end
-        end
       end
+      markets1
     end
 
     def getList(hour1, hour2)
