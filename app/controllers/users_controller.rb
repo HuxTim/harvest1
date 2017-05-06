@@ -198,7 +198,7 @@ class UsersController < ApplicationController
     end
 
     def to_timestamp(date, hour)
-      (Product[hour]*3600+day_hash[date]*86400)
+      (hour_hash[hour]*3600+day_hash[date]*86400)
     end
 
     # Use callbacks to share common setup or constraints between actions.

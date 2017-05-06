@@ -85,9 +85,14 @@
       <div class="col-md-9 alert alert-success">
         Owner : <%= link_to @store.vendor.user.name, @store.vendor.user, class: "text-success" %>
         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-        <button type="button" class="btn btn-warning btn-sm" aria-label="right Align">
-          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-        </button>
+        <% if logged_in? %>
+        <% if Subscription.where(vendor_id: @store.vendor.id, user_id: current_user.id).all.first%>
+        <button type="button" class="btn btn-default delSubscription" value="<%= Subscription.where(vendor_id: @store.vendor.id, user_id: current_user.id).all.first.id%>">Unsubscribe</button>
+        <% else %>
+        <button type="button" class="btn btn-success addSubscription" value="<%= @store.id%>">Subscribe</button>
+        <% end %>
+
+        <% end %>
       </div>
     </div>
 
@@ -418,6 +423,54 @@
         return $.rails.confirmed(link);
       });
     };
+  });
+
+  $(".addSubscription").click(      function() {
+    var btn = $(this);
+    $.ajax({
+      url: "/stores/" + btn.attr('value') + "/subscriptions",
+      dataType: "json",
+      type: "POST",
+      success: function(data, success) {
+        btn.removeClass('btn-success')
+        btn.addClass('btn-default')
+        btn.removeClass('addSubscription')
+        btn.addClass('delSubscription')
+        btn.empty();
+        btn.append("Delete Subscription")
+        location.reload();
+        // $("#checkProductPanel").modal('hide');
+        alert("You have add successfully");
+      },
+      error: function(data, failure) {
+        alert("Something Wrong Happen, Please try it later");
+      }
+    });
+  });
+
+
+
+  $(".delSubscription").click(function()  {
+    var btn = $(this);
+    $.ajax({
+      url: "/subscriptions/" + btn.attr('value'),
+      dataType: "json",
+      type: "DELETE",
+      success: function(data, success) {
+        btn.removeClass('btn-default')
+        btn.addClass('btn-success')
+        btn.removeClass('delSubscription')
+        btn.addClass('addSubscription')
+        btn.empty();
+        btn.append("Add To List")
+        location.reload();
+        // $("#checkProductPanel").modal('hide');
+        alert("You have sucessfully unsubscribed");
+      },
+      error: function(data, failure) {
+        alert("Something Wrong Happen, Please try it later");
+      }
+    });
   });
 
   </script>
