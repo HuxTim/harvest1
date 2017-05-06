@@ -6,10 +6,20 @@ class SubscriptionMailer < ApplicationMailer
   #   en.subscription_mailer.subscription_digest.subject
 
   #receives an array of user models
-  def subscription_digest(user, products)
-    @user = user
-    @products = products
-
-    mail to: "HarvestApp1@gmail.com", subject: "Harvest: Your Weekly Specials"
+  def send_emails()
+    #variables
+    #algorithm
+    5.times do
+      SubscriptionMailer.subscription_digest().deliver_now
+    end
   end
+
+  def subscription_digest()
+      mail to: "HarvestApp1@gmail.com", subject: "Harvest: Your Weekly Specials"
+  end
+
+  private
+
+
+
 end
