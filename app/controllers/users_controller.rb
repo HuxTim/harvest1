@@ -75,12 +75,16 @@ class UsersController < ApplicationController
 
 
   def shopping_list
-    @valid = !params[:date].empty? && !params[:hour1].empty? && !params[:hour2].empty?
-    if @valid
-      @hour1 = to_timestamp(params[:date], params[:hour1])
-      @hour2 = to_timestamp(params[:date], params[:hour2])
-      if @hour2 > @hour1
-        @schedule = getList(@hour1, @hour2)
+    if params[:date].nil? || params[:hour1].nil? || params[:hour2].nil?
+      @valid = false
+    else
+     @valid = !params[:date].empty? && !params[:hour1].empty? && !params[:hour2].empty?
+      if @valid
+        @hour1 = to_timestamp(params[:date], params[:hour1])
+        @hour2 = to_timestamp(params[:date], params[:hour2])
+        if @hour2 > @hour1
+          @schedule = getList(@hour1, @hour2)
+        end
       end
     end
     render :show, locals: { user: @user = @user, board: board = "shopping_list", item: @items }
@@ -127,6 +131,7 @@ class UsersController < ApplicationController
           str.products.each do |pdt|
             marketproducts[mkt].push(pdt)
           end
+        end
       end
       return marketproducts
     end
