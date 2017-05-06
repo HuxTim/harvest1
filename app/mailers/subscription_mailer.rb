@@ -9,13 +9,14 @@ class SubscriptionMailer < ApplicationMailer
   def send_emails()
     #variables
     #algorithm
-    5.times do
+    1.times do
       SubscriptionMailer.subscription_digest().deliver_now
     end
   end
 
   def subscription_digest()
-      mail to: "HarvestApp1@gmail.com", subject: "Harvest: Your Weekly Specials"
+    @products = Product.all[0..2]
+    mail to: "HarvestApp1@gmail.com", subject: "Harvest: Your Weekly Specials"
   end
 
   private
