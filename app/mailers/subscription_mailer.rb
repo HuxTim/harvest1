@@ -38,7 +38,7 @@ class SubscriptionMailer < ApplicationMailer
           SubscriptionMailer.subscription_digest(user, products).deliver_now
         end
       end
-        if sCount > 0
+        if sCount > 0 and sCount < 3
           while sCount < 3
             randomRecommendations = Product.where(is_special: true).sample.store.products
             if randomRecommendations.count > 1
@@ -70,9 +70,5 @@ class SubscriptionMailer < ApplicationMailer
     @user = user
       mail to: user.email, subject: "Harvest: Check out these CRAZY Deals at your Local Farmers Markets!"
   end
-
-  private
-
-
 
 end
