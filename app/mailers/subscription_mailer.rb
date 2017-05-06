@@ -66,7 +66,15 @@ class SubscriptionMailer < ApplicationMailer
   end
 
   def subscription_digest(user, products)
-    @products = products
+    @stores = Hash.new
+    products.each do |prod|
+      if @stores[prod.store].nil?
+        @stores[prod.store] = [prod]
+      else
+        @stores[prod.store] = @stores[prod.store].push prod
+      end
+    end
+
     @user = user
       mail to: user.email, subject: "Harvest: Check out these CRAZY Deals at your Local Farmers Markets!"
   end
