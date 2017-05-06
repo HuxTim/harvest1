@@ -24,4 +24,8 @@ class Market < ApplicationRecord
   validates :zipcode, format: {with: VALID_ZIPCODE_REGEX,message: "should be in the form 12345 or 12345-1234"}
   validates :open_time, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: :close_time }
   validates :close_time, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 604800 }
+
+  searchable do
+  text :name, :description
+  end
 end
