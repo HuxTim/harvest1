@@ -1,24 +1,24 @@
 class SearchesController < ApplicationController
   before_action :set_search, only: [:show, :edit, :update, :destroy]
 
-  def preprocess(query)
-    require 'rubygems'
-    require 'fast_stemmer'
-    if query == nil
-      query = ""
-    end
-    Stemmer::stem_word(query) # -> 'run'
-  end
-
   # GET /searches
   # GET /searches.json
   def index
-    # q = params[:q]
-    q = preprocess(params[:q])
-    @products = Product.ransack(name_or_description_or_tag_cont: q).result
-    @stores = Store.ransack(name_or_description_cont: q).result
-    @markets = Market.ransack(name_or_description_cont: q).result
-    #query_market
+    #Does a full text search on each model: Products, Markets, and Stores.
+    @search = Product.solr_search do
+       fulltext params[:q]
+     end
+    @products = @search.results
+
+    @search = Store.solr_search do
+        fulltext params[:q]
+    end
+    @stores = @search.results
+
+    @search = Market.solr_search do
+       fulltext params[:q]
+     end
+     @markets =  @search.results
 
     #Filters results based on selected option.
     if params[:option] == "Stores"
@@ -35,7 +35,6 @@ class SearchesController < ApplicationController
       @stores = []
       @products = []
     end
-
     @results = @products + @stores + @markets
   end
 
@@ -92,4 +91,13 @@ class SearchesController < ApplicationController
     def search_params
       params.fetch(:search, {})
     end
+end
+
+def preprocess(query)
+  require 'rubygems'
+  require 'fast_stemmer'
+  if query == nil
+    query = ""
+  end
+  Stemmer::stem_word(query) # -> 'run'
 end

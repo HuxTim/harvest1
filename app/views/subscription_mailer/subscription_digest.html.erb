@@ -36,7 +36,9 @@ header{
 header h1{
   padding: 20px;
   color: white;
-
+}
+.img-window{
+  width: 100%;
 }
 </style>
 <div id="body">
@@ -67,9 +69,9 @@ header h1{
               <% products.each do |product|%>
               <div class="col-sm-6">
                 <% if product.product_images.length > 0 %>
-                <img src="url(<%= product.product_images.all.first.image.url(:medium)%>)">
+                <img class="img-window" src="url(<%= product.product_images.all.first.image.url(:medium)%>)">
                 <% else %>
-                <img src="url(<%= product_background[product.group]%>)">
+                <img class="img-window" src="url(<%= product_background[product.group]%>)">
                 <% end %>
               </div>
               <% end %>

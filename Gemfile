@@ -23,6 +23,8 @@ gem 'bootstrap-multiselect-rails'
 gem 'dropzonejs-rails'
 gem 'bootstrap-select-rails'
 gem 'ransack'
+gem 'sunspot_rails'
+gem 'sunspot_solr'
 
 
 gem 'will_paginate'
