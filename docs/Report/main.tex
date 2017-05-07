@@ -1,0 +1,181 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Wenneker Article
+% LaTeX Template
+% Version 2.0 (28/2/17)
+%
+% This template was downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Authors:
+% Vel (vel@LaTeXTemplates.com)
+% Frits Wenneker
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt, a4paper, twocolumn]{article} % 10pt font size (11 and 12 also possible), A4 paper (letterpaper for US letter) and two column layout (remove for one column)
+
+\input{structure.tex} % Specifies the document structure and loads requires packages
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE INFORMATION
+%----------------------------------------------------------------------------------------
+
+\title{COSI 166b Final Report} % The article title
+
+\author{
+	\authorstyle{Huiming Jia, Timothy Hu, Yanique Seac, Beraa Ibis} 
+	\institution{Brandeis Computer Science Department}
+}
+
+% Example of a one line author/institution relationship
+%\author{\newauthor{John Marston} \newinstitution{Universidad Nacional Autónoma de México, Mexico City, Mexico}}
+
+\date{\today} % Add a date here if you would like one to appear underneath the title block, use \today for the current date, leave empty for no date
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Print the title
+
+\thispagestyle{firstpage} % Apply the page style for the first page (no headers and footers)
+
+
+
+%----------------------------------------------------------------------------------------
+%	ARTICLE CONTENTS
+%----------------------------------------------------------------------------------------
+
+\section{Overview}
+
+This semester we did a projec to do bla bla bla. It was our objective to do bla bla bla. We studied bla ba bla. Describe class and then what the project was
+%------------------------
+\subsection{Harvest: A Platform for Farmers Markets}
+%------------------------
+\subsection{An App}
+
+\section{Our Architecture Model}
+
+This semester we did a projec to do bla bla bla. It was our objective to do bla bla bla. We studied bla ba bla. Describe class and then what the project was
+%------------------------
+\subsection{Using the Ruby on Rails Framework}
+%------------------------
+\subsection{Designing our Database Model}
+%------------------------
+\section{Technologies}
+
+This semester we did a projec to do bla bla bla. It was our objective to do bla bla bla. We studied bla ba bla. Describe class and then what the project was
+%------------------------
+\subsection{Search}
+\subsubsection{Ransack}
+\subsubsection{Fast-Stemmer Ruby Gem}
+Purpose: Natural Language Processing
+Reasoning: Certain language factors blocked search accuracy. Example: Apples return nothing while the products database held several products with names containing the string 'apple.' 
+Result: NLP is much harder than most think. We can now stem words
+Implementation: One line in controller that modifies query sent to search
+%------------------------
+\subsection{Email}
+\subsubsection{Rails Action Mailer}
+Purpose: Sends email
+Reasoning: We want to send users emails if they are subscribed to certain vendors
+Result: Send users emails and shit
+Implementation: Good piece of technology, reuses rails model. Business logic in the controller and the view. View contains message and controller contains algorithm. We go into detail on it later.
+%------------------------
+\subsection{Image Storage}
+\subsubsection{Paperclip Ruby Gem}
+Purpose: Backend Image Solutions [Resizing, Validation, Storage] 
+Reasoning: Easy to adapt to amazon cloud
+Result: Adaptive Image Storage for front end usage, 
+Notes: Good for testing, image storage available on the local machine and through the cloud using paperclip
+Implementation: Create image model for . For each image model, add file location field for image models. Javascript uploading to paperclip. Paperclip is built into model so that when image. Configured . After putting paperclip into the gemfile, had to remake models for images to be configured with paperclip. Paperclip had a command to enter the model instead of using the standard rails generate model image. Past that, file type validation was done in the model class file. 
+\subsubsection{Amazon Web Services}
+Purpose: Image Storage in the cloud
+Notes: easily configured with paperclip
+Reasoning: Heroku can't provide storage services, and we do not want to host images on our own machines/servers. Amazon is the biggest platform for online storage.
+Implementation:  Had to create AWS acount. Create a bucket for storage on AWS and then configure the environment variables in the rails backend with the AWS access key. Did not have to change root contextual locations
+
+
+%------------------------
+\subsection{Location Services}
+Why:
+Functionality:
+
+\subsubsection{Geocoder Ruby Gem}
+Purpose: Turn addresses into GPS coordinates
+Reasoning: We had addresses for the markets and most map APIs use longitude and latitude for more accuracy
+Implementation: Plugged into the google maps API, turning address into API. Rather trivial
+\subsubsection{Google Maps API}
+Purpose: Give a map 
+Reasoning: Have address, showing map is very good
+Implementation: One line in java script sending in the longitude and latitude, mixing it into our own javascript
+Notes: We chose Google maps because google is more famous and trustworthy so we didn't shop around.
+%------------------------
+\subsection{JQuery}
+What is JQuery: JS library
+Why do we use it: improves interaction and make user experience more fluid
+\subsubsection{Dropzone}
+Purpose: Multithreading image upload and drag image to a box and improve users experience
+Reasoning: Need a form of image upload for our different db models
+Implementation: Gem. Bounding event to image upload and html elements. Drag and Drop. Set the class and in the JS
+Notes: Can send multiple files at the same time while others are being uploaded. Easy to use. Can check what image is being uploaded instantly (can look at different file info) In The UX, can see how far the image upload is happening ( go 
+\subsubsection{Moment}
+Purpose: Open Time and Close Time
+Reasoning: Store Creation Page and Market Creation Page to make form entry more fluid 
+Implementation: Creation view for the store and market models. Tying event to show more HTML that is connected to one class
+Notes: Kind of like a helper
+%------------------------
+\section{The User Experience}
+
+This semester we did a projec to do bla bla bla. It was our objective to do bla bla bla. We studied bla ba bla. Describe class and then what the project was
+
+%insert image
+asdf
+asdf
+%------------------------
+\section{Engineering Challenges}
+
+This semester we did a projec to do bla bla bla. It was our objective to do bla bla bla. We studied bla ba bla. Describe class and then what the project was
+%------------------------
+\subsection{Building a Shopping List}
+%------------------------
+\subsection{Producing Accurate Search Results}
+%------------------------
+\subsection{Emailing Product Recommendations}
+%------------------------
+\subsection{Quantifying Product Popularity}
+%------------------------
+\subsection{Authentication between Stores & Markets}
+
+%------------------------
+\section{Development, Testing and Deployment Methodology}
+%------------------------
+\subsection{Development Process}
+%------------------------
+\subsection{Testing Procedures}
+%------------------------
+\subsection{Deploying onto Heroku}
+%------------------------
+\section{Credits And Acknowledgements}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{bear.jpg} % Figure image
+	\caption{A majestic grizzly bear} % Figure caption
+	\label{bear} % Label for referencing with \ref{bear}
+\end{figure}
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+
+\printbibliography[title={Bibliography}] % Print the bibliography, section title in curly brackets
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

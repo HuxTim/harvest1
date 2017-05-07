@@ -45,7 +45,7 @@
                 <% if market.market_reviews.average(:rating) %>
                 <td class="col-md-9 text-right text-overflow"><%= market.market_reviews.average(:rating).round(1)%></td>
                 <% else %>
-                <td class="col-md-9 text-right text-overflow">Unknow</td>
+                <td class="col-md-9 text-right text-overflow">Unknown</td>
                 <% end %>
               </tr>
             </tbody>

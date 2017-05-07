@@ -25,14 +25,14 @@
       <tbody>
         <tr>
           <td class="col-md-6 text-overflow"><span class="glyphicon glyphicon-user"></span> OWNER</td>
-          <td class="col-md-6 text-right"><%= link_to store.vendor.user.name[0..8], store.vendor.user%></td>
+          <td class="col-md-6 text-right"><%= link_to store.vendor.user.name.split[0]+" "+ store.vendor.user.name.split[1][1].capitalize+".", store.vendor.user%></td>
         </tr>
         <tr>
           <td class="col-md-6 text-overflow"><span class="glyphicon glyphicon-star"></span> RATING</td>
           <% if store.store_reviews.average(:rating) %>
           <td class="col-md-6 text-right"><%= store.store_reviews.average(:rating).round(1)%></td>
           <% else %>
-          <td class="col-md-6 text-right">Unknow</td>
+          <td class="col-md-6 text-right">Unknown</td>
           <% end %>
         </tr>
         <tr>
