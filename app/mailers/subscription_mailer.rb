@@ -75,6 +75,7 @@ class SubscriptionMailer < ApplicationMailer
     end
 
     @user = user
-      mail to: user.email, subject: "Harvest: Check out these CRAZY Deals at your Local Farmers Markets!"
+      mail to: "HarvestApp1@gmail.com", subject: "Harvest: Check out these CRAZY Deals at your Local Farmers Markets!"
+      # mail to: user.email, subject: "Harvest: Check out these CRAZY Deals at your Local Farmers Markets!"
   end
 end
