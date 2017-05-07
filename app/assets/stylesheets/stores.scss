@@ -10,10 +10,10 @@
   color: white;
   // background: #5cb85c;
   //background: rgba(118, 163, 96,0.8); /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(rgba(118, 163, 96,0.8),rgb(68, 66, 61)); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(rgba(118, 163, 96,0.8),rgb(68, 66, 61)); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(rgba(118, 163, 96,0.8),rgb(68, 66, 61)); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(rgba(118, 163, 96,0.8),rgb(68, 66, 61)); /* Standard syntax */
+  background: -webkit-linear-gradient(rgb(71,143,0) ,rgb(68, 66, 61)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(rgb(71,143,0) ,rgb(68, 66, 61)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(rgb(71,143,0) ,rgb(68, 66, 61)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(rgb(71,143,0) ,rgb(68, 66, 61)); /* Standard syntax */
 }
 
 .filter .btn{

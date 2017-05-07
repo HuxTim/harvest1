@@ -3,8 +3,7 @@
 <% end %>
 
 <section id="showcase" class="row well">
-  <div class="col-md-4">
-    <br>
+  <div class="col-md-4" style="margin-top: 25px; margin-left: 31px">
     <div id="Carousel" class="center carousel slide" data-ride="carousel">
       <!-- Indicators -->
       <ol class="carousel-indicators">
@@ -47,7 +46,7 @@
     <div class="col-sm-1">
     </div>
 
-    <div class="col-sm-7">
+    <div class="col-sm-7" style="margin-left: 50px">
       <h2>
         <div class="row">
           <div class="col-sm-12">
@@ -65,7 +64,7 @@
         <% if @store.store_reviews.average(:rating) %>
         <h2 class="bold padding-bottom-7">&nbsp;&nbsp;<small>Average user rating: <%= @store.store_reviews.average(:rating).round(1)%>/5</small></h2>
         <% else %>
-        <h2 class="bold padding-bottom-7">Average user rating: <small>UNKNOWN/5</small></h2>
+        <h2 class="bold padding-bottom-7">Average user rating: <small>unkown/5</small></h2>
         <% end %>
         &nbsp;&nbsp;&nbsp;
         <% (0..4).each do |i|%>
@@ -83,8 +82,10 @@
     </div>
       <hr>
       <div class="col-md-9 alert alert-success">
-        Owner : <%= link_to @store.vendor.user.name, @store.vendor.user, class: "text-success" %>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <div class="col-md-9" style="padding-top:8px;padding-left:0px;">
+        <h4>Owner : <%= link_to @store.vendor.user.name, @store.vendor.user, class: "text-success" %></h4>
+      </div>
+      <div class="col-md-3">
         <% if logged_in? %>
         <% if Subscription.where(vendor_id: @store.vendor.id, user_id: current_user.id).all.first%>
         <button type="button" class="btn btn-default delSubscription" value="<%= Subscription.where(vendor_id: @store.vendor.id, user_id: current_user.id).all.first.id%>">Unsubscribe</button>
@@ -93,6 +94,7 @@
         <% end %>
 
         <% end %>
+      </div>
       </div>
     </div>
 
