@@ -1,1 +1,12 @@
+<<<<<<< HEAD
+
+title: Slate theme
+description: Slate is a theme for GitHub Pages.
+show_downloads: true
+google_analytics:
 theme: jekyll-theme-slate
+=======
+theme: jekyll-theme-slate
+title: Harvest Portfolio
+>>>>>>> 60bb4cd66e5115bd5a91579550d7f58fc6d55115
+
