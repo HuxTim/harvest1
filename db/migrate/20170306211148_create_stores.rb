@@ -7,7 +7,7 @@ class CreateStores < ActiveRecord::Migration[5.0]
       t.string :close_time
       t.references :vendor, foreign_key: true
       t.references :market, foreign_key: true
-      
+
       t.timestamps
     end
   end
