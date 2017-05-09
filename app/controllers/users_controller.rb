@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :update_password, :markets, :change_password,:requests, :reviews, :shopping_list]
-  before_action :require_login, only: [:edit, :update, :show,:change_password,:update_password, :update,:markets,:requests,:reviews]
+  # before_action :require_login, only: [:edit, :update, :show,:change_password,:update_password, :update,:markets,:requests,:reviews]
   before_action :user_shopping_list, only: [:show, :shopping_list]
 
   # GET /users

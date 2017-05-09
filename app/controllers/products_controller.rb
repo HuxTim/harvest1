@@ -3,14 +3,11 @@ class ProductsController < ApplicationController
   before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
 
   include ProductsHelper
-  # GET /products
-  # GET /products.json
+
   def index
     @products = Product.all
   end
 
-  # GET /products/1
-  # GET /products/1.json
   def show
     if !@product.popularity
       @product.update(popularity: 1)

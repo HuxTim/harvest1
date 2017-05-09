@@ -1,6 +1,6 @@
 class StoreReviewsController < ApplicationController
   before_action :set_review, only: [:destroy]
-  before_action :require_login, only: [:create, :destroy]
+  # before_action :require_login, only: [:create, :destroy]
 
   def create
     @store_review = StoreReview.create(store_reviews_params)
@@ -31,11 +31,5 @@ class StoreReviewsController < ApplicationController
     end
     def store_reviews_params
       params.require(:store_review).permit(:comment,:rating,:store_id)
-    end
-
-    def require_login
-      unless current_user
-        redirect_to login_path, notice: 'Please log in first!'
-      end
     end
 end

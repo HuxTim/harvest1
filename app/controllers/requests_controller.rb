@@ -1,6 +1,6 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, only: [:new, :create, :edit, :update]
+  # before_action :require_login, only: [:new, :create, :edit, :update]
 
   # GET /requests
   # GET /requests.json

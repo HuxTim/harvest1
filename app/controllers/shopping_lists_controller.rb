@@ -1,5 +1,5 @@
 class ShoppingListsController < ApplicationController
-  before_action :require_login, only: [:create, :destroy]
+  # before_action :require_login, only: [:create, :destroy]
   before_action :set_shopping_list, only: [:destroy]
 
 
@@ -36,11 +36,5 @@ class ShoppingListsController < ApplicationController
   private
     def set_shopping_list
       @shopping_list = ShoppingList.find(params[:id])
-    end
-
-    def require_login
-      unless current_user
-        redirect_to login_path, notice: 'Please log in first!'
-      end
     end
 end

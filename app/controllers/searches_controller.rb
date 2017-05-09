@@ -46,6 +46,7 @@ class SearchesController < ApplicationController
     if params[:option] == "Stores"
         @markets = []
         @products= []
+        @stores = dst_SortStores(@stores)
         render "stores/index"
     elsif params[:option] == "Products"
         @markets = []
@@ -55,6 +56,10 @@ class SearchesController < ApplicationController
     elsif params[:option] == "Markets"
         @products = []
         @stores= []
+        @markets = dst_SortMarkets(@markets)
+        @markets.each do |mkt|
+          puts mkt.name
+        end
         render "markets/index"
     else
         render "index"
@@ -174,26 +179,27 @@ class SearchesController < ApplicationController
       distMark = Hash.new
 
       markets.each do |mkt|
-        if !distances.include? m_calculateDistance(mkt)
-          distances.push s_calculateDistance(mkt)
-          distMark[s_calculateDistance(mkt)] = []
-        end
-        distMark[s_calculateDistance(mkt)] = distProd[m_calculateDistance(mkt)].push mkt
-      end
 
-      distances.sort!
+        distMark[mkt] = m_calculateDistance(mkt)
+
+      end
       sortedMarkets = []
-      distances.each do |d|
-        sortedMarkets.push *distMark[d]
+      distMark.each do |key,value|
+        puts key.name
+        puts value
+      end
+      sorted_hash = distMark.sort_by {|_key, value| value}
+
+      sorted_hash.each do |item|
+        sortedMarkets.push item[0]
       end
       return sortedMarkets
     end
 
     def p_calculateDistance(product)
-      distance = 12425 #fun trvia, farthest distance two cities can be in the world
-      #returns the most closest market
+      distance = 12425 #fun trvia, farthest distance two cities can be in the world#returns the most closest market
       product.store.markets.each do |market|
-        if Geocoder::Calculations.distance_between(Geocoder.coordinates(market.address + market.city + market.state), Geocoder.coordinates(remote_ip)) < distance#request.remote_ip instead of remote_ip
+        if Geocoder::Calculations.distance_between(Geocoder.coordinates(market.address + market.city + market.state), Geocoder.coordinates(remote_ip)) < distance #request.remote_ip instead of remote_ip
           distance = Geocoder::Calculations.distance_between(Geocoder.coordinates(market.address + market.city + market.state), Geocoder.coordinates(remote_ip))
         end
       end
@@ -211,8 +217,7 @@ class SearchesController < ApplicationController
     end
 
     def m_calculateDistance(market)
-        #request.remote_ip instead of remote_ip  
-      return distance = Geocoder::Calculations.distance_between(Geocoder.coordinates(market.address + market.city + market.state), Geocoder.coordinates(remote_ip))
+      return distance = Geocoder::Calculations.distance_between(Geocoder.coordinates(market.address + market.city + market.state), Geocoder.coordinates(remote_ip)) #request.remote_ip instead of remote_ip
     end
 
     def preprocess(query)

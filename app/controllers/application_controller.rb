@@ -4,11 +4,10 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include ProductsHelper
 
-
   def remote_ip
     if request.remote_ip == '127.0.0.1'
       # Hard coded remote address
-      '129.64.133.110'
+      '156.74.181.208'
     else
       request.remote_ip
     end

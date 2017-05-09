@@ -1,6 +1,6 @@
 class VendorsController < ApplicationController
   before_action :set_vendor, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, only: [:new, :create, :edit, :update, :show]
+  # before_action :require_login, only: [:new, :create, :edit, :update, :show]
 
   # GET /vendors
   # GET /vendors.json
@@ -62,11 +62,5 @@ class VendorsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def vendor_params
       params.require(:vendor).permit(:user_id)
-    end
-
-    def require_login
-      unless current_user
-        redirect_to login_path, :flash => { :error => 'Please log in first!'}
-      end
     end
 end
