@@ -9,8 +9,8 @@
   #If needs to be remade, should be done so that all models are made with a function call
 
 puts "starting seeding process.."
-  User.destroy_all
   Vendor.destroy_all
+  User.destroy_all
   Market.destroy_all
   MarketImage.destroy_all
   MarketReview.destroy_all
