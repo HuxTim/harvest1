@@ -4,7 +4,13 @@ layout: default
 
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
-[Link to another page](another-page).
+[Link to another page](architecture).
+[Link to another page](technologies).
+[Link to another page](UX).
+[Link to another page](styling).
+[Link to another page](eng_problems).
+[Link to another page](dev).
+
 
 There should be whitespace between paragraphs.
 
