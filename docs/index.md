@@ -2,7 +2,10 @@
 layout: default
 ---
 
-This site is the portfolio page for a project at  Brandeis University, COSI166b with Pito Salas. It contains information about the development process for Harvest. To access the site, please go to: [http://Harvest-FarmerMarket.herokuapp.com](http://Harvest-FarmerMarket.herokuapp.com)
+This site is the portfolio page for a project at  Brandeis University,
+COSI166b with Pito Salas. It contains information about the development
+process for Harvest. To access the site, please go to:
+[http://Harvest-FarmerMarket.herokuapp.com](http://Harvest-FarmerMarket.herokuapp.com)
 
 ## [](#header-2)Product Overview
 
@@ -32,14 +35,28 @@ experience.
 
 
 ## [](#header-2)Learn More
-[Architecture](architecture).
+[Architecture](architecture)
 
-[Technologies](technologies).
+[Technologies](technologies)
 
-[User Experience](UX).
+[User Experience](UX)
 
-[Styling](styling).
+[Engineering Problems](eng_problems)
 
-[Engineering Problems](eng_problems).
+[Development](dev)
 
-[Development](dev).
+## [](#header-4 )Credits and Acknowledgements
+
+Yanique Seac - Seacyanique@gmail.com
+Beraa Ibis - bibas@brandeis.edu
+Jiaming Hui - jiahm92@gmail.com
+Tim Hu - huxtim@gmail.com
+
+–
+
+Pito Salas - For bringing this experience to Brandeis
+University and its students
+Brian Del Vecchio - For taking time out of your busy
+day to help slacking students build a cool website
+Marius stankevicius - For helping create the logo and
+favicon for the site
