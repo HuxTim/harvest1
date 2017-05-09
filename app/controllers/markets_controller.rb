@@ -118,10 +118,4 @@ class MarketsController < ApplicationController
     def market_params
       params.require(:market).permit(:name,:address, :city, :state, :zipcode, :description)
     end
-
-    def require_login
-      unless current_user
-        redirect_to login_path, notice: 'Please log in first!'
-      end
-    end
 end

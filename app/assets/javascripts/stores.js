@@ -34,7 +34,7 @@
 //         $('#current_product_page').val(parseInt($("#current_product_page").val()) + 1);
 //       },
 //       error: function(data, failure) {
-//         alert("Something Wrong Happen, Please try it later");
+//         alert("Something wrong happened, Please try again later");
 //       }
 //     });
 //   });
@@ -50,7 +50,7 @@
 //         $('#current_review_page').val(parseInt($("#current_review_page").val()) + 1);
 //       },
 //       error: function(data, failure) {
-//         alert("Something Wrong Happen, Please try it later");
+//         alert("Something wrong happened, Please try again later");
 //       }
 //     });
 //   });

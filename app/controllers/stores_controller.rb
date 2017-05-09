@@ -122,10 +122,4 @@ class StoresController < ApplicationController
   def store_params
     params.require(:store).permit(:description, :name)
   end
-
-  def require_login
-    unless current_user
-      redirect_to login_path, :flash => { :error => 'Please log in first!'}
-    end
-  end
 end

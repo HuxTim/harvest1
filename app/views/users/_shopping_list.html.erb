@@ -40,7 +40,7 @@
                 <%=item.created_at.to_s[0..10]%>
               </td>
               <td>
-                <%= link_to ' ', item, method: :delete, class: "btn btn-danger col-sm-12"%>
+                <button type="button" class="btn btn-danger delShoppingList" value="<%=item.id%>">Delete</button>
               </td>
             </tr>
           <% end %>
@@ -54,23 +54,20 @@
 <div class="col-sm-1"></div>
 <div class="col-sm-6 panel-custom-md">
   <h3 class="text-center">Your Shopping Schedule</h2>
-    <% if !@valid %>
-      Enter the weekday and time above and find which markets and vendors have the products you need!
-    <% else %>
-      <% if @hour2 <= @hour1%>
+      <% if @hour2 < @hour1%>
         The time range you chose does not make sense. Please try again.
       <% else %>
         <% if @schedule.empty?%>
-          Sorry! But there no stores at the time you selected with the products in your shopping list
+          Sorry! But there no stores at the time with the products in your shopping list
         <% else %>
           <% @schedule.each do |mkt, stores|%>
-              <b>--------------------------------------------------------------------------------<br></b>
+              <b>----------------------------------------------------------<br></b>
               <b>Market:</b>&nbsp&nbsp&nbsp&nbsp<%=mkt.name%><br>
               <b>Address: </b><%=mkt.address%>, <br>
               &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
               <%=mkt.city%>, <%=mkt.state%> <%=mkt.zipcode%><br>
               <b>Hours:</b>&nbsp&nbsp&nbsp&nbsp&nbsp<%=get_time_from_timestamp(mkt.open_time)%> - <%=get_time_from_timestamp(mkt.close_time)%> <br>
-              <b>-------------------------------------------------------------------------------</b><br>
+              <b>-----------------------------------------------------------</b><br>
             <% stores.each do |store, products| %>
               <b><%= store.name%>:</b><br>
                 <% products.each do |prod| %>
@@ -83,7 +80,7 @@
           <% end %>
         <% end %>
       <% end %>
-    <% end %>
+
 </div>
 </div>
 
@@ -95,10 +92,10 @@ $(".delShoppingList").click(function() {
     dataType: "json",
     type: "DELETE",
     success: function(data, success) {
-      alert("You have delete successfully");
+      alert("Deleted Successfully");
     },
     error: function(data, failure) {
-      alert("Something Wrong Happen, Please try it later");
+      alert("Something wrong happened, Please try again later");
     }
   });
 });

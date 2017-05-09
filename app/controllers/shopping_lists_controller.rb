@@ -22,7 +22,7 @@ class ShoppingListsController < ApplicationController
   end
 
   def destroy
-    @shopping_list = ShoppingList.where(id: @shopping_list.id)
+    @shopping_list = ShoppingList.find(@shopping_list.id)
     respond_to do |format|
       if @shopping_list and @shopping_list.user_id == current_user.id
         @shopping_list.destroy
@@ -36,11 +36,5 @@ class ShoppingListsController < ApplicationController
   private
     def set_shopping_list
       @shopping_list = ShoppingList.find(params[:id])
-    end
-
-    def require_login
-      unless current_user
-        redirect_to login_path, notice: 'Please log in first!'
-      end
     end
 end

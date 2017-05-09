@@ -179,7 +179,9 @@ class SearchesController < ApplicationController
       distMark = Hash.new
 
       markets.each do |mkt|
+
         distMark[mkt] = m_calculateDistance(mkt)
+
       end
       sortedMarkets = []
       distMark.each do |key,value|
@@ -215,7 +217,6 @@ class SearchesController < ApplicationController
     end
 
     def m_calculateDistance(market)
-
       return distance = Geocoder::Calculations.distance_between(Geocoder.coordinates(market.address + market.city + market.state), Geocoder.coordinates(remote_ip)) #request.remote_ip instead of remote_ip
     end
 

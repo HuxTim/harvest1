@@ -37,10 +37,4 @@ class SubscriptionsController < ApplicationController
     def set_subscriptions
       @subscription = Subscription.find(params[:id])
     end
-
-    def require_login
-      unless current_user
-        redirect_to login_path, notice: 'Please log in first!'
-      end
-    end
 end

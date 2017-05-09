@@ -63,10 +63,4 @@ class VendorsController < ApplicationController
     def vendor_params
       params.require(:vendor).permit(:user_id)
     end
-
-    def require_login
-      unless current_user
-        redirect_to login_path, :flash => { :error => 'Please log in first!'}
-      end
-    end
 end

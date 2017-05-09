@@ -32,10 +32,4 @@ class StoreReviewsController < ApplicationController
     def store_reviews_params
       params.require(:store_review).permit(:comment,:rating,:store_id)
     end
-
-    def require_login
-      unless current_user
-        redirect_to login_path, notice: 'Please log in first!'
-      end
-    end
 end

@@ -76,15 +76,23 @@ class UsersController < ApplicationController
 
   def shopping_list
     if params[:date].nil? || params[:hour1].nil? || params[:hour2].nil?
-      @valid = false
+      time = (Time.now.wday-1) * 86400 + Time.now.hour * 3600 + Time.now.min * 60
+      @hour1 = time
+      @hour2 = time
+      @schedule = getList(time, time)
     else
      @valid = !params[:date].empty? && !params[:hour1].empty? && !params[:hour2].empty?
       if @valid
         @hour1 = to_timestamp(params[:date], params[:hour1])
         @hour2 = to_timestamp(params[:date], params[:hour2])
-        if @hour2 > @hour1
+        if @hour2 >= @hour1
           @schedule = getList(@hour1, @hour2)
         end
+      else
+        time = (Time.now.wday-1) * 86400 + Time.now.hour * 3600 + Time.now.min * 60
+        @hour1 = time
+        @hour2 = time
+        @schedule = getList(time, time)
       end
     end
     render :show, locals: { user: @user = @user, board: board = "shopping_list", item: @items }

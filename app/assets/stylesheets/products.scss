@@ -18,6 +18,7 @@
   -webkit-transition: all 1s;
   -moz-transition: all 1s;
   transition: all 1s;
+
   .hover{
     height: 100%;
     width: 100%;
@@ -35,7 +36,10 @@
 }
 
 .check-product:hover{
-  background: #f2eccd;
+  background: -webkit-linear-gradient(135deg, #FBF1E3 25%, #8DC26F 75%); /* Chrome 10+, Saf5.1+ */
+  background: -moz-linear-gradient(135deg, #FBF1E3 25%, #8DC26F 75%); /* FF3.6+ */
+  background: linear-gradient(135deg, #FBF1E3 25%, #8DC26F 75%); /* W3C */
+  cursor: pointer;
 }
 
 .ispecial{

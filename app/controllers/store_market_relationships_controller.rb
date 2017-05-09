@@ -33,7 +33,7 @@ class StoreMarketRelationshipsController < ApplicationController
     @store_market_relationship.close_time = 0
     respond_to do |format|
       if @store_market_relationship.save
-        format.html { redirect_to @store_market_relationship.market, notice: 'You have successfully join the Market.' }
+        format.html { redirect_to @store_market_relationship.market, notice: ' successfully join the Market.' }
         format.json { render :show, status: :created, location: @store_market_relationship }
       else
         format.html { redirect_to @store_market_relationship.market, :flash => { :error => @store_market_relationship.errors.map{|k,v| "#{k} #{v}"}.join(',') }  }
@@ -62,7 +62,7 @@ class StoreMarketRelationshipsController < ApplicationController
     @market = @store_market_relationship.market
     @store_market_relationship.destroy
     respond_to do |format|
-      format.html { redirect_to @market, notice: 'You have successfully quit the market.' }
+      format.html { redirect_to @market, notice: ' successfully quit the market.' }
       format.json { head :no_content }
     end
   end

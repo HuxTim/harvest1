@@ -26,17 +26,11 @@ class MarketReviewsController < ApplicationController
 
 
   private
-  def set_review
-    @review = MarketReview.find(params[:id])
-  end
+    def set_review
+      @review = MarketReview.find(params[:id])
+    end
 
     def market_reviews_params
       params.require(:market_review).permit(:comment,:rating,:market_id)
-    end
-
-    def require_login
-      unless current_user
-        redirect_to login_path, notice: 'Please log in first!'
-      end
     end
 end

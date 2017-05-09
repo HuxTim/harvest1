@@ -8,16 +8,17 @@
     background-repeat: no-repeat;">
     <div class="hover"><div class="text-overflow-block"><%= market.description[0..200] %></div></div>
   </div>
-  <!-- <span class="glyphicon-md glyphicon glyphicon glyphicon-bullhorn"></span> -->
 </div>
 <% else %>
 <div class="thumbnail-image-board">
-  <div class="text-center thumbnail-image thumbnail-image-md" style="background: url(<%= market.market_images.all.first.image.url(:small)%>);background-size: 100% 100%;
-    background-repeat: no-repeat;"></div>
+  <div class="text-center thumbnail-image thumbnail-image-md" style="background: url(<%= market.market_images.all.first.image.url(:small)%>);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;">
     <div class="hover"><div class="text-overflow-block"><%= market.description[0..200] %></div></div>
   </div>
+  </div>
   <% end %>
-  <div class="caption">
+  <div class="caption row">
     <div class="card-title text-overflow"><%= market.name%></div>
     <div class="card-text">
       <table>
