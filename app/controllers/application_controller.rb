@@ -4,6 +4,16 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include ProductsHelper
 
+
+  def remote_ip
+    if request.remote_ip == '127.0.0.1'
+      # Hard coded remote address
+      '129.64.133.110'
+    else
+      request.remote_ip
+    end
+  end
+
   def cities
     state = params[:state]
     respond_to do |format|
@@ -14,6 +24,7 @@ class ApplicationController < ActionController::Base
 
   def error
     @status_code = params[:code] || 500
+    @p = Geocoder::Calculations.distance_between(Geocoder.coordinates(Market.first.address + Market.first.city + Market.first.state), Geocoder.coordinates(remote_ip)) #request.remote_ip instead of remote_ip
     render "layouts/error_page"
   end
 end
