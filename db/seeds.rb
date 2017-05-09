@@ -9,20 +9,27 @@
   #If needs to be remade, should be done so that all models are made with a function call
 
 puts "starting seeding process.."
+  ProductImage.destroy_all
+  StoreImage.destroy_all
+  MarketImage.destroy_all
+  Subscription.destroy_all
+  StoreReview.destroy_all
+  MarketReview.destroy_all
+  ShoppingList.destroy_all
+  Request.destroy_all
+  StoreMarketRelationship.destroy_all
+  Product.destroy_all
+  Store.destroy_all
+  Market.destroy_all
   Vendor.destroy_all
   User.destroy_all
-  Market.destroy_all
-  MarketImage.destroy_all
-  MarketReview.destroy_all
-  Store.destroy_all
-  StoreMarketRelationship.destroy_all
+
 puts "halfway done starting"
-  StoreImage.destroy_all
-  StoreReview.destroy_all
-  ShoppingList.destroy_all
-  Product.destroy_all
-  ProductImage.destroy_all
-  Subscription.destroy_all
+
+
+
+
+
 
   firstnames = ["Abigail", "Bill", "Ike", "George", "Jake", "Christina", "Max", "Thomas", "Sarah", "Daisy", "Delila", "Rose"]
   lastnames = ["Smith", "Arrow", "House", "Levin", "Woolf", "Hunt", "Roth", "Zhang", "Amami", "Spinner-Reyes"]
