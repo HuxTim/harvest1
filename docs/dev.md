@@ -4,6 +4,4 @@ layout: default
 
 ## Welcome to another page
 
-_yay_
-
-[back](./)
+## [](#header-2)Development
