@@ -1,6 +1,6 @@
 class StoreReviewsController < ApplicationController
   before_action :set_review, only: [:destroy]
-  # before_action :require_login, only: [:create, :destroy]
+  before_action :require_login, only: [:create, :destroy]
 
   def create
     @store_review = StoreReview.create(store_reviews_params)

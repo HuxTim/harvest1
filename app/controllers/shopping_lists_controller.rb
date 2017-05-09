@@ -1,5 +1,5 @@
 class ShoppingListsController < ApplicationController
-  # before_action :require_login, only: [:create, :destroy]
+  before_action :require_login, only: [:create, :destroy]
   before_action :set_shopping_list, only: [:destroy]
 
 

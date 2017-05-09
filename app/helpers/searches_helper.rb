@@ -2,14 +2,13 @@ module SearchesHelper
   def specialties_list
     specialties= [
       "Breads & Bakery",
-      "Meat",
-      "Beverages",
+      "Beverage",
       "Sauces",
       "Jams",
-      "Snacks",
-      "Candy",
-      "Nuts",
-      "Seeds",
+      "Lime",
+      "Pepper",
+      "Strawberry",
+      "Donut",
       "Spices"
     ]
   end

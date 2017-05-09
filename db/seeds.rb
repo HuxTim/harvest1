@@ -249,6 +249,7 @@ puts "Working on 3 market stores"
   price = "$"+((4+rand(6))*0.5).to_s+"/lb"
   Product.create!(name: item['name'],
   price: price,
+  popularity: 0,
   description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
   tag: item['tags'],
   group: "Misc.",
@@ -288,6 +289,7 @@ puts "Working on 3 market stores"
   price = "$"+((4+rand(6))*0.5).to_s+"/lb"
   Product.create!(name: item['name'],
   price: price,
+  popularity: 0,
   description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
   tag: item['tags'],
   group: "Misc.",
@@ -327,6 +329,7 @@ puts "Working on 3 market stores"
   price = "$"+((4+rand(6))*0.5).to_s+"/lb"
   Product.create!(name: item['name'],
   price: price,
+  popularity: 0,
   description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
   tag: item['tags'],
   group: "Misc.",
@@ -366,6 +369,7 @@ puts "Working on 3 market stores"
   price = "$"+((4+rand(6))*0.5).to_s+"/lb"
   Product.create!(name: item['name'],
   price: price,
+  popularity: 0,
   description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
   tag: item['tags'],
   group: "Misc.",
@@ -406,6 +410,7 @@ puts "Working on 3 market stores"
   price = "$"+((4+rand(6))*0.5).to_s+"/lb"
   Product.create!(name: item['name'],
   price: price,
+  popularity: 0,
   description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
   tag: item['tags'],
   group: "Misc.",
@@ -451,6 +456,7 @@ puts "Working on 2 market stores"
     item = vegetable.sample
     Product.create!(name: item['name'],
     price: price,
+    popularity: 0,
     description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
     tag: item['tags'],
     group: "Vegetable",
@@ -462,6 +468,7 @@ puts "Working on 2 market stores"
     item = fruit.sample
     Product.create!(name: item['name'],
     price: price,
+    popularity: 0,
     description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
     tag: item['tags'],
     group: "Fruit",
@@ -503,6 +510,7 @@ puts "working on the last single market stores"
     item = protein.sample
     Product.create!(name: item['name'],
     price: price,
+    popularity: 0,
     description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
     tag: item['tags'],
     group: "Meat",
@@ -520,6 +528,7 @@ puts "working on the last single market stores"
       item = seafood.sample
       Product.create!(name: item['name'],
       price: price,
+      popularity: 0,
       description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
       tag: item['tags'],
       group: "Meat",
@@ -553,6 +562,7 @@ puts "working on the last single market stores"
             item = fruit.sample
             Product.create!(name: item['name'],
             price: price,
+            popularity: 0,
             description: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
             tag: item['tags'],
             group: "Fruit",

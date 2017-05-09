@@ -13,5 +13,6 @@ class Product < ApplicationRecord
 
   searchable do
     text :name, :description, :tag, :group
+    integer :popularity
   end
 end
