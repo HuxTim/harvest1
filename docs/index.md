@@ -48,15 +48,20 @@ experience.
 ## [](#header-4 )Credits and Acknowledgements
 
 Yanique Seac - Seacyanique@gmail.com
+
 Beraa Ibis - bibas@brandeis.edu
+
 Jiaming Hui - jiahm92@gmail.com
+
 Tim Hu - huxtim@gmail.com
 
 –
 
 Pito Salas - For bringing this experience to Brandeis
 University and its students
+
 Brian Del Vecchio - For taking time out of your busy
 day to help slacking students build a cool website
+
 Marius stankevicius - For helping create the logo and
 favicon for the site
