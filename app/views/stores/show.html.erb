@@ -255,7 +255,7 @@
 
         },
         error: function(request, textStatus, errorThrown) {
-          alert("Something Wrong Happen, Please try it later");
+          alert("Something wrong happened, Please try again later");
         }
       });
     });
@@ -280,7 +280,7 @@
 
         },
         error: function(data, failure) {
-          alert("Something Wrong Happen, Please try it later");
+          alert("Something wrong happened, Please try again later");
         }
       });
     });
@@ -442,10 +442,10 @@
         btn.append("Delete Subscription")
         location.reload();
         // $("#checkProductPanel").modal('hide');
-        alert("You have add successfully");
+        alert("Succesfully Subscribed");
       },
       error: function(data, failure) {
-        alert("Something Wrong Happen, Please try it later");
+        alert("Something wrong happened, Please try again later");
       }
     });
   });
@@ -467,10 +467,10 @@
         btn.append("Add To List")
         location.reload();
         // $("#checkProductPanel").modal('hide');
-        alert("You have sucessfully unsubscribed");
+        alert("Successfully Unsubscribed");
       },
       error: function(data, failure) {
-        alert("Something Wrong Happen, Please try it later");
+        alert("Something wrong happened, Please try again later");
       }
     });
   });

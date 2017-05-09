@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   get '/users/:id/markets', to: 'users#markets', as: 'user_markets'
   get '/users/:id/reviews', to: 'users#reviews', as: 'user_reviews'
   get '/users/:id/store/new', to: 'users#bevendor', as: 'bevendor'
+
   patch '/users/:id/update_password', to: 'users#update_password'
 
   %w(404 422 500).each do |code|
@@ -41,7 +42,7 @@ Rails.application.routes.draw do
   end
 
   resources :subscriptions
-  
+
   resources :markets do
     resources :stores
     resources :market_reviews
@@ -79,5 +80,4 @@ Rails.application.routes.draw do
   resources :products
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
 end

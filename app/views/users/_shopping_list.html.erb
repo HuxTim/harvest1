@@ -40,7 +40,7 @@
                 <%=item.created_at.to_s[0..10]%>
               </td>
               <td>
-                <%= link_to ' ', item, method: :delete, class: "btn btn-danger col-sm-12"%>
+                <button type="button" class="btn btn-danger delShoppingList" value="<%=item.id%>">Delete</button>
               </td>
             </tr>
           <% end %>
@@ -92,10 +92,10 @@ $(".delShoppingList").click(function() {
     dataType: "json",
     type: "DELETE",
     success: function(data, success) {
-      alert("You have delete successfully");
+      alert("Deleted Successfully");
     },
     error: function(data, failure) {
-      alert("Something Wrong Happen, Please try it later");
+      alert("Something wrong happened, Please try again later");
     }
   });
 });
