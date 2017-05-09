@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  before_action :require_login, only: [:create, :destroy]
+  # before_action :require_login, only: [:create, :destroy]
   before_action :set_subscriptions, only: [:destroy]
 
 

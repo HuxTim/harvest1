@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
   before_action :set_store, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, only: [:new, :create, :edit, :update]
+  # before_action :require_login, only: [:new, :create, :edit, :update]
 
   # GET /stores
   # GET /stores.json

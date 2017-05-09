@@ -46,6 +46,7 @@ class SearchesController < ApplicationController
     if params[:option] == "Stores"
         @markets = []
         @products= []
+        @stores = dst_SortStores(@stores)
         render "stores/index"
     elsif params[:option] == "Products"
         @markets = []
@@ -55,6 +56,10 @@ class SearchesController < ApplicationController
     elsif params[:option] == "Markets"
         @products = []
         @stores= []
+        @markets = dst_SortMarkets(@markets)
+        @markets.each do |mkt|
+          puts mkt.name
+        end
         render "markets/index"
     else
         render "index"
@@ -148,11 +153,11 @@ class SearchesController < ApplicationController
       distStores = Hash.new
 
       stores.each do |str|
-        if !distances.include? p_calculateDistance(str)
-          distances.push p_calculateDistance(str)
-          distStores[p_calculateDistance(str)] = []
+        if !distances.include? s_calculateDistance(str)
+          distances.push s_calculateDistance(str)
+          distStores[s_calculateDistance(str)] = []
         end
-        distStores[p_calculateDistance(str)] = distStores[p_calculateDistance(str)].push str
+        distStores[s_calculateDistance(str)] = distStores[s_calculateDistance(str)].push str
       end
 
       distances.each do |d|
@@ -174,26 +179,25 @@ class SearchesController < ApplicationController
       distMark = Hash.new
 
       markets.each do |mkt|
-        if !distances.include? p_calculateDistance(mkt)
-          distances.push p_calculateDistance(mkt)
-          distMark[p_calculateDistance(mkt)] = []
-        end
-        distMark[p_calculateDistance(mkt)] = distProd[p_calculateDistance(mkt)].push mkt
+        distMark[mkt] = m_calculateDistance(mkt)
       end
-
-      distances.sort!
       sortedMarkets = []
-      distances.each do |d|
-        sortedMarkets.push *distMark[d]
+      distMark.each do |key,value|
+        puts key.name
+        puts value
+      end
+      sorted_hash = distMark.sort_by {|_key, value| value}
+
+      sorted_hash.each do |item|
+        sortedMarkets.push item[0]
       end
       return sortedMarkets
     end
 
     def p_calculateDistance(product)
-      distance = 12425 #fun trvia, farthest distance two cities can be in the world
-      #returns the most closest market
-      store.markets.each do |market|
-        if Geocoder::Calculations.distance_between(Geocoder.coordinates(market.address + market.city + market.state), Geocoder.coordinates(remote_ip)) < distance#request.remote_ip instead of remote_ip
+      distance = 12425 #fun trvia, farthest distance two cities can be in the world#returns the most closest market
+      product.store.markets.each do |market|
+        if Geocoder::Calculations.distance_between(Geocoder.coordinates(market.address + market.city + market.state), Geocoder.coordinates(remote_ip)) < distance #request.remote_ip instead of remote_ip
           distance = Geocoder::Calculations.distance_between(Geocoder.coordinates(market.address + market.city + market.state), Geocoder.coordinates(remote_ip))
         end
       end
@@ -202,7 +206,7 @@ class SearchesController < ApplicationController
 
     def s_calculateDistance(store)
       distance = 12425
-      product.store.markets.each do |market|
+      store.markets.each do |market|
         if Geocoder::Calculations.distance_between(Geocoder.coordinates(market.address + market.city + market.state), Geocoder.coordinates(remote_ip)) < distance#request.remote_ip instead of remote_ip
           distance = Geocoder::Calculations.distance_between(Geocoder.coordinates(market.address + market.city + market.state), Geocoder.coordinates(remote_ip))
         end
@@ -211,13 +215,8 @@ class SearchesController < ApplicationController
     end
 
     def m_calculateDistance(market)
-      distance = 12425
-      markets.each do |market|
-        if Geocoder::Calculations.distance_between(Geocoder.coordinates(market.address + market.city + market.state), Geocoder.coordinates(remote_ip)) < distance#request.remote_ip instead of remote_ip
-          distance = Geocoder::Calculations.distance_between(Geocoder.coordinates(market.address + market.city + market.state), Geocoder.coordinates(remote_ip))
-        end
-      end
-      return distance
+
+      return distance = Geocoder::Calculations.distance_between(Geocoder.coordinates(market.address + market.city + market.state), Geocoder.coordinates(remote_ip)) #request.remote_ip instead of remote_ip
     end
 
     def preprocess(query)

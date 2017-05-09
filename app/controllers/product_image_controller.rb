@@ -1,7 +1,7 @@
 class ProductImageController < ApplicationController
   before_action :set_product, only: [:ajax_create]
   before_action :set_product_image, only: [:ajax_destory]
-  before_action :require_login, only: [:ajax_create, :ajax_destory]
+  # before_action :require_login, only: [:ajax_create, :ajax_destory]
 
   def ajax_create
     @product_image = @product.product_images.create(product_images_params)

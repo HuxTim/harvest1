@@ -1,6 +1,6 @@
 class MarketReviewsController < ApplicationController
   before_action :set_review, only: [:destroy]
-  before_action :require_login, only: [:create, :destroy]
+  # before_action :require_login, only: [:create, :destroy]
 
   def create
     @market_review = MarketReview.create(market_reviews_params)

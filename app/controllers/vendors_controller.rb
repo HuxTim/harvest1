@@ -1,6 +1,6 @@
 class VendorsController < ApplicationController
   before_action :set_vendor, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, only: [:new, :create, :edit, :update, :show]
+  # before_action :require_login, only: [:new, :create, :edit, :update, :show]
 
   # GET /vendors
   # GET /vendors.json

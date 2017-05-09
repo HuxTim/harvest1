@@ -1,5 +1,1 @@
-<% if logged_in? and isStoreOwner(current_user,@product.store) %>
 <%= render 'products/form_edit', product: @product%>
-<% else %>
-<%= render 'products/display', product: @product%>
-<% end %>
