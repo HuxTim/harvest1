@@ -12,6 +12,6 @@ class Product < ApplicationRecord
   validates :group, presence: true
 
   searchable do
-    text :name, :description, :tag
+    text :name, :description, :tag, :group
   end
 end

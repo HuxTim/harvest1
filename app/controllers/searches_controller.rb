@@ -1,41 +1,64 @@
 class SearchesController < ApplicationController
   before_action :set_search, only: [:show, :edit, :update, :destroy]
-
   # GET /searches
   # GET /searches.json
   def index
     #Does a full text search on each model: Products, Markets, and Stores.
+    query = preprocess(params[:q])
+    if query == nil or query == ""
+      query = nil
+    end
+    @query = params[:q]
+    @page = 0
+
+    # search products
     @search = Product.solr_search do
        fulltext params[:q]
+       paginate :page => 1, :per_page => Product.all.count
      end
     @products = @search.results
 
+    if params[:tag].present?
+      tag = params[:tag]
+      @products = @products.select{ |product| product.tag.include?(tag)}
+    end
+
+    if params[:group].present?
+      gro = params[:group]
+      @products = @products.select{ |product| product.group.include?(gro)}
+    end
+
+    # search stores
     @search = Store.solr_search do
-        fulltext params[:q]
+        fulltext query
+        paginate :page => 1, :per_page => Store.all.count
     end
     @stores = @search.results
 
+    # search markets
     @search = Market.solr_search do
-       fulltext params[:q]
-     end
-     @markets =  @search.results
+       fulltext query
+       paginate :page => 1, :per_page => Market.all.count
+    end
+    @markets =  @search.results
 
     #Filters results based on selected option.
     if params[:option] == "Stores"
-      @products = []
-      @Markets = []
+        @markets = []
+        @products= []
+        render "stores/index"
     elsif params[:option] == "Products"
-      @stores = []
-      @markets = []
-      if params[:tag].present?
-        q = params[:tag]
-        @products = Product.ransack(tag_cont: q).result
-      end
+        @markets = []
+        @stores= []
+        @results = @products
+        render "index"
     elsif params[:option] == "Markets"
-      @stores = []
-      @products = []
+        @products = []
+        @stores= []
+        render "markets/index"
+    else
+        render "index"
     end
-    @results = @products + @stores + @markets
   end
 
   # GET /searches/1
@@ -91,13 +114,20 @@ class SearchesController < ApplicationController
     def search_params
       params.fetch(:search, {})
     end
-end
 
-def preprocess(query)
-  require 'rubygems'
-  require 'fast_stemmer'
-  if query == nil
-    query = ""
-  end
-  Stemmer::stem_word(query) # -> 'run'
+    def preprocess(query)
+      require 'rubygems'
+      require 'fast_stemmer'
+      # queries = query.split(" ").each do |word|
+      #   if word == nil
+      #     word = ""
+      #   end
+      #   Stemmer::stem_word(word)
+      # end
+      if query == nil
+        query = ""
+      end
+      Stemmer::stem_word(query)
+ # -> 'run'
+    end
 end

@@ -1,31 +1,24 @@
+<div  class="sidebar well">
+  <div>
+    <h3 class="text-center" style="color:#478f00">Specialties</h3>
+    <ul class="nav nav-list">
+      <% specialties_list.each do |speciality|%>
+      <li><a href="/search?q=<%= @query + " "+speciality %>&option=Products"><%= speciality %></a></li>
+      <% end %>
+    </ul>
 
-    <div style="padding:0px; margin:0px;" class="row well">
-        <div>
-          <h4 class="text-center" style="color:#478f00">Categories</h4>
+    <h3 class="text-center" style="color: #478f00">Tags</h3>
+    <ul class="nav nav-list">
+      <% tag_list.each do |tag|%>
+      <li><a href="/search?q=<%= @query %>&option=Products&tag=<%= tag %>"><%= tag %></a></li>
+      <% end %>
+    </ul>
 
-          <ul class="nav nav-list">
-          <li><a href="/search?&option=Products&group=grain">Breads & Bakery</a></li>
-          <li><a href="/search?&option=Products&group=meat">Meat</a></li>
-          <li><a href="/search?&option=Products&tag=seafood">Seafood</a></li>
-          <li><a href="/search?&option=Products&group=dairy">Dairy</a></li>
-          <li><a href="/search?&option=Products&group=fruit">Fruits</a></li>
-          <li><a href="/search?&option=Products&group=vegetable">Vegetables</a></li>
-          <li><a href="/search?&option=Products&tag=#">Beverages</a></li>
-          <li><a href="/search?&option=Products&tag=#">Sauces & Jams </a></li>
-          <li><a href="/search?&option=Products&tag=#">Snacks & Candy </a></li>
-          <li><a href="/search?&option=Products&tag=nut">Nuts & Seeds </a></li>
-          <li><a href="/search?&option=Products&tag=#">Spices</a></li>
-          </ul>
-
-          <h4 class="text-center" style="color: #478f00">Specialties</h4>
-          <ul class="nav nav-list">
-          <li><a href="/search?&option=Products&tag=organic">Organic</a></li>
-          <li><a href="/search?&option=Products&tag=gluten-free">Gluten Free</a></li>
-          <li><a href="/search?&option=Products&tag=vegan">Vegan</a></li>
-          <li><a href="/search?&option=Products&tag=vegetarian">Vegetarian </a></li>
-          <li><a href="/search?&option=Products&tag=kosher">Kosher</a></li>
-          <li><a href="/search?&option=Products&tag=soy-free">Soy Free</a></li>
-          <li><a href="/search?&option=Products&tag=no-carb">No Carbs </a></li>
-          </ul>
-        </div>
-	</div>
+    <h3 class="text-center" style="color: #478f00">Group</h3>
+    <ul class="nav nav-list">
+      <% group_list.each do |grou|%>
+      <li><a href="/search?q=<%= @query %>&option=Products&group=<%= grou %>"><%= grou %></a></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
