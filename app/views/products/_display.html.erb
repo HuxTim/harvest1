@@ -78,7 +78,7 @@
                   <td class="col-md-1"><span class="glyphicon-tags glyphicon"></span></td>
                   <td class="col-md-11">
                     <% split_tags(product.tag).each do |tag| %>
-                    <a class="label-tag" style="background: <%=tag_color[tag]%>" href="/search?&option=Products&tag=<%= tag%>"><%= tag %></a>
+                    <a class="label-tag" style="background: <%=tag_color[tag]%>" href="/search?q=&option=Products&tag=<%= tag%>"><%= tag %></a>
                     <% end %>
                   </td>
                 </tr>

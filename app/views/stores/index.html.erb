@@ -1,5 +1,7 @@
 <div class="row">
-  <div class="col-sm-12">
-    <%= render 'shared/stores', locals: { stores: @stores = Store.all } %>
+  <div class="col-sm-12 text-center">
+    <h2 class="section-heading">Stores</h2>
+    <hr class="section-hr">
+    <%= render 'shared/stores', locals: { stores: @stores = @stores} %>
   </div>
 </div>
