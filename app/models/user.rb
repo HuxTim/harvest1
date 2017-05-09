@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_one :vendor,:dependent => :destroy
+  has_many :subscriptions,:dependent => :destroy
   has_many :store_reviews,:dependent => :destroy
   has_many :market_reviews,:dependent => :destroy
   has_many :markets,:dependent => :destroy
