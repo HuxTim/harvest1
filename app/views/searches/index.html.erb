@@ -3,8 +3,6 @@
     <%= render :partial => 'products/sidebar',locals: { query: @query = @query} %>
   </div>
   <div class="col-sm-10">
-    <input id = "query" value="<%= @query %>">
-    <input id = "page" value="<%= @page %>">
     <p id="notice"><%= notice %></p>
     <% if @products.blank? %>
     <h1 class="text-center" style="padding-top:100px;">There are no products containing the term "<%= @query %>".</h1>

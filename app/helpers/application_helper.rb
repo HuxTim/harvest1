@@ -1,6 +1,16 @@
 module ApplicationHelper
 
 
+  def remote_ip
+    if request.remote_ip == '127.0.0.1'
+      # Hard coded remote address
+      '156.74.181.208'
+    else
+      request.remote_ip
+    end
+  end
+
+
   def bootstrap_class_for flash_type
     { success: "alert-success", error: "alert-danger", alert: "alert-warning", notice: "alert-info" }[flash_type.to_sym] || flash_type.to_s
   end
@@ -145,5 +155,105 @@ module ApplicationHelper
     unless current_user
       redirect_to login_path, :flash => { :error => 'Please log in first!'}
     end
+  end
+
+  #input products list; output [product distance] in order of distance
+  def dst_SortProducts(products)
+
+    distances = []
+    distProd = Hash.new
+
+    products.each do |prod|
+      if !distances.include? p_calculateDistance(prod)
+        distances.push p_calculateDistance(prod)
+        distProd[p_calculateDistance(prod)] = []
+      end
+      distProd[p_calculateDistance(prod)] = distProd[p_calculateDistance(prod)].push prod
+    end
+
+    distances.each do |d|
+      distProd[d].sort!
+    end
+
+    distances.sort!
+    sortedProducts = []
+    distances.each do |d|
+      sortedProducts.push *distProd[d]
+    end
+    return sortedProducts
+  end
+
+  #input products list; output [product distance] in order of distance
+  #same algo as above
+  def dst_SortStores(stores)
+    distances = []
+    distStores = Hash.new
+
+    stores.each do |str|
+      if !distances.include? s_calculateDistance(str)
+        distances.push s_calculateDistance(str)
+        distStores[s_calculateDistance(str)] = []
+      end
+      distStores[s_calculateDistance(str)] = distStores[s_calculateDistance(str)].push str
+    end
+
+    distances.each do |d|
+      distStores[d].sort!
+    end
+
+    distances.sort!
+    sortedStores = []
+    distances.each do |d|
+      sortedStores.push *distStores[d]
+    end
+    return sortedStores
+  end
+
+  #input products list; output [product distance] in order of distance
+  #same algo as above
+  def dst_SortMarkets(markets)
+    distances = []
+    distMark = Hash.new
+
+    markets.each do |mkt|
+
+      distMark[mkt] = m_calculateDistance(mkt)
+
+    end
+    sortedMarkets = []
+    distMark.each do |key,value|
+      puts key.name
+      puts value
+    end
+    sorted_hash = distMark.sort_by {|_key, value| value}
+
+    sorted_hash.each do |item|
+      sortedMarkets.push item[0]
+    end
+    return sortedMarkets
+  end
+
+  def p_calculateDistance(product)
+    distance = 12425 #fun trvia, farthest distance two cities can be in the world#returns the most closest market
+    product.store.markets.each do |market|
+      if Geocoder::Calculations.distance_between(Geocoder.coordinates(market.address + market.city + market.state), Geocoder.coordinates(remote_ip)) < distance #request.remote_ip instead of remote_ip
+        distance = Geocoder::Calculations.distance_between(Geocoder.coordinates(market.address + market.city + market.state), Geocoder.coordinates(remote_ip))
+      end
+    end
+    return distance
+  end
+
+  def s_calculateDistance(store)
+    distance = 12425
+    store.markets.each do |market|
+      if Geocoder::Calculations.distance_between(Geocoder.coordinates(market.address + market.city + market.state), Geocoder.coordinates(remote_ip)) < distance#request.remote_ip instead of remote_ip
+        distance = Geocoder::Calculations.distance_between(Geocoder.coordinates(market.address + market.city + market.state), Geocoder.coordinates(remote_ip))
+      end
+    end
+    return distance
+  end
+
+  def m_calculateDistance(market)
+    return distance = Geocoder::Calculations.distance_between(Geocoder.coordinates(market.address + market.city + market.state), Geocoder.coordinates(remote_ip)) #request.remote_ip instead of remote_ip
   end
 end

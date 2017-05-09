@@ -48,7 +48,7 @@
       </div>
   </div>
   <div class="row">
-        <%= render 'shared/markets', locals: { markets: @markets = Market.all[0..1] } %>
+        <%= render 'shared/markets', locals: { markets: @markets = dst_SortMarkets(Market.all)[0..1] } %>
   </div>
 </section>
 <script>

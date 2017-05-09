@@ -4,9 +4,12 @@ module SearchesHelper
       "Breads & Bakery",
       "Meat",
       "Beverages",
-      "Sauces & Jams",
-      "Snacks & Candy",
-      "Nuts & Seeds",
+      "Sauces",
+      "Jams",
+      "Snacks",
+      "Candy",
+      "Nuts",
+      "Seeds",
       "Spices"
     ]
   end

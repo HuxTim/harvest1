@@ -1,12 +1,5 @@
 <div  class="sidebar well">
   <div>
-    <h3 class="text-center" style="color:#478f00">Specialties</h3>
-    <ul class="nav nav-list">
-      <% specialties_list.each do |speciality|%>
-      <li><a href="/search?q=<%= @query + " "+speciality %>&option=Products"><%= speciality %></a></li>
-      <% end %>
-    </ul>
-
     <h3 class="text-center" style="color: #478f00">Tags</h3>
     <ul class="nav nav-list">
       <% tag_list.each do |tag|%>
@@ -18,6 +11,13 @@
     <ul class="nav nav-list">
       <% group_list.each do |grou|%>
       <li><a href="/search?q=<%= @query %>&option=Products&group=<%= grou %>"><%= grou %></a></li>
+      <% end %>
+    </ul>
+
+    <h3 class="text-center" style="color:#478f00">Specialties</h3>
+    <ul class="nav nav-list">
+      <% specialties_list.each do |speciality|%>
+      <li><a href="/search?q=<%= @query %>&option=Products&speciality=<%= speciality %>"><%= speciality %></a></li>
       <% end %>
     </ul>
   </div>

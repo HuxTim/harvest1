@@ -28,6 +28,20 @@ class SearchesController < ApplicationController
       @products = @products.select{ |product| product.group.include?(gro)}
     end
 
+    if params[:speciality].present?
+      # search products
+      @search1 = Product.solr_search do
+         fulltext query
+         paginate :page => 1, :per_page => Product.all.count
+       end
+
+      @search2 = Product.solr_search do
+          fulltext preprocess(params[:speciality])
+          paginate :page => 1, :per_page => Product.all.count
+        end
+      @products = @search1.results & @search2.results
+    end
+
     # search stores
     @search = Store.solr_search do
         fulltext query
