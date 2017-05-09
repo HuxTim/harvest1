@@ -1,6 +1,6 @@
 class Market < ApplicationRecord
   belongs_to :user
-  has_many :store_market_relationships
+  has_many :store_market_relationships,:dependent => :destroy
   has_many :stores, -> { uniq }, :through => :store_market_relationships,:dependent => :destroy
   has_many :market_reviews,:dependent => :destroy
   has_many :market_images, :dependent => :destroy

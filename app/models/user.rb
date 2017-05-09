@@ -1,10 +1,10 @@
 class User < ApplicationRecord
   has_one :vendor,:dependent => :destroy
-  has_many :store_reviews
-  has_many :market_reviews
-  has_many :markets
+  has_many :store_reviews,:dependent => :destroy
+  has_many :market_reviews,:dependent => :destroy
+  has_many :markets,:dependent => :destroy
   has_many :shopping_lists, :dependent => :destroy
-  has_many :requests, :through => :markets
+  has_many :requests, :through => :markets,:dependent => :destroy
 
 
   before_save { self.email = email.downcase }
