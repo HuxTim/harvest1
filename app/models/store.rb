@@ -12,7 +12,7 @@ class Store < ApplicationRecord
   validates :vendor_id, presence: true
   validates :description,length: { maximum: 750 }
 
-  searchable do
-  text :name, :description
-  end
+  # searchable do
+  # text :name, :description
+  # end
 end
