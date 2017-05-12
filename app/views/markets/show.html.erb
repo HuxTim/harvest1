@@ -3,7 +3,7 @@
     <!-- Indicators -->
     <ol class="carousel-indicators">
       <li data-target="#Carousel" data-slide-to="0" class="active"></li>
-      <% (1..@market.market_images.length-1).each do |i|%>
+      <% (0..@market.market_images.length-1).each do |i|%>
       <li data-target="#Carousel" data-slide-to="<%= i %>"></li>
       <% end %>
     </ol>
@@ -17,11 +17,10 @@
       </div>
       <% else %>
       <div class="item active">
-        <div class="text-center carousel-image carousel-image-lg" style="background:url(<%=  @market.market_images.all.first.image.url(:large) %>;      background-size: 100% 100%;
-          background-repeat: no-repeat;)"></div>
-
-        </div>
-        <% @market.market_images[1..-1].each do |market_image|%>
+        <div class="text-center carousel-image carousel-image-lg" style="background:url('/images/bg_default_market2.png');      background-size: 100% 100%;
+        background-repeat: no-repeat;"><span class="glyphicon-lg glyphicon glyphicon glyphicon-bullhorn"></span></div>
+      </div>
+        <% @market.market_images.all.each do |market_image|%>
         <div class="item">
           <div class="text-center carousel-image carousel-image-lg" style="background:url(<%=  market_image.image.url(:large) %>);      background-size: 100% 100%;
             background-repeat: no-repeat;"></div>

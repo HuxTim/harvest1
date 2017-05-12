@@ -1,24 +1,26 @@
-<div  class="sidebar well">
-  <div>
-    <h3 class="text-center" style="color: #478f00">Tags</h3>
-    <ul class="nav nav-list">
-      <% tag_list.each do |tag|%>
-      <li><a href="/search?q=<%= @query %>&option=Products&tag=<%= tag %>"><%= tag %></a></li>
-      <% end %>
-    </ul>
-
-    <h3 class="text-center" style="color: #478f00">Group</h3>
+<div  class="sidebar">
+    <h3>Group</h3>
+      <!-- <hr> -->
     <ul class="nav nav-list">
       <% group_list.each do |grou|%>
       <li><a href="/search?q=<%= @query %>&option=Products&group=<%= grou %>"><%= grou %></a></li>
       <% end %>
     </ul>
-
-    <h3 class="text-center" style="color:#478f00">Specialties</h3>
+<!-- <hr> -->
+    <h3>Specialties</h3>
+      <!-- <hr> -->
     <ul class="nav nav-list">
       <% specialties_list.each do |speciality|%>
       <li><a href="/search?q=<%= @query %>&option=Products&speciality=<%= speciality %>"><%= speciality %></a></li>
       <% end %>
     </ul>
-  </div>
+    <!-- <hr> -->
+    <h3>Tags</h3>
+      <!-- <hr> -->
+    <ul class="nav nav-list">
+      <% tag_list.each do |tag|%>
+      <li><a href="/search?q=<%= @query %>&option=Products&tag=<%= tag %>"><%= tag %></a></li>
+      <% end %>
+    </ul>
+    <!-- <hr> -->
 </div>

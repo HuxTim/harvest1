@@ -1,6 +1,6 @@
 class StoreMarketRelationshipsController < ApplicationController
   before_action :set_store_market_relationship, only: [:show, :edit, :update, :destroy]
-  # before_action :require_login, only: [:create, :destroy]
+  before_action :require_login, only: [:create, :destroy]
 
   # GET /store_market_relationships
   # GET /store_market_relationships.json

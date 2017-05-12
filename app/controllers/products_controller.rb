@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   include ProductsHelper
 
   def index
-    @products = Product.all
+    @products = Product.all.order("popularity DESC")
   end
 
   def show

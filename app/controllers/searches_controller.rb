@@ -14,6 +14,7 @@ class SearchesController < ApplicationController
     # search products
     @search = Product.solr_search do
        fulltext params[:q]
+       order_by :popularity, :desc
        paginate :page => 1, :per_page => Product.all.count
      end
     @products = @search.results
@@ -65,7 +66,10 @@ class SearchesController < ApplicationController
     elsif params[:option] == "Products"
         @markets = []
         @stores= []
+        @products.reverse!
+        # @products = @products.order("popularity DESC")
         @results = @products
+
         render "index"
     elsif params[:option] == "Markets"
         @products = []
@@ -76,6 +80,8 @@ class SearchesController < ApplicationController
         end
         render "markets/index"
     else
+        @products.reverse!
+        # @products = @products.order("popularity DESC")
         render "index"
     end
   end
