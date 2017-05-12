@@ -63,5 +63,5 @@ University and its students
 Brian Del Vecchio - For taking time out of your busy
 day to help slacking students build a cool website
 
-Marius stankevicius - For helping create the logo and
+Marius Stankevicius - For helping create the logo and
 favicon for the site

@@ -23,7 +23,6 @@ class ApplicationController < ActionController::Base
 
   def error
     @status_code = params[:code] || 500
-    @p = Geocoder::Calculations.distance_between(Geocoder.coordinates(Market.first.address + Market.first.city + Market.first.state), Geocoder.coordinates(remote_ip)) #request.remote_ip instead of remote_ip
     render "layouts/error_page"
   end
 end
