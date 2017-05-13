@@ -49,7 +49,7 @@
     $('.check-product').click(function(){
       var id = $(this).attr('id')
       $.ajax({
-        url: "/products/" + id,
+        url: "/products/" + id +"/",
         dataType: "html",
         type: "GET",
         success: function(data, success) {

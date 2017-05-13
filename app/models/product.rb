@@ -11,8 +11,8 @@ class Product < ApplicationRecord
   validates :store_id, presence: true
   validates :group, presence: true
 
-  searchable do
-    text :name, :description, :tag, :group
-    integer :popularity
-  end
+  # searchable do
+  #   text :name, :description, :tag, :group
+  #   integer :popularity
+  # end
 end
