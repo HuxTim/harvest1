@@ -11,8 +11,10 @@ class Product < ApplicationRecord
   validates :store_id, presence: true
   validates :group, presence: true
 
-  # searchable do
-  #   text :name, :description, :tag, :group
-  #   integer :popularity
-  # end
+    if Rails.env.development?
+  searchable do
+    text :name, :description, :tag, :group
+    integer :popularity
+  end
+end
 end
