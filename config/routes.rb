@@ -37,6 +37,8 @@ Rails.application.routes.draw do
 
   patch '/users/:id/update_password', to: 'users#update_password'
 
+  get '/search/heroku', to: 'application#heroku'
+
   %w(404 422 500).each do |code|
     get code, to: "application#error", code: code
   end

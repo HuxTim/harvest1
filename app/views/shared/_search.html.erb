@@ -7,13 +7,22 @@
 							<%= select_tag(:option, options_for_select([['All'],['Products'], ['Stores'], ['Markets']], selected: :option),
 							 id: 'selectBox', class: "form-control")%>
               </div>
-							<%= text_field_tag :q, params[:q], type: "text", class: "form-control input-lg", placeholder: "Search Products, Stores, or Markets..."%>
-							<span class="input-group-btn">
-										<%= button_tag(type: 'submit', class: "btn btn-primary") do %>
-												<span class="glyphicon glyphicon-search"></span>
-										<% end %>
+              <%if !Rails.env.development? %>
+                <span class="input-group-btn">
+                  <%= text_field_tag :q, params[:q], type: "text", class: "form-control input-lg", placeholder: "Search Products, Stores, or Markets..."%>
+                  <%= link_to search_heroku_path, class: "btn btn-default" do %>
+                      <span class="glyphicon glyphicon-search"></span>
+                  <% end %>
+                </span>
+              <%else %>
+              <span class="input-group-btn">
+                		<%= text_field_tag :q, params[:q], type: "text", class: "form-control input-lg", placeholder: "Search Products, Stores, or Markets..."%>
+                    <%= button_tag(type: 'submit', class: "btn btn-primary") do %>
+                        <span class="glyphicon glyphicon-search"></span>
+                    <% end %>
               </span>
-              <% end %>
+              <%end %>
+            <%end %>
           </div>
       </div>
       <h5><p>&nbsp;&nbsp;&nbsp;Recommended Searches: <u><a href="/search?utf8=✓&option=All&q=gluten-free&button=" style="color:white">gluten-free</a></u>, <u><a href="/search?utf8=✓&option=All&q=halibut&button=" style="color:white">Halibut</a></u>, <u><a href="/search?utf8=✓&option=All&q=farmers+markets&button=" style="color:white">Farmers markets</a><u></p></h5>

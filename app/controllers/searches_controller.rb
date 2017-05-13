@@ -1,5 +1,6 @@
 class SearchesController < ApplicationController
   before_action :set_search, only: [:show, :edit, :update, :destroy]
+  before_action :get_ip,
   # GET /searches
   # GET /searches.json
   def index
@@ -129,10 +130,15 @@ class SearchesController < ApplicationController
     end
   end
 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_search
       @search = Search.find(params[:id])
+    end
+
+    def get_ip
+      @ip = request.remote_ip
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

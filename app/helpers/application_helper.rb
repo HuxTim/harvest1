@@ -216,16 +216,17 @@ module ApplicationHelper
     distMark = Hash.new
 
     markets.each do |mkt|
-
       distMark[mkt] = m_calculateDistance(mkt)
-
+      if distMark[mkt].nan?
+        distMark[mkt] = 12425
+      end
     end
     sortedMarkets = []
     distMark.each do |key,value|
       puts key.name
       puts value
     end
-    sorted_hash = distMark.sort_by {|_key, value| value}
+    sorted_hash = distMark.sort_by {|_key, value| value.round}
 
     sorted_hash.each do |item|
       sortedMarkets.push item[0]

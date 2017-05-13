@@ -4,14 +4,14 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include ProductsHelper
 
-  def remote_ip
-    if request.remote_ip == '127.0.0.1'
-      # Hard coded remote address
-      '129.64.121.237'
-    else
-      request.remote_ip
-    end
-  end
+  # def remote_ip
+  #   if request.remote_ip == '127.0.0.1'
+  #     # Hard coded remote address
+  #     '156.74.181.208'
+  #   else
+  #     request.remote_ip
+  #   end
+  # end
 
   def cities
     state = params[:state]
@@ -24,5 +24,9 @@ class ApplicationController < ActionController::Base
   def error
     @status_code = params[:code] || 500
     render "layouts/error_page"
+  end
+
+  def heroku
+    render "layouts/heroku"
   end
 end
