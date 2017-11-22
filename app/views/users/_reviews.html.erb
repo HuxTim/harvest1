@@ -43,9 +43,10 @@
 
 <div class="col-sm-1"></div>
 <div class="col-sm-5 panel-custom-md">
+  <% if @user.vendor %>
   <h2 class="text-center">Store Reviews</h2>
   <%= render 'shared/empty_messages', locals: { objects: @objects = @user.store_reviews, class: @class = "Review for Store" } %>
-  <% @user.store_reviews.each do |store_review| %>
+  <% @user.vendor.store.store_reviews.each do |store_review| %>
   <div class="row">
     <div class="col-sm-12">
       <div class="panel panel-default">
@@ -77,6 +78,7 @@
       </div><!-- /panel panel-default -->
     </div><!-- /col-sm-5 -->
   </div>
+  <% end %>
   <% end %>
 </div>
 </div>
