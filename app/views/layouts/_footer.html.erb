@@ -2,28 +2,34 @@
 <footer>
   <div class="row">
     <div class="col-sm-12">
-      <div class="col-sm-6">
-        <div class="col-sm-4 text-center">
+      <div class="col-sm-3">
+        <div class="col-sm-12 text-center">
           <%= image_tag("logo_lg.png",class: "navbar-header logo-lg") %>
         </div>
-        <div class="col-sm-8"></div>
       </div>
 
       <div class="col-sm-3">
+        <div class="footer-title">About</div>
         <ul>
           <li><%= link_to "About Us", "https://www.harvestwebapp.tk" %></li>
-          <li><%= link_to "Join Us", current_user %></li>
-          <li><%= link_to "FAQs", current_user %></li>
+          <li><%= link_to "Source Code", "https://github.com/HuxTim/harvest1" %></li>
         </ul>
       </div>
 
       <!--Third column-->
       <div class="col-sm-3">
+        <div class="footer-title">Developer</div>
         <ul>
-          <li>Tim</li>
-          <li>Yanique</li>
-          <li>Beraa</li>
-          <li>Huiming</li>
+          <li><%= link_to "Huiming Jia", "https://github.com/HuimingJia" %></li>
+          <li><%= link_to "Tim Hu", "https://github.com/HuxTim" %></li>
+        </ul>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="footer-title">Developer</div>
+        <ul>
+          <li><%= link_to "Yanique", "https://github.com/Y-Seac" %></li>
+          <li><%= link_to "Beraa", "https://github.com/bibas28" %></li>
         </ul>
       </div>
 

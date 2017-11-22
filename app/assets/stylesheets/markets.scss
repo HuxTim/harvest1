@@ -5,8 +5,8 @@
   color: white;
   padding: 5px;
   min-height: 350px;
-  border-width: 1px;
-  border-color: #367036;
+  border-width: 0px;
+  // border-color: #367036;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   // background: -webkit-linear-gradient(-36deg, rgb(50, 53, 51), rgb(18, 57, 18));
@@ -35,9 +35,9 @@
 }
 
 .check-market:hover{
-  background: -webkit-linear-gradient(135deg, #F8EBD7 10%, #E8CBC0 90%); /* Chrome 10+, Saf5.1+ */
-  background: -moz-linear-gradient(135deg, #F8EBD7 10%, #E8CBC0 90%); /* FF3.6+ */
-  background: linear-gradient(135deg, #F8EBD7 10%, #E8CBC0 90%); /* W3C */
+  background: -webkit-linear-gradient(135deg, #E8CBC0 10%, #E8CBC0 90%); /* Chrome 10+, Saf5.1+ */
+  background: -moz-linear-gradient(135deg, #E8CBC0 10%, #E8CBC0 90%); /* FF3.6+ */
+  background: linear-gradient(135deg, #E8CBC0 10%, #E8CBC0 90%); /* W3C */
   color: #778462;
   border-color: #474f3a;
   .card-title{
@@ -76,7 +76,7 @@
 
 .check-market  .thumbnail-image:hover{
   .hover{
-    background: rgb(62, 120, 75);
+    background: rgba(62, 20, 75, 0.5);
   }
   font-size: 15px;
   color: white;

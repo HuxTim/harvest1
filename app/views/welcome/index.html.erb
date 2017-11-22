@@ -1,18 +1,19 @@
 <header class="row">
-  <div class="col-md-6">
-  <h2><br><br><br><br><br><br><br>&nbsp;&nbsp;&nbsp;Find Fresh Produce<br>&nbsp;&nbsp;&nbsp;at Nearby Farmers Markets<h2>
-    <div id="search_area">
+  <div class="col-md-12">
+    <div id="search">
+      <h1>&nbsp;&nbsp;Find Fresh Produce<br>&nbsp;&nbsp;at Nearby Farmers Markets<h1>
        <%= render 'shared/search' %>
     </div>
     <div class="text-center">
       <div class="form-horizontal center container" id="search_area"></div>
     </div>
     </div>
-    <div class="col-md-2"></div>
+    <!-- <div class="col-md-1"></div>
     <blink class="col-md-4" style="background: rgba(54,69,79,0.7); margin-top:260px; padding:10px;">
       <div class="col-md-3"><%= image_tag("testimonial.JPG", height: '135', width: '90') %></div>
       <div class="col-md-9" style="padding-right: 75px; padding-left: 40px;">To anyone who loves farmers markets.. <br>Use this app!! <br>I never knew where to find what I needed but now I do with Harvest<br><overflow: visible>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp- Beraa Ibas</overflow></div>
-  </blink>
+    </blink>
+    <div class="col-md-1"></div> -->
 </header>
 
 <section>
@@ -23,7 +24,7 @@
       </div>
     </div>
   <div class="row">
-        <%= render 'shared/products', locals: { products: @products = Product.all.order("popularity DESC")[0..2]} %>
+        <%= render 'shared/products', locals: { products: @products = Product.all.order("popularity DESC")[0..5]} %>
         <%= render 'shared/product_modal' %>
   </div>
 </section>
@@ -36,7 +37,7 @@
       </div>
     </div>
   <div class="row">
-      <%= render 'shared/stores', locals: { stores: @stores = Store.all[0..3] } %>
+      <%= render 'shared/stores', locals: { stores: @stores = Store.all[0..7] } %>
   </div>
 </section>
 

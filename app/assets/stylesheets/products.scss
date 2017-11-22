@@ -1,20 +1,14 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-
 .check-product{
   height: 425px;
   padding: 5px;
-  border-width: 1px;
-  border-style: #123456 ;
-  // border-color: black;
-  border-color: #778462;
+  border-width: 0px;
+  border-style: dashed;
+  border-color: #336600;
   border-radius: 10px;
-  // background: #e8fce8;
-  background: -webkit-linear-gradient(135deg, #FBF1E3 25%, #8DC26F 75%); /* Chrome 10+, Saf5.1+ */
-  background: -moz-linear-gradient(135deg, #FBF1E3 25%, #8DC26F 75%); /* FF3.6+ */
-  background: linear-gradient(135deg, #FBF1E3 25%, #8DC26F 75%); /* W3C */
+  background: #ccfff7;
   -webkit-transition: all 1s;
   -moz-transition: all 1s;
   transition: all 1s;
@@ -25,9 +19,9 @@
     border-radius: 10px;
     font-size: 20px;
     padding: 35px;
-    -webkit-transition: all 0.25s;
-    -moz-transition: all 0.25s;
-    transition: all 0.25s;
+    -webkit-transition: all 0.35s;
+    -moz-transition: all 0.35s;
+    transition: all 0.35s;
   }
 }
 
@@ -36,9 +30,7 @@
 }
 
 .check-product:hover{
-  background: -webkit-linear-gradient(135deg, #FBF1E3 25%, #8DC26F 75%); /* Chrome 10+, Saf5.1+ */
-  background: -moz-linear-gradient(135deg, #FBF1E3 25%, #8DC26F 75%); /* FF3.6+ */
-  background: linear-gradient(135deg, #FBF1E3 25%, #8DC26F 75%); /* W3C */
+  background: #93F9B9;
   cursor: pointer;
 }
 
@@ -64,7 +56,7 @@
 
 .thumbnail-image:hover{
   .hover{
-    background: rgb(62, 120, 75);
+    background: rgba(62, 120, 75, 0.8);
   }
   -webkit-transition: all 0.15s;
   -moz-transition: all 0.15s;

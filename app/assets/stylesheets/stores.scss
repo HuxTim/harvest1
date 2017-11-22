@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .filter{
   border: 2px;
+  border-style: dashed;
   border-radius: 10px;
   border: #123456;
   margin-bottom: 20px;
@@ -42,14 +43,14 @@
 .check-store{
   color: white;
   padding: 5px;
-  border-width: 1px;
-  border-color: #367036;
+  border-width: 0px;
+  // border-color: #367036;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   background: #e8fce8;
-  -webkit-transition: all 0.35s;
-  -moz-transition: all 0.35s;
-  transition: all 0.35s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
   .hover{
     height: 100%;
     width: 100%;
@@ -68,7 +69,8 @@
 }
 
 .check-store:hover{
-  color: #778462;
+  // color: #778462;
+  background: #a4f3a4;
   border-color: #474f3a;
   .card-title{
     color: #474f3a;
@@ -106,7 +108,7 @@
 
 .check-store  .thumbnail-image:hover{
   .hover{
-    background: rgb(62, 120, 75);
+    background: rgba(62, 120, 75, 0.8);
   }
   font-size: 15px;
   color: white;

@@ -10,16 +10,6 @@ module ProductsHelper
       "Seafood",
       "Pesticide-Free",
       "Gluten-Free"
-      # "vegetable",
-      # "meat",
-      # "fish",
-      # "fruit",
-      # "drink",
-      # "bread",
-      # "beef",
-      # "lamb",
-      # "chicken",
-      # "fresh"
     ]
   end
 
