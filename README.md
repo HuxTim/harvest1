@@ -53,9 +53,9 @@ The site is hosted on harvest-farmermarket.herokuapp.com. The search function is
 ![](https://github.com/HuxTim/harvest1/blob/master/images/homepage.png)
 
 ### Sign Up and Sign In Page Form
- Sign Up | Sign In |
+ Sign Up | Log In |
 -----    | ------- |
-![](https://github.com/HuxTim/harvest1/blob/master/images/signin.png)  | ![](https://github.com/HuxTim/harvest1/blob/master/images/login.png) |
+![](https://github.com/HuxTim/harvest1/blob/master/images/signup.png)  | ![](https://github.com/HuxTim/harvest1/blob/master/images/login.png) |
 
  
 
@@ -74,9 +74,15 @@ Head  | Products | Review |
 ![](https://github.com/HuxTim/harvest1/blob/master/images/UpdateStoreInformation.png)
 
 ### Product Detail Page
- Product Detail Up | Update Product Information |
------    | ------- |
-![](https://github.com/HuxTim/harvest1/blob/master/images/ProductDetail.png) | ![](https://github.com/HuxTim/harvest1/blob/master/images/UploadProductImage.png) |
+![](https://github.com/HuxTim/harvest1/blob/master/images/ProductDetail.png) 
+
+### Manage Product
+ Add Product Information | Update Product Information |
+------    | ------- |
+![](https://github.com/HuxTim/harvest1/blob/master/images/AddProduct.png) | ![](https://github.com/HuxTim/harvest1/blob/master/images/UploadProductImage.png) |
+
+### Search Result
+![](https://github.com/HuxTim/harvest1/blob/master/images/ProductsPage.png)
 
 ### Shopping Schedule
 ![](https://github.com/HuxTim/harvest1/blob/master/images/ShoppingSchedule.png)
@@ -89,9 +95,6 @@ Head  | Products | Review |
 
 ### Nearby Markets
 ![](https://github.com/HuxTim/harvest1/blob/master/images/NeabyMarket.png)
-
-### Manage Product
-![](https://github.com/HuxTim/harvest1/blob/master/images/AddProduct.png)
 
 ### Email Template
 ![](https://github.com/HuxTim/harvest1/blob/master/images/Email.png)
