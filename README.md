@@ -19,6 +19,7 @@
 
 ## Demo
 Here is a live demo deployed on heroku with fake data :  https://harvest-farmermarket.herokuapp.com/
+<<<<<<< HEAD
 
 
 ## Notes
@@ -33,7 +34,9 @@ Data is also aleeady seeded. This can be redone with
 - rake db:seed
 ```
 
+
 The site is hosted on harvest-farmermarket.herokuapp.com. The search function is not accessible through there as deploying the solr gem on heroku costs fifteen dollars a month
+
 
 
 ## Site Snapshot
@@ -41,6 +44,18 @@ The site is hosted on harvest-farmermarket.herokuapp.com. The search function is
 ### Home Page
 
 ![](https://github.com/HuxTim/harvest1/blob/master/images/homepage.png)
+=======
+## Site Snapshot
+
+### Home Page
+
+![](https://github.com/HuxTim/harvest1/blob/master/images/homepage.png)
+
+### Sign Up and Sign In Page Form
+ Sign Up       								                           | Sign In
+---------------------------------------------------------------------- | -------------
+![](https://github.com/HuxTim/harvest1/blob/master/images/signin.png)  | ![](https://github.com/HuxTim/harvest1/blob/master/images/login.png)
+
 
 ### Sign Up and Sign In Page Form
 ![](https://github.com/HuxTim/harvest1/blob/master/images/signin.png)
