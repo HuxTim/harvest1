@@ -26,6 +26,8 @@
         <%end %>
       </div>
     </div>
+      <% if Rails.env.development? %>
     <h5><p>&nbsp;&nbsp;&nbsp;Recommended Searches: <u><a href="/search?utf8=✓&option=All&q=gluten-free&button=" style="color:white">gluten-free</a></u>, <u><a href="/search?utf8=✓&option=All&q=halibut&button=" style="color:white">Halibut</a></u>, <u><a href="/search?utf8=✓&option=All&q=farmers+markets&button=" style="color:white">Farmers markets</a><u></p></h5>
+        <% end %>
     </div>
   </div>
