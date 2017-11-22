@@ -19,7 +19,6 @@
 
 ## Demo
 Here is a live demo deployed on heroku with fake data :  https://harvest-farmermarket.herokuapp.com/
-<<<<<<< HEAD
 
 
 ## Notes
@@ -102,7 +101,11 @@ If you'd like to request a new function, feel free to do so by opening an issue 
 - [dropzone.js](https://http://www.dropzonejs.com/) - DropzoneJS is an open source library that provides drag’n’drop file uploads with image previews
 - [PaperClip] (https://github.com/thoughtbot/paperclip) - 
 - [Google Maps](https://enterprise.google.com/maps/products/mapsapi.html) - The best of Google's Powerful Mapping for your business
+- [bcrypt] (https://rubygems.org/gems/bcrypt/versions/3.1.11) - bcrypt() is a sophisticated and secure hash algorithm designed by The OpenBSD project for hashing passwords. The bcrypt Ruby gem provides a simple wrapper for safely handling passwords.
 - [Bootstrap](http://getbootstrap.com/) - Build responsive, mobile-first projects on the web with the world's most popular front-end component library.
+- [Sunspot_solr] (https://rubygems.org/gems/sunspot_solr/versions/2.2.6) - Solr provides a bundled Solr distribution for use with Sunspot. Typical deployment environments will require more configuration, but this distribution is well suited to development and testing.
+- [Fast-stemmer] (https://github.com/romanbsd/fast-stemmer) - Fast-stemmer is simply a wrapping around multithreaded Porter stemming algorithm. 
+- [Byebug] (https://rubygems.org/gems/byebug) - Byebug is a Ruby debugger. It's implemented using the TracePoint C API for execution control and the Debug Inspector C API for call stack navigation. The core component provides support that front-ends can build on. It provides breakpoint handling and bindings for stack frames among other things and it comes with an easy to use command line interface.
 
 ## To-Do
 
