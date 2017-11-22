@@ -3,7 +3,11 @@
       <!-- <hr> -->
     <ul class="nav nav-list">
       <% group_list.each do |grou|%>
+      <% if !Rails.env.development? %>
+      <li><a href="/search/heroku"><%= tag %></a></li>
+      <% else %>
       <li><a href="/search?q=<%= @query %>&option=Products&group=<%= grou %>"><%= grou %></a></li>
+      <% end %>
       <% end %>
     </ul>
 <!-- <hr> -->
@@ -11,7 +15,11 @@
       <!-- <hr> -->
     <ul class="nav nav-list">
       <% specialties_list.each do |speciality|%>
+      <% if !Rails.env.development? %>
+      <li><a href="/search/heroku"><%= tag %></a></li>
+      <% else %>
       <li><a href="/search?q=<%= @query %>&option=Products&speciality=<%= speciality %>"><%= speciality %></a></li>
+      <% end %>
       <% end %>
     </ul>
     <!-- <hr> -->
@@ -19,7 +27,11 @@
       <!-- <hr> -->
     <ul class="nav nav-list">
       <% tag_list.each do |tag|%>
+      <% if !Rails.env.development? %>
+      <li><a href="/search/heroku"><%= tag %></a></li>
+      <% else %>
       <li><a href="/search?q=<%= @query %>&option=Products&tag=<%= tag %>"><%= tag %></a></li>
+      <% end %>
       <% end %>
     </ul>
     <!-- <hr> -->
