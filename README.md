@@ -24,7 +24,9 @@ Here is a live demo deployed on heroku with fake data :  https://harvest-farmerm
 ![](https://github.com/HuxTim/harvest1/blob/master/images/homepage.png)
 
 ### Sign Up and Sign In Page Form
-![](https://github.com/HuxTim/harvest1/blob/master/images/signin.png) ![](https://github.com/HuxTim/harvest1/blob/master/images/login.png)
+Sign Up       | Sign In
+------------- | -------------
+![](https://github.com/HuxTim/harvest1/blob/master/images/signin.png)  | ![](https://github.com/HuxTim/harvest1/blob/master/images/login.png)
 
 ### Charts
 ![](https://iharsh234.github.io/WebApp/images/demo/demo_chart1.JPG)
