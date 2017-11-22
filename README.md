@@ -25,13 +25,12 @@ All of the information you could want is coherently laid out for you. With less 
  -  can see some popular products nearby
  -  can save products to my grocery list. 
  -  can review Farmers Markets I’ve been to. 
+ -  can request system help schedule a reasonable shopping plan base on time and location
  
 ### Farmer(Vendor)
  -  be able to showcase all of my products 
  -  can have a personal page that has my store’s products and information.
- -  be able to have an online presence and showcase my personal story. 
- -  be able to have contact with my customers via messages in order to provide support or answer questions.
- -  be able to have contact with my customers via messages in order to provide support or answer questions.
+ -  be able to have an online presence and showcase my personal store. 
  -  be able to see any available Market places for me to sell my goods at. 
  
 ### Market Manager
