@@ -125,12 +125,12 @@
         var map;
         function initMap() {
           map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: <%= Geocoder.coordinates(@market.address + @market.city + @market.state)?Geocoder.coordinates(@market.address + @market.city + @market.state)[0]:0 %>, lng: <%= Geocoder.coordinates(@market.address + @market.city + @market.state)?Geocoder.coordinates(@market.address + @market.city + @market.state)[1]:0 %>},
+            center: {lat: <%= @lat %>, lng: <%= @lng %>},
             zoom: 15
           });
 
           var marker = new google.maps.Marker({
-            position: {lat: <%= Geocoder.coordinates(@market.address + @market.city + @market.state)?Geocoder.coordinates(@market.address + @market.city + @market.state)[0]:0 %>, lng: <%= Geocoder.coordinates(@market.address + @market.city + @market.state)?Geocoder.coordinates(@market.address + @market.city + @market.state)[1]:0 %>},
+            position: {lat: <%= @lat2 %>, lng: <%= @lng2 %>},
             map: map
           });
         }
