@@ -14,17 +14,17 @@
 
 
 ## Demo
-Here is a working live demo :  https://iharsh234.github.io/WebApp/
+Here is a live demo deployed on heroku with fake data :  https://harvest-farmermarket.herokuapp.com/
 
 
-## Site
+## Site Snapshot
 
-### Landing Page
-Currently it is working on all NSE (India) Stocks, BSE (India) Stocks Symbol will be added soon.
+### Home Page
 
-![](https://iharsh234.github.io/WebApp/images/demo/web_app_face.JPG)
+![](https://github.com/HuxTim/harvest1/blob/master/images/homepage.png)
 
-### Query Filled Form
+### Sign Up and Sign In Page Form
+![Sign-up](https://github.com/HuxTim/harvest1/blob/master/images/signin.png "title-1") ![Sign-in](https://github.com/HuxTim/harvest1/blob/master/images/login.png "title-2")
 ![](https://iharsh234.github.io/WebApp/images/demo/demo_query.JPG)
 
 ### Charts
