@@ -14,14 +14,32 @@ All of the information you could want is coherently laid out for you. With less 
 </tr>
 </table>
 
-## Feature
-- Add BSE (India) Symbol to the current App.
-- Decide comparison models of Stocks. (suggestions are most welcome).
-- Another WebApp, capable of comparing at least 10 stocks.
+## User Stories & Feature
+### Customer(User)
+ -  can check out near by farmers markets.
+ -  can see which vendors have a specific product.
+ -  can specific product and want to know which vendor has it and is open now.
+ -  can be able to view all local products from all local vendors.
+ -  can go to a farmers market page and check which farmers markets are open now.
+ -  can explore markets around me and see the vendors at each market and what each vendor has.
+ -  can see some popular products nearby
+ -  can save products to my grocery list. 
+ -  can review Farmers Markets I’ve been to. 
+ 
+### Farmer(Vendor)
+ -  be able to showcase all of my products 
+ -  can have a personal page that has my store’s products and information.
+ -  be able to have an online presence and showcase my personal story. 
+ -  be able to have contact with my customers via messages in order to provide support or answer questions.
+ -  be able to have contact with my customers via messages in order to provide support or answer questions.
+ -  be able to see any available Market places for me to sell my goods at. 
+ 
+### Market Manager
+ -  be able to have a page that shows which vendors operate at my Marketplace.
+ -  be able to contact vendors to be able manage the store in its markets and reject or accept join-in request from a vendor.
 
 ## Demo
 Here is a live demo deployed on heroku with fake data :  https://harvest-farmermarket.herokuapp.com/
-
 
 ## Notes
 In  order to run the search function on the localhost, one must run the command in the terminal
@@ -34,7 +52,6 @@ Data is also aleeady seeded. This can be redone with
 ```
 - rake db:seed
 ```
-
 
 The site is hosted on harvest-farmermarket.herokuapp.com. The search function is not accessible through there as deploying the solr gem on heroku costs fifteen dollars a month
 
