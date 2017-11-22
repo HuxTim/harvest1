@@ -64,9 +64,10 @@ The site is hosted on harvest-farmermarket.herokuapp.com. The search function is
  
 
 ### Market Home Page
-![MarketPage Head](https://github.com/HuxTim/harvest1/blob/master/images/MarketPage.png)
-![MarketPage Store](https://github.com/HuxTim/harvest1/blob/master/images/MarketStore.png)
-![MarketReview Store](https://github.com/HuxTim/harvest1/blob/master/images/MarketReview.png)
+
+Head  | Store | Review |
+---|---|---|
+![MarketPage Head](https://github.com/HuxTim/harvest1/blob/master/images/MarketPage.png) |![MarketPage Store](https://github.com/HuxTim/harvest1/blob/master/images/MarketStore.png) |![MarketReview Store](https://github.com/HuxTim/harvest1/blob/master/images/MarketReview.png) |
 
 ### Store Home Page
 ![](https://github.com/HuxTim/harvest1/blob/master/images/login.png)
