@@ -54,14 +54,6 @@ Data is also aleeady seeded. This can be redone with
 
 The site is hosted on harvest-farmermarket.herokuapp.com. The search function is not accessible through there as deploying the solr gem on heroku costs fifteen dollars a month
 
-
-
-## Site Snapshot
-
-### Home Page
-
-![](https://github.com/HuxTim/harvest1/blob/master/images/homepage.png)
-=======
 ## Site Snapshot
 
 ### Home Page
