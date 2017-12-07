@@ -54,14 +54,6 @@ Data is also aleeady seeded. This can be redone with
 
 The site is hosted on harvest-farmermarket.herokuapp.com. The search function is not accessible through there as deploying the solr gem on heroku costs fifteen dollars a month
 
-
-
-## Site Snapshot
-
-### Home Page
-
-![](https://github.com/HuxTim/harvest1/blob/master/images/homepage.png)
-=======
 ## Site Snapshot
 
 ### Home Page
@@ -162,7 +154,7 @@ To fix a bug or enhance an existing module, follow these steps:
 
 ## Team
 
-[![Huiming Jia](https://avatars1.githubusercontent.com/u/22848271?s=460&v=4)](https://github.com/HuimingJia)  | [![Tim Hu](https://avatars3.githubusercontent.com/u/10839338?s=460&v=4)](https://github.com/HuxTim)|[![Yanique](https://avatars3.githubusercontent.com/u/19601821?s=460&v=4)](https://github.com/Y-Seac)|[![Beraa](https://avatars2.githubusercontent.com/u/19803893?s=460&v=4)](https://github.com/bibas28)
+[![Huiming Jia](https://avatars1.githubusercontent.com/u/22848271?s=200&v=4)](https://github.com/HuimingJia)  | [![Tim Hu](https://avatars3.githubusercontent.com/u/10839338?s=200&v=4)](https://github.com/HuxTim)|[![Yanique](https://avatars3.githubusercontent.com/u/19601821?s=200&v=4)](https://github.com/Y-Seac)|[![Beraa](https://avatars2.githubusercontent.com/u/19803893?s=200&v=4)](https://github.com/bibas28)
 ---|---|---|---
 [Huiming Jia](https://github.com/HuimingJia) |[Tim Hu](https://github.com/HuxTim) |[Yanique](https://github.com/Y-Seac) |[Beraa](https://github.com/bibas28)
 
