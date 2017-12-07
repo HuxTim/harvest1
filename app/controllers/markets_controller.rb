@@ -29,10 +29,30 @@ class MarketsController < ApplicationController
     @reviews = @market.market_reviews.all.order("created_at DESC").paginate(page:1,per_page:5)
     @current_page = 1
     @review = @market.market_reviews.new(market_id: params[:id])
-    @lat = Geocoder.coordinates(@market.address + @market.city + @market.state)? Geocoder.coordinates(@market.address + @market.city + @market.state)[0]:0
-    @lng = Geocoder.coordinates(@market.address + @market.city + @market.state)? Geocoder.coordinates(@market.address + @market.city + @market.state)[1]:0
-    @lat2= Geocoder.coordinates(@market.address + @market.city + @market.state)? Geocoder.coordinates(@market.address + @market.city + @market.state)[0]:0
-    @lng2= Geocoder.coordinates(@market.address + @market.city + @market.state)? Geocoder.coordinates(@market.address + @market.city + @market.state)[1]:0
+    co = Geocoder.coordinates(@market.address + @market.city + @market.state)
+    if (co)
+      @lat = co[0]
+    else
+      @lat = 0
+    end
+
+    if (co)
+      @lng = co[1]
+    else
+      @lng = 0
+    end
+
+    if (co)
+      @lat2 = co[0]
+    else
+      @lat2 = 0
+    end
+
+    if (co)
+      @lng2 = co[1]
+    else
+      @lng2 = 0
+    end
   end
 
   def ajax_reviews
