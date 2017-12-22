@@ -59,6 +59,7 @@ The site is hosted on harvest-farmermarket.herokuapp.com. The search function is
 ### Home Page
 
 ![](https://github.com/HuxTim/harvest1/blob/master/images/homepage.png)
+![](https://huxtim.github.io/harvest1/)
 
 ### Sign Up and Sign In Page Form
  Sign Up | Log In |
