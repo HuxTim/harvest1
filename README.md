@@ -4,7 +4,7 @@
 <table>
 <tr>
 <td>
-Harvest is a customer engagement platform for local farmers markets and their customers. Harvest makes it easy for users to learn about farmers markets, the vendors themselves, and their products. It is meant to provide users with a convenient way to interact with a world of fresh fruit and vegetables. Whether you are new to the farmers market scene or an experienced veteran, our app will have something for you to enhance your farmers market experience. You can make sure your local vendors will have their usual goods or you can do research on a completely new farmers market. Planning your trip becomes easy with our application. 
+Harvest is a customer engagement platform for local farmers markets and their customers. Harvest makes it easy for users to learn about farmers markets, the vendors themselves, and their products. It is meant to provide users with a convenient way to interact with a world of fresh fruit and vegetables. Whether you are new to the farmers market scene or an experienced veteran, our app will have something for you to enhance your farmers market experience. You can make sure your local vendors will have their usual goods or you can do research on a completely new farmers market. Planning your trip becomes easy with our application. https://huxtim.github.io/harvest1/
 </td>
 </tr>
 <tr>
@@ -59,7 +59,6 @@ The site is hosted on harvest-farmermarket.herokuapp.com. The search function is
 ### Home Page
 
 ![](https://github.com/HuxTim/harvest1/blob/master/images/homepage.png)
-![](https://huxtim.github.io/harvest1/)
 
 ### Sign Up and Sign In Page Form
  Sign Up | Log In |
